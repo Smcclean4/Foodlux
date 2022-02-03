@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Text from './text'
+import Login from './Login'
 
 ReactDOM.render(
   <>
-  <Text />
+  <Login />
   </> 
   ,
   document.getElementById('root')
