@@ -4,7 +4,7 @@ const Login = () => {
 
     return (
         <div>
-            <h1>FOOD DELIVERY SERVICE</h1>
+            <h1>FOOD DELIVERY SERVICE! ;)</h1>
         </div>
     )
 }
