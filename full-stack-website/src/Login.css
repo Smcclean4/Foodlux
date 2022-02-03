@@ -1,9 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
+
 .login-background {
     background: url("/src/pexels-furknsaglam-3109671.jpg");
     background-position: center;
     background-size:cover;
     height:100vh;
+    text-align:center;
 }
-h1 {
+.login-logo {
     color:white;
+    font-size:150px;
+    text-shadow:black 2px 5px 2px;
+    font-family: 'Bubblegum sans', cursive;
+}
+@media only screen and (max-width:400px) {
+    .login-logo {
+        font-size:100px;
+    }
 }
