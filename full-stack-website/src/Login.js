@@ -1,9 +1,10 @@
 import React from 'react'
+import './Login.css'
 
 const Login = () => {
 
     return (
-        <div>
+        <div className="login-background">
             <h1>FOOD DELIVERY SERVICE! ;)</h1>
         </div>
     )

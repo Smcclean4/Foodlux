@@ -1,0 +1,9 @@
+.login-background {
+    background: url("/src/pexels-furknsaglam-3109671.jpg");
+    background-position: center;
+    background-size:cover;
+    height:100vh;
+}
+h1 {
+    color:white;
+}
