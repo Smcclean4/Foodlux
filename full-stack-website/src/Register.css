@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
 
 .register-background {
-    background: url("/src/pexels-furknsaglam-3109671.jpg");
+    background: url("/src/images/pexels-furknsaglam-3109671.jpg");
     background-position: center;
     background-size:cover;
     height:100vh;
@@ -19,6 +19,13 @@
     font-family: 'Bubblegum sans', cursive;
     padding:5px;
     text-shadow:red 0 2px 0;
+}
+.register-span {
+    color:red;
+}
+.register-span:hover {
+    text-decoration:underline;
+    cursor:pointer;
 }
 @media only screen and (max-width:350px), (max-width:450px) {
     .register-logo {

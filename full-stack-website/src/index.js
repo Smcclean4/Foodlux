@@ -3,12 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Login from './Login'
 import Register from './Register'
-
-let loggedin = false;
+import CheckRegister from './CheckRegister'
 
 ReactDOM.render(
   <>
-  {!loggedin ? <Register /> : <Login />}
+  {/* {CheckRegister(false) ? <Register /> : <Login />} */<Register />}
   </> 
   ,
   document.getElementById('root')

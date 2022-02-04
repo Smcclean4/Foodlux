@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
+import CheckRegister from './CheckRegister';
 import './Login.css';
 
 const Login = () => {
@@ -40,7 +41,7 @@ const Login = () => {
             <Button color="error" sx={{'&:hover': {backgroundColor: 'red', color: 'white'}}} variant="outlined" endIcon={<SendIcon />}>Log In</Button>
             <br></br>
             <br></br>
-            <p className="registration-login">don't have an account? <a>Register</a></p>
+            <p className="registration-login">don't have an account? <span className="register-span" onClick={CheckRegister(false)}>Register</span></p>
             </Box>
         </div>
     )
