@@ -1,38 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
 
-.login-background {
+.register-background {
     background: url("/src/pexels-furknsaglam-3109671.jpg");
     background-position: center;
     background-size:cover;
     height:100vh;
     text-align:center;
 }
-.login-logo {
+.register-logo {
     color:white;
     font-size:150px;
     text-shadow:black 2px 5px 2px;
     font-family: 'Bubblegum sans', cursive;
     padding:30px;
 }
-.login-header {
+.register-header {
     font-size:80px;
     font-family: 'Bubblegum sans', cursive;
     padding:5px;
     text-shadow:red 0 2px 0;
 }
 @media only screen and (max-width:350px), (max-width:450px) {
-    .login-logo {
+    .register-logo {
         font-size:80px;
     }
-    .login-header {
+    .register-header {
         font-size:50px;
     }
 }
 @media only screen and (max-width:1028px) and (min-width:1020px) {
-    .login-logo {
+    .register-logo {
         font-size:70px;
     }
-    .login-header {
+    .register-header {
         font-size:40px;
     }
 }

@@ -3,13 +3,13 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
-import './Login.css';
+import './Register.css';
 
-const Login = () => {
+const Register = () => {
 
     return (
-        <div className="login-background">
-            <p className="login-logo">Foodlux</p>
+        <div className="register-background">
+            <p className="register-logo">Foodlux</p>
             <Box
                 component="form"
                 sx={{
@@ -27,23 +27,23 @@ const Login = () => {
                 target="_blank"
                 autocomplete="on"
             >
-            <p className="login-header">Login</p>
-            <TextField className="login-fields" label="Username" margin="dense" variant="outlined" />
+            <p className="register-header">Register</p>
+            <TextField className="register-fields" label="Username" margin="dense" variant="outlined" />
                 <br></br>
                 <br></br>
-            <TextField className="login-fields" label="Email" type="email" margin="dense" variant="outlined" />
+            <TextField className="register-fields" label="Email" type="email" margin="dense" variant="outlined" />
                 <br></br>
                 <br></br>
-            <TextField required className="login-fields" label="Password" type="password" margin="dense" variant="filled" />
+            <TextField required className="register-fields" label="Password" type="password" margin="dense" variant="filled" />
             <br></br>
                 <br></br>
-            <Button color="error" sx={{'&:hover': {backgroundColor: 'red', color: 'white'}}} variant="outlined" endIcon={<SendIcon />}>Log In</Button>
+            <Button color="error" sx={{'&:hover': {backgroundColor: 'red', color: 'white'}}} variant="outlined" endIcon={<SendIcon />}>Register</Button>
             <br></br>
             <br></br>
-            <p className="registration-login">don't have an account? <a>Register</a></p>
+            <p className="registration-login">do you have an account? <a>Log In</a></p>
             </Box>
         </div>
     )
 }
 
-export default Login
+export default Register
