@@ -3,15 +3,19 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
-import CheckRegister from './CheckRegister';
 import './Register.css';
 
-const Register = () => {
+const Register = (isloggedin) => {
+
+    function handleSubmit(e) {
+        e.preventDefault();
+    }
 
     return (
         <div className="register-background">
             <p className="register-logo">Foodlux</p>
             <Box
+                onSubmit={() => handleSubmit}
                 component="form"
                 sx={{
                     border: "1px solid black",
@@ -41,7 +45,7 @@ const Register = () => {
             <Button color="error" sx={{'&:hover': {backgroundColor: 'red', color: 'white'}}} variant="outlined" endIcon={<SendIcon />}>Register</Button>
             <br></br>
             <br></br>
-            <p className="registration-login">do you have an account? <span className="login-span" onClick={CheckRegister(true)}>Log In</span></p>
+            <p className="registration-login">do you have an account? <span className="login-span" onClick={() => console.log('I need to Log In!')}>Log In</span></p>
             </Box>
         </div>
     )

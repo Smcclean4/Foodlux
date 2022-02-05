@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Login from './Login'
-import Register from './Register'
-import CheckRegister from './CheckRegister'
+import Login from './Login';
+import Register from './Register';
+
+let isloggedin = true;
 
 ReactDOM.render(
   <>
-  {/* {CheckRegister(false) ? <Register /> : <Login />} */<Register />}
+  {!isloggedin ? <Login /> : <Register/>}
   </> 
   ,
   document.getElementById('root')

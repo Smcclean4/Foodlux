@@ -3,15 +3,19 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
-import CheckRegister from './CheckRegister';
 import './Login.css';
 
 const Login = () => {
+
+    function handleSubmit(e) {
+        e.preventDefault();
+    }
 
     return (
         <div className="login-background">
             <p className="login-logo">Foodlux</p>
             <Box
+                onSubmit={() => handleSubmit}
                 component="form"
                 sx={{
                     border: "1px solid black",
@@ -21,7 +25,7 @@ const Login = () => {
                     maxWidth: "250px",
                     width: "75%",
                     margin: "0 auto",
-                    padding:"30px",
+                    padding:"10px 30px 30px 30px",
                 }}
                 action="/"
                 method="post"
@@ -41,7 +45,7 @@ const Login = () => {
             <Button color="error" sx={{'&:hover': {backgroundColor: 'red', color: 'white'}}} variant="outlined" endIcon={<SendIcon />}>Log In</Button>
             <br></br>
             <br></br>
-            <p className="registration-login">don't have an account? <span className="register-span" onClick={CheckRegister(false)}>Register</span></p>
+            <p className="registration-login">don't have an account? <span className="register-span" onClick={() => console.log('I need to Register!')}>Register</span></p>
             </Box>
         </div>
     )
