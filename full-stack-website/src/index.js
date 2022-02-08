@@ -4,11 +4,11 @@ import './index.css';
 import Login from './Login';
 import Register from './Register';
 
-let isloggedin = true;
+let isloggedin = false;
 
 ReactDOM.render(
   <>
-  {!isloggedin ? <Login /> : <Register/>}
+  {!isloggedin ? <Register /> : <Login />}
   </> 
   ,
   document.getElementById('root')

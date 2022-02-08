@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import './Register.css';
 
-const Register = (isloggedin) => {
+const Register = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
