@@ -45,7 +45,7 @@ const Register = () => {
             <Button color="error" sx={{'&:hover': {backgroundColor: 'red', color: 'white'}}} variant="outlined" endIcon={<SendIcon />}>Register</Button>
             <br></br>
             <br></br>
-            <p className="registration-login">do you have an account? <span className="login-span" onClick={() => console.log('I need to Log In!')}>Log In</span></p>
+            <p className="registration-login">do you have an account? <span className="login-span" onClick={() => change}>Log In</span></p>
             </Box>
         </div>
     )
