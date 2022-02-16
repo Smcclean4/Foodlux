@@ -4,27 +4,11 @@ import './index.css';
 import Login from './Login';
 import Register from './Register';
 
-const Home = () => {
-  const [state, setState] = useState(false)
-  const changeState = () => {
-    if (state == false) {
-      return true
-    } else {
-      return false
-    }
-  }
-
-  if (state == true) {
-    return <Login change={changeState} />
-  } else if (state == false) {
-    return <Register change={changeState}/>
-  }
-
-}
+const isloggedin = false;
 
 ReactDOM.render(
   <>
-  <Home />
+  {!isloggedin ? <Register /> : <Login />}
   </> 
   ,
   document.getElementById('root')
