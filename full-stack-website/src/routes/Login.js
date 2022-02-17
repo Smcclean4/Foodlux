@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../Login.css';
 
 const Login = () => {
@@ -35,9 +35,6 @@ const Login = () => {
             >
             <p className="login-header">Login</p>
             <TextField className="login-fields" label="Username" margin="dense" variant="outlined" />
-                <br></br>
-                <br></br>
-            <TextField className="login-fields" label="Email" type="email" margin="dense" variant="outlined" />
                 <br></br>
                 <br></br>
             <TextField required className="login-fields" label="Password" type="password" margin="dense" variant="filled" />

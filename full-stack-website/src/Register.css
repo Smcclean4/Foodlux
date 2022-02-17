@@ -31,6 +31,11 @@
     .register-logo {
         font-size:80px;
     }
+    /* looking to make rows in box on certain media size */
+    .Box {
+        display:flex;
+        flex-direction:row;
+    }
     .register-header {
         font-size:50px;
     }
@@ -38,6 +43,11 @@
 @media only screen and (max-width:1028px) and (min-width:1020px) {
     .register-logo {
         font-size:70px;
+    }
+    /* looking to make rows in box on certain media size */
+    .Box {
+        display:flex;
+        flex-direction:row;
     }
     .register-header {
         font-size:40px;

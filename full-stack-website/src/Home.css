@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
+
+.home-background {
+    background: url("/src/images/pexels-furknsaglam-3109671.jpg");
+    background-position: center;
+    background-size:cover;
+    height:100vh;
+    text-align:center;
+}
+.home-logo {
+    color:white;
+    font-size:100px;
+    text-shadow:black 2px 5px 2px;
+    font-family: 'Bubblegum sans', cursive;
+    padding:30px;
+}
+
+@media only screen and (max-width:350px), (max-width:450px) {
+    .home-logo {
+        font-size:70px;
+    }
+}
+@media only screen and (max-width:1028px) and (min-width:1020px) {
+    .home-logo {
+        font-size:70px;
+    }
+}
