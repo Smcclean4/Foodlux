@@ -20,9 +20,6 @@
     padding:5px;
     text-shadow:red 0 2px 0;
 }
-.login-span {
-    color:red;
-}
 .login-span:hover {
     text-decoration:underline;
     cursor:pointer;

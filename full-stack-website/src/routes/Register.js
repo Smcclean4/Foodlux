@@ -3,7 +3,8 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
-import './Register.css';
+import {Link} from 'react-router-dom';
+import '../Register.css';
 
 const Register = () => {
 
@@ -45,7 +46,9 @@ const Register = () => {
             <Button color="error" sx={{'&:hover': {backgroundColor: 'red', color: 'white'}}} variant="outlined" endIcon={<SendIcon />}>Register</Button>
             <br></br>
             <br></br>
-            <p className="registration-login">do you have an account? <span className="login-span" onClick={() => console.log('I want to Log In!')}>Log In</span></p>
+            <p className="registration-login">do you have an account? <Link style={{
+                color:'red'
+            }} to="/Login">Log In</Link></p>
             </Box>
         </div>
     )
