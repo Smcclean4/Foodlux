@@ -4,7 +4,8 @@
     background: url("/src/images/pexels-furknsaglam-3109671.jpg");
     background-position: center;
     background-size:cover;
-    height:100vh;
+    height:auto;
+    min-height:100vh;
     text-align:center;
 }
 .register-logo {
@@ -31,11 +32,6 @@
     .register-logo {
         font-size:80px;
     }
-    /* looking to make rows in box on certain media size */
-    .Box {
-        display:flex;
-        flex-direction:row;
-    }
     .register-header {
         font-size:50px;
     }
@@ -43,11 +39,6 @@
 @media only screen and (max-width:1028px) and (min-width:1020px) {
     .register-logo {
         font-size:70px;
-    }
-    /* looking to make rows in box on certain media size */
-    .Box {
-        display:flex;
-        flex-direction:row;
     }
     .register-header {
         font-size:40px;

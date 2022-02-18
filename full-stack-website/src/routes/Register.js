@@ -16,6 +16,7 @@ const Register = () => {
         <div className="register-background">
             <p className="register-logo">Foodlux</p>
             <Box
+                className="box"
                 onSubmit={() => handleSubmit}
                 component="form"
                 sx={{
