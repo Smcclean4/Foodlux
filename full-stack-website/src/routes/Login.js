@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import { Link } from 'react-router-dom';
-import '../Login.css';
+import '../stylesheets/Login.css';
 
 const Login = () => {
 
@@ -35,11 +35,11 @@ const Login = () => {
             >
             <p className="login-header">Login</p>
             <TextField className="login-fields" label="Username" margin="dense" variant="outlined" />
-                <br></br>
-                <br></br>
+            <br></br>
+            <br></br>
             <TextField required className="login-fields" label="Password" type="password" margin="dense" variant="filled" />
             <br></br>
-                <br></br>
+            <br></br>
             <Button color="error" sx={{'&:hover': {backgroundColor: 'red', color: 'white'}}} variant="outlined" endIcon={<SendIcon />}>Log In</Button>
             <br></br>
             <br></br>

@@ -4,7 +4,7 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
-import './index.css';
+import './stylesheets/index.css';
 import Register from './routes/Register';
 import Login from './routes/Login';
 import Home from './routes/Home';

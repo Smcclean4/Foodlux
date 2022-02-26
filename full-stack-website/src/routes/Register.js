@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import { Link } from 'react-router-dom';
-import '../Register.css';
+import '../stylesheets/Register.css';
 
 const Register = () => {
 
