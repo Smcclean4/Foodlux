@@ -53,34 +53,33 @@ const Home = () => {
         bobs: {
             name:"Bob's Burgers",
             drinks: ["Coke", "Sprite", "Lemonade"],
-            food: ["Bacon Burgers", "Chili Cheese Fries", "Jalepenos"]
+            food: ["Bacon Burgers", "Chili Cheese Fries", "Jalepenos"],
+            logo: "🍔"
         }   
     })
     const [snacks, setSnacks] = useState({
         eighteleven: {
             name:"8-11",
             food: ["Hotcat", "Wings and Tings", "Smetzels"],
-            drinks: ["Water", "Gatorade", "Sprite"]
+            drinks: ["Water", "Gatorade", "Sprite"],
+            logo: "🍿"
         }
     })
     const [finedine, setFinedine] = useState({
         puthschriss: {
             name:"Puth's Chriss",
             food: ["Ramen", "Wonton Sushi", "Steak and Eggs"],
-            drinks: ["Chapagne", "Water", "Strawberry Lemonade"]
+            drinks: ["Chapagne", "Water", "Strawberry Lemonade"],
+            logo: "🍜"
         }
     })
     const [alcohol, setAlcohol] = useState({
         johnnyliqour: {
             name:"Johnny's Liqour",
-            drinks: ["Wine", "Titos Vodka", "Hennessy"]
+            drinks: ["Wine", "Titos Vodka", "Hennessy"],
+            logo: "🍷"
         }
     })
-    //LOGOS
-    const [fflogo, setFflogo] = useState("🍔")
-    const [fdlogo, setFdlogo] = useState("🍜")
-    const [alclogo, setAlclogo] = useState("🍷")
-    const [snlogo, setSnlogo] = useState("🍿")
 
     // MUI
     const [value, setValue] = useState(0)
@@ -98,20 +97,23 @@ const Home = () => {
     return (
         <div className="home-background">
             <p className="home-logo">Foodlux</p>
-            <Box sx={{ bgcolor: 'white', width: 500, margin:"0 auto"}}>
+            <Box sx={{ bgcolor: 'background.paper', width: 500, margin:"0 auto"}}>
             <AppBar position="static">
-            <Tabs 
-            value={value} 
+            <Tabs
+            sx={{
+                backgroundColor: "black",
+            }} 
+            value={value}
             onChange={handleChange} 
             aria-label="Foodlux tabs"
             indicatorColor="secondary"
             textColor="inherit"
-            variant="fullWidth" 
+            variant="fullWidth"
             >
-                <Tab icon={<Fastfood logo={fflogo} />} aria-label="fflogo" label="FAST FOOD" {...allyProps(0)} />
-                <Tab icon={<Finedine logo={fdlogo} />} aria-label="fdlogo" label="FINE DINING" {...allyProps(1)}/>
-                <Tab icon={<Snacks logo={snlogo} />} aria-label="snlogo" label="SNACKS" {...allyProps(2)}/>
-                <Tab icon={<Alcohol logo={alclogo} />} aria-label="alclogo" label="ALCOHOL" {...allyProps(3)}/>
+                <Tab icon={<Fastfood logo={fastfood.bobs.logo} />} aria-label="fflogo" label="FAST FOOD" {...allyProps(0)} />
+                <Tab icon={<Finedine logo={finedine.puthschriss.logo} />} aria-label="fdlogo" label="FINE DINING" {...allyProps(1)}/>
+                <Tab icon={<Snacks logo={snacks.eighteleven.logo} />} aria-label="snlogo" label="SNACKS" {...allyProps(2)}/>
+                <Tab icon={<Alcohol logo={alcohol.johnnyliqour.logo} />} aria-label="alclogo" label="ALCOHOL" {...allyProps(3)}/>
             </Tabs>
             </AppBar>
             <SwipeableViews
