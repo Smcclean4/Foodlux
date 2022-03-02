@@ -1,14 +1,20 @@
 import React from 'react';
+import "../stylesheets/Snacks.css"
 
 const Snacks = (props) => {
   return (
-   <div>
-    {props.logo}
-    <br />
-    {props.title}
-    <br />
-    {props.description}
-   </div>
+    <>
+    <h1>{props.logo}</h1>
+    <div className="sn-wrapper">
+    <div className="sn-grid a">
+        {props.title}
+    </div>
+    <div className="sn-grid b">
+        {props.food}
+        {props.drinks}
+    </div>
+</div>
+    </>
   );
 }
 

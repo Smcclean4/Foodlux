@@ -52,31 +52,31 @@ const Home = () => {
     const [fastfood, setFastfood] = useState({
         bobs: {
             name:"Bob's Burgers",
-            drinks: ["Coke", "Sprite", "Lemonade"],
-            food: ["Bacon Burgers", "Chili Cheese Fries", "Jalepenos"],
+            drinks: ["Coke ", "Sprite ", "Lemonade "],
+            food: ["Bacon Burgers ", "Chili Cheese Fries ", "Jalepenos "],
             logo: "🍔"
         }   
     })
     const [snacks, setSnacks] = useState({
         eighteleven: {
             name:"8-11",
-            food: ["Hotcat", "Wings and Tings", "Smetzels"],
-            drinks: ["Water", "Gatorade", "Sprite"],
+            food: ["Hotcat ", "Wings and Tings ", "Smetzels "],
+            drinks: ["Water ", "Gatorade ", "Sprite "],
             logo: "🍿"
         }
     })
     const [finedine, setFinedine] = useState({
         puthschriss: {
             name:"Puth's Chriss",
-            food: ["Ramen", "Wonton Sushi", "Steak and Eggs"],
-            drinks: ["Chapagne", "Water", "Strawberry Lemonade"],
+            food: ["Ramen ", "Wonton Sushi ", "Steak and Eggs "],
+            drinks: ["Chapagne ", "Water ", "Strawberry Lemonade "],
             logo: "🍜"
         }
     })
     const [alcohol, setAlcohol] = useState({
         johnnyliqour: {
             name:"Johnny's Liqour",
-            drinks: ["Wine", "Titos Vodka", "Hennessy"],
+            drinks: ["Wine ", "Titos Vodka ", "Hennessy "],
             logo: "🍷"
         }
     })
@@ -97,16 +97,19 @@ const Home = () => {
     return (
         <div className="home-background">
             <p className="home-logo">Foodlux</p>
-            <Box sx={{ bgcolor: 'background.paper', width: 500, margin:"0 auto"}}>
+            <Box sx={{ bgcolor: 'background.paper', width: "75%", margin:"0 auto"}}>
             <AppBar position="static">
             <Tabs
             sx={{
                 backgroundColor: "black",
+                "& .MuiTabs-indicator": {
+                    borderBottom: "2px solid red"
+                }
             }} 
             value={value}
-            onChange={handleChange} 
-            aria-label="Foodlux tabs"
+            onChange={handleChange}
             indicatorColor="secondary"
+            aria-label="Foodlux tabs"
             textColor="inherit"
             variant="fullWidth"
             >
@@ -122,16 +125,16 @@ const Home = () => {
                 onChangeIndex={handleChangeIndex}
             >
                 <TabPanel value={value} index={0} dir={theme.direction}>
-                    <Fastfood title={fastfood.bobs.name} />
+                    <Fastfood title={fastfood.bobs.name} food={fastfood.bobs.food} drinks={fastfood.bobs.drinks} />
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
-                    <Finedine title={finedine.puthschriss.name} />
+                <Finedine title={finedine.puthschriss.name} food={finedine.puthschriss.food} drinks={finedine.puthschriss.drinks} />
                 </TabPanel>
                 <TabPanel value={value} index={2} dir={theme.direction}>
-                    <Snacks title={snacks.eighteleven.name} />
+                <Snacks title={snacks.eighteleven.name} food={snacks.eighteleven.food} drinks={snacks.eighteleven.drinks} />
                 </TabPanel>
                 <TabPanel value={value} index={3} dir={theme.direction}>
-                    <Alcohol title={alcohol.johnnyliqour.name} />
+                    <Alcohol title={alcohol.johnnyliqour.name} drinks={alcohol.johnnyliqour.drinks} />
                 </TabPanel>
             </SwipeableViews>
             </Box>
