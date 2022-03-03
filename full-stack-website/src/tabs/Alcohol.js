@@ -1,9 +1,11 @@
 import React from 'react';
+import "../stylesheets/Alcohol.css"
 
 const Alcohol = (props) => {
   return (
-    <div className="alc-wrapper">
+    <>
     <h1>{props.logo}</h1>
+    <div className="alc-wrapper">
     <div className="alc-grid a">
         {props.title}
     </div>
@@ -12,6 +14,7 @@ const Alcohol = (props) => {
         {props.drinks}
     </div>
 </div>
+    </>
   );
 }
 
