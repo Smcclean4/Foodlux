@@ -16,6 +16,12 @@ ReactDOM.render(
     <Route path="Login" element={<Login />} />
     <Route path="Register" element={<Register />} />
     <Route path="Home" element={<Home />} />
+    <Route path="*" element={
+      <main style={{padding: "1rem"}}>
+        <p>Nothing to see here ....</p>
+      </main>
+    }
+    />
   </Routes>
   </BrowserRouter> 
   ,

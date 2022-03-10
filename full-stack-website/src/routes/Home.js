@@ -113,10 +113,10 @@ const Home = () => {
                         textColor="inherit"
                         variant="fullWidth"
                     >
-                        <Tab icon={<Fastfood logo={fastfood.bobs.logo} />} aria-label="fflogo" label="FAST FOOD" {...allyProps(0)} />
-                        <Tab icon={<Finedine logo={finedine.puthschriss.logo} />} aria-label="fdlogo" label="FINE DINING" {...allyProps(1)} />
-                        <Tab icon={<Snacks logo={snacks.eighteleven.logo} />} aria-label="snlogo" label="SNACKS" {...allyProps(2)} />
-                        <Tab icon={<Alcohol logo={alcohol.johnnyliqour.logo} />} aria-label="alclogo" label="ALCOHOL" {...allyProps(3)} />
+                        <Tab icon={<h1>{fastfood.bobs.logo}</h1>} aria-label="fflogo" label="FAST FOOD" {...allyProps(0)} />
+                        <Tab icon={<h1>{finedine.puthschriss.logo}</h1>} aria-label="fdlogo" label="FINE DINING" {...allyProps(1)} />
+                        <Tab icon={<h1>{snacks.eighteleven.logo}</h1>} aria-label="snlogo" label="SNACKS" {...allyProps(2)} />
+                        <Tab icon={<h1>{alcohol.johnnyliqour.logo}</h1>} aria-label="alclogo" label="ALCOHOL" {...allyProps(3)} />
                     </Tabs>
                 </AppBar>
                 <SwipeableViews
