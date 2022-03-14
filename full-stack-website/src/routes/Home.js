@@ -6,10 +6,7 @@ import { useTheme } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box'
-import Fastfood from '../tabs/Fastfood';
-import Finedine from '../tabs/Finedine';
-import Alcohol from '../tabs/Alcohol';
-import Snacks from '../tabs/Snacks';
+import Fooditems from '../tabs/Fooditems';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import '../stylesheets/Home.css'
@@ -86,7 +83,17 @@ const Home = () => {
         }
     })
 
-    console.log(fastfood.length)
+    let names;
+    let foods;
+    let drinks;
+
+    for (let properties in fastfood) {
+        names += fastfood[properties].name
+        foods += fastfood[properties].food
+        drinks += fastfood[properties.drinks]
+    }
+
+    console.log(foods)
 
     // MUI
     const [value, setValue] = useState(0)
@@ -133,16 +140,16 @@ const Home = () => {
                 >
                     {/* looking to display list of companies and their sections from API */}
                     <TabPanel value={value} index={0} dir={theme.direction}>
-                        <Fastfood title={fastfood[0].name} food={fastfood[0].food} drinks={fastfood[0].drinks} />
+                        <Fooditems title={fastfood[0].name} food={fastfood[0].food} drinks={fastfood[0].drinks} />
                     </TabPanel>
                     <TabPanel value={value} index={1} dir={theme.direction}>
-                        <Finedine title={finedine[0].name} food={finedine[0].food} drinks={finedine[0].drinks} />
+                        <Fooditems title={finedine[0].name} food={finedine[0].food} drinks={finedine[0].drinks} />
                     </TabPanel>
                     <TabPanel value={value} index={2} dir={theme.direction}>
-                        <Snacks title={snacks[0].name} food={snacks[0].food} drinks={snacks[0].drinks} />
+                        <Fooditems title={snacks[0].name} food={snacks[0].food} drinks={snacks[0].drinks} />
                     </TabPanel>
                     <TabPanel value={value} index={3} dir={theme.direction}>
-                        <Alcohol title={alcohol[0].name} drinks={alcohol[0].drinks} />
+                        <Fooditems title={alcohol[0].name} drinks={alcohol[0].drinks} />
                     </TabPanel>
                 </SwipeableViews>
             </Box>

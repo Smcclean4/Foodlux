@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import "../stylesheets/Finedine.css"
+import React, { useEffect, useState } from 'react';
+import "../stylesheets/Fooditems.css"
 
-const Finedine = (props) => {
+const Fooditems = (props) => {
   const [render, setRender] = useState(true);
   let status;
 
@@ -17,12 +17,12 @@ const Finedine = (props) => {
 
   return (
     <>
-      <div className="fd-wrapper">
-        <div onClick={((e) => handleClick(e))} className="fd-grid a active">
+      <div className="ff-wrapper">
+        <div onClick={((e) => handleClick(e))} className="ff-grid a active">
           {props.title}
         </div>
         {/* add conditional rendering for company items */
-          render ? <div className="fd-grid b">
+          render ? <div className="ff-grid b">
           <h2>Food</h2>
           {props.food?.map((items, idx) => {
             return <li key={idx}>{items}</li>
@@ -38,4 +38,4 @@ const Finedine = (props) => {
   );
 }
 
-export default Finedine
+export default Fooditems
