@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "../stylesheets/Fooditems.css"
 
 const Fooditems = (props) => {
-  const [render, setRender] = useState(true);
+  const [render, setRender] = useState(false);
   let status;
 
   useEffect(() => {
@@ -10,9 +10,9 @@ const Fooditems = (props) => {
   })
 
   const handleClick = (e) => {
-      e.preventDefault();
+      e.preventDefault()
       status.classList.toggle("active");
-      status.classList.contains("active") ? setRender(true) : setRender(false)
+      status.classList.contains("active") ? setRender(false) : setRender(true)
     }
 
   return (
@@ -31,7 +31,7 @@ const Fooditems = (props) => {
           {props.drinks?.map((items, idx) => {
             return <li key={idx}>{items}</li>
           })}
-        </div> : console.log("closed section")
+        </div> : console.log("closed section!")
         }
       </div>
     </>

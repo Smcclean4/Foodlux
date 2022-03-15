@@ -83,18 +83,6 @@ const Home = () => {
         }
     })
 
-    let names;
-    let foods;
-    let drinks;
-
-    for (let properties in fastfood) {
-        names += fastfood[properties].name
-        foods += fastfood[properties].food
-        drinks += fastfood[properties.drinks]
-    }
-
-    console.log(foods)
-
     // MUI
     const [value, setValue] = useState(0)
     const theme = useTheme();
@@ -140,16 +128,24 @@ const Home = () => {
                 >
                     {/* looking to display list of companies and their sections from API */}
                     <TabPanel value={value} index={0} dir={theme.direction}>
-                        <Fooditems title={fastfood[0].name} food={fastfood[0].food} drinks={fastfood[0].drinks} />
+                        {Object.values(fastfood).map((val, idx) => {
+                            return <Fooditems key={idx} title={val.name} food={val.food} drinks={val.drinks} />
+                        })}
                     </TabPanel>
                     <TabPanel value={value} index={1} dir={theme.direction}>
-                        <Fooditems title={finedine[0].name} food={finedine[0].food} drinks={finedine[0].drinks} />
+                        {Object.values(finedine).map((val, idx) => {
+                            return <Fooditems key={idx} title={val.name} food={val.food} drinks={val.drinks} />
+                        })}
                     </TabPanel>
                     <TabPanel value={value} index={2} dir={theme.direction}>
-                        <Fooditems title={snacks[0].name} food={snacks[0].food} drinks={snacks[0].drinks} />
+                        {Object.values(snacks).map((val, idx) => {
+                            return <Fooditems key={idx} title={val.name} food={val.food} drinks={val.drinks} />
+                        })}
                     </TabPanel>
                     <TabPanel value={value} index={3} dir={theme.direction}>
-                        <Fooditems title={alcohol[0].name} drinks={alcohol[0].drinks} />
+                        {Object.values(alcohol).map((val, idx) => {
+                            return <Fooditems key={idx} title={val.name} food={val.food} drinks={val.drinks} />
+                        })}
                     </TabPanel>
                 </SwipeableViews>
             </Box>
