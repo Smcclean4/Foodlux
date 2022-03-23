@@ -6,7 +6,7 @@ import { useTheme } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box'
-import Fooditems from '../tabs/Fooditems';
+import Fooditems from '../components/Fooditems';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import '../stylesheets/Home.css'

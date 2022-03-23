@@ -5,9 +5,9 @@ import {
   Route
 } from 'react-router-dom';
 import './stylesheets/index.css';
-import Register from './routes/Register';
-import Login from './routes/Login';
-import Home from './routes/Home';
+import Register from './containers/Register';
+import Login from './containers/Login';
+import Home from './containers/Home';
 
 ReactDOM.render(
   <BrowserRouter>
