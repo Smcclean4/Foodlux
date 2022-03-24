@@ -6,12 +6,8 @@
     "company items";
 }
 
-.active {
-    text-decoration:underline;
-}
-.active:hover {
+.button:hover {
     cursor:pointer;
-    text-decoration-color:red;
 }
 
 .a {
