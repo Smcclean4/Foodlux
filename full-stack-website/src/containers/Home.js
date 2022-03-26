@@ -47,10 +47,9 @@ const Home = () => {
   // get businesses from database and set them into their section
   // also get menu items from the specified place with with the database
   const [fastfood, setFastfood] = useState({
-    logo: "🍔",
     0: {
       name: "Bob's Burgers",
-      drinks: ["Coke ", "Sprite ", "Lemonade "],
+      drinks: ["Coke", "Sprite", "Lemonade"],
       food: ["Bacon Burgers ", "Chili Cheese Fries ", "Jalepenos "],
     },
     1: {
@@ -64,7 +63,6 @@ const Home = () => {
     },
   });
   const [snacks, setSnacks] = useState({
-    logo: "🍿",
     0: {
       name: "8-11",
       food: ["Hotcat ", "Wings and Tings ", "Smetzels "],
@@ -72,15 +70,13 @@ const Home = () => {
     },
   });
   const [finedine, setFinedine] = useState({
-    logo: "🍜",
     0: {
       name: "Puth's Chriss",
-      food: ["Ramen ", "Wonton Sushi ", "Steak and Eggs "],
+      food: ["Ramen", "Wonton Sushi ", "Steak and Eggs "],
       drinks: ["Chapagne ", "Water ", "Strawberry Lemonade "],
     },
   });
   const [alcohol, setAlcohol] = useState({
-    logo: "🍷",
     0: {
       name: "Johnny's Liqour",
       drinks: ["Wine ", "Titos Vodka ", "Hennessy "],
@@ -119,25 +115,25 @@ const Home = () => {
             variant="fullWidth"
           >
             <Tab
-              icon={<h1>{fastfood.logo}</h1>}
+              icon={<h1>🍔</h1>}
               aria-label="fflogo"
               label="FAST FOOD"
               {...allyProps(0)}
             />
             <Tab
-              icon={<h1>{finedine.logo}</h1>}
+              icon={<h1>🍜</h1>}
               aria-label="fdlogo"
               label="FINE DINING"
               {...allyProps(1)}
             />
             <Tab
-              icon={<h1>{snacks.logo}</h1>}
+              icon={<h1>🍿</h1>}
               aria-label="snlogo"
               label="SNACKS"
               {...allyProps(2)}
             />
             <Tab
-              icon={<h1>{alcohol.logo}</h1>}
+              icon={<h1>🍷</h1>}
               aria-label="alclogo"
               label="ALCOHOL"
               {...allyProps(3)}

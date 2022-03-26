@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../stylesheets/Fooditems.css";
+import Button from '@mui/material/Button';
 
 const Fooditems = (props) => {
   const [render, setRender] = useState(false);
@@ -19,9 +20,9 @@ const Fooditems = (props) => {
     <>
       <div className="ff-wrapper">
         <div className="ff-grid a">
-          <button className="button active" onClick={(e) => handleClick(e)}>
+        <Button sx={{marginBottom:"5px"}} variant="contained" className="button active" onClick={(e) => handleClick(e)}>
             {props.title}
-          </button>
+        </Button>
         </div>
         {!render ? (
           <div className="ff-grid b"></div>
