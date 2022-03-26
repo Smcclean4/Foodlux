@@ -3,6 +3,7 @@ import "../stylesheets/Fooditems.css";
 import Button from '@mui/material/Button';
 
 const Fooditems = (props) => {
+  // checking whether active is on or off based on true or false
   const [render, setRender] = useState(false);
   let status;
 
