@@ -13,7 +13,7 @@ const Fooditems = (props) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    status.classList.toggle("active", render == true);
+    status.classList.toggle("active", render === true);
     status.classList.contains("active") ? setRender(false) : setRender(true);
   };
 

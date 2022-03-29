@@ -97,6 +97,7 @@ const Home = () => {
 
   return (
     <div className="home-background">
+      {/* put username of user in here... (or add guest login?) */}
       <p className="home-logo">Foodlux</p>
       <Box sx={{ bgcolor: "background.paper", width: "75%", margin: "0 auto" }}>
         <AppBar position="static">
