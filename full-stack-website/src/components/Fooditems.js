@@ -37,6 +37,7 @@ const Fooditems = (props) => {
             {props.drinks?.map((items, idx) => {
               return <li key={idx}>{items}</li>;
             })}
+            <br></br>
           </div>
         )}
       </div>

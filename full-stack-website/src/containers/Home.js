@@ -52,15 +52,6 @@ const Home = () => {
       drinks: ["Coke", "Sprite", "Lemonade"],
       food: ["Bacon Burgers ", "Chili Cheese Fries ", "Jalepenos "],
     },
-    1: {
-      name: "Ron's Burgers",
-      drinks: ["Dr Pepper", "Water", "Fanta"],
-      food: [
-        "Pastrami Sandwich",
-        "Cheese Whiz Nachos",
-        "One in a Million Burger",
-      ],
-    },
   });
   const [snacks, setSnacks] = useState({
     0: {
