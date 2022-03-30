@@ -52,15 +52,6 @@ const Home = () => {
       drinks: ["Coke", "Sprite", "Lemonade"],
       food: ["Bacon Burgers ", "Chili Cheese Fries ", "Jalepenos "],
     },
-    1: {
-      name: "Ron's Burgers",
-      drinks: ["Dr Pepper", "Water", "Fanta"],
-      food: [
-        "Pastrami Sandwich",
-        "Cheese Whiz Nachos",
-        "One in a Million Burger",
-      ],
-    },
   });
   const [snacks, setSnacks] = useState({
     0: {
@@ -97,6 +88,7 @@ const Home = () => {
 
   return (
     <div className="home-background">
+      {/* put username of user in here... (or add guest login?) */}
       <p className="home-logo">Foodlux</p>
       <Box sx={{ bgcolor: "background.paper", width: "75%", margin: "0 auto" }}>
         <AppBar position="static">
