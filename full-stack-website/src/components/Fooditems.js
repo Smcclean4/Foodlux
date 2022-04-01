@@ -28,17 +28,19 @@ const Fooditems = (props) => {
         {!render ? (
           <div className="ff-grid b"></div>
         ) : (
+          <>
           <div className="ff-grid b">
-            <h2>Food</h2>
-            {props.food?.map((items, idx) => {
-              return <li key={idx}>{items}</li>;
-            })}
-            <h2>Drinks</h2>
-            {props.drinks?.map((items, idx) => {
-              return <li key={idx}>{items}</li>;
-            })}
-            <br></br>
-          </div>
+              <h2>Food</h2>
+              {props.food?.map((items, idx) => {
+                return <li key={idx}>{items}</li>;
+              })}
+              <br></br>
+              <h2>Drinks</h2>
+              {props.drinks?.map((items, idx) => {
+                return <li key={idx}>{items}</li>
+              })}
+            </div>
+            </>
         )}
       </div>
     </>
