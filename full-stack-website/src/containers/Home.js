@@ -50,6 +50,7 @@ const Home = () => {
     0: {
       name: "Bob's Burgers",
       drinks: ["Coke", "Sprite", "Lemonade"],
+      prices: ["$1.25","$1.25","$1.25","$1.25","$1.25","$1.25"],
       food: ["Bacon Burgers ", "Chili Cheese Fries ", "Jalepenos "],
     },
   });
@@ -57,6 +58,7 @@ const Home = () => {
     0: {
       name: "8-11",
       food: ["Hotcat ", "Wings and Tings ", "Smetzels "],
+      prices: ["$1.25","$1.25","$1.25","$1.25","$1.25","$1.25"],
       drinks: ["Water ", "Gatorade ", "Sprite "],
     },
   });
@@ -64,12 +66,14 @@ const Home = () => {
     0: {
       name: "Puth's Chriss",
       food: ["Ramen", "Wonton Sushi ", "Steak and Eggs "],
+      prices: ["$1.25","$1.25","$1.25","$1.25","$1.25","$1.25"],
       drinks: ["Chapagne ", "Water ", "Strawberry Lemonade "],
     },
   });
   const [alcohol, setAlcohol] = useState({
     0: {
       name: "Johnny's Liqour",
+      prices: ["$1.25","$1.25","$1.25"],
       drinks: ["Wine ", "Titos Vodka ", "Hennessy "],
     },
   });
@@ -146,6 +150,7 @@ const Home = () => {
                   title={val.name}
                   food={val.food}
                   drinks={val.drinks}
+                  prices={val.prices}
                 />
               );
             })}
@@ -158,6 +163,7 @@ const Home = () => {
                   title={val.name}
                   food={val.food}
                   drinks={val.drinks}
+                  prices={val.prices}
                 />
               );
             })}
@@ -170,6 +176,7 @@ const Home = () => {
                   title={val.name}
                   food={val.food}
                   drinks={val.drinks}
+                  prices={val.prices}
                 />
               );
             })}
@@ -182,6 +189,7 @@ const Home = () => {
                   title={val.name}
                   food={val.food}
                   drinks={val.drinks}
+                  prices={val.prices}
                 />
               );
             })}
