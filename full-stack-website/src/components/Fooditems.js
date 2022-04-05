@@ -49,7 +49,7 @@ const Fooditems = (props) => {
               </ul>
               <ul>
                 {props.food?.map((fitems, id) => {
-                  return <li key={id} value={fitems}><Checkbox sx={{"padding": "0"}} size="small" /></li>
+                  return <li key={id} value={fitems}><Checkbox sx={{"padding": "2.5px"}} size="small" /></li>
                 })}
               </ul>
               <h2>Drinks</h2>
@@ -65,7 +65,7 @@ const Fooditems = (props) => {
               </ul>
               <ul>
                 {props.drinks?.map((ditems, id) => {
-                  return <li key={id} value={ditems}><Checkbox sx={{"padding": "0"}} size="small" /></li>
+                  return <li key={id} value={ditems}><Checkbox sx={{"padding": "2.5px"}} size="small" /></li>
                 })}
               </ul>
             </div>
