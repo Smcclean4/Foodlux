@@ -3,11 +3,7 @@
     grid-template-columns:50% 50%;
     grid-template-rows:100%;
     grid-template-areas:
-    "company food";
-}
-
-.button:hover {
-    cursor:pointer;
+    "company info";
 }
 
 .a {
@@ -17,10 +13,16 @@
 }
 
 .b {
-    grid-area:food;
+    grid-area:info;
     list-style-type:none;
     text-align:left;
     margin-left:10%;
+}
+
+ul {
+    list-style-type:none;
+    display:inline-block;
+    margin:2%;
 }
 
 @media only screen and (max-width:350px), (max-width:450px) {
