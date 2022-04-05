@@ -6,30 +6,6 @@
     "company info";
 }
 
-.sub-grid {
-    display:grid;
-    grid-template-columns:35% 32% 32%;
-    grid-template-rows:100%;
-    grid-template-areas:
-    "items prices checked";
-}
-
-.b-food {
-    grid-area:items
-}
-
-.b-prices {
-    grid-area:prices;
-}
-
-.b-checked {
-    grid-area:checked;
-}
-
-.button:hover {
-    cursor:pointer;
-}
-
 .a {
     grid-area:company;
     border-right:1px solid grey;
@@ -41,6 +17,12 @@
     list-style-type:none;
     text-align:left;
     margin-left:10%;
+}
+
+ul {
+    list-style-type:none;
+    display:inline-block;
+    margin:2%;
 }
 
 @media only screen and (max-width:350px), (max-width:450px) {
