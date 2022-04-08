@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
@@ -90,10 +91,17 @@ const Home = () => {
     setValue(newValue);
   };
 
+  // example username
+  let username = "Carolina"
+
   return (
     <div className="home-background">
-      {/* put username of user in here... (or add guest login?) */}
       <p className="home-logo">Foodlux</p>
+      {/* will be replaced with actual user */}
+      <div className="dynamic-cart-username">
+        <h1 className="username">Hi, {`${username}`}!</h1>
+        <ShoppingCartIcon className="cart"/>
+      </div>
       <Box sx={{ bgcolor: "background.paper", width: "75%", margin: "0 auto" }}>
         <AppBar position="static">
           <Tabs

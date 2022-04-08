@@ -7,6 +7,7 @@
     height:auto;
     min-height:100vh;
     text-align:center;
+    padding-bottom:2%;
 }
 .home-logo {
     color:white;
@@ -14,6 +15,23 @@
     text-shadow:black 2px 5px 2px;
     font-family: 'Bubblegum sans', cursive;
     padding:30px;
+}
+
+.username {
+    color:white;
+    font-family:'Bubblegum sans', cursive;
+    text-shadow:black 2px 2px 2px;
+}
+
+.cart {
+    color:white;
+    font-size: xx-large;
+}
+
+.dynamic-cart-username {
+    display:flex;
+    justify-content: space-around;
+    margin-bottom:2%;
 }
 
 @media only screen and (max-width:350px), (max-width:450px) {
