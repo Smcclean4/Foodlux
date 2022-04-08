@@ -9,7 +9,6 @@
 .a {
     grid-area:company;
     border-right:1px solid grey;
-
 }
 
 .b {
@@ -29,9 +28,13 @@ ul {
     .ff-wrapper {
         display:block;
     }
+    .a {
+        border-right:0px;
+    }
 }
 @media only screen and (max-width:1028px) and (min-width:1020px) {
     .ff-wrapper {
         display:block;
     }
+
 }
