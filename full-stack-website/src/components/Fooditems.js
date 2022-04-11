@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../stylesheets/Fooditems.css";
 import Button from "@mui/material/Button";
-import Checkbox from "@mui/material/Checkbox";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 const Fooditems = (props) => {
   // checking whether active is on or off based on true or false
@@ -23,7 +24,7 @@ const Fooditems = (props) => {
       <div className="ff-wrapper">
         <div className="ff-grid a">
           <Button
-            sx={{ marginBottom: "5px", backgroundColor:"dodgerblue" }}
+            sx={{ marginBottom: "5px", backgroundColor: "dodgerblue" }}
             variant="contained"
             className="button active"
             onClick={(e) => handleClick(e)}
@@ -35,10 +36,77 @@ const Fooditems = (props) => {
           <div className="ff-grid b"></div>
         ) : (
           <>
-            <div className="ff-grid b">
+            <Box sx={{ flexGrow: 1 }}>
+              <Grid className="b" container spacing={1}>
+                <Grid item xs={5}>
+                  <ul>
+                    {props.food?.map((items, idx) => {
+                      return <li key={idx}>{items}</li>;
+                    })}
+                  </ul>
+                </Grid>
+                <Grid item xs={3}>
+                  <ul>
+                    {props.prices[0]?.map((price, idx) => {
+                      return <li key={idx}>{price}</li>;
+                    })}
+                  </ul>
+                </Grid>
+                <Grid item xs={3}>
+                  <ul>
+                    {Array.from(Array(props.food.length)).map((_, idx) => {
+                      return (
+                        <span className="btn-styling" key={idx}>
+                          <Button size="small">Add</Button>
+                        </span>
+                      );
+                    })}
+                  </ul>
+                </Grid>
+              </Grid>
+              <br></br>
+              <Grid className="b" container spacing={1}>
+                <Grid item xs={5}>
+                  <ul>
+                    {props.drinks?.map((items, idx) => {
+                      return <li key={idx}>{items}</li>;
+                    })}
+                  </ul>
+                </Grid>
+                <Grid item xs={3}>
+                  <ul>
+                    {props.prices[0]?.map((price, idx) => {
+                      return <li key={idx}>{price}</li>;
+                    })}
+                  </ul>
+                </Grid>
+                <Grid item xs={3}>
+                  <ul>
+                    {props.drinks?.map((ditems, id) => {
+                      return (
+                        <span className="btn-styling">
+                          <Button size="small">Add</Button>
+                        </span>
+                      );
+                    })}
+                  </ul>
+                </Grid>
+              </Grid>
+            </Box>
+          </>
+        )}
+      </div>
+    </>
+  );
+};
+
+export default Fooditems;
+
+{
+  /*   <div className="ff-grid b">
               <h2>Food</h2>
               <ul>
-                {props.food?.map((items, idx) => {
+              {props.food?.map((items, idx) => {
                   return <li key={idx}>{items}</li>;
                 })}
               </ul>
@@ -49,7 +117,7 @@ const Fooditems = (props) => {
               </ul>
               <ul>
                 {props.food?.map((fitems, id) => {
-                  return <li key={id} value={fitems}><Checkbox sx={{"padding": "2.5px"}} size="small" /></li>
+                  return <li key={id} value={fitems}><Button size="small">Add</Button></li>
                 })}
               </ul>
               <h2>Drinks</h2>
@@ -65,15 +133,8 @@ const Fooditems = (props) => {
               </ul>
               <ul>
                 {props.drinks?.map((ditems, id) => {
-                  return <li key={id} value={ditems}><Checkbox sx={{"padding": "2.5px"}} size="small" /></li>
+                  return <li key={id} value={ditems}><Button size="small">Add</Button></li>
                 })}
               </ul>
-            </div>
-          </>
-        )}
-      </div>
-    </>
-  );
-};
-
-export default Fooditems;
+            </div> */
+}
