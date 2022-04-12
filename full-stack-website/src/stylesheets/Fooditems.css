@@ -14,14 +14,21 @@
 .b {
     grid-area:info;
     list-style-type:none;
-    text-align:left;
-    margin-left:10%;
 }
 
 ul {
     list-style-type:none;
-    display:inline-block;
-    margin:2%;
+    text-align:left;
+}
+
+li {
+    padding:5px;
+}
+
+.btn-styling {
+    display: list-item;
+    list-style-type: none;
+    padding:1.7px;
 }
 
 @media only screen and (max-width:350px), (max-width:450px) {

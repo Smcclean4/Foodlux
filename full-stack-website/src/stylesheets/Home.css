@@ -7,7 +7,6 @@
     height:auto;
     min-height:100vh;
     text-align:center;
-    padding-bottom:2%;
 }
 .home-logo {
     color:white;
@@ -38,9 +37,15 @@
     .home-logo {
         font-size:70px;
     }
+    .home-background {
+        padding-bottom:2%;
+    }
 }
 @media only screen and (max-width:1028px) and (min-width:1020px) {
     .home-logo {
         font-size:70px;
+    }
+    .home-background {
+        padding-bottom:2%;
     }
 }

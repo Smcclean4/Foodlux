@@ -74,7 +74,8 @@ const Home = () => {
   const [alcohol, setAlcohol] = useState({
     0: {
       name: "Johnny's Liqour",
-      prices: [[],["$1.25","$1.25","$1.25"]],
+      prices: [["$1.25"],["$1.25","$1.25","$1.25"]],
+      food: ["Crackers"],
       drinks: ["Wine ", "Titos Vodka ", "Hennessy "],
     },
   });
