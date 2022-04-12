@@ -36,8 +36,9 @@ const Fooditems = (props) => {
           <div className="ff-grid b"></div>
         ) : (
           <>
-            <Box sx={{ flexGrow: 1 }}>
-              <Grid className="b" container spacing={1}>
+            <Box sx={{backgroundColor: "whitesmoke", flexGrow:1,padding:"5px"}}>
+            <h2>Food</h2>
+              <Grid sx={{backgroundColor: "grey"}} className="b" container spacing={1}>
                 <Grid item xs={5}>
                   <ul>
                     {props.food?.map((items, idx) => {
@@ -54,17 +55,18 @@ const Fooditems = (props) => {
                 </Grid>
                 <Grid item xs={3}>
                   <ul>
-                    {Array.from(Array(props.food.length)).map((_, idx) => {
+                    {Array.from(Array(props.food?.length)).map((_, idx) => {
                       return (
                         <span className="btn-styling" key={idx}>
-                          <Button size="small">Add</Button>
+                          <Button sx={{color:"dodgerblue"}}size="small">Add</Button>
                         </span>
-                      );
+                      )
                     })}
                   </ul>
                 </Grid>
               </Grid>
               <br></br>
+              <h2>Drinks</h2>
               <Grid className="b" container spacing={1}>
                 <Grid item xs={5}>
                   <ul>
@@ -75,19 +77,19 @@ const Fooditems = (props) => {
                 </Grid>
                 <Grid item xs={3}>
                   <ul>
-                    {props.prices[0]?.map((price, idx) => {
+                    {props.prices[1]?.map((price, idx) => {
                       return <li key={idx}>{price}</li>;
                     })}
                   </ul>
                 </Grid>
                 <Grid item xs={3}>
                   <ul>
-                    {props.drinks?.map((ditems, id) => {
+                  {Array.from(Array(props.drinks?.length)).map((_, idx) => {
                       return (
-                        <span className="btn-styling">
-                          <Button size="small">Add</Button>
+                        <span className="btn-styling" key={idx}>
+                          <Button sx={{color:"dodgerblue"}} size="small">Add</Button>
                         </span>
-                      );
+                      )
                     })}
                   </ul>
                 </Grid>
