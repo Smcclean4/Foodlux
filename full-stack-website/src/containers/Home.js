@@ -75,7 +75,7 @@ const Home = () => {
     0: {
       name: "Johnny's Liqour",
       prices: [["$1.25"],["$1.25","$1.25","$1.25"]],
-      food: ["Crackers"],
+      food: ["Crackers", "Salami"],
       drinks: ["Wine ", "Titos Vodka ", "Hennessy "],
     },
   });
