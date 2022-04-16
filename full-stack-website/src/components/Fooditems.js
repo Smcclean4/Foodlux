@@ -32,6 +32,7 @@ const Fooditems = (props) => {
             {props.title}
           </Button>
         </div>
+        {/* when tab is closed display no data and when it is open show information */}
         {!render ? (
           <div className="ff-grid b"></div>
         ) : (
