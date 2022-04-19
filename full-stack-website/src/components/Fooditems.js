@@ -40,7 +40,7 @@ const Fooditems = (props) => {
             <Box sx={{backgroundColor: "whitesmoke", flexGrow:1,padding:"5px"}}>
             <h2>Food</h2>
               <Grid sx={{backgroundColor: "grey"}} className="b" container spacing={1}>
-                <Grid item xs={5}>
+                <Grid item xs={4}>
                   <ul>
                     {props.food?.map((items, idx) => {
                       return <li key={idx}>{items}</li>;
@@ -54,12 +54,23 @@ const Fooditems = (props) => {
                     })}
                   </ul>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                   <ul>
                     {Array.from(Array(props.food?.length)).map((_, idx) => {
                       return (
                         <span className="btn-styling" key={idx}>
-                          <Button sx={{color:"dodgerblue"}}size="small">Add</Button>
+                          <Button onClick={() => props.addtocart()} sx={{color:"dodgerblue"}}size="small">Add</Button>
+                        </span>
+                      )
+                    })}
+                  </ul>
+                </Grid>
+                <Grid item xs={2}>
+                  <ul>
+                  {Array.from(Array(props.food?.length)).map((_, idx) => {
+                      return (
+                        <span className="btn-styling" key={idx}>
+                          <Button onClick={() => props.removefromcart()} sx={{color:"red"}} size="small">Remove</Button>
                         </span>
                       )
                     })}
@@ -68,8 +79,8 @@ const Fooditems = (props) => {
               </Grid>
               <br></br>
               <h2>Drinks</h2>
-              <Grid className="b" container spacing={1}>
-                <Grid item xs={5}>
+              <Grid sx={{backgroundColor: "grey"}} className="b" container spacing={1}>
+                <Grid item xs={4}>
                   <ul>
                     {props.drinks?.map((items, idx) => {
                       return <li key={idx}>{items}</li>;
@@ -83,12 +94,23 @@ const Fooditems = (props) => {
                     })}
                   </ul>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                   <ul>
                   {Array.from(Array(props.drinks?.length)).map((_, idx) => {
                       return (
                         <span className="btn-styling" key={idx}>
-                          <Button sx={{color:"dodgerblue"}} size="small">Add</Button>
+                          <Button onClick={() => props.addtocart()} sx={{color:"dodgerblue"}} size="small">Add</Button>
+                        </span>
+                      )
+                    })}
+                  </ul>
+                </Grid>
+                <Grid item xs={2}>
+                  <ul>
+                  {Array.from(Array(props.drinks?.length)).map((_, idx) => {
+                      return (
+                        <span className="btn-styling" key={idx}>
+                          <Button onClick={() => props.removefromcart()} sx={{color:"red"}} size="small">Remove</Button>
                         </span>
                       )
                     })}
@@ -104,40 +126,3 @@ const Fooditems = (props) => {
 };
 
 export default Fooditems;
-
-{
-  /*   <div className="ff-grid b">
-              <h2>Food</h2>
-              <ul>
-              {props.food?.map((items, idx) => {
-                  return <li key={idx}>{items}</li>;
-                })}
-              </ul>
-              <ul>
-                {props.prices[0]?.map((price, idx) => {
-                  return <li key={idx}>{price}</li>;
-                })}
-              </ul>
-              <ul>
-                {props.food?.map((fitems, id) => {
-                  return <li key={id} value={fitems}><Button size="small">Add</Button></li>
-                })}
-              </ul>
-              <h2>Drinks</h2>
-              <ul>
-                {props.drinks?.map((items, idx) => {
-                  return <li key={idx}>{items}</li>;
-                })}
-              </ul>
-              <ul>
-                {props.prices[1]?.map((price, idx) => {
-                  return <li key={idx}>{price}</li>;
-                })}
-              </ul>
-              <ul>
-                {props.drinks?.map((ditems, id) => {
-                  return <li key={id} value={ditems}><Button size="small">Add</Button></li>
-                })}
-              </ul>
-            </div> */
-}
