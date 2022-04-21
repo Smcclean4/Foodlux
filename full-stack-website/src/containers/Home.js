@@ -127,6 +127,7 @@ const Home = () => {
         <h1 className="username">Hi, {`${username}`}!</h1>
         <div>
           <ShoppingCartIcon className="cart" />
+          {/* display cart count */}
           <p className="cart-count">{cartCount}</p>
         </div>
       </div>
