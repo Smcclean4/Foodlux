@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
@@ -51,7 +51,10 @@ const Home = () => {
     0: {
       name: "Bob's Burgers",
       drinks: ["Coke", "Sprite", "Lemonade"],
-      prices: [["$1.25","$1.25","$1.25"],["$1.25","$1.25","$1.25"]],
+      prices: [
+        ["$1.25", "$1.25", "$1.25"],
+        ["$1.25", "$1.25", "$1.25"],
+      ],
       food: ["Bacon Burgers ", "Chili Cheese Fries ", "Jalepenos "],
     },
   });
@@ -59,7 +62,10 @@ const Home = () => {
     0: {
       name: "8-11",
       food: ["Hotcat ", "Wings and Tings ", "Smetzels "],
-      prices: [["$1.25","$1.25","$1.25"],["$1.25","$1.25","$1.25"]],
+      prices: [
+        ["$1.25", "$1.25", "$1.25"],
+        ["$1.25", "$1.25", "$1.25"],
+      ],
       drinks: ["Water ", "Gatorade ", "Sprite "],
     },
   });
@@ -67,18 +73,27 @@ const Home = () => {
     0: {
       name: "Puth's Chriss",
       food: ["Ramen", "Wonton Sushi ", "Steak and Eggs "],
-      prices: [["$1.25","$1.25","$1.25"],["$1.25","$1.25","$1.25"]],
+      prices: [
+        ["$1.25", "$1.25", "$1.25"],
+        ["$1.25", "$1.25", "$1.25"],
+      ],
       drinks: ["Chapagne ", "Water ", "Strawberry Lemonade "],
     },
   });
   const [alcohol, setAlcohol] = useState({
     0: {
       name: "Johnny's Liqour",
-      prices: [["$1.25"],["$1.25","$1.25","$1.25"]],
       food: ["Crackers", "Salami"],
+      prices: [
+        ["$1.25", "$1.25"],
+        ["$1.25", "$1.25", "$1.25"],
+      ],
       drinks: ["Wine ", "Titos Vodka ", "Hennessy "],
     },
   });
+
+  // stores the count of the cart icon
+  const [cartCount, setCartCount] = useState(0);
 
   // MUI
   const [value, setValue] = useState(0);
@@ -93,7 +108,16 @@ const Home = () => {
   };
 
   // example username
-  let username = "Carolina"
+  let username = "Carolina";
+
+  // handle shopping cart number
+  const addCart = () => {
+    setCartCount(Math.max(0, cartCount + 1));
+  };
+
+  const removeCart = () => {
+    setCartCount(Math.max(0, cartCount - 1));
+  };
 
   return (
     <div className="home-background">
@@ -101,7 +125,11 @@ const Home = () => {
       {/* will be replaced with actual user */}
       <div className="dynamic-cart-username">
         <h1 className="username">Hi, {`${username}`}!</h1>
-        <ShoppingCartIcon className="cart"/>
+        <div>
+          <ShoppingCartIcon className="cart" />
+          {/* display cart count */}
+          <p className="cart-count">{cartCount}</p>
+        </div>
       </div>
       <Box sx={{ bgcolor: "background.paper", width: "75%", margin: "0 auto" }}>
         <AppBar position="static">
@@ -160,6 +188,8 @@ const Home = () => {
                   food={val.food}
                   drinks={val.drinks}
                   prices={val.prices}
+                  addtocart={addCart}
+                  removefromcart={removeCart}
                 />
               );
             })}
@@ -173,6 +203,8 @@ const Home = () => {
                   food={val.food}
                   drinks={val.drinks}
                   prices={val.prices}
+                  addtocart={addCart}
+                  removefromcart={removeCart}
                 />
               );
             })}
@@ -186,6 +218,8 @@ const Home = () => {
                   food={val.food}
                   drinks={val.drinks}
                   prices={val.prices}
+                  addtocart={addCart}
+                  removefromcart={removeCart}
                 />
               );
             })}
@@ -199,6 +233,8 @@ const Home = () => {
                   food={val.food}
                   drinks={val.drinks}
                   prices={val.prices}
+                  addtocart={addCart}
+                  removefromcart={removeCart}
                 />
               );
             })}
