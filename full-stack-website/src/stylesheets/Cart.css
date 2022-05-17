@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
 
-.home-background {
+.cart-background {
     background: url("/src/images/pexels-furknsaglam-3109671.jpg");
     background-position: center;
     background-size:cover;
@@ -8,7 +8,7 @@
     min-height:100vh;
     text-align:center;
 }
-.home-logo {
+.cart-logo {
     color:white;
     font-size:100px;
     text-shadow:black 2px 5px 2px;
@@ -16,42 +16,36 @@
     padding:30px;
 }
 
-.username {
-    color:white;
-    font-family:'Bubblegum sans', cursive;
-    text-shadow:black 2px 2px 2px;
-}
-
-.cart {
-    color:white;
-    font-size: xx-large;
-}
-
-.dynamic-cart-username {
-    display:flex;
-    justify-content: space-around;
-    margin-bottom:2%;
-}
-
-.cart-count {
+.return-button {
     background-color:red;
+}
+
+.return-button:hover {
+    background-color:rgb(162, 1, 1);
+}
+
+.return-link {
+    text-decoration: none;
     color:white;
-    border-radius: 25px 25px;
+}
+
+.return-link:active {
+    color:white;
 }
 
 @media only screen and (max-width:350px), (max-width:450px) {
-    .home-logo {
+    .cart-logo {
         font-size:70px;
     }
-    .home-background {
+    .cart-background {
         padding-bottom:2%;
     }
 }
 @media only screen and (max-width:1028px) and (min-width:1020px) {
-    .home-logo {
+    .cart-logo {
         font-size:70px;
     }
-    .home-background {
+    .cart-background {
         padding-bottom:2%;
     }
 }

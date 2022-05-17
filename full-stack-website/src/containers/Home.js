@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"
 import { Outlet } from "react-router-dom";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
@@ -126,7 +127,9 @@ const Home = () => {
       <div className="dynamic-cart-username">
         <h1 className="username">Hi, {`${username}`}!</h1>
         <div>
+          <Link to="/Cart">
           <ShoppingCartIcon className="cart" />
+          </Link>
           {/* display cart count */}
           <p className="cart-count">{cartCount}</p>
         </div>
