@@ -70,7 +70,7 @@ const Fooditems = (props) => {
                   {Array.from(Array(props.food?.length)).map((_, idx) => {
                       return (
                         <span className="btn-styling" key={idx}>
-                          <Button onClick={() => props.removefromcart()} sx={{color:"red"}} size="small">Remove</Button>
+                          <Button onClick={() => props.removefromcart()} sx={{color:"red"}} size="small">undo</Button>
                         </span>
                       )
                     })}
@@ -110,7 +110,7 @@ const Fooditems = (props) => {
                   {Array.from(Array(props.drinks?.length)).map((_, idx) => {
                       return (
                         <span className="btn-styling" key={idx}>
-                          <Button onClick={() => props.removefromcart()} sx={{color:"red"}} size="small">Remove</Button>
+                          <Button onClick={() => props.removefromcart()} sx={{color:"red"}} size="small">Undo</Button>
                         </span>
                       )
                     })}

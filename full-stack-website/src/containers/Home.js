@@ -134,7 +134,7 @@ const Home = () => {
           <p className="cart-count">{cartCount}</p>
         </div>
       </div>
-      <Box sx={{ bgcolor: "background.paper", width: "75%", margin: "0 auto" }}>
+      <Box sx={{ bgcolor: "background.paper", width: "90%", margin: "0 auto" }}>
         <AppBar position="static">
           <Tabs
             sx={{
