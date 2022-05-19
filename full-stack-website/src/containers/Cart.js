@@ -2,8 +2,8 @@ import React from "react";
 import { useState } from 'react'
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-import "../stylesheets/Cart.css";
 import Cartitems from "../components/Cartitems"
+import "../stylesheets/Cart.css";
 
 const Cart = () => {
     const [cart, setCart] = useState([])
