@@ -16,14 +16,6 @@
     padding:30px;
 }
 
-.return-button {
-    background-color:red;
-}
-
-.return-button:hover {
-    background-color:rgb(162, 1, 1);
-}
-
 .return-link {
     text-decoration: none;
     color:white;

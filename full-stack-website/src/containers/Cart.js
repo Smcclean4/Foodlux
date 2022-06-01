@@ -15,10 +15,16 @@ const Cart = () => {
         <Cartitems />
       </div>
       <div className="return-section">
-        <Button className="return-button">
+        <Button variant="contained" size="large" sx={{
+          backgroundColor:"red",
+          '&:hover': {
+            backgroundColor: "rgb(162, 6, 6)",
+          },
+          marginTop:"20px"
+        }}>
           <Link className="return-link" to="/Home">
             Return
-          </Link>
+          </Link> 
         </Button>
       </div>
     </div>
