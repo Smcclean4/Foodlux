@@ -39,22 +39,35 @@ const Fooditems = (props) => {
           <>
             <Box sx={{backgroundColor: "whitesmoke", flexGrow:1,padding:"5px"}}>
             <h2>Food</h2>
-              <Grid sx={{backgroundColor: "grey"}} className="b" container spacing={1}>
-                <Grid item xs={4}>
+              <Grid sx={{backgroundColor: "grey"}} className="b" container spacing={3}>
+              <Grid item xs={2}>
                   <ul>
-                    {props.food?.map((items, idx) => {
-                      return <li key={idx}>{items}</li>;
+                    {props.images?.map((items, idx) => {
+                      return <img id={idx} src={items} />;
                     })}
                   </ul>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={4}>
+                  <ul>
+                    {props.food?.map((items, idx) => {
+                      return (
+                        // map each description under the food objects like the hr right here
+                        <div key={idx}>
+                        <li>{items}</li>
+                        <hr />
+                        </div>
+                      )
+                    })}
+                  </ul>
+                </Grid>
+                <Grid item xs={1}>
                   <ul>
                     {props.prices[0]?.map((price, idx) => {
                       return <li key={idx}>{price}</li>;
                     })}
                   </ul>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={1.5}>
                   <ul>
                     {Array.from(Array(props.food?.length)).map((_, idx) => {
                       return (
@@ -65,7 +78,7 @@ const Fooditems = (props) => {
                     })}
                   </ul>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={1}>
                   <ul>
                   {Array.from(Array(props.food?.length)).map((_, idx) => {
                       return (
@@ -80,6 +93,13 @@ const Fooditems = (props) => {
               <br></br>
               <h2>Drinks</h2>
               <Grid sx={{backgroundColor: "grey"}} className="b" container spacing={1}>
+              <Grid item xs={2}>
+                  <ul>
+                    {props.images?.map((items, idx) => {
+                      return <img id={idx} src={items} />;
+                    })}
+                  </ul>
+                </Grid>
                 <Grid item xs={4}>
                   <ul>
                     {props.drinks?.map((items, idx) => {
@@ -87,30 +107,30 @@ const Fooditems = (props) => {
                     })}
                   </ul>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={1}>
                   <ul>
                     {props.prices[1]?.map((price, idx) => {
                       return <li key={idx}>{price}</li>;
                     })}
                   </ul>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={1.5}>
                   <ul>
-                  {Array.from(Array(props.drinks?.length)).map((_, idx) => {
+                    {Array.from(Array(props.drinks?.length)).map((_, idx) => {
                       return (
                         <span className="btn-styling" key={idx}>
-                          <Button onClick={() => props.addtocart()} sx={{color:"dodgerblue"}} size="small">Add</Button>
+                          <Button onClick={() => props.addtocart()} sx={{color:"dodgerblue"}}size="small">Add</Button>
                         </span>
                       )
                     })}
                   </ul>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={1}>
                   <ul>
                   {Array.from(Array(props.drinks?.length)).map((_, idx) => {
                       return (
                         <span className="btn-styling" key={idx}>
-                          <Button onClick={() => props.removefromcart()} sx={{color:"red"}} size="small">Undo</Button>
+                          <Button onClick={() => props.removefromcart()} sx={{color:"red"}} size="small">undo</Button>
                         </span>
                       )
                     })}
