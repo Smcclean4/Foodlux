@@ -15,6 +15,7 @@ const Cartitems = ({ props }) => {
 
   return (
     <>
+    {/* make sure that grid is adaptable */}
       <Grid
         container
         spacing={3}
