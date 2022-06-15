@@ -26,11 +26,11 @@ const Cartitems = ({ props }) => {
           padding: "20px 0 20px 0",
         }}
       >
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <Item>ITEM PICTURE</Item>
         </Grid>
-        <Grid item xs={5}>
-          <Item>ITEM NAME</Item>
+        <Grid item xs={3}>
+          <Item>ITEM PRICE</Item>
         </Grid>
         <Grid item xs={1}>
           <Item>-</Item>
@@ -39,7 +39,7 @@ const Cartitems = ({ props }) => {
           <Item>+</Item>
         </Grid>
         <Grid item xs={4}>
-          <Item>ITEM PRICE</Item>
+          <Item>ITEM NAME</Item>
         </Grid>
         <Grid item xs={7}>
           <Item>ITEM DESCRIPTION</Item>
