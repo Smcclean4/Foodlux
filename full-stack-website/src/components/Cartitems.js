@@ -16,6 +16,7 @@ const Cartitems = ({ props }) => {
   return (
     <>
     {/* make sure that grid is adaptable */}
+    {/* make plus and minus clickable and transfer data from added cart items to here */}
       <Grid
         container
         spacing={3}
