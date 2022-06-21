@@ -37,84 +37,134 @@ const Fooditems = (props) => {
           <div className="ff-grid b"></div>
         ) : (
           <>
-            <Box sx={{backgroundColor: "whitesmoke", flexGrow:1,padding:"5px"}}>
-            <h2>Food</h2>
-              <Grid sx={{backgroundColor: "grey"}} className="b" container spacing={1}>
+            <Box
+              sx={{
+                backgroundColor: "whitesmoke",
+                flexGrow: 1,
+                padding: "5px",
+              }}
+            >
+              <h2>Food</h2>
+              <Grid
+                sx={{ backgroundColor: "grey"}}
+                className="b"
+                container
+                spacing={0}
+              >
+                <Grid item xs={2}>
+                  {props.images?.map((items, idx) => {
+                    return <img id={idx} src={items} />;
+                  })}
+                </Grid>
                 <Grid item xs={4}>
-                  <ul>
-                    {props.food?.map((items, idx) => {
-                      return <li key={idx}>{items}</li>;
-                    })}
-                  </ul>
-                </Grid>
-                <Grid item xs={3}>
-                  <ul>
-                    {props.prices[0]?.map((price, idx) => {
-                      return <li key={idx}>{price}</li>;
-                    })}
-                  </ul>
+                  {props.food?.map((items, idx) => {
+                    return (
+                      <div key={idx}>
+                        <li>{items}</li>
+                      </div>
+                    );
+                  })}
                 </Grid>
                 <Grid item xs={2}>
-                  <ul>
-                    {Array.from(Array(props.food?.length)).map((_, idx) => {
-                      return (
-                        <span className="btn-styling" key={idx}>
-                          <Button onClick={() => props.addtocart()} sx={{color:"dodgerblue"}}size="small">Add</Button>
-                        </span>
-                      )
-                    })}
-                  </ul>
+                  {props.prices[0]?.map((price, idx) => {
+                    return (
+                      <div key={idx}>
+                        <li>{price}</li>
+                      </div>
+                    );
+                  })}
                 </Grid>
                 <Grid item xs={2}>
-                  <ul>
                   {Array.from(Array(props.food?.length)).map((_, idx) => {
-                      return (
-                        <span className="btn-styling" key={idx}>
-                          <Button onClick={() => props.removefromcart()} sx={{color:"red"}} size="small">Remove</Button>
-                        </span>
-                      )
-                    })}
-                  </ul>
+                    return (
+                      <span className="btn-styling" key={idx}>
+                        <Button
+                          onClick={() => props.addtocart()}
+                          sx={{ color: "dodgerblue" }}
+                          size="small"
+                        >
+                          Add
+                        </Button>
+                      </span>
+                    );
+                  })}
+                </Grid>
+                <Grid item xs={2}>
+                  {Array.from(Array(props.food?.length)).map((_, idx) => {
+                    return (
+                      <span className="btn-styling" key={idx}>
+                        <Button
+                          onClick={() => props.removefromcart()}
+                          sx={{ color: "red" }}
+                          size="small"
+                        >
+                          undo
+                        </Button>
+                      </span>
+                    );
+                  })}
                 </Grid>
               </Grid>
               <br></br>
               <h2>Drinks</h2>
-              <Grid sx={{backgroundColor: "grey"}} className="b" container spacing={1}>
+              <Grid
+                sx={{ backgroundColor: "grey" }}
+                className="b"
+                container
+                spacing={0}
+              >
+                <Grid item xs={2}>
+                  {props.images?.map((items, idx) => {
+                    return <img id={idx} src={items} />;
+                  })}
+                </Grid>
                 <Grid item xs={4}>
-                  <ul>
-                    {props.drinks?.map((items, idx) => {
-                      return <li key={idx}>{items}</li>;
-                    })}
-                  </ul>
-                </Grid>
-                <Grid item xs={3}>
-                  <ul>
-                    {props.prices[1]?.map((price, idx) => {
-                      return <li key={idx}>{price}</li>;
-                    })}
-                  </ul>
+                  {props.drinks?.map((items, idx) => {
+                    return (
+                      <div key={idx}>
+                        <li>{items}</li>
+                      </div>
+                    );
+                  })}
                 </Grid>
                 <Grid item xs={2}>
-                  <ul>
-                  {Array.from(Array(props.drinks?.length)).map((_, idx) => {
-                      return (
-                        <span className="btn-styling" key={idx}>
-                          <Button onClick={() => props.addtocart()} sx={{color:"dodgerblue"}} size="small">Add</Button>
-                        </span>
-                      )
-                    })}
-                  </ul>
+                  {props.prices[1]?.map((price, idx) => {
+                    return (
+                      <div key={idx}>
+                        <li>{price}</li>
+                      </div>
+                    );
+                  })}
                 </Grid>
                 <Grid item xs={2}>
-                  <ul>
                   {Array.from(Array(props.drinks?.length)).map((_, idx) => {
-                      return (
-                        <span className="btn-styling" key={idx}>
-                          <Button onClick={() => props.removefromcart()} sx={{color:"red"}} size="small">Remove</Button>
-                        </span>
-                      )
-                    })}
-                  </ul>
+                    return (
+                      <span className="btn-styling" key={idx}>
+                        <Button
+                          onClick={() => props.addtocart()}
+                          sx={{ color: "dodgerblue" }}
+                          size="small"
+                        >
+                          Add
+                        </Button>
+                      </span>
+                    );
+                  })}
+                </Grid>
+                <Grid item xs={2}>
+                  {Array.from(Array(props.drinks?.length)).map((_, idx) => {
+                    return (
+                      <span className="btn-styling" key={idx}>
+                        <Button
+                          onClick={() => props.removefromcart()}
+                          sx={{ color: "red" }}
+                          size="small"
+                        >
+                          undo
+                        </Button>
+                      </span>
+                    );
+                  })}
                 </Grid>
               </Grid>
             </Box>

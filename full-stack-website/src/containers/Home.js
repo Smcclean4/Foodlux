@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
@@ -56,7 +57,9 @@ const Home = () => {
         ["$1.25", "$1.25", "$1.25"],
       ],
       food: ["Bacon Burgers ", "Chili Cheese Fries ", "Jalepenos "],
-    },
+      images: ["money.jpg", "money.jpg", "money.jpg"],
+      desc: ["get the money and get it all the time", "get the money and get it all the time", "get the money and get it all the time"]
+    }
   });
   const [snacks, setSnacks] = useState({
     0: {
@@ -67,7 +70,9 @@ const Home = () => {
         ["$1.25", "$1.25", "$1.25"],
       ],
       drinks: ["Water ", "Gatorade ", "Sprite "],
-    },
+      images: ["money.jpg", "money.jpg", "money.jpg"],
+      desc: ["get the money and get it all the time", "get the money and get it all the time", "get the money and get it all the time"]
+    }
   });
   const [finedine, setFinedine] = useState({
     0: {
@@ -78,7 +83,9 @@ const Home = () => {
         ["$1.25", "$1.25", "$1.25"],
       ],
       drinks: ["Chapagne ", "Water ", "Strawberry Lemonade "],
-    },
+      images: ["money.jpg", "money.jpg", "money.jpg"],
+      desc: ["get the money and get it all the time", "get the money and get it all the time", "get the money and get it all the time"]
+    }
   });
   const [alcohol, setAlcohol] = useState({
     0: {
@@ -89,7 +96,9 @@ const Home = () => {
         ["$1.25", "$1.25", "$1.25"],
       ],
       drinks: ["Wine ", "Titos Vodka ", "Hennessy "],
-    },
+      images: ["money.jpg", "money.jpg", "money.jpg"],
+      desc: ["get the money and get it all the time", "get the money and get it all the time", "get the money and get it all the time"]
+    }
   });
 
   // stores the count of the cart icon
@@ -126,12 +135,14 @@ const Home = () => {
       <div className="dynamic-cart-username">
         <h1 className="username">Hi, {`${username}`}!</h1>
         <div>
-          <ShoppingCartIcon className="cart" />
+          <Link to="/Cart">
+            <ShoppingCartIcon className="cart" />
+          </Link>
           {/* display cart count */}
           <p className="cart-count">{cartCount}</p>
         </div>
       </div>
-      <Box sx={{ bgcolor: "background.paper", width: "75%", margin: "0 auto" }}>
+      <Box sx={{ bgcolor: "background.paper", width: "90%", margin: "0 auto" }}>
         <AppBar position="static">
           <Tabs
             sx={{
@@ -188,6 +199,8 @@ const Home = () => {
                   food={val.food}
                   drinks={val.drinks}
                   prices={val.prices}
+                  desc={val.desc}
+                  img={val.images}
                   addtocart={addCart}
                   removefromcart={removeCart}
                 />
@@ -203,6 +216,8 @@ const Home = () => {
                   food={val.food}
                   drinks={val.drinks}
                   prices={val.prices}
+                  desc={val.desc}
+                  img={val.images}
                   addtocart={addCart}
                   removefromcart={removeCart}
                 />
@@ -218,6 +233,8 @@ const Home = () => {
                   food={val.food}
                   drinks={val.drinks}
                   prices={val.prices}
+                  desc={val.desc}
+                  img={val.images}
                   addtocart={addCart}
                   removefromcart={removeCart}
                 />
@@ -233,6 +250,8 @@ const Home = () => {
                   food={val.food}
                   drinks={val.drinks}
                   prices={val.prices}
+                  desc={val.desc}
+                  img={val.images}
                   addtocart={addCart}
                   removefromcart={removeCart}
                 />

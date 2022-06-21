@@ -1,8 +1,9 @@
 .ff-wrapper {
     display:grid;
-    grid-template-columns:50% 50%;
+    grid-template-columns:25% 75%;
     grid-template-rows:100%;
     grid-template-areas:
+    "company info"
     "company info";
 }
 
@@ -29,11 +30,6 @@ li {
     display: list-item;
     list-style-type: none;
     padding:1.7px;
-}
-
-.cart-count {
-    background-color:red;
-    color:white;
 }
 
 @media only screen and (max-width:350px), (max-width:450px) {
