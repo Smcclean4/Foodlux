@@ -12,6 +12,7 @@ const Cart = () => {
     <div className="cart-background">
       <h1 className="cart-logo">Foodlux</h1>
       <div className="cart-window">
+      <h1 className="cart-header">Cart</h1>
         <Cartitems />
       </div>
       <div className="return-section">
