@@ -13,7 +13,9 @@ const Cart = () => {
       <h1 className="cart-logo">Foodlux</h1>
       <div className="cart-window">
       <h1 className="cart-header">Cart</h1>
-        <Cartitems />
+        <Cartitems
+        // place cart state from above into cart items
+        />
       </div>
       <div className="return-section">
         <Button variant="contained" size="large" sx={{
