@@ -15,6 +15,7 @@ const Cart = () => {
       <h1 className="cart-header">Cart</h1>
         <Cartitems
         // place cart state from above into cart items
+        // cart picture, cart price, cart name, cart description
         />
       </div>
       <div className="return-section">
