@@ -16,6 +16,7 @@ const Cart = () => {
         <Cartitems
         // place cart state from above into cart items
         // cart picture, cart price, cart name, cart description
+        // create shared buton throughout app?
         />
       </div>
       <div className="return-section">
