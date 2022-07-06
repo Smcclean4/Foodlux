@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 import Cartitems from "../components/Cartitems"
 import "../stylesheets/Cart.css";
 
-const Cart = () => {
-    const [cart, setCart] = useState([])
+const Cart = ({ props }) => {
+
+  // pass props from here as props to cart items
 
   return (
     <div className="cart-background">
