@@ -8,6 +8,7 @@ import "../stylesheets/Cart.css";
 const Cart = ({ props }) => {
 
   // pass props from here as props to cart items
+  // or use useReducer and useContext to pass down cart state
 
   return (
     <div className="cart-background">
