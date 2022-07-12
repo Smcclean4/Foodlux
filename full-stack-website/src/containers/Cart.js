@@ -9,7 +9,7 @@ const Cart = ({ props }) => {
 
   // pass props from here as props to cart items
   // or use useReducer and useContext to pass down cart state
-
+  // do what you gotta do
   return (
     <div className="cart-background">
       <h1 className="cart-logo">Foodlux</h1>
