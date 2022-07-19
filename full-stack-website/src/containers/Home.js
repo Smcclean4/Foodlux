@@ -190,6 +190,7 @@ const Home = () => {
           onChangeIndex={handleChangeIndex}
         >
           {/* looking to display list of companies and their sections from API */}
+          {/* on add cart take state from each item and send it to the cart page */}
           <TabPanel value={value} index={0} dir={theme.direction}>
             {Object.values(fastfood).map((val, idx) => {
               return (
