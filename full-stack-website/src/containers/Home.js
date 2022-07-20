@@ -9,6 +9,7 @@ import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Fooditems from "../components/Fooditems";
+import Cart from "../containers/Cart";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import "../stylesheets/Home.css";
@@ -120,11 +121,23 @@ const Home = () => {
   let username = "Carolina";
 
   // handle shopping cart number
-  const addCart = () => {
+  const addCart = (element) => {
+    <Cart
+    // on add cart increase count and then 
+    // add the data where the current item was clicked
+    name={"money"}
+    />
+    console.log(element)
     setCartCount(Math.max(0, cartCount + 1));
   };
 
-  const removeCart = () => {
+  const removeCart = (element) => {
+    <Cart
+    // on add cart increase count and then 
+    // add the data where the current item was clicked
+    name={"money"}
+    />
+    console.log(element)
     setCartCount(Math.max(0, cartCount - 1));
   };
 

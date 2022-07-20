@@ -5,19 +5,16 @@ import Cartitems from "../components/Cartitems"
 import "../stylesheets/Cart.css";
 
 const Cart = ({ props }) => {
+  // once the data is passed from home.js take the data
+  // and pass it to the cartitems component.
 
-  // pass props from here as props to cart items
-  // or use useReducer and useContext to pass down cart state
-  // do what you gotta do
   return (
     <div className="cart-background">
       <h1 className="cart-logo">Foodlux</h1>
       <div className="cart-window">
       <h1 className="cart-header">Cart</h1>
-        <Cartitems
-        // place cart state from above into cart items
-        // cart picture, cart price, cart name, cart description
-        // create shared buton throughout app?
+        <Cartitems 
+        // receive passed props from cart container
         />
       </div>
       <div className="return-section">
