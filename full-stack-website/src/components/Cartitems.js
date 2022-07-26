@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
-const Cartitems = ({ props }) => {
+const Cartitems = (props) => {
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -30,6 +30,7 @@ const Cartitems = ({ props }) => {
       >
         <Grid item xs={6}>
           <Item>ITEM PICTURE</Item>
+          {console.log(props.items)}
         </Grid>
         <Grid item xs={3}>
           <Item>ITEM PRICE</Item>

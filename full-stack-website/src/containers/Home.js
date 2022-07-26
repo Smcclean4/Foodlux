@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -45,6 +45,9 @@ function allyProps(index) {
     "aria-controls": `full-width-tabpanel-${index}`,
   };
 }
+
+// creating context at current location for reference
+export const CartContext = createContext();
 
 const Home = () => {
   // get businesses from database and set them into their section
@@ -121,23 +124,16 @@ const Home = () => {
   let username = "Carolina";
 
   // handle shopping cart number
-  const addCart = (element) => {
-    <Cart
-    // on add cart increase count and then 
-    // add the data where the current item was clicked
-    name={"money"}
-    />
-    console.log(element)
+  const addCart = () => {
+    <CartContext.Provider value={fastfood} >
+      <Cart food={fastfood} />
+    </CartContext.Provider>
+    console.log(fastfood)
     setCartCount(Math.max(0, cartCount + 1));
   };
 
-  const removeCart = (element) => {
-    <Cart
-    // on add cart increase count and then 
-    // add the data where the current item was clicked
-    name={"money"}
-    />
-    console.log(element)
+  const removeCart = () => {
+    // copy info from above cart context
     setCartCount(Math.max(0, cartCount - 1));
   };
 

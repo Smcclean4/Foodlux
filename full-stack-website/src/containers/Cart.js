@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import Cartitems from "../components/Cartitems"
+import { CartContext } from "../containers/Home"
 import "../stylesheets/Cart.css";
 
-const Cart = ({ props }) => {
-  // once the data is passed from home.js take the data
-  // and pass it to the cartitems component.
+const Cart = () => {
+
+  const food = useContext(CartContext);
 
   return (
     <div className="cart-background">
@@ -14,7 +15,7 @@ const Cart = ({ props }) => {
       <div className="cart-window">
       <h1 className="cart-header">Cart</h1>
         <Cartitems 
-        // receive passed props from cart container
+          items={food}
         />
       </div>
       <div className="return-section">
