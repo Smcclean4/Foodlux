@@ -46,8 +46,8 @@ function allyProps(index) {
   };
 }
 
-// creating context at current location for reference
-export const CartContext = createContext();
+  // creating context at current location for reference
+  export const CartContext = createContext("money");
 
 const Home = () => {
   // get businesses from database and set them into their section
@@ -125,10 +125,9 @@ const Home = () => {
 
   // handle shopping cart number
   const addCart = () => {
-    <CartContext.Provider value={fastfood} >
+    <CartContext.Provider value={fastfood}>
       <Cart food={fastfood} />
     </CartContext.Provider>
-    console.log(fastfood)
     setCartCount(Math.max(0, cartCount + 1));
   };
 

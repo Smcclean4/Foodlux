@@ -30,7 +30,7 @@ const Cartitems = (props) => {
       >
         <Grid item xs={6}>
           <Item>ITEM PICTURE</Item>
-          {console.log(props.items)}
+          <h1>{props.items}</h1>
         </Grid>
         <Grid item xs={3}>
           <Item>ITEM PRICE</Item>
