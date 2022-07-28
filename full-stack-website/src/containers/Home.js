@@ -128,6 +128,7 @@ const Home = () => {
     <CartContext.Provider value={fastfood}>
       <Cart food={fastfood} />
     </CartContext.Provider>
+    console.log(fastfood)
     setCartCount(Math.max(0, cartCount + 1));
   };
 
