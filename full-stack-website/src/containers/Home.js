@@ -49,7 +49,6 @@ function allyProps(index) {
   // get businesses from database and set them into their section
   // also get menu items from the specified place with with the database
   const fastfood = {
-    0: {
       name: "Bob's Burgers",
       drinks: ["Coke", "Sprite", "Lemonade"],
       prices: [
@@ -59,10 +58,9 @@ function allyProps(index) {
       food: ["Bacon Burgers ", "Chili Cheese Fries ", "Jalepenos "],
       images: ["money.jpg", "money.jpg", "money.jpg"],
       desc: ["get the money and get it all the time", "get the money and get it all the time", "get the money and get it all the time"]
-    }
   };
+
   const snacks = {
-    0: {
       name: "8-11",
       food: ["Hotcat ", "Wings and Tings ", "Smetzels "],
       prices: [
@@ -72,10 +70,9 @@ function allyProps(index) {
       drinks: ["Water ", "Gatorade ", "Sprite "],
       images: ["money.jpg", "money.jpg", "money.jpg"],
       desc: ["get the money and get it all the time", "get the money and get it all the time", "get the money and get it all the time"]
-    }
   };
+
   const finedine = {
-    0: {
       name: "Puth's Chriss",
       food: ["Ramen", "Wonton Sushi ", "Steak and Eggs "],
       prices: [
@@ -85,10 +82,9 @@ function allyProps(index) {
       drinks: ["Chapagne ", "Water ", "Strawberry Lemonade "],
       images: ["money.jpg", "money.jpg", "money.jpg"],
       desc: ["get the money and get it all the time", "get the money and get it all the time", "get the money and get it all the time"]
-    }
   };
+
   const alcohol = {
-    0: {
       name: "Johnny's Liqour",
       food: ["Crackers", "Salami"],
       prices: [
@@ -98,11 +94,10 @@ function allyProps(index) {
       drinks: ["Wine ", "Titos Vodka ", "Hennessy "],
       images: ["money.jpg", "money.jpg", "money.jpg"],
       desc: ["get the money and get it all the time", "get the money and get it all the time", "get the money and get it all the time"]
-    }
   };
 
 // creating context at current location for reference
-export const CartContext = createContext(fastfood[0].name);
+export const CartContext = createContext();
 
 const Home = () => {
   // stores the count of the cart icon
@@ -125,15 +120,13 @@ const Home = () => {
 
   // handle shopping cart number
   const addCart = () => {
-    <CartContext.Provider value={fastfood}>
-      <Cart food={fastfood} />
+    <CartContext.Provider value={{fastfood, finedine, alcohol, snacks}}>
+      <Cart />
     </CartContext.Provider>
-    console.log(fastfood)
     setCartCount(Math.max(0, cartCount + 1));
   };
 
   const removeCart = () => {
-    // copy info from above cart context
     setCartCount(Math.max(0, cartCount - 1));
   };
 

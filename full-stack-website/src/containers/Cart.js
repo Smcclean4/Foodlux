@@ -6,18 +6,15 @@ import { CartContext } from "../containers/Home"
 import "../stylesheets/Cart.css";
 
 const Cart = () => {
-  const food = useContext(CartContext);
+  const fastfood = useContext(CartContext);
 
   return (
     <div className="cart-background">
       <h1 className="cart-logo">Foodlux</h1>
       <div className="cart-window">
       <h1 className="cart-header">Cart</h1>
-        <Cartitems 
-          items={food}
-        />
-        {console.log(CartContext)}
-        {console.log(food)}
+        <Cartitems />
+        {console.log(fastfood)}
       </div>
       <div className="return-section">
         <Button variant="contained" size="large" sx={{
