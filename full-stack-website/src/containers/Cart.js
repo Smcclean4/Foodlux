@@ -1,12 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import Cartitems from "../components/Cartitems"
-import { CartContext } from "../containers/Home"
 import "../stylesheets/Cart.css";
 
 const Cart = () => {
-  const fastfood = useContext(CartContext);
 
   return (
     <div className="cart-background">
@@ -14,7 +12,6 @@ const Cart = () => {
       <div className="cart-window">
       <h1 className="cart-header">Cart</h1>
         <Cartitems />
-        {console.log(fastfood)}
       </div>
       <div className="return-section">
         <Button variant="contained" size="large" sx={{

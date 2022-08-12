@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -9,7 +9,6 @@ import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Fooditems from "../components/Fooditems";
-import Cart from "../containers/Cart";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import "../stylesheets/Home.css";
@@ -46,8 +45,6 @@ function allyProps(index) {
   };
 }
 
-  // get businesses from database and set them into their section
-  // also get menu items from the specified place with with the database
   const fastfood = {
       name: "Bob's Burgers",
       drinks: ["Coke", "Sprite", "Lemonade"],
@@ -96,9 +93,6 @@ function allyProps(index) {
       desc: ["get the money and get it all the time", "get the money and get it all the time", "get the money and get it all the time"]
   };
 
-// creating context at current location for reference
-export const CartContext = createContext();
-
 const Home = () => {
   // stores the count of the cart icon
   const [cartCount, setCartCount] = useState(0);
@@ -120,9 +114,6 @@ const Home = () => {
 
   // handle shopping cart number
   const addCart = () => {
-    <CartContext.Provider value={{fastfood, finedine, alcohol, snacks}}>
-      <Cart />
-    </CartContext.Provider>
     setCartCount(Math.max(0, cartCount + 1));
   };
 
