@@ -45,64 +45,83 @@ function allyProps(index) {
   };
 }
 
-const Home = () => {
-  // get businesses from database and set them into their section
-  // also get menu items from the specified place with with the database
-  const [fastfood, setFastfood] = useState({
-    0: {
-      name: "Bob's Burgers",
-      drinks: ["Coke", "Sprite", "Lemonade"],
-      prices: [
-        ["$1.25", "$1.25", "$1.25"],
-        ["$1.25", "$1.25", "$1.25"],
-      ],
-      food: ["Bacon Burgers ", "Chili Cheese Fries ", "Jalepenos "],
-      images: ["money.jpg", "money.jpg", "money.jpg"],
-      desc: ["get the money and get it all the time", "get the money and get it all the time", "get the money and get it all the time"]
-    }
-  });
-  const [snacks, setSnacks] = useState({
-    0: {
-      name: "8-11",
-      food: ["Hotcat ", "Wings and Tings ", "Smetzels "],
-      prices: [
-        ["$1.25", "$1.25", "$1.25"],
-        ["$1.25", "$1.25", "$1.25"],
-      ],
-      drinks: ["Water ", "Gatorade ", "Sprite "],
-      images: ["money.jpg", "money.jpg", "money.jpg"],
-      desc: ["get the money and get it all the time", "get the money and get it all the time", "get the money and get it all the time"]
-    }
-  });
-  const [finedine, setFinedine] = useState({
-    0: {
-      name: "Puth's Chriss",
-      food: ["Ramen", "Wonton Sushi ", "Steak and Eggs "],
-      prices: [
-        ["$1.25", "$1.25", "$1.25"],
-        ["$1.25", "$1.25", "$1.25"],
-      ],
-      drinks: ["Chapagne ", "Water ", "Strawberry Lemonade "],
-      images: ["money.jpg", "money.jpg", "money.jpg"],
-      desc: ["get the money and get it all the time", "get the money and get it all the time", "get the money and get it all the time"]
-    }
-  });
-  const [alcohol, setAlcohol] = useState({
-    0: {
-      name: "Johnny's Liqour",
-      food: ["Crackers", "Salami"],
-      prices: [
-        ["$1.25", "$1.25"],
-        ["$1.25", "$1.25", "$1.25"],
-      ],
-      drinks: ["Wine ", "Titos Vodka ", "Hennessy "],
-      images: ["money.jpg", "money.jpg", "money.jpg"],
-      desc: ["get the money and get it all the time", "get the money and get it all the time", "get the money and get it all the time"]
-    }
-  });
+const fastfood = {
+  data: {
+    name: "Bob's Burgers",
+    drinks: ["Coke", "Sprite", "Lemonade"],
+    prices: [
+      ["$1.25", "$1.25", "$1.25"],
+      ["$1.25", "$1.25", "$1.25"],
+    ],
+    food: ["Bacon Burgers ", "Chili Cheese Fries ", "Jalepenos "],
+    images: ["money.jpg", "money.jpg", "money.jpg"],
+    desc: [
+      "get the money and get it all the time",
+      "get the money and get it all the time",
+      "get the money and get it all the time",
+    ],
+  },
+};
 
+const snacks = {
+  data: {
+    name: "8-11",
+    food: ["Hotcat ", "Wings and Tings ", "Smetzels "],
+    prices: [
+      ["$1.25", "$1.25", "$1.25"],
+      ["$1.25", "$1.25", "$1.25"],
+    ],
+    drinks: ["Water ", "Gatorade ", "Sprite "],
+    images: ["money.jpg", "money.jpg", "money.jpg"],
+    desc: [
+      "get the money and get it all the time",
+      "get the money and get it all the time",
+      "get the money and get it all the time",
+    ],
+  },
+};
+
+const finedine = {
+  data: {
+    name: "Puth's Chriss",
+    food: ["Ramen", "Wonton Sushi ", "Steak and Eggs "],
+    prices: [
+      ["$1.25", "$1.25", "$1.25"],
+      ["$1.25", "$1.25", "$1.25"],
+    ],
+    drinks: ["Chapagne ", "Water ", "Strawberry Lemonade "],
+    images: ["money.jpg", "money.jpg", "money.jpg"],
+    desc: [
+      "get the money and get it all the time",
+      "get the money and get it all the time",
+      "get the money and get it all the time",
+    ],
+  },
+};
+
+const alcohol = {
+  data: {
+    name: "Johnny's Liqour",
+    food: ["Crackers", "Salami"],
+    prices: [
+      ["$1.25", "$1.25"],
+      ["$1.25", "$1.25", "$1.25"],
+    ],
+    drinks: ["Wine ", "Titos Vodka ", "Hennessy "],
+    images: ["money.jpg", "money.jpg", "money.jpg"],
+    desc: [
+      "get the money and get it all the time",
+      "get the money and get it all the time",
+      "get the money and get it all the time",
+    ],
+  },
+};
+
+const Home = () => {
   // stores the count of the cart icon
   const [cartCount, setCartCount] = useState(0);
+  // store cart items
+  const [cart, setCart] = useState([]);
 
   // MUI
   const [value, setValue] = useState(0);
@@ -190,6 +209,7 @@ const Home = () => {
           onChangeIndex={handleChangeIndex}
         >
           {/* looking to display list of companies and their sections from API */}
+          {/* on add cart take state from each item and send it to the cart page */}
           <TabPanel value={value} index={0} dir={theme.direction}>
             {Object.values(fastfood).map((val, idx) => {
               return (

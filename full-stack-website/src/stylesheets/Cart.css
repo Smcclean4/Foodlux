@@ -16,6 +16,16 @@
     padding:30px;
 }
 
+.cart-header {
+    background-color:whitesmoke;
+    width:50%;
+    margin:0 auto;
+    padding-top:5px;
+    border-radius:20px 20px 0 0;
+    text-decoration:underline;
+    text-decoration-color:red;
+}
+
 .return-link {
     text-decoration: none;
     color:white;

@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
-const Cartitems = ({ props }) => {
+const Cartitems = () => {
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -15,9 +15,6 @@ const Cartitems = ({ props }) => {
 
   return (
     <>
-    {/* make sure that grid is adaptable */}
-    {/* make plus and minus clickable and transfer data from added cart items to here */}
-    {/* maybe incorporate redux? */}
       <Grid
         container
         spacing={3}
