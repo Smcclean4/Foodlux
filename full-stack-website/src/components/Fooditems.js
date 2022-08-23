@@ -115,7 +115,7 @@ const Fooditems = (props) => {
               >
                 <Grid item xs={2}>
                   {props.images?.map((items, idx) => {
-                    return <img id={idx} src={items} />;
+                    return <img alt="" id={idx} src={items} />;
                   })}
                 </Grid>
                 <Grid item xs={4}>

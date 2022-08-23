@@ -45,57 +45,83 @@ function allyProps(index) {
   };
 }
 
-  const fastfood = {
-      name: "Bob's Burgers",
-      drinks: ["Coke", "Sprite", "Lemonade"],
-      prices: [
-        ["$1.25", "$1.25", "$1.25"],
-        ["$1.25", "$1.25", "$1.25"],
-      ],
-      food: ["Bacon Burgers ", "Chili Cheese Fries ", "Jalepenos "],
-      images: ["money.jpg", "money.jpg", "money.jpg"],
-      desc: ["get the money and get it all the time", "get the money and get it all the time", "get the money and get it all the time"]
-  };
+const fastfood = {
+  data: {
+    name: "Bob's Burgers",
+    drinks: ["Coke", "Sprite", "Lemonade"],
+    prices: [
+      ["$1.25", "$1.25", "$1.25"],
+      ["$1.25", "$1.25", "$1.25"],
+    ],
+    food: ["Bacon Burgers ", "Chili Cheese Fries ", "Jalepenos "],
+    images: ["money.jpg", "money.jpg", "money.jpg"],
+    desc: [
+      "get the money and get it all the time",
+      "get the money and get it all the time",
+      "get the money and get it all the time",
+    ],
+  },
+};
 
-  const snacks = {
-      name: "8-11",
-      food: ["Hotcat ", "Wings and Tings ", "Smetzels "],
-      prices: [
-        ["$1.25", "$1.25", "$1.25"],
-        ["$1.25", "$1.25", "$1.25"],
-      ],
-      drinks: ["Water ", "Gatorade ", "Sprite "],
-      images: ["money.jpg", "money.jpg", "money.jpg"],
-      desc: ["get the money and get it all the time", "get the money and get it all the time", "get the money and get it all the time"]
-  };
+const snacks = {
+  data: {
+    name: "8-11",
+    food: ["Hotcat ", "Wings and Tings ", "Smetzels "],
+    prices: [
+      ["$1.25", "$1.25", "$1.25"],
+      ["$1.25", "$1.25", "$1.25"],
+    ],
+    drinks: ["Water ", "Gatorade ", "Sprite "],
+    images: ["money.jpg", "money.jpg", "money.jpg"],
+    desc: [
+      "get the money and get it all the time",
+      "get the money and get it all the time",
+      "get the money and get it all the time",
+    ],
+  },
+};
 
-  const finedine = {
-      name: "Puth's Chriss",
-      food: ["Ramen", "Wonton Sushi ", "Steak and Eggs "],
-      prices: [
-        ["$1.25", "$1.25", "$1.25"],
-        ["$1.25", "$1.25", "$1.25"],
-      ],
-      drinks: ["Chapagne ", "Water ", "Strawberry Lemonade "],
-      images: ["money.jpg", "money.jpg", "money.jpg"],
-      desc: ["get the money and get it all the time", "get the money and get it all the time", "get the money and get it all the time"]
-  };
+const finedine = {
+  data: {
+    name: "Puth's Chriss",
+    food: ["Ramen", "Wonton Sushi ", "Steak and Eggs "],
+    prices: [
+      ["$1.25", "$1.25", "$1.25"],
+      ["$1.25", "$1.25", "$1.25"],
+    ],
+    drinks: ["Chapagne ", "Water ", "Strawberry Lemonade "],
+    images: ["money.jpg", "money.jpg", "money.jpg"],
+    desc: [
+      "get the money and get it all the time",
+      "get the money and get it all the time",
+      "get the money and get it all the time",
+    ],
+  },
+};
 
-  const alcohol = {
-      name: "Johnny's Liqour",
-      food: ["Crackers", "Salami"],
-      prices: [
-        ["$1.25", "$1.25"],
-        ["$1.25", "$1.25", "$1.25"],
-      ],
-      drinks: ["Wine ", "Titos Vodka ", "Hennessy "],
-      images: ["money.jpg", "money.jpg", "money.jpg"],
-      desc: ["get the money and get it all the time", "get the money and get it all the time", "get the money and get it all the time"]
-  };
+const alcohol = {
+  data: {
+    name: "Johnny's Liqour",
+    food: ["Crackers", "Salami"],
+    prices: [
+      ["$1.25", "$1.25"],
+      ["$1.25", "$1.25", "$1.25"],
+    ],
+    drinks: ["Wine ", "Titos Vodka ", "Hennessy "],
+    images: ["money.jpg", "money.jpg", "money.jpg"],
+    desc: [
+      "get the money and get it all the time",
+      "get the money and get it all the time",
+      "get the money and get it all the time",
+    ],
+  },
+};
 
 const Home = () => {
   // stores the count of the cart icon
   const [cartCount, setCartCount] = useState(0);
+  // store cart items
+  const [cart, setCart] = useState([]);
 
   // MUI
   const [value, setValue] = useState(0);
