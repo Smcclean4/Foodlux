@@ -121,13 +121,7 @@ const Home = () => {
   // stores the count of the cart icon
   const [cartCount, setCartCount] = useState(0);
   // store cart items
-  const [cart, setCart] = useState({
-    id: null,
-    name: "",
-    price: "",
-    picture: "",
-    desc: "",
-  });
+  const [cart, setCart] = useState([]);
 
   // MUI
   const [value, setValue] = useState(0);
@@ -145,13 +139,15 @@ const Home = () => {
   let username = "Carolina";
 
   // handle shopping cart number
-  const addCart = () => {
+  const addCart = (food) => {
     setCartCount(Math.max(0, cartCount + 1));
+    setCart([food]);
     console.log(cart);
   };
 
   const removeCart = () => {
     setCartCount(Math.max(0, cartCount - 1));
+    setCart([]);
     console.log(cart);
   };
 
@@ -230,7 +226,7 @@ const Home = () => {
                   desc={val.desc}
                   img={val.images}
                   // can pass value from food items?
-                  addtocart={() => addCart()}
+                  addtocart={() => addCart(val)}
                   removefromcart={() => removeCart()}
                 />
               );
@@ -247,8 +243,8 @@ const Home = () => {
                   prices={val.prices}
                   desc={val.desc}
                   img={val.images}
-                  addtocart={addCart}
-                  removefromcart={removeCart}
+                  addtocart={() => addCart(val)}
+                  removefromcart={() => removeCart()}
                 />
               );
             })}
