@@ -46,7 +46,7 @@ const Fooditems = (props) => {
             >
               <h2>Food</h2>
               <Grid
-                sx={{ backgroundColor: "grey"}}
+                sx={{ backgroundColor: "grey" }}
                 className="b"
                 container
                 spacing={0}

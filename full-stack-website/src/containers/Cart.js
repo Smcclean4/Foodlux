@@ -1,29 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CartContext } from "./Home";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-import Cartitems from "../components/Cartitems"
+import Cartitems from "../components/Cartitems";
 import "../stylesheets/Cart.css";
 
 const Cart = () => {
+  const items = useContext(CartContext);
+  console.log(items);
 
   return (
     <div className="cart-background">
       <h1 className="cart-logo">Foodlux</h1>
       <div className="cart-window">
-      <h1 className="cart-header">Cart</h1>
+        <h1 className="cart-header">Cart</h1>
         <Cartitems />
       </div>
       <div className="return-section">
-        <Button variant="contained" size="large" sx={{
-          backgroundColor:"red",
-          '&:hover': {
-            backgroundColor: "rgb(162, 6, 6)",
-          },
-          marginTop:"20px"
-        }}>
+        <Button
+          variant="contained"
+          size="large"
+          sx={{
+            backgroundColor: "red",
+            "&:hover": {
+              backgroundColor: "rgb(162, 6, 6)",
+            },
+            marginTop: "20px",
+          }}
+        >
           <Link className="return-link" to="/Home">
             Return
-          </Link> 
+          </Link>
         </Button>
       </div>
     </div>
