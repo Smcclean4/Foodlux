@@ -1,14 +1,10 @@
-import React, { useContext } from "react";
-import { CartContext } from "./Home";
+import React from "react";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import Cartitems from "../components/Cartitems";
 import "../stylesheets/Cart.css";
 
 const Cart = () => {
-  const items = useContext(CartContext);
-  console.log(items);
-
   return (
     <div className="cart-background">
       <h1 className="cart-logo">Foodlux</h1>

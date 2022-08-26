@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -117,13 +117,11 @@ const alcohol = {
   },
 };
 
-// context of cart
-export const CartContext = createContext();
-
 const Home = () => {
   // stores the count of the cart icon
   const [cartCount, setCartCount] = useState(0);
-  // store cart items
+
+  // store items into cart
   const [cart, setCart] = useState([]);
 
   // MUI
@@ -155,145 +153,138 @@ const Home = () => {
   };
 
   return (
-    <CartContext.Provider value={cart}>
-      <div className="home-background">
-        <p className="home-logo">Foodlux</p>
-        {/* will be replaced with actual user */}
-        <div className="dynamic-cart-username">
-          <h1 className="username">Hi, {`${username}`}!</h1>
-          <div>
-            <Link to="/Cart">
-              <ShoppingCartIcon className="cart" />
-            </Link>
-            {/* display cart count */}
-            <p className="cart-count">{cartCount}</p>
-          </div>
+    <div className="home-background">
+      <p className="home-logo">Foodlux</p>
+      {/* will be replaced with actual user */}
+      <div className="dynamic-cart-username">
+        <h1 className="username">Hi, {`${username}`}!</h1>
+        <div>
+          <Link to="/Cart">
+            <ShoppingCartIcon className="cart" />
+          </Link>
+          {/* display cart count */}
+          <p className="cart-count">{cartCount}</p>
         </div>
-        <Box
-          sx={{ bgcolor: "background.paper", width: "90%", margin: "0 auto" }}
-        >
-          <AppBar position="static">
-            <Tabs
-              sx={{
-                backgroundColor: "black",
-                "& .MuiTabs-indicator": {
-                  borderBottom: "2px solid red",
-                },
-              }}
-              value={value}
-              onChange={handleChange}
-              indicatorColor="secondary"
-              aria-label="Foodlux tabs"
-              textColor="inherit"
-              variant="fullWidth"
-            >
-              <Tab
-                icon={<h1>🍔</h1>}
-                aria-label="fflogo"
-                label="FAST FOOD"
-                {...allyProps(0)}
-              />
-              <Tab
-                icon={<h1>🍜</h1>}
-                aria-label="fdlogo"
-                label="FINE DINING"
-                {...allyProps(1)}
-              />
-              <Tab
-                icon={<h1>🍿</h1>}
-                aria-label="snlogo"
-                label="SNACKS"
-                {...allyProps(2)}
-              />
-              <Tab
-                icon={<h1>🍷</h1>}
-                aria-label="alclogo"
-                label="ALCOHOL"
-                {...allyProps(3)}
-              />
-            </Tabs>
-          </AppBar>
-          <SwipeableViews
-            axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-            index={value}
-            onChangeIndex={handleChangeIndex}
-          >
-            {/* looking to display list of companies and their sections from API */}
-            {/* on add cart take state from each item and send it to the cart page */}
-            <TabPanel value={value} index={0} dir={theme.direction}>
-              {Object.values(fastfood).map((val, idx) => {
-                return (
-                  <Fooditems
-                    key={idx}
-                    title={val.name}
-                    food={val.food}
-                    drinks={val.drinks}
-                    prices={val.prices}
-                    desc={val.desc}
-                    img={val.images}
-                    // can pass value from food items?
-                    addtocart={() => addCart(val)}
-                    removefromcart={() => removeCart()}
-                  />
-                );
-              })}
-            </TabPanel>
-            <TabPanel value={value} index={1} dir={theme.direction}>
-              {Object.values(finedine).map((val, idx) => {
-                return (
-                  <Fooditems
-                    key={idx}
-                    title={val.name}
-                    food={val.food}
-                    drinks={val.drinks}
-                    prices={val.prices}
-                    desc={val.desc}
-                    img={val.images}
-                    addtocart={() => addCart(val)}
-                    removefromcart={() => removeCart()}
-                  />
-                );
-              })}
-            </TabPanel>
-            <TabPanel value={value} index={2} dir={theme.direction}>
-              {Object.values(snacks).map((val, idx) => {
-                return (
-                  <Fooditems
-                    key={idx}
-                    title={val.name}
-                    food={val.food}
-                    drinks={val.drinks}
-                    prices={val.prices}
-                    desc={val.desc}
-                    img={val.images}
-                    addtocart={() => addCart(val)}
-                    removefromcart={() => removeCart()}
-                  />
-                );
-              })}
-            </TabPanel>
-            <TabPanel value={value} index={3} dir={theme.direction}>
-              {Object.values(alcohol).map((val, idx) => {
-                return (
-                  <Fooditems
-                    key={idx}
-                    title={val.name}
-                    food={val.food}
-                    drinks={val.drinks}
-                    prices={val.prices}
-                    desc={val.desc}
-                    img={val.images}
-                    addtocart={() => addCart(val)}
-                    removefromcart={() => removeCart()}
-                  />
-                );
-              })}
-            </TabPanel>
-          </SwipeableViews>
-        </Box>
-        <Outlet />
       </div>
-    </CartContext.Provider>
+      <Box sx={{ bgcolor: "background.paper", width: "90%", margin: "0 auto" }}>
+        <AppBar position="static">
+          <Tabs
+            sx={{
+              backgroundColor: "black",
+              "& .MuiTabs-indicator": {
+                borderBottom: "2px solid red",
+              },
+            }}
+            value={value}
+            onChange={handleChange}
+            indicatorColor="secondary"
+            aria-label="Foodlux tabs"
+            textColor="inherit"
+            variant="fullWidth"
+          >
+            <Tab
+              icon={<h1>🍔</h1>}
+              aria-label="fflogo"
+              label="FAST FOOD"
+              {...allyProps(0)}
+            />
+            <Tab
+              icon={<h1>🍜</h1>}
+              aria-label="fdlogo"
+              label="FINE DINING"
+              {...allyProps(1)}
+            />
+            <Tab
+              icon={<h1>🍿</h1>}
+              aria-label="snlogo"
+              label="SNACKS"
+              {...allyProps(2)}
+            />
+            <Tab
+              icon={<h1>🍷</h1>}
+              aria-label="alclogo"
+              label="ALCOHOL"
+              {...allyProps(3)}
+            />
+          </Tabs>
+        </AppBar>
+        <SwipeableViews
+          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+          index={value}
+          onChangeIndex={handleChangeIndex}
+        >
+          <TabPanel value={value} index={0} dir={theme.direction}>
+            {Object.values(fastfood).map((val, idx) => {
+              return (
+                <Fooditems
+                  key={idx}
+                  title={val.name}
+                  food={val.food}
+                  drinks={val.drinks}
+                  prices={val.prices}
+                  desc={val.desc}
+                  img={val.images}
+                  addtocart={() => addCart(val)}
+                  removefromcart={() => removeCart()}
+                />
+              );
+            })}
+          </TabPanel>
+          <TabPanel value={value} index={1} dir={theme.direction}>
+            {Object.values(finedine).map((val, idx) => {
+              return (
+                <Fooditems
+                  key={idx}
+                  title={val.name}
+                  food={val.food}
+                  drinks={val.drinks}
+                  prices={val.prices}
+                  desc={val.desc}
+                  img={val.images}
+                  addtocart={() => addCart(val)}
+                  removefromcart={() => removeCart()}
+                />
+              );
+            })}
+          </TabPanel>
+          <TabPanel value={value} index={2} dir={theme.direction}>
+            {Object.values(snacks).map((val, idx) => {
+              return (
+                <Fooditems
+                  key={idx}
+                  title={val.name}
+                  food={val.food}
+                  drinks={val.drinks}
+                  prices={val.prices}
+                  desc={val.desc}
+                  img={val.images}
+                  addtocart={() => addCart(val)}
+                  removefromcart={() => removeCart()}
+                />
+              );
+            })}
+          </TabPanel>
+          <TabPanel value={value} index={3} dir={theme.direction}>
+            {Object.values(alcohol).map((val, idx) => {
+              return (
+                <Fooditems
+                  key={idx}
+                  title={val.name}
+                  food={val.food}
+                  drinks={val.drinks}
+                  prices={val.prices}
+                  desc={val.desc}
+                  img={val.images}
+                  addtocart={() => addCart(val)}
+                  removefromcart={() => removeCart()}
+                />
+              );
+            })}
+          </TabPanel>
+        </SwipeableViews>
+      </Box>
+      <Outlet />
+    </div>
   );
 };
 
