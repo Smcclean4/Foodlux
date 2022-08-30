@@ -2,8 +2,9 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
+import { Button } from "@mui/material";
 
-const Cartitems = () => {
+const Cartitems = (props) => {
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
@@ -11,6 +12,8 @@ const Cartitems = () => {
     textAlign: "center",
     color: theme.palette.text.secondary,
   }));
+
+  console.log(props);
 
   return (
     <>

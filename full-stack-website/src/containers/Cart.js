@@ -1,35 +1,60 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import Cartitems from "../components/Cartitems";
+import { CartContext } from "./Home";
 import "../stylesheets/Cart.css";
 
-const Cart = () => {
+const Cart = (props) => {
+  const items = useContext(CartContext);
+
+  console.log(items);
   return (
-    <div className="cart-background">
-      <h1 className="cart-logo">Foodlux</h1>
-      <div className="cart-window">
-        <h1 className="cart-header">Cart</h1>
-        <Cartitems />
-      </div>
-      <div className="return-section">
-        <Button
-          variant="contained"
-          size="large"
-          sx={{
-            backgroundColor: "red",
-            "&:hover": {
-              backgroundColor: "rgb(162, 6, 6)",
-            },
-            marginTop: "20px",
-          }}
-        >
-          <Link className="return-link" to="/Home">
-            Return
-          </Link>
-        </Button>
-      </div>
-    </div>
+    <>
+      {props.hidden ? (
+        <></>
+      ) : (
+        <div className="cart-background">
+          <h1 className="cart-logo">Foodlux</h1>
+          <div className="cart-window">
+            <h1 className="cart-header">Cart</h1>
+            return (
+            <Cartitems stuff={items} />)
+            <Button
+              onClick={() => props.clear}
+              variant="contained"
+              size="large"
+              sx={{
+                backgroundColor: "red",
+                "&:hover": {
+                  backgroundColor: "rgb(162, 6, 6)",
+                },
+                marginTop: "20px",
+              }}
+            >
+              Clear Cart
+            </Button>
+          </div>
+          <div className="return-section">
+            <Button
+              variant="contained"
+              size="large"
+              sx={{
+                backgroundColor: "red",
+                "&:hover": {
+                  backgroundColor: "rgb(162, 6, 6)",
+                },
+                marginTop: "20px",
+              }}
+            >
+              <Link className="return-link" to="/Home">
+                Return
+              </Link>
+            </Button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

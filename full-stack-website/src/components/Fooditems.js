@@ -51,7 +51,7 @@ const Fooditems = (props) => {
                 container
                 spacing={0}
               >
-                <Grid item xs={2}>
+                <Grid item xs={4}>
                   {props.images?.map((items, idx) => {
                     return <img alt="" id={idx} src={items} />;
                   })}
@@ -89,21 +89,6 @@ const Fooditems = (props) => {
                     );
                   })}
                 </Grid>
-                <Grid item xs={2}>
-                  {Array.from(Array(props.food?.length)).map((_, idx) => {
-                    return (
-                      <span className="btn-styling" key={idx}>
-                        <Button
-                          onClick={() => props.removefromcart()}
-                          sx={{ color: "red" }}
-                          size="small"
-                        >
-                          undo
-                        </Button>
-                      </span>
-                    );
-                  })}
-                </Grid>
               </Grid>
               <br></br>
               <h2>Drinks</h2>
@@ -113,7 +98,7 @@ const Fooditems = (props) => {
                 container
                 spacing={0}
               >
-                <Grid item xs={2}>
+                <Grid item xs={4}>
                   {props.images?.map((items, idx) => {
                     return <img alt="" id={idx} src={items} />;
                   })}
@@ -146,21 +131,6 @@ const Fooditems = (props) => {
                           size="small"
                         >
                           Add
-                        </Button>
-                      </span>
-                    );
-                  })}
-                </Grid>
-                <Grid item xs={2}>
-                  {Array.from(Array(props.drinks?.length)).map((_, idx) => {
-                    return (
-                      <span className="btn-styling" key={idx}>
-                        <Button
-                          onClick={() => props.removefromcart()}
-                          sx={{ color: "red" }}
-                          size="small"
-                        >
-                          undo
                         </Button>
                       </span>
                     );

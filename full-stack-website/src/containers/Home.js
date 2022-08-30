@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -9,6 +9,7 @@ import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Fooditems from "../components/Fooditems";
+import Cart from "./Cart";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import "../stylesheets/Home.css";
@@ -117,12 +118,13 @@ const alcohol = {
   },
 };
 
-const Home = () => {
-  // stores the count of the cart icon
-  const [cartCount, setCartCount] = useState(0);
+export const CartContext = createContext();
+// getting cart from local storage
+const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
 
+const Home = () => {
   // store items into cart
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(cartFromLocalStorage);
 
   // MUI
   const [value, setValue] = useState(0);
@@ -141,16 +143,22 @@ const Home = () => {
 
   // handle shopping cart number
   const addCart = (food) => {
-    setCartCount(Math.max(0, cartCount + 1));
     setCart([...cart, food]);
     console.log(cart);
   };
 
-  const removeCart = () => {
-    setCartCount(Math.max(0, cartCount - 1));
+  const clearCart = () => {
     setCart([]);
     console.log(cart);
   };
+
+  const getCartTotal = () => {
+    return cart.reduce((sum) => sum + 1, 0);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   return (
     <div className="home-background">
@@ -159,11 +167,14 @@ const Home = () => {
       <div className="dynamic-cart-username">
         <h1 className="username">Hi, {`${username}`}!</h1>
         <div>
-          <Link to="/Cart">
-            <ShoppingCartIcon className="cart" />
-          </Link>
+          <CartContext.Provider value={cart}>
+            <Link to="/Cart">
+              <ShoppingCartIcon className="cart" />
+              <Cart clear={() => clearCart()} hidden={true} />
+            </Link>
+          </CartContext.Provider>
           {/* display cart count */}
-          <p className="cart-count">{cartCount}</p>
+          <p className="cart-count">{getCartTotal()}</p>
         </div>
       </div>
       <Box sx={{ bgcolor: "background.paper", width: "90%", margin: "0 auto" }}>
@@ -225,7 +236,6 @@ const Home = () => {
                   desc={val.desc}
                   img={val.images}
                   addtocart={() => addCart(val)}
-                  removefromcart={() => removeCart()}
                 />
               );
             })}
@@ -242,7 +252,6 @@ const Home = () => {
                   desc={val.desc}
                   img={val.images}
                   addtocart={() => addCart(val)}
-                  removefromcart={() => removeCart()}
                 />
               );
             })}
@@ -259,7 +268,6 @@ const Home = () => {
                   desc={val.desc}
                   img={val.images}
                   addtocart={() => addCart(val)}
-                  removefromcart={() => removeCart()}
                 />
               );
             })}
@@ -276,7 +284,6 @@ const Home = () => {
                   desc={val.desc}
                   img={val.images}
                   addtocart={() => addCart(val)}
-                  removefromcart={() => removeCart()}
                 />
               );
             })}
