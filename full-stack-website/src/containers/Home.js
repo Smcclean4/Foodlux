@@ -149,6 +149,7 @@ const Home = () => {
 
   const clearCart = () => {
     setCart([]);
+    localStorage.clear();
     console.log(cart);
   };
 
@@ -170,7 +171,7 @@ const Home = () => {
           <CartContext.Provider value={cart}>
             <Link to="/Cart">
               <ShoppingCartIcon className="cart" />
-              <Cart clear={() => clearCart()} hidden={true} />
+              <Cart clearcart={() => clearCart()} hidden={true} />
             </Link>
           </CartContext.Provider>
           {/* display cart count */}

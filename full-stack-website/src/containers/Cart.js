@@ -7,8 +7,7 @@ import "../stylesheets/Cart.css";
 
 const Cart = (props) => {
   const items = useContext(CartContext);
-
-  console.log(items);
+  console.log(props);
   return (
     <>
       {props.hidden ? (
@@ -21,7 +20,7 @@ const Cart = (props) => {
             return (
             <Cartitems stuff={items} />)
             <Button
-              onClick={() => props.clear}
+              onClick={() => props.clearcart}
               variant="contained"
               size="large"
               sx={{
