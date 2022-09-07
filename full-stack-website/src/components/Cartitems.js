@@ -13,8 +13,6 @@ const Cartitems = (props) => {
     color: theme.palette.text.secondary,
   }));
 
-  console.log(props);
-
   return (
     <>
       <Grid

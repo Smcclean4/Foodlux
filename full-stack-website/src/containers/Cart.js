@@ -20,7 +20,7 @@ const Cart = (props) => {
             return (
             <Cartitems stuff={items} />)
             <Button
-              onClick={() => props.clearcart}
+              onClick={() => props.clearcart()}
               variant="contained"
               size="large"
               sx={{

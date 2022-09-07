@@ -171,8 +171,8 @@ const Home = () => {
           <CartContext.Provider value={cart}>
             <Link to="/Cart">
               <ShoppingCartIcon className="cart" />
-              <Cart clearcart={() => clearCart()} hidden={true} />
             </Link>
+            <Cart clearcart={() => clearCart()} hidden={true} />
           </CartContext.Provider>
           {/* display cart count */}
           <p className="cart-count">{getCartTotal()}</p>
