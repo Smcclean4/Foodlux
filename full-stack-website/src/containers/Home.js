@@ -169,7 +169,7 @@ const Home = () => {
         <h1 className="username">Hi, {`${username}`}!</h1>
         <div>
           <CartContext.Provider value={cart}>
-            <Link to="/Cart">
+            <Link to="/Cart" state={{ data: cart }}>
               <ShoppingCartIcon className="cart" />
             </Link>
             <Cart clearcart={() => clearCart()} hidden={true} />

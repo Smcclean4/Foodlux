@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Cartitems from "../components/Cartitems";
-import { CartContext } from "./Home";
 import "../stylesheets/Cart.css";
 
 const Cart = (props) => {
-  const items = useContext(CartContext);
-  console.log(props);
+  const location = useLocation();
+  const data = location.state?.data;
+  console.log(data);
   return (
     <>
       {props.hidden ? (
@@ -18,7 +18,7 @@ const Cart = (props) => {
           <div className="cart-window">
             <h1 className="cart-header">Cart</h1>
             return (
-            <Cartitems stuff={items} />)
+            <Cartitems food={data[1].food} />)
             <Button
               onClick={() => props.clearcart()}
               variant="contained"
