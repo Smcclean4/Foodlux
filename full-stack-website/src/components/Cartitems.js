@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 
-const Cartitems = (props) => {
+const Cartitems = ({ items }) => {
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
@@ -12,7 +12,7 @@ const Cartitems = (props) => {
     color: theme.palette.text.secondary,
   }));
 
-  console.log(props);
+  console.log(items);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -9,7 +9,6 @@ import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Fooditems from "../components/Fooditems";
-import Cart from "./Cart";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import "../stylesheets/Home.css";
@@ -118,7 +117,6 @@ const alcohol = {
   },
 };
 
-export const CartContext = createContext();
 // getting cart from local storage
 const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
 
@@ -143,15 +141,14 @@ const Home = () => {
 
   // handle shopping cart number
   const addCart = (food) => {
+    // set cart data
     setCart([...cart, food]);
     console.log(cart);
   };
 
-  const clearCart = () => {
-    setCart([]);
-    localStorage.clear();
-    console.log(cart);
-  };
+  // const removeCart = (itemToRemove) => {
+  //   setCart(cart.filter((food) => food !== itemToRemove));
+  // };
 
   const getCartTotal = () => {
     return cart.reduce((sum) => sum + 1, 0);
@@ -168,12 +165,9 @@ const Home = () => {
       <div className="dynamic-cart-username">
         <h1 className="username">Hi, {`${username}`}!</h1>
         <div>
-          <CartContext.Provider value={cart}>
-            <Link to="/Cart" state={{ data: cart }}>
-              <ShoppingCartIcon className="cart" />
-            </Link>
-            <Cart clearcart={() => clearCart()} hidden={true} />
-          </CartContext.Provider>
+          <Link to="/Cart" state={{ data: cart }}>
+            <ShoppingCartIcon className="cart" />
+          </Link>
           {/* display cart count */}
           <p className="cart-count">{getCartTotal()}</p>
         </div>

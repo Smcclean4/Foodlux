@@ -4,55 +4,54 @@ import { Link, useLocation } from "react-router-dom";
 import Cartitems from "../components/Cartitems";
 import "../stylesheets/Cart.css";
 
-const Cart = (props) => {
+const Cart = () => {
   const location = useLocation();
+  // getting state from link
   const data = location.state?.data;
+  // getting remove cart from link
+
   console.log(data);
+
   return (
     <>
-      {props.hidden ? (
-        <></>
-      ) : (
-        <div className="cart-background">
-          <h1 className="cart-logo">Foodlux</h1>
-          <div className="cart-window">
-            <h1 className="cart-header">Cart</h1>
-            return (
-            <Cartitems food={data[1].food} />)
-            <Button
-              onClick={() => props.clearcart()}
-              variant="contained"
-              size="large"
-              sx={{
-                backgroundColor: "red",
-                "&:hover": {
-                  backgroundColor: "rgb(162, 6, 6)",
-                },
-                marginTop: "20px",
-              }}
-            >
-              Clear Cart
-            </Button>
-          </div>
-          <div className="return-section">
-            <Button
-              variant="contained"
-              size="large"
-              sx={{
-                backgroundColor: "red",
-                "&:hover": {
-                  backgroundColor: "rgb(162, 6, 6)",
-                },
-                marginTop: "20px",
-              }}
-            >
-              <Link className="return-link" to="/Home">
-                Return
-              </Link>
-            </Button>
-          </div>
+      <div className="cart-background">
+        <h1 className="cart-logo">Foodlux</h1>
+        <div className="cart-window">
+          <h1 className="cart-header">Cart</h1>
+          <Cartitems items={data} />
+          <Button
+            onClick={() => <></>}
+            variant="contained"
+            size="large"
+            sx={{
+              backgroundColor: "red",
+              "&:hover": {
+                backgroundColor: "rgb(162, 6, 6)",
+              },
+              marginTop: "20px",
+            }}
+          >
+            Clear Cart
+          </Button>
         </div>
-      )}
+        <div className="return-section">
+          <Button
+            variant="contained"
+            size="large"
+            sx={{
+              backgroundColor: "red",
+              "&:hover": {
+                backgroundColor: "rgb(162, 6, 6)",
+              },
+              marginTop: "20px",
+            }}
+          >
+            <Link className="return-link" to="/Home">
+              Return
+            </Link>
+          </Button>
+        </div>
+      </div>
     </>
   );
 };
