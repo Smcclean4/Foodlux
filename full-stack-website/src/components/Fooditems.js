@@ -66,7 +66,7 @@ const Fooditems = (props) => {
                   })}
                 </Grid>
                 <Grid item xs={2}>
-                  {props.prices[0]?.map((price, idx) => {
+                  {props.prices?.map((price, idx) => {
                     return (
                       <div key={idx}>
                         <li>{price}</li>
@@ -113,7 +113,7 @@ const Fooditems = (props) => {
                   })}
                 </Grid>
                 <Grid item xs={2}>
-                  {props.prices[1]?.map((price, idx) => {
+                  {props.prices?.map((price, idx) => {
                     return (
                       <div key={idx}>
                         <li>{price}</li>
