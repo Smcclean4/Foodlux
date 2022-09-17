@@ -3,8 +3,9 @@ import "../stylesheets/Fooditems.css";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import { Menu } from "@mui/material";
 
-const Fooditems = (props) => {
+const Fooditems = ({ menu, title, addtocart }) => {
   // checking whether active is on or off based on true or false
   const [render, setRender] = useState(false);
   let status;
@@ -19,6 +20,8 @@ const Fooditems = (props) => {
     status.classList.contains("active") ? setRender(false) : setRender(true);
   };
 
+  console.log(menu);
+
   return (
     <>
       <div className="ff-wrapper">
@@ -29,7 +32,7 @@ const Fooditems = (props) => {
             className="button active"
             onClick={(e) => handleClick(e)}
           >
-            {props.title}
+            {title}
           </Button>
         </div>
         {/* when tab is closed display no data and when it is open show information */}
@@ -52,12 +55,17 @@ const Fooditems = (props) => {
                 spacing={0}
               >
                 <Grid item xs={4}>
-                  {props.images?.map((items, idx) => {
-                    return <img alt="" id={idx} src={items} />;
+                  {menu.images?.map((items, idx) => {
+                    return (
+                      <>
+                        <img alt="" id={idx} src={items} />;
+                      </>
+                    );
                   })}
                 </Grid>
                 <Grid item xs={4}>
-                  {props.food?.map((items, idx) => {
+                  {/* figure out a solution to display items */}
+                  {Object.values(menu[0])?.map((items, idx) => {
                     return (
                       <div key={idx}>
                         <li>{items}</li>
@@ -66,7 +74,7 @@ const Fooditems = (props) => {
                   })}
                 </Grid>
                 <Grid item xs={2}>
-                  {props.prices?.map((price, idx) => {
+                  {menu.prices?.map((price, idx) => {
                     return (
                       <div key={idx}>
                         <li>{price}</li>
@@ -75,11 +83,11 @@ const Fooditems = (props) => {
                   })}
                 </Grid>
                 <Grid item xs={2}>
-                  {Array.from(Array(props.food?.length)).map((_, idx) => {
+                  {Array.from(Array(menu.food?.length)).map((_, idx) => {
                     return (
                       <span className="btn-styling" key={idx}>
                         <Button
-                          onClick={() => props.addtocart()}
+                          onClick={() => addtocart()}
                           sx={{ color: "dodgerblue" }}
                           size="small"
                         >
@@ -99,12 +107,12 @@ const Fooditems = (props) => {
                 spacing={0}
               >
                 <Grid item xs={4}>
-                  {props.images?.map((items, idx) => {
+                  {menu.images?.map((items, idx) => {
                     return <img alt="" id={idx} src={items} />;
                   })}
                 </Grid>
                 <Grid item xs={4}>
-                  {props.drinks?.map((items, idx) => {
+                  {menu.drinks?.map((items, idx) => {
                     return (
                       <div key={idx}>
                         <li>{items}</li>
@@ -113,7 +121,7 @@ const Fooditems = (props) => {
                   })}
                 </Grid>
                 <Grid item xs={2}>
-                  {props.prices?.map((price, idx) => {
+                  {menu.prices?.map((price, idx) => {
                     return (
                       <div key={idx}>
                         <li>{price}</li>
@@ -122,11 +130,11 @@ const Fooditems = (props) => {
                   })}
                 </Grid>
                 <Grid item xs={2}>
-                  {Array.from(Array(props.drinks?.length)).map((_, idx) => {
+                  {Array.from(Array(menu.drinks?.length)).map((_, idx) => {
                     return (
                       <span className="btn-styling" key={idx}>
                         <Button
-                          onClick={() => props.addtocart()}
+                          onClick={() => addtocart()}
                           sx={{ color: "dodgerblue" }}
                           size="small"
                         >

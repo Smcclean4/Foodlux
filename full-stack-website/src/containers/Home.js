@@ -275,11 +275,7 @@ const Home = () => {
                 <Fooditems
                   key={idx}
                   title={val.title}
-                  food={val.menu.food}
-                  drinks={val.menu.drinks}
-                  prices={val.menu.prices}
-                  desc={val.menu.desc}
-                  img={val.menu.images}
+                  menu={val.menu}
                   addtocart={() => addCart(val)}
                 />
               );
