@@ -3,7 +3,6 @@ import "../stylesheets/Fooditems.css";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import { Menu } from "@mui/material";
 
 const Fooditems = ({ menu, title, addtocart }) => {
   // checking whether active is on or off based on true or false
@@ -55,35 +54,35 @@ const Fooditems = ({ menu, title, addtocart }) => {
                 spacing={0}
               >
                 <Grid item xs={4}>
-                  {menu.images?.map((items, idx) => {
+                  {menu?.map((items, idx) => {
                     return (
-                      <>
-                        <img alt="" id={idx} src={items} />;
-                      </>
+                      <div id={idx}>
+                        <img alt="" src={items.image} />
+                      </div>
                     );
                   })}
                 </Grid>
                 <Grid item xs={4}>
                   {/* figure out a solution to display items */}
-                  {Object.values(menu[0])?.map((items, idx) => {
+                  {menu?.map((items, idx) => {
                     return (
                       <div key={idx}>
-                        <li>{items}</li>
+                        <li>{items.item}</li>
                       </div>
                     );
                   })}
                 </Grid>
                 <Grid item xs={2}>
-                  {menu.prices?.map((price, idx) => {
+                  {menu?.map((price, idx) => {
                     return (
                       <div key={idx}>
-                        <li>{price}</li>
+                        <li>{price.price}</li>
                       </div>
                     );
                   })}
                 </Grid>
                 <Grid item xs={2}>
-                  {Array.from(Array(menu.food?.length)).map((_, idx) => {
+                  {Array.from(Array(menu.length)).map((_, idx) => {
                     return (
                       <span className="btn-styling" key={idx}>
                         <Button
@@ -107,30 +106,34 @@ const Fooditems = ({ menu, title, addtocart }) => {
                 spacing={0}
               >
                 <Grid item xs={4}>
-                  {menu.images?.map((items, idx) => {
-                    return <img alt="" id={idx} src={items} />;
+                  {menu?.map((items, idx) => {
+                    return (
+                      <div key={idx}>
+                        <img alt="" src={items.image} />
+                      </div>
+                    );
                   })}
                 </Grid>
                 <Grid item xs={4}>
-                  {menu.drinks?.map((items, idx) => {
+                  {menu?.map((items, idx) => {
                     return (
                       <div key={idx}>
-                        <li>{items}</li>
+                        <li>{items.item}</li>
                       </div>
                     );
                   })}
                 </Grid>
                 <Grid item xs={2}>
-                  {menu.prices?.map((price, idx) => {
+                  {menu?.map((price, idx) => {
                     return (
                       <div key={idx}>
-                        <li>{price}</li>
+                        <li>{price.price}</li>
                       </div>
                     );
                   })}
                 </Grid>
                 <Grid item xs={2}>
-                  {Array.from(Array(menu.drinks?.length)).map((_, idx) => {
+                  {Array.from(Array(menu.length)).map((_, idx) => {
                     return (
                       <span className="btn-styling" key={idx}>
                         <Button

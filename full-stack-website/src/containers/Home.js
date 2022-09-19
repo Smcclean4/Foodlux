@@ -280,16 +280,6 @@ const Home = () => {
                 />
               );
             })}
-            {/* // <Fooditems
-                //   key={idx}
-                //   title={val.name}
-                //   food={val.food}
-                //   drinks={val.drinks}
-                //   prices={val.prices}
-                //   desc={val.desc}
-                //   img={val.images}
-                //   addtocart={() => addCart(val)}
-                // /> */}
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
             {Object.values(finedine).map((val, idx) => {
