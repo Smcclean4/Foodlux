@@ -8,7 +8,11 @@ const Cart = () => {
   const location = useLocation();
   // getting state from link
   const data = location.state?.data;
-  // getting remove cart from link
+  // clear storage on clearcart click
+  const clearCart = () => {
+    // figure out how to clear storage?? make sure that it refreshes and removes data!!
+    localStorage.clear();
+  };
 
   console.log(data);
 
@@ -20,7 +24,7 @@ const Cart = () => {
           <h1 className="cart-header">Cart</h1>
           <Cartitems items={data} />
           <Button
-            onClick={() => <></>}
+            onClick={() => clearCart()}
             variant="contained"
             size="large"
             sx={{

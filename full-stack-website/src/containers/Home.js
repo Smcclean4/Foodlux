@@ -265,7 +265,6 @@ const Home = () => {
   const addCart = (food) => {
     // set cart data
     setCart([...cart, food]);
-    console.log(cart);
   };
 
   // const removeCart = (itemToRemove) => {
@@ -348,7 +347,7 @@ const Home = () => {
                   key={idx}
                   title={val.title}
                   menu={val.menu}
-                  addtocart={() => addCart(val)}
+                  addtocart={addCart}
                 />
               );
             })}
@@ -360,7 +359,7 @@ const Home = () => {
                   key={idx}
                   title={val.title}
                   menu={val.menu}
-                  addtocart={() => addCart(val)}
+                  addtocart={addCart}
                 />
               );
             })}
@@ -372,7 +371,7 @@ const Home = () => {
                   key={idx}
                   title={val.title}
                   menu={val.menu}
-                  addtocart={() => addCart(val)}
+                  addtocart={addCart}
                 />
               );
             })}
@@ -384,7 +383,7 @@ const Home = () => {
                   key={idx}
                   title={val.title}
                   menu={val.menu}
-                  addtocart={() => addCart(val)}
+                  addtocart={addCart}
                 />
               );
             })}

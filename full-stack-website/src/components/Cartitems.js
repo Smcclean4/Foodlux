@@ -27,10 +27,26 @@ const Cartitems = ({ items }) => {
         }}
       >
         <Grid item xs={6}>
-          <Item>ITEM PICTURE</Item>
+          <Item>
+            {items.map((item, idx) => {
+              return (
+                <div key={idx}>
+                  <li>{item.image}</li>
+                </div>
+              );
+            })}
+          </Item>
         </Grid>
         <Grid item xs={3}>
-          <Item>ITEM PRICE</Item>
+          <Item>
+            {items.map((item, idx) => {
+              return (
+                <div key={idx}>
+                  <li>{item.price}</li>
+                </div>
+              );
+            })}
+          </Item>
         </Grid>
         <Grid item xs={1}>
           <Item>-</Item>
@@ -39,10 +55,26 @@ const Cartitems = ({ items }) => {
           <Item>+</Item>
         </Grid>
         <Grid item xs={4}>
-          <Item>ITEM NAME</Item>
+          <Item>
+            {items.map((item, idx) => {
+              return (
+                <div key={idx}>
+                  <li>{item.item}</li>
+                </div>
+              );
+            })}
+          </Item>
         </Grid>
         <Grid item xs={7}>
-          <Item>ITEM DESCRIPTION</Item>
+          <Item>
+            {items.map((item, idx) => {
+              return (
+                <div key={idx}>
+                  <li>{item.desc}</li>
+                </div>
+              );
+            })}
+          </Item>
         </Grid>
       </Grid>
     </>

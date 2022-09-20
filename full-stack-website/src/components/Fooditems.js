@@ -1,25 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../stylesheets/Fooditems.css";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 
-const Fooditems = ({ menu, title, addtocart, type }) => {
+const Fooditems = ({ menu, title, addtocart }) => {
   // checking whether active is on or off based on true or false
   const [render, setRender] = useState(false);
-  let status;
-
-  useEffect(() => {
-    status = document.querySelector(".button");
-  });
+  // previously used useEffect to combat opening 2 at once??
+  let status = document.querySelector(".button");
 
   const handleClick = (e) => {
     e.preventDefault();
     status.classList.toggle("active", render === true);
     status.classList.contains("active") ? setRender(false) : setRender(true);
   };
-
-  console.log(menu);
 
   return (
     <>
@@ -90,7 +85,7 @@ const Fooditems = ({ menu, title, addtocart, type }) => {
                     return _.type === "food" ? (
                       <span className="btn-styling" key={idx}>
                         <Button
-                          onClick={() => addtocart()}
+                          onClick={() => addtocart(menu[idx])}
                           sx={{ color: "dodgerblue" }}
                           size="small"
                         >
@@ -149,7 +144,7 @@ const Fooditems = ({ menu, title, addtocart, type }) => {
                     return _.type === "drink" ? (
                       <span className="btn-styling" key={idx}>
                         <Button
-                          onClick={() => addtocart()}
+                          onClick={() => addtocart(menu[idx])}
                           sx={{ color: "dodgerblue" }}
                           size="small"
                         >
