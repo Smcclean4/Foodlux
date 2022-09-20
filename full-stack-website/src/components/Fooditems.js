@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 
-const Fooditems = ({ menu, title, addtocart }) => {
+const Fooditems = ({ menu, title, addtocart, type }) => {
   // checking whether active is on or off based on true or false
   const [render, setRender] = useState(false);
   let status;
@@ -34,7 +34,6 @@ const Fooditems = ({ menu, title, addtocart }) => {
             {title}
           </Button>
         </div>
-        {/* when tab is closed display no data and when it is open show information */}
         {!render ? (
           <div className="ff-grid b"></div>
         ) : (
@@ -54,36 +53,41 @@ const Fooditems = ({ menu, title, addtocart }) => {
                 spacing={0}
               >
                 <Grid item xs={4}>
-                  {menu?.map((items, idx) => {
-                    return (
-                      <div id={idx}>
-                        <img alt="" src={items.image} />
+                  {menu?.map((images, idx) => {
+                    return images.type === "food" ? (
+                      <div key={idx}>
+                        <img alt="" src={images.image} />
                       </div>
+                    ) : (
+                      ""
                     );
                   })}
                 </Grid>
                 <Grid item xs={4}>
-                  {/* figure out a solution to display items */}
-                  {menu?.map((items, idx) => {
-                    return (
+                  {menu?.map((food, idx) => {
+                    return food.type === "food" ? (
                       <div key={idx}>
-                        <li>{items.item}</li>
+                        <li>{food.item}</li>
                       </div>
+                    ) : (
+                      ""
                     );
                   })}
                 </Grid>
                 <Grid item xs={2}>
-                  {menu?.map((price, idx) => {
-                    return (
+                  {menu?.map((prices, idx) => {
+                    return prices.type === "food" ? (
                       <div key={idx}>
-                        <li>{price.price}</li>
+                        <li>{prices.price}</li>
                       </div>
+                    ) : (
+                      ""
                     );
                   })}
                 </Grid>
                 <Grid item xs={2}>
-                  {Array.from(Array(menu.length)).map((_, idx) => {
-                    return (
+                  {menu?.map((_, idx) => {
+                    return _.type === "food" ? (
                       <span className="btn-styling" key={idx}>
                         <Button
                           onClick={() => addtocart()}
@@ -93,6 +97,8 @@ const Fooditems = ({ menu, title, addtocart }) => {
                           Add
                         </Button>
                       </span>
+                    ) : (
+                      ""
                     );
                   })}
                 </Grid>
@@ -106,35 +112,41 @@ const Fooditems = ({ menu, title, addtocart }) => {
                 spacing={0}
               >
                 <Grid item xs={4}>
-                  {menu?.map((items, idx) => {
-                    return (
+                  {menu?.map((images, idx) => {
+                    return images.type === "drink" ? (
                       <div key={idx}>
-                        <img alt="" src={items.image} />
+                        <img alt="" src={images.image} />
                       </div>
+                    ) : (
+                      ""
                     );
                   })}
                 </Grid>
                 <Grid item xs={4}>
-                  {menu?.map((items, idx) => {
-                    return (
+                  {menu?.map((drink, idx) => {
+                    return drink.type === "drink" ? (
                       <div key={idx}>
-                        <li>{items.item}</li>
+                        <li>{drink.item}</li>
                       </div>
+                    ) : (
+                      ""
                     );
                   })}
                 </Grid>
                 <Grid item xs={2}>
-                  {menu?.map((price, idx) => {
-                    return (
+                  {menu?.map((prices, idx) => {
+                    return prices.type === "drink" ? (
                       <div key={idx}>
-                        <li>{price.price}</li>
+                        <li>{prices.price}</li>
                       </div>
+                    ) : (
+                      ""
                     );
                   })}
                 </Grid>
                 <Grid item xs={2}>
-                  {Array.from(Array(menu.length)).map((_, idx) => {
-                    return (
+                  {menu?.map((_, idx) => {
+                    return _.type === "drink" ? (
                       <span className="btn-styling" key={idx}>
                         <Button
                           onClick={() => addtocart()}
@@ -144,6 +156,8 @@ const Fooditems = ({ menu, title, addtocart }) => {
                           Add
                         </Button>
                       </span>
+                    ) : (
+                      ""
                     );
                   })}
                 </Grid>
