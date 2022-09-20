@@ -50,126 +50,198 @@ const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
 
 const Home = () => {
   // storing dummy values of food
-  const [fastfood] = useState(
-    [
-      {
-        title: "Bob's Burgers",
-        menu: [
-          {
-            item: "Bacon Burger",
-            price: "$1.25",
-            desc: "Get the money and get it all the time",
-            image: "money.jpg",
-            type: "food",
-          },
-          {
-            item: "Chili Cheese Fries",
-            price: "$1.25",
-            desc: "Get the money and get it all the time",
-            image: "money.jpg",
-            type: "food",
-          },
-          {
-            item: "Jalepenos",
-            price: "$1.25",
-            desc: "Get the money and get it all the time",
-            image: "money.jpg",
-            type: "food",
-          },
-          {
-            item: "Coke",
-            price: "$1.25",
-            desc: "Get the money and get it all the time",
-            image: "money.jpg",
-            type: "drink",
-          },
-          {
-            item: "Sprite",
-            price: "$1.25",
-            desc: "Get the money and get it all the time",
-            image: "money.jpg",
-            type: "drink",
-          },
-          {
-            item: "Lemonade",
-            price: "$1.25",
-            desc: "Get the money and get it all the time",
-            image: "money.jpg",
-            type: "drink",
-          },
-        ],
-      },
-    ]
-    // data: {
-    //   name: "Bob's Burgers",
-    //   drinks: ["Coke", "Sprite", "Lemonade"],
-    //   prices: [
-    //     ["$1.25", "$1.25", "$1.25"],
-    //     ["$1.25", "$1.25", "$1.25"],
-    //   ],
-    //   food: ["Bacon Burgers ", "Chili Cheese Fries ", "Jalepenos "],
-    //   images: ["money.jpg", "money.jpg", "money.jpg"],
-    //   desc: [
-    //     "get the money and get it all the time",
-    //     "get the money and get it all the time",
-    //     "get the money and get it all the time",
-    //   ],
-    // },
-  );
-
-  const [snacks] = useState({
-    data: {
-      name: "8-11",
-      food: ["Hotcat ", "Wings and Tings ", "Smetzels "],
-      prices: [
-        ["$1.25", "$1.25", "$1.25"],
-        ["$1.25", "$1.25", "$1.25"],
-      ],
-      drinks: ["Water ", "Gatorade ", "Sprite "],
-      images: ["money.jpg", "money.jpg", "money.jpg"],
-      desc: [
-        "get the money and get it all the time",
-        "get the money and get it all the time",
-        "get the money and get it all the time",
+  const [fastfood] = useState([
+    {
+      title: "Bob's Burgers",
+      menu: [
+        {
+          item: "Bacon Burger",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Chili Cheese Fries",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Jalepenos",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Coke",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+        {
+          item: "Sprite",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+        {
+          item: "Lemonade",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
       ],
     },
-  });
+  ]);
 
-  const [finedine] = useState({
-    data: {
-      name: "Puth's Chriss",
-      food: ["Ramen", "Wonton Sushi ", "Steak and Eggs "],
-      prices: [
-        ["$1.25", "$1.25", "$1.25"],
-        ["$1.25", "$1.25", "$1.25"],
-      ],
-      drinks: ["Chapagne ", "Water ", "Strawberry Lemonade "],
-      images: ["money.jpg", "money.jpg", "money.jpg"],
-      desc: [
-        "get the money and get it all the time",
-        "get the money and get it all the time",
-        "get the money and get it all the time",
+  const [snacks] = useState([
+    {
+      title: "8-11",
+      menu: [
+        {
+          item: "Hot Cat",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Wings and Tings",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Smetzels",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Water",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+        {
+          item: "Gatorade",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+        {
+          item: "Sprite",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
       ],
     },
-  });
+  ]);
 
-  const [alcohol] = useState({
-    data: {
-      name: "Johnny's Liqour",
-      food: ["Crackers", "Salami"],
-      prices: [
-        ["$1.25", "$1.25"],
-        ["$1.25", "$1.25", "$1.25"],
-      ],
-      drinks: ["Wine ", "Titos Vodka ", "Hennessy "],
-      images: ["money.jpg", "money.jpg", "money.jpg"],
-      desc: [
-        "get the money and get it all the time",
-        "get the money and get it all the time",
-        "get the money and get it all the time",
+  const [finedine] = useState([
+    {
+      title: "Puth's Chriss",
+      menu: [
+        {
+          item: "Ramen",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Wonton Sushi",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Steak and Eggs",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Champagne",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+        {
+          item: "Water",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+        {
+          item: "Strawberry Lemonade",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
       ],
     },
-  });
+  ]);
+
+  const [alcohol] = useState([
+    {
+      title: "Johnny's Liqour",
+      menu: [
+        {
+          item: "Crackers",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Salami",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Wine",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+        {
+          item: "Titos Vodka",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+        {
+          item: "Hennessey",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+      ],
+    },
+  ]);
 
   // store items into cart
   const [cart, setCart] = useState(cartFromLocalStorage);
@@ -282,48 +354,36 @@ const Home = () => {
             })}
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
-            {Object.values(finedine).map((val, idx) => {
+            {finedine.map((val, idx) => {
               return (
                 <Fooditems
                   key={idx}
-                  title={val.name}
-                  food={val.food}
-                  drinks={val.drinks}
-                  prices={val.prices}
-                  desc={val.desc}
-                  img={val.images}
+                  title={val.title}
+                  menu={val.menu}
                   addtocart={() => addCart(val)}
                 />
               );
             })}
           </TabPanel>
           <TabPanel value={value} index={2} dir={theme.direction}>
-            {Object.values(snacks).map((val, idx) => {
+            {snacks.map((val, idx) => {
               return (
                 <Fooditems
                   key={idx}
-                  title={val.name}
-                  food={val.food}
-                  drinks={val.drinks}
-                  prices={val.prices}
-                  desc={val.desc}
-                  img={val.images}
+                  title={val.title}
+                  menu={val.menu}
                   addtocart={() => addCart(val)}
                 />
               );
             })}
           </TabPanel>
           <TabPanel value={value} index={3} dir={theme.direction}>
-            {Object.values(alcohol).map((val, idx) => {
+            {alcohol.map((val, idx) => {
               return (
                 <Fooditems
                   key={idx}
-                  title={val.name}
-                  food={val.food}
-                  drinks={val.drinks}
-                  prices={val.prices}
-                  desc={val.desc}
-                  img={val.images}
+                  title={val.title}
+                  menu={val.menu}
                   addtocart={() => addCart(val)}
                 />
               );
