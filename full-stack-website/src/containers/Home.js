@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -45,83 +45,206 @@ function allyProps(index) {
   };
 }
 
-const fastfood = {
-  data: {
-    name: "Bob's Burgers",
-    drinks: ["Coke", "Sprite", "Lemonade"],
-    prices: [
-      ["$1.25", "$1.25", "$1.25"],
-      ["$1.25", "$1.25", "$1.25"],
-    ],
-    food: ["Bacon Burgers ", "Chili Cheese Fries ", "Jalepenos "],
-    images: ["money.jpg", "money.jpg", "money.jpg"],
-    desc: [
-      "get the money and get it all the time",
-      "get the money and get it all the time",
-      "get the money and get it all the time",
-    ],
-  },
-};
-
-const snacks = {
-  data: {
-    name: "8-11",
-    food: ["Hotcat ", "Wings and Tings ", "Smetzels "],
-    prices: [
-      ["$1.25", "$1.25", "$1.25"],
-      ["$1.25", "$1.25", "$1.25"],
-    ],
-    drinks: ["Water ", "Gatorade ", "Sprite "],
-    images: ["money.jpg", "money.jpg", "money.jpg"],
-    desc: [
-      "get the money and get it all the time",
-      "get the money and get it all the time",
-      "get the money and get it all the time",
-    ],
-  },
-};
-
-const finedine = {
-  data: {
-    name: "Puth's Chriss",
-    food: ["Ramen", "Wonton Sushi ", "Steak and Eggs "],
-    prices: [
-      ["$1.25", "$1.25", "$1.25"],
-      ["$1.25", "$1.25", "$1.25"],
-    ],
-    drinks: ["Chapagne ", "Water ", "Strawberry Lemonade "],
-    images: ["money.jpg", "money.jpg", "money.jpg"],
-    desc: [
-      "get the money and get it all the time",
-      "get the money and get it all the time",
-      "get the money and get it all the time",
-    ],
-  },
-};
-
-const alcohol = {
-  data: {
-    name: "Johnny's Liqour",
-    food: ["Crackers", "Salami"],
-    prices: [
-      ["$1.25", "$1.25"],
-      ["$1.25", "$1.25", "$1.25"],
-    ],
-    drinks: ["Wine ", "Titos Vodka ", "Hennessy "],
-    images: ["money.jpg", "money.jpg", "money.jpg"],
-    desc: [
-      "get the money and get it all the time",
-      "get the money and get it all the time",
-      "get the money and get it all the time",
-    ],
-  },
-};
+// getting cart from local storage
+const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
 
 const Home = () => {
-  // stores the count of the cart icon
-  const [cartCount, setCartCount] = useState(0);
-  // store cart items
-  const [cart, setCart] = useState([]);
+  // storing dummy values of food
+  const [fastfood] = useState([
+    {
+      title: "Bob's Burgers",
+      menu: [
+        {
+          item: "Bacon Burger",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Chili Cheese Fries",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Jalepenos",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Coke",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+        {
+          item: "Sprite",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+        {
+          item: "Lemonade",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+      ],
+    },
+  ]);
+
+  const [snacks] = useState([
+    {
+      title: "8-11",
+      menu: [
+        {
+          item: "Hot Cat",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Wings and Tings",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Smetzels",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Water",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+        {
+          item: "Gatorade",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+        {
+          item: "Sprite",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+      ],
+    },
+  ]);
+
+  const [finedine] = useState([
+    {
+      title: "Puth's Chriss",
+      menu: [
+        {
+          item: "Ramen",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Wonton Sushi",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Steak and Eggs",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Champagne",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+        {
+          item: "Water",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+        {
+          item: "Strawberry Lemonade",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+      ],
+    },
+  ]);
+
+  const [alcohol] = useState([
+    {
+      title: "Johnny's Liqour",
+      menu: [
+        {
+          item: "Crackers",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Salami",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "food",
+        },
+        {
+          item: "Wine",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+        {
+          item: "Titos Vodka",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+        {
+          item: "Hennessey",
+          price: "$1.25",
+          desc: "Get the money and get it all the time",
+          image: "money.jpg",
+          type: "drink",
+        },
+      ],
+    },
+  ]);
+
+  // store items into cart
+  const [cart, setCart] = useState(cartFromLocalStorage);
 
   // MUI
   const [value, setValue] = useState(0);
@@ -139,13 +262,22 @@ const Home = () => {
   let username = "Carolina";
 
   // handle shopping cart number
-  const addCart = () => {
-    setCartCount(Math.max(0, cartCount + 1));
+  const addCart = (food) => {
+    // set cart data
+    setCart([...cart, food]);
   };
 
-  const removeCart = () => {
-    setCartCount(Math.max(0, cartCount - 1));
+  // const removeCart = (itemToRemove) => {
+  //   setCart(cart.filter((food) => food !== itemToRemove));
+  // };
+
+  const getCartTotal = () => {
+    return cart.reduce((sum) => sum + 1, 0);
   };
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   return (
     <div className="home-background">
@@ -154,11 +286,11 @@ const Home = () => {
       <div className="dynamic-cart-username">
         <h1 className="username">Hi, {`${username}`}!</h1>
         <div>
-          <Link to="/Cart">
+          <Link to="/Cart" state={{ data: cart }}>
             <ShoppingCartIcon className="cart" />
           </Link>
           {/* display cart count */}
-          <p className="cart-count">{cartCount}</p>
+          <p className="cart-count">{getCartTotal()}</p>
         </div>
       </div>
       <Box sx={{ bgcolor: "background.paper", width: "90%", margin: "0 auto" }}>
@@ -208,72 +340,50 @@ const Home = () => {
           index={value}
           onChangeIndex={handleChangeIndex}
         >
-          {/* looking to display list of companies and their sections from API */}
-          {/* on add cart take state from each item and send it to the cart page */}
           <TabPanel value={value} index={0} dir={theme.direction}>
-            {Object.values(fastfood).map((val, idx) => {
+            {fastfood.map((val, idx) => {
               return (
                 <Fooditems
                   key={idx}
-                  title={val.name}
-                  food={val.food}
-                  drinks={val.drinks}
-                  prices={val.prices}
-                  desc={val.desc}
-                  img={val.images}
+                  title={val.title}
+                  menu={val.menu}
                   addtocart={addCart}
-                  removefromcart={removeCart}
                 />
               );
             })}
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
-            {Object.values(finedine).map((val, idx) => {
+            {finedine.map((val, idx) => {
               return (
                 <Fooditems
                   key={idx}
-                  title={val.name}
-                  food={val.food}
-                  drinks={val.drinks}
-                  prices={val.prices}
-                  desc={val.desc}
-                  img={val.images}
+                  title={val.title}
+                  menu={val.menu}
                   addtocart={addCart}
-                  removefromcart={removeCart}
                 />
               );
             })}
           </TabPanel>
           <TabPanel value={value} index={2} dir={theme.direction}>
-            {Object.values(snacks).map((val, idx) => {
+            {snacks.map((val, idx) => {
               return (
                 <Fooditems
                   key={idx}
-                  title={val.name}
-                  food={val.food}
-                  drinks={val.drinks}
-                  prices={val.prices}
-                  desc={val.desc}
-                  img={val.images}
+                  title={val.title}
+                  menu={val.menu}
                   addtocart={addCart}
-                  removefromcart={removeCart}
                 />
               );
             })}
           </TabPanel>
           <TabPanel value={value} index={3} dir={theme.direction}>
-            {Object.values(alcohol).map((val, idx) => {
+            {alcohol.map((val, idx) => {
               return (
                 <Fooditems
                   key={idx}
-                  title={val.name}
-                  food={val.food}
-                  drinks={val.drinks}
-                  prices={val.prices}
-                  desc={val.desc}
-                  img={val.images}
+                  title={val.title}
+                  menu={val.menu}
                   addtocart={addCart}
-                  removefromcart={removeCart}
                 />
               );
             })}

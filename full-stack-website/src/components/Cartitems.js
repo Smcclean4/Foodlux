@@ -1,17 +1,18 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
+import Paper from "@mui/material/Paper";
+import { styled } from "@mui/material/styles";
 
-const Cartitems = () => {
-
+const Cartitems = ({ items }) => {
   const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
     padding: theme.spacing(1),
-    textAlign: 'center',
+    textAlign: "center",
     color: theme.palette.text.secondary,
   }));
+
+  console.log(items);
 
   return (
     <>
@@ -26,10 +27,26 @@ const Cartitems = () => {
         }}
       >
         <Grid item xs={6}>
-          <Item>ITEM PICTURE</Item>
+          <Item>
+            {items.map((item, idx) => {
+              return (
+                <div key={idx}>
+                  <li>{item.image}</li>
+                </div>
+              );
+            })}
+          </Item>
         </Grid>
         <Grid item xs={3}>
-          <Item>ITEM PRICE</Item>
+          <Item>
+            {items.map((item, idx) => {
+              return (
+                <div key={idx}>
+                  <li>{item.price}</li>
+                </div>
+              );
+            })}
+          </Item>
         </Grid>
         <Grid item xs={1}>
           <Item>-</Item>
@@ -38,10 +55,26 @@ const Cartitems = () => {
           <Item>+</Item>
         </Grid>
         <Grid item xs={4}>
-          <Item>ITEM NAME</Item>
+          <Item>
+            {items.map((item, idx) => {
+              return (
+                <div key={idx}>
+                  <li>{item.item}</li>
+                </div>
+              );
+            })}
+          </Item>
         </Grid>
         <Grid item xs={7}>
-          <Item>ITEM DESCRIPTION</Item>
+          <Item>
+            {items.map((item, idx) => {
+              return (
+                <div key={idx}>
+                  <li>{item.desc}</li>
+                </div>
+              );
+            })}
+          </Item>
         </Grid>
       </Grid>
     </>
