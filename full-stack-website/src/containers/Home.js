@@ -261,15 +261,10 @@ const Home = () => {
   // example username
   let username = "Carolina";
 
-  // handle shopping cart number
   const addCart = (food) => {
     // set cart data
     setCart([...cart, food]);
   };
-
-  // const removeCart = (itemToRemove) => {
-  //   setCart(cart.filter((food) => food !== itemToRemove));
-  // };
 
   const getCartTotal = () => {
     return cart.reduce((sum) => sum + 1, 0);

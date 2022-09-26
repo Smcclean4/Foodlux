@@ -20,8 +20,6 @@ const Fooditems = ({ menu, title, addtocart }) => {
     status.classList.contains("active") ? setRender(false) : setRender(true);
   };
 
-  console.log(menu);
-
   return (
     <>
       <div className="ff-wrapper">
