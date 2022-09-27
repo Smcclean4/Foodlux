@@ -8,13 +8,11 @@ const Cart = () => {
   const location = useLocation();
   // getting state from link
   const data = location.state?.data;
-  // clear storage on clearcart click
-  const clearCart = () => {
-    // figure out how to clear storage?? make sure that it refreshes and removes data!!
-    localStorage.clear();
-  };
 
-  console.log(data);
+  // take in item and quantity? based on quantity remove completely or add number of items and prices.
+  // const addItem = (item, ) => {
+
+  // }
 
   return (
     <>
@@ -23,20 +21,6 @@ const Cart = () => {
         <div className="cart-window">
           <h1 className="cart-header">Cart</h1>
           <Cartitems items={data} />
-          <Button
-            onClick={() => clearCart()}
-            variant="contained"
-            size="large"
-            sx={{
-              backgroundColor: "red",
-              "&:hover": {
-                backgroundColor: "rgb(162, 6, 6)",
-              },
-              marginTop: "20px",
-            }}
-          >
-            Clear Cart
-          </Button>
         </div>
         <div className="return-section">
           <Button

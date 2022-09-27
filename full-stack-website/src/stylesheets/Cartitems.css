@@ -1,0 +1,16 @@
+.cart-container {
+  background-color:grey;
+  border-radius:10px;
+  display:flex;
+  justify-content: space-between;
+  align-self: space-around;
+  flex-wrap: wrap;
+  width:70%;
+  padding:20px;
+  margin:10px auto;
+}
+
+.cart-items {
+  padding:10px;
+  text-align:center;
+}
