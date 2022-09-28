@@ -9,10 +9,8 @@ const Cart = () => {
   const data = location.state?.data
   const quantity = 1
 
-
-  // take in item and quantity? based on quantity remove completely or add number of items and prices.
   const addItem = () => {
-
+    // when add item is called quantity++ and add price together
   }
 
   return (
