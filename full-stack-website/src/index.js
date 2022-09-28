@@ -5,6 +5,7 @@ import Register from "./containers/Register";
 import Login from "./containers/Login";
 import Home from "./containers/Home";
 import Cart from "./containers/Cart";
+import React from "react";
 
 ReactDOM.render(
   <BrowserRouter>

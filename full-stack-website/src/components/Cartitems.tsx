@@ -4,7 +4,7 @@ import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import "../stylesheets/Cartitems.css";
 
-const Cartitems = ({ items }) => {
+const Cartitems = ({ items, amount }) => {
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
@@ -12,8 +12,6 @@ const Cartitems = ({ items }) => {
     textAlign: "center",
     color: theme.palette.text.secondary,
   }));
-
-  console.log(items);
 
   return (
     <>
@@ -28,7 +26,7 @@ const Cartitems = ({ items }) => {
           listStyleType: "none",
         }}
       >
-        {items.map((item, idx) => {
+        {items.map((item: { image: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; desc: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
           return (
             <div className="cart-container" key={idx}>
               <Grid item xs={6} className="cart-items">
@@ -54,6 +52,17 @@ const Cartitems = ({ items }) => {
                   }}
                 >
                   -
+                </Item>
+              </Grid>
+              <Grid item xs={1} className="cart-items">
+                <Item
+                  sx={{
+                    color: "black",
+                    fontSize: "1.1em",
+                    padding: "5px 5px",
+                  }}
+                >
+                  {amount}
                 </Item>
               </Grid>
               <Grid item xs={1} className="cart-items">

@@ -8,13 +8,13 @@ const Fooditems = ({ menu, title, addtocart }) => {
   // checking whether active is on or off based on true or false
   const [render, setRender] = useState(false);
   // previously used useEffect to combat opening 2 at once??
-  let status;
+  let status: any;
 
   useEffect(() => {
     status = document.querySelector(".button");
   });
 
-  const handleClick = (e) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     status.classList.toggle("active", render === true);
     status.classList.contains("active") ? setRender(false) : setRender(true);
@@ -52,7 +52,7 @@ const Fooditems = ({ menu, title, addtocart }) => {
                 spacing={0}
               >
                 <Grid item xs={4}>
-                  {menu?.map((images, idx) => {
+                  {menu?.map((images: { type: string; image: string | undefined; }, idx: React.Key | null | undefined) => {
                     return images.type === "food" ? (
                       <div key={idx}>
                         <img alt="" src={images.image} />
@@ -63,7 +63,7 @@ const Fooditems = ({ menu, title, addtocart }) => {
                   })}
                 </Grid>
                 <Grid item xs={4}>
-                  {menu?.map((food, idx) => {
+                  {menu?.map((food: { type: string; item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
                     return food.type === "food" ? (
                       <div key={idx}>
                         <li>{food.item}</li>
@@ -74,7 +74,7 @@ const Fooditems = ({ menu, title, addtocart }) => {
                   })}
                 </Grid>
                 <Grid item xs={2}>
-                  {menu?.map((prices, idx) => {
+                  {menu?.map((prices: { type: string; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
                     return prices.type === "food" ? (
                       <div key={idx}>
                         <li>{prices.price}</li>
@@ -85,7 +85,7 @@ const Fooditems = ({ menu, title, addtocart }) => {
                   })}
                 </Grid>
                 <Grid item xs={2}>
-                  {menu?.map((_, idx) => {
+                  {menu?.map((_: { type: string; }, idx: React.Key | "") => {
                     return _.type === "food" ? (
                       <span className="btn-styling" key={idx}>
                         <Button
@@ -111,7 +111,7 @@ const Fooditems = ({ menu, title, addtocart }) => {
                 spacing={0}
               >
                 <Grid item xs={4}>
-                  {menu?.map((images, idx) => {
+                  {menu?.map((images: { type: string; image: string | undefined; }, idx: React.Key | null | undefined) => {
                     return images.type === "drink" ? (
                       <div key={idx}>
                         <img alt="" src={images.image} />
@@ -122,7 +122,7 @@ const Fooditems = ({ menu, title, addtocart }) => {
                   })}
                 </Grid>
                 <Grid item xs={4}>
-                  {menu?.map((drink, idx) => {
+                  {menu?.map((drink: { type: string; item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
                     return drink.type === "drink" ? (
                       <div key={idx}>
                         <li>{drink.item}</li>
@@ -133,7 +133,7 @@ const Fooditems = ({ menu, title, addtocart }) => {
                   })}
                 </Grid>
                 <Grid item xs={2}>
-                  {menu?.map((prices, idx) => {
+                  {menu?.map((prices: { type: string; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
                     return prices.type === "drink" ? (
                       <div key={idx}>
                         <li>{prices.price}</li>
@@ -144,7 +144,7 @@ const Fooditems = ({ menu, title, addtocart }) => {
                   })}
                 </Grid>
                 <Grid item xs={2}>
-                  {menu?.map((_, idx) => {
+                  {menu?.map((_: { type: string; }, idx: React.Key | "") => {
                     return _.type === "drink" ? (
                       <span className="btn-styling" key={idx}>
                         <Button
