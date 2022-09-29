@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import { Link, useLocation } from "react-router-dom";
 import Cartitems from "../components/Cartitems";
@@ -7,10 +7,16 @@ import "../stylesheets/Cart.css";
 const Cart = () => { 
   const location: any = useLocation()
   const data = location.state?.data
-  const quantity = 1
+  const [quantity, setQuantity] = useState(1)
 
-  const addItem = () => {
-    // when add item is called quantity++ and add price together
+  const addItem = (ID: number) => {
+    setQuantity(quantity + 1)
+  }
+
+  const removeItem = (ID: number) => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1)
+    }
   }
 
   return (
@@ -19,7 +25,7 @@ const Cart = () => {
         <h1 className="cart-logo">Foodlux</h1>
         <div className="cart-window">
           <h1 className="cart-header">Cart</h1>
-          <Cartitems items={data} amount={quantity} />
+          <Cartitems items={data} amount={quantity} additem={addItem} removeitem={removeItem} />
         </div>
         <div className="return-section">
           <Button

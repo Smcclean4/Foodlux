@@ -15,16 +15,16 @@ const Login = () => {
     <div className="login-background">
       <p className="login-logo">Foodlux</p>
       <Box
-        // sx={{
-        //   border: "1px solid black",
-        //   borderRadius: "25px 25px",
-        //   backgroundColor: "white",
-        //   boxShadow: "black 0px 0px 20px",
-        //   maxWidth: "250px",
-        //   width: "75%",
-        //   margin: "0 auto",
-        //   padding: "10px 30px 30px 30px",
-        // }}
+        sx={{
+          border: "1px solid black",
+          borderRadius: "25px 25px",
+          backgroundColor: "white",
+          boxShadow: "black 0px 0px 20px",
+          maxWidth: "250px",
+          width: "75%",
+          margin: "0 auto",
+          padding: "10px 30px 30px 30px",
+        }}
       >
         <form
         onSubmit={() => handleSubmit}

@@ -4,7 +4,7 @@ import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import "../stylesheets/Cartitems.css";
 
-const Cartitems = ({ items, amount }) => {
+const Cartitems = ({ items, amount, additem, removeitem }) => {
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
@@ -45,10 +45,15 @@ const Cartitems = ({ items, amount }) => {
               </Grid>
               <Grid item xs={1} className="cart-items">
                 <Item
+                  onClick ={() => removeitem(idx)}
                   sx={{
                     color: "red",
                     fontSize: "1.5em",
                     padding: "0 5px",
+                    '&:hover': {
+                      cursor: "pointer",
+                      backgroundColor: "whitesmoke",
+                    }
                   }}
                 >
                   -
@@ -67,10 +72,15 @@ const Cartitems = ({ items, amount }) => {
               </Grid>
               <Grid item xs={1} className="cart-items">
                 <Item
+                  onClick={() => additem(idx)}
                   sx={{
                     color: "dodgerblue",
                     fontSize: "1.5em",
                     padding: "0 5px",
+                    '&:hover': {
+                      cursor: "pointer",
+                      backgroundColor: "whitesmoke",
+                    }
                   }}
                 >
                   +
