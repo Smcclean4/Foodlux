@@ -13,7 +13,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import "../stylesheets/Home.css";
 
-function TabPanel(props) {
+function TabPanel(props: { [x: string]: any; children: any; value: any; index: any; }) {
   const { children, value, index, ...other } = props;
   return (
     <div
@@ -38,7 +38,7 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-function allyProps(index) {
+function allyProps(index: number) {
   return {
     id: `full-width-tab-${index}`,
     "aria-controls": `full-width-tabpanel-${index}`,
@@ -250,24 +250,24 @@ const Home = () => {
   const [value, setValue] = useState(0);
   const theme = useTheme();
 
-  const handleChangeIndex = (index) => {
+  const handleChangeIndex = (index: React.SetStateAction<number>) => {
     setValue(index);
   };
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (event: any, newValue: React.SetStateAction<number>) => {
     setValue(newValue);
   };
 
   // example username
   let username = "Carolina";
 
-  const addCart = (food) => {
+  const addCart = (food: any) => {
     // set cart data
     setCart([...cart, food]);
   };
 
   const getCartTotal = () => {
-    return cart.reduce((sum) => sum + 1, 0);
+    return cart.reduce((sum: number) => sum + 1, 0);
   };
 
   useEffect(() => {

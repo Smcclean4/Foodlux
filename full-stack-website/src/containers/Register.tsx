@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import "../stylesheets/Register.css";
 
 const Register = () => {
-  function handleSubmit(e) {
+  function handleSubmit(e: { preventDefault: () => void; }) {
     e.preventDefault();
   }
 
@@ -15,9 +15,6 @@ const Register = () => {
     <div className="register-background">
       <p className="register-logo">Foodlux</p>
       <Box
-        className="box"
-        onSubmit={() => handleSubmit}
-        component="form"
         sx={{
           border: "1px solid black",
           borderRadius: "25px 25px",
@@ -28,11 +25,14 @@ const Register = () => {
           margin: "0 auto",
           padding: "30px",
         }}
+      >
+        <form
+        className="box"
+        onSubmit={() => handleSubmit}
         action="/"
         method="post"
         target="_blank"
-        autocomplete="on"
-      >
+        autoComplete="on">
         <p className="register-header">Register</p>
         <TextField
           className="register-fields"
@@ -100,6 +100,7 @@ const Register = () => {
             Log In
           </Link>
         </p>
+        </form>
       </Box>
     </div>
   );
