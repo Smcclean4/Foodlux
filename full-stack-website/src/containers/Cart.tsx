@@ -15,6 +15,7 @@ const Cart = () => {
     console.log(quantity[id])
   }
 
+  // figure out above problem for subtracting as well
   const removeItem = (id: string | number) => {
     if (quantity > 1) {
       setQuantity(quantity[id] - 1)
