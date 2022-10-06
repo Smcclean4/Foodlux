@@ -67,7 +67,7 @@ const Cartitems = ({ items, amount, additem, removeitem }) => {
                     padding: "5px 5px",
                   }}
                 >
-                  {amount}
+                  <span>{amount}</span>
                 </Item>
               </Grid>
               <Grid item xs={1} className="cart-items">

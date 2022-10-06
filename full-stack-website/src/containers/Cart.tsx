@@ -9,14 +9,17 @@ const Cart = () => {
   const data = location.state?.data
   const [quantity, setQuantity] = useState(1)
 
-  const addItem = (ID: number) => {
-    setQuantity(quantity + 1)
+  // figure out why quantity cannot be referenced by ID
+  const addItem = (id: string | number) => {
+    setQuantity(quantity[id] + 1)
+    console.log(quantity[id])
   }
 
-  const removeItem = (ID: number) => {
+  const removeItem = (id: string | number) => {
     if (quantity > 1) {
-      setQuantity(quantity - 1)
+      setQuantity(quantity[id] - 1)
     }
+    console.log(quantity[id])
   }
 
   return (
