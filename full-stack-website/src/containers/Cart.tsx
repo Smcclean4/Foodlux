@@ -10,17 +10,17 @@ const Cart = () => {
   const [quantity, setQuantity] = useState(1)
 
   // figure out why quantity cannot be referenced by ID
-  const addItem = (id: string | number) => {
-    setQuantity(quantity[id] + 1)
-    console.log(quantity[id])
+  const addItem = (id: string | number | null) => {
+    setQuantity(quantity + 1)
+    console.log(quantity)
   }
 
   // figure out above problem for subtracting as well
-  const removeItem = (id: string | number) => {
+  const removeItem = (id: string | number | null) => {
     if (quantity > 1) {
-      setQuantity(quantity[id] - 1)
+      setQuantity(quantity - 1)
     }
-    console.log(quantity[id])
+    console.log(quantity)
   }
 
   return (
