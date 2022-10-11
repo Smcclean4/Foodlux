@@ -45,7 +45,7 @@ const Cartitems = ({ items, amount, additem, removeitem }) => {
               </Grid>
               <Grid item xs={1} className="cart-items">
                 <Item
-                  onClick ={() => removeitem(idx)}
+                  onClick ={() => removeitem()}
                   sx={{
                     color: "red",
                     fontSize: "1.5em",
@@ -72,7 +72,7 @@ const Cartitems = ({ items, amount, additem, removeitem }) => {
               </Grid>
               <Grid item xs={1} className="cart-items">
                 <Item
-                  onClick={() => additem(idx)}
+                  onClick={() => additem()}
                   sx={{
                     color: "dodgerblue",
                     fontSize: "1.5em",

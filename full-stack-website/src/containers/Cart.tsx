@@ -10,11 +10,13 @@ const Cart = () => {
   const [quantity, setQuantity] = useState(1)
 
   // make quantity change only when the plus or minus button is clicked at the current item.
-  const addItem = (ID: any) => {
+  // array of quantities?
+  // each cartitem needs its own quantity instead of one quantity variable...?
+  const addItem = () => {
     setQuantity(quantity + 1)
   }
 
-  const removeItem = (ID: any) => {
+  const removeItem = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1)
     }
