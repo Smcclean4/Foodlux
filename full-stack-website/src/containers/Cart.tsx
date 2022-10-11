@@ -9,13 +9,11 @@ const Cart = () => {
   const data = location.state?.data
   const [quantity, setQuantity] = useState(1)
 
-  // figure out why quantity cannot be referenced by ID
+  // make quantity change only when the plus or minus button is clicked at the current item.
   const addItem = (ID: any) => {
     setQuantity(quantity + 1)
-    console.log(ID)
   }
 
-  // figure out above problem for subtracting as well
   const removeItem = (ID: any) => {
     if (quantity > 1) {
       setQuantity(quantity - 1)
