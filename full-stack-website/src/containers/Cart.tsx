@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "@mui/material/Button";
 import { Link, useLocation } from "react-router-dom";
 import Cartitems from "../components/Cartitems";
@@ -7,20 +7,6 @@ import "../stylesheets/Cart.css";
 const Cart = () => { 
   const location: any = useLocation()
   const data = location.state?.data
-  const [quantity, setQuantity] = useState(1)
-
-  // make quantity change only when the plus or minus button is clicked at the current item.
-  // array of quantities?
-  // each cartitem needs its own quantity instead of one quantity variable...?
-  const addItem = () => {
-    setQuantity(quantity + 1)
-  }
-
-  const removeItem = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1)
-    }
-  }
 
   return (
     <>
@@ -28,7 +14,7 @@ const Cart = () => {
         <h1 className="cart-logo">Foodlux</h1>
         <div className="cart-window">
           <h1 className="cart-header">Cart</h1>
-          <Cartitems items={data} amount={quantity} additem={addItem} removeitem={removeItem} />
+          <Cartitems items={data} />
         </div>
         <div className="return-section">
           <Button
