@@ -9,7 +9,7 @@ const Cart = () => {
   const [data, setData] = useState(location.state?.data)
   useEffect(() => {
     setData(location.state?.data)
-  }, [location.state?.data])
+  }, [location.state?.state])
   console.log()
   
   const addItem = (ID: string | number) => {

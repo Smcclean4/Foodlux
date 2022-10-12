@@ -304,7 +304,7 @@ const Home = () => {
       <div className="dynamic-cart-username">
         <h1 className="username">Hi, {`${username}`}!</h1>
         <div>
-          <Link to="/Cart" state={{ data: cart }}>
+          <Link to="/Cart" state={{data: cart}} >
             <ShoppingCartIcon className="cart" />
           </Link>
           {/* display cart count */}
