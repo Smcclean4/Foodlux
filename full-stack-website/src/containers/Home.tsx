@@ -56,7 +56,7 @@ const Home = () => {
       menu: [
         {
           item: "Bacon Burger",
-          price: 1.25,
+          price: 4.25,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
           quantity:1,
@@ -64,7 +64,7 @@ const Home = () => {
         },
         {
           item: "Chili Cheese Fries",
-          price: 1.25,
+          price: 2.85,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
           quantity:1,
@@ -72,7 +72,7 @@ const Home = () => {
         },
         {
           item: "Jalepenos",
-          price: 1.25,
+          price: 3.25,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
           quantity:1,
@@ -80,7 +80,7 @@ const Home = () => {
         },
         {
           item: "Coke",
-          price: 1.25,
+          price: 5.25,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
           quantity:1,
@@ -112,7 +112,7 @@ const Home = () => {
       menu: [
         {
           item: "Hot Cat",
-          price: 1.25,
+          price: 9.25,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
           quantity:1,
@@ -120,7 +120,7 @@ const Home = () => {
         },
         {
           item: "Wings and Tings",
-          price: 1.25,
+          price: 7.55,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
           quantity:1,
@@ -128,7 +128,7 @@ const Home = () => {
         },
         {
           item: "Smetzels",
-          price: 1.25,
+          price: 2.15,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
           quantity:1,
@@ -168,7 +168,7 @@ const Home = () => {
       menu: [
         {
           item: "Ramen",
-          price: 1.25,
+          price: 8.95,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
           quantity:1,
@@ -176,7 +176,7 @@ const Home = () => {
         },
         {
           item: "Wonton Sushi",
-          price: 1.25,
+          price: 3.75,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
           quantity:1,
@@ -184,7 +184,7 @@ const Home = () => {
         },
         {
           item: "Steak and Eggs",
-          price: 1.25,
+          price: 10.45,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
           quantity:1,
@@ -224,7 +224,7 @@ const Home = () => {
       menu: [
         {
           item: "Crackers",
-          price: 1.25,
+          price: 1.15,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
           quantity:1,
@@ -232,7 +232,7 @@ const Home = () => {
         },
         {
           item: "Salami",
-          price: 1.25,
+          price: 1.05,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
           quantity:1,
@@ -304,7 +304,7 @@ const Home = () => {
       <div className="dynamic-cart-username">
         <h1 className="username">Hi, {`${username}`}!</h1>
         <div>
-          <Link to="/Cart" state={{data: cart}} >
+          <Link to="/Cart" state={{ data: cart }} >
             <ShoppingCartIcon className="cart" />
           </Link>
           {/* display cart count */}

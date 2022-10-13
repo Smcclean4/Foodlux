@@ -6,15 +6,20 @@ import "../stylesheets/Cart.css";
 
 const Cart = () => { 
   const location: any = useLocation()
-  const [data, setData] = useState(location.state?.data)
+  const data = location.state?.data
+  const [price, setPrice] = useState()
+  const [quantity, setQuantity] = useState()
+
   useEffect(() => {
-    setData(location.state?.data)
-  }, [location.state?.state])
-  console.log()
-  
-  const addItem = (ID: string | number) => {
-    setData(data[ID].quantity + 1)
-    console.log(data[ID])
+    // just logging first instance.. find out a way to log all instances... 
+    for (let i = 0; i < data.length; i++) {
+      setPrice(data[i].price)
+      setQuantity(data[i].quantity)
+    }
+  }, [data])
+
+  const addItem = (ID: any) => {
+    console.log(price, quantity)
   }
 
   return (
@@ -23,7 +28,7 @@ const Cart = () => {
         <h1 className="cart-logo">Foodlux</h1>
         <div className="cart-window">
           <h1 className="cart-header">Cart</h1>
-          <Cartitems items={data} additem={addItem} />
+          <Cartitems items={data} additem={addItem} price={price} quantity={quantity} />
         </div>
         <div className="return-section">
           <Button
