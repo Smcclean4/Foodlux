@@ -11,11 +11,11 @@ const Cart = () => {
   const [quantity, setQuantity]: any = useState([])
 
   useEffect(() => {
-    // just logging first instance.. find out a way to log all instances... 
+    // just logging first instance.. find out a way to log all instances...
     for (let i = 0; i < data.length; i++) {
       setPrice(data[i].price)
-      console.log(data[i].price)
       setQuantity(data[i].quantity)
+      console.log(data[i].price, data[i].quantity)
     }
   }, [data])
 
