@@ -7,19 +7,17 @@ import "../stylesheets/Cart.css";
 const Cart = () => { 
   const location: any = useLocation()
   const data = location.state?.data
-  const [price, setPrice]: any = useState([])
-  const [quantity, setQuantity]: any = useState([])
+  const [price, setPrice] = useState()
+  const [quantity, setQuantity] = useState()
 
   useEffect(() => {
-    // just logging first instance.. find out a way to log all instances...
-    for (let i = 0; i < data.length; i++) {
-      setPrice(data[i].price)
-      setQuantity(data[i].quantity)
-      console.log(data[i].price, data[i].quantity)
-    }
+    let prices = data.map((items: { price: any; }) => items.price)
+    let quantities = data.map((items: { quantity: any; }) => items.quantity)
+    setPrice(prices)
+    setQuantity(quantities)
   }, [data])
 
-  const addItem = (ID: any) => {
+  const addItem = (ID: any) => { 
     console.log(price, quantity)
   }
 
