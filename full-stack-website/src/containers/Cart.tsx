@@ -7,18 +7,22 @@ import "../stylesheets/Cart.css";
 const Cart = () => { 
   const location: any = useLocation()
   const data = location.state?.data
-  const [price, setPrice] = useState()
-  const [quantity, setQuantity] = useState()
+  const [price, setPrice]: any = useState()
+  const [quantity, setQuantity]: any = useState()
 
   useEffect(() => {
-    let prices = data.map((items: { price: any; }) => items.price)
-    let quantities = data.map((items: { quantity: any; }) => items.quantity)
-    setPrice(prices)
-    setQuantity(quantities)
+    try {
+      let prices = data.map((items: any) => items.price)
+      let quantities = data.map((items: any) => items.quantity)
+      setPrice(prices)
+      setQuantity(quantities)
+    } catch(err) {
+      console.log(err.mesage)
+    }
   }, [data])
 
-  const addItem = (ID: any) => { 
-    console.log(price, quantity)
+  const addItem = (ID: any) => {
+    console.log(price[ID], quantity[ID])
   }
 
   return (
