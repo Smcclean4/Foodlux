@@ -39,7 +39,7 @@ const Cartitems = ({ items, additem, price, quantity }) => {
               <Grid item xs={3} className="cart-items">
                 <Item>
                   <div>
-                    <li>{price}</li>
+                    <li>{price[idx]}</li>
                   </div>
                 </Item>
               </Grid>
@@ -67,7 +67,7 @@ const Cartitems = ({ items, additem, price, quantity }) => {
                     padding: "5px 5px",
                   }}
                 >
-                  <span>{quantity}</span>
+                  <span>{quantity[idx]}</span>
                 </Item>
               </Grid>
               <Grid item xs={1} className="cart-items">
