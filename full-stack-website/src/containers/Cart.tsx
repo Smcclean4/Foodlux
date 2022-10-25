@@ -23,6 +23,7 @@ const Cart = () => {
   // add prices and quantities when updating item
 
   const addItem = (ID: any) => {
+    setQuantity([quantity[ID] + 1])
     console.log(price[ID], quantity[ID])
   }
 
