@@ -20,6 +20,8 @@ const Cart = () => {
     setData();
   }, [data])
 
+  // add prices and quantities when updating item
+
   const addItem = (ID: any) => {
     console.log(price[ID], quantity[ID])
   }
