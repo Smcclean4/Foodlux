@@ -23,9 +23,11 @@ const Cart = () => {
   // add prices and quantities when updating item
 
   const addItem = (ID: any) => {
-    // look into slice method
-    let new_qty = [...quantity.slice(0, ID), quantity[ID] + 1, ...quantity.slice(ID)]
-    setQuantity([new_qty])
+    let temp_qty: any = [...quantity]
+    let temp_inc: any = [temp_qty[ID]]
+    temp_inc = Number(temp_inc) + 1;
+    temp_qty[ID] = temp_inc
+    setQuantity(temp_qty)
     console.log(price[ID], quantity[ID])
   }
 
