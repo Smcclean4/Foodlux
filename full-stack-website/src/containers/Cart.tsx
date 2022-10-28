@@ -20,14 +20,36 @@ const Cart = () => {
     setData();
   }, [data])
 
-  // add prices and quantities when updating item
-
   const addItem = (ID: any) => {
     let temp_qty: any = [...quantity]
     let temp_inc: any = [temp_qty[ID]]
     temp_inc = Number(temp_inc) + 1;
     temp_qty[ID] = temp_inc
     setQuantity(temp_qty)
+    let temp_prc: any = [...price]
+    let temp_prcx: any = [temp_prc[ID]]
+    let temp_prco = data[ID].price
+    console.log(temp_prco)
+    temp_prcx = Number(temp_prcx) + Number(temp_prco)
+    temp_prc[ID] = temp_prcx
+    setPrice(temp_prc)
+    console.log(price[ID], quantity[ID])
+  }
+
+  const removeItem = (ID: any) => {
+    if (quantity[ID] === 1 && price[ID] === price[ID]) return;
+    let temp_qty: any = [...quantity]
+    let temp_inc: any = [temp_qty[ID]]
+    temp_inc = Number(temp_inc) - 1;
+    temp_qty[ID] = temp_inc
+    setQuantity(temp_qty)
+    let temp_prc: any = [...price]
+    let temp_prcx: any = [temp_prc[ID]]
+    let temp_prco = data[ID].price
+    console.log(temp_prco)
+    temp_prcx = Number(temp_prcx) - Number(temp_prco)
+    temp_prc[ID] = temp_prcx
+    setPrice(temp_prc)
     console.log(price[ID], quantity[ID])
   }
 
@@ -35,9 +57,9 @@ const Cart = () => {
     <>
       <div className="cart-background">
         <h1 className="cart-logo">Foodlux</h1>
+        <h1 className="cart-header">Cart</h1>
         <div className="cart-window">
-          <h1 className="cart-header">Cart</h1>
-          <Cartitems items={data} additem={addItem} price={price} quantity={quantity} />
+          <Cartitems items={data} additem={addItem} removeitem={removeItem} price={price} quantity={quantity} />
         </div>
         <div className="return-section">
           <Button
