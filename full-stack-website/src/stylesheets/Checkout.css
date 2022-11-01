@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
+
+.checkout-background {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: url("/src/images/pexels-furknsaglam-3109671.jpg");
+    background-position: center;
+    background-size:cover;
+    height:auto;
+    min-height:100vh;
+    text-align:center;
+}
+
+.checkout-window {
+  width: 50%;
+  background-color: whitesmoke;
+  list-style-type: none;
+  height: 85vh;
+}

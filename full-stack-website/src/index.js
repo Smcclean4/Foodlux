@@ -5,6 +5,7 @@ import Register from "./containers/Register";
 import Login from "./containers/Login";
 import Home from "./containers/Home";
 import Cart from "./containers/Cart";
+import Checkout from "./containers/Checkout";
 import React from "react";
 
 ReactDOM.render(
@@ -15,6 +16,7 @@ ReactDOM.render(
       <Route path="Register" element={<Register />} />
       <Route path="Home" element={<Home />} />
       <Route path="Cart" element={<Cart />} />
+      <Route path="Checkout" element={<Checkout />} />
       <Route
         path="*"
         element={
@@ -25,5 +27,5 @@ ReactDOM.render(
       />
     </Routes>
   </BrowserRouter>,
-  document.getElementById("root")
+  document.getElementById("root"),
 );
