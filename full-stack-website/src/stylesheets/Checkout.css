@@ -18,3 +18,11 @@
   list-style-type: none;
   height: 85vh;
 }
+
+.checkout-labels {
+  margin:10px;
+}
+
+li {
+  margin:10px;
+}
