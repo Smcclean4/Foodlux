@@ -6,6 +6,7 @@ const Checkout = () => {
     <div className="checkout-background">
       <div className="checkout-window">
         <h2>Credit or Debit Cart Payment</h2>
+        {/* handle form data and submit when checking out */}
         <form>
           <ul>
             <li>
