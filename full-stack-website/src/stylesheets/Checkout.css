@@ -17,12 +17,31 @@
   background-color: whitesmoke;
   list-style-type: none;
   height: 85vh;
+  overflow: scroll;
 }
 
-.checkout-labels {
+/* .checkout-labels {
   margin:10px;
 }
 
-li {
-  margin:10px;
+.checkout-list {
+  display:flex;
+  flex-direction:column;
+  width:50%;
+  margin:2em 0;
 }
+
+.checkout-list li {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkout-list label {
+  font-size:1.3em;
+}
+
+.checkout-list input {
+  height:30px;
+  font-size:0.8em;
+} */

@@ -1,71 +1,54 @@
 import React from 'react'
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import FormHelperText from '@mui/joy/FormHelperText';
+import Input from '@mui/joy/Input';
 import "../stylesheets/Checkout.css"
 
 const Checkout = () => {
+
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    console.log("submitting payment info!")
+  }
+
   return (
     <div className="checkout-background">
       <div className="checkout-window">
         <h2>Credit or Debit Cart Payment</h2>
-        {/* handle form data and submit when checking out */}
-        <form>
-          <ul>
-            <li>
-              <label className="checkout-labels">Card Number</label>
-              <input type="text" />
-            </li>
-              <li>
-              <label className="checkout-labels">Expiration Date</label>
-              <input type="text" />
-              <input type="text" />
-              </li>
-              <li>
-              <label className="checkout-labels">CVV</label>
-              <input type="text" />
-              </li>
-              <li>
-              <label className="checkout-labels">First Name</label>
-              <input type="text" />
-                </li>
-              <li>
-              <label className="checkout-labels">Last Name</label>
-              <input type="text" />
-              </li>
-              <li>
-              <label className="checkout-labels">Country</label>
-              <input list="countries" type="text" />
+        <form onSubmit={handleSubmit}>
+              <FormLabel className="checkout-labels">Card Number</FormLabel>
+              <Input type="text" />
+              <FormLabel className="checkout-labels">Expiration Date</FormLabel>
+              <Input type="text" />
+              <Input type="text" />
+              <FormLabel className="checkout-labels">CVV</FormLabel>
+              <Input type="text" />
+              <FormLabel className="checkout-labels">First Name</FormLabel>
+              <Input type="text" />
+              <FormLabel className="checkout-labels">Last Name</FormLabel>
+              <Input type="text" />
+              <FormLabel className="checkout-labels">Country</FormLabel>
+              <Input type="text" />
               <datalist id="countries">
                 <option value="list all countries" />
               </datalist>
-              </li>
-              <li>
-              <label className="checkout-labels">Billing Address</label>
-              <input type="text" />
-              <input type="text" />
-              </li>
-              <li>
-              <label className="checkout-labels">City</label>
-              <input type="text" />
-              </li>
-              <li>
-              <label className="checkout-labels">State</label>
-              <input list="states" type="text" />
+              <FormLabel className="checkout-labels">Billing Address</FormLabel>
+              <Input type="text" />
+              <Input type="text" />
+              <FormLabel className="checkout-labels">City</FormLabel>
+              <Input type="text" />
+              <FormLabel className="checkout-labels">State</FormLabel>
+              <Input type="text" />
               <datalist id="states">
                 <option value="list all states within the country" />
               </datalist>
-              </li>
-              <li>
-              <label className="checkout-labels">ZIP</label>
-              <input type="text" />
-              </li>
-              <li>
-              <label className="checkout-labels">Phone Number</label>
-              <input type="text" />
-              </li>
-              <li>
-              <label className="checkout-labels">Email Address</label>
-              <input type="text" />
-            </li>
-          </ul>
+              <FormLabel className="checkout-labels">ZIP</FormLabel>
+              <Input type="text" />
+              <FormLabel className="checkout-labels">Phone Number</FormLabel>
+              <Input type="text" />
+              <FormLabel className="checkout-labels">Email Address</FormLabel>
+              <Input type="text" />
         </form>
       </div>
     </div>
