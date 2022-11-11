@@ -1,6 +1,7 @@
 import React from 'react'
-import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send'
 import FormHelperText from '@mui/joy/FormHelperText';
 import Input from '@mui/joy/Input';
 import "../stylesheets/Checkout.css"
@@ -15,40 +16,76 @@ const Checkout = () => {
   return (
     <div className="checkout-background">
       <div className="checkout-window">
-        <h2>Credit or Debit Cart Payment</h2>
+        <p className="checkout-header">Credit or Debit Cart Payment</p>
         <form onSubmit={handleSubmit}>
-              <FormLabel className="checkout-labels">Card Number</FormLabel>
+            <ul className="checkout-list">
+              <li>
+              <FormLabel sx={{fontSize:"1.3em"}}>Card Number</FormLabel>
               <Input type="text" />
-              <FormLabel className="checkout-labels">Expiration Date</FormLabel>
+              </li>
+              <li>
+              <FormLabel sx={{fontSize:"1.3em"}}>Expiration Date</FormLabel>
               <Input type="text" />
               <Input type="text" />
-              <FormLabel className="checkout-labels">CVV</FormLabel>
+              </li>
+              <li>
+              <FormLabel sx={{fontSize:"1.3em"}}>CVV</FormLabel>
               <Input type="text" />
-              <FormLabel className="checkout-labels">First Name</FormLabel>
+              </li>
+              <li>
+              <FormLabel sx={{fontSize:"1.3em"}}>First Name</FormLabel>
               <Input type="text" />
-              <FormLabel className="checkout-labels">Last Name</FormLabel>
+              </li>
+              <li>
+              <FormLabel sx={{fontSize:"1.3em"}}>Last Name</FormLabel>
               <Input type="text" />
-              <FormLabel className="checkout-labels">Country</FormLabel>
+              </li>
+              <li>
+              <FormLabel sx={{fontSize:"1.3em"}}>Country</FormLabel>
               <Input type="text" />
               <datalist id="countries">
                 <option value="list all countries" />
               </datalist>
-              <FormLabel className="checkout-labels">Billing Address</FormLabel>
+              </li>
+              <li>
+              <FormLabel sx={{fontSize:"1.3em"}}>Billing Address</FormLabel>
               <Input type="text" />
               <Input type="text" />
-              <FormLabel className="checkout-labels">City</FormLabel>
+              </li>
+              <li>
+              <FormLabel sx={{fontSize:"1.3em"}}>City</FormLabel>
               <Input type="text" />
-              <FormLabel className="checkout-labels">State</FormLabel>
+              </li>
+              <li>
+              <FormLabel sx={{fontSize:"1.3em"}}>State</FormLabel>
               <Input type="text" />
               <datalist id="states">
                 <option value="list all states within the country" />
               </datalist>
-              <FormLabel className="checkout-labels">ZIP</FormLabel>
+              </li>
+              <li>
+              <FormLabel sx={{fontSize:"1.3em"}}>ZIP</FormLabel>
               <Input type="text" />
-              <FormLabel className="checkout-labels">Phone Number</FormLabel>
+              </li>
+              <li>
+              <FormLabel sx={{fontSize:"1.3em"}}>Phone Number</FormLabel>
               <Input type="text" />
-              <FormLabel className="checkout-labels">Email Address</FormLabel>
+              </li>
+              <li>
+              <FormLabel sx={{fontSize:"1.3em"}}>Email Address</FormLabel>
               <Input type="text" />
+              </li>
+            </ul>
+            <div className="checkout-amount">
+          <ul>
+            <h1>display amount</h1>
+          </ul>
+        </div>
+          <Button color="error"
+          sx={{ "&:hover": { backgroundColor: "red", color: "white" }, marginBottom:"25px" }}
+          variant="outlined" endIcon={<SendIcon />} type="submit">
+            Pay Now
+          </Button>
         </form>
       </div>
     </div>

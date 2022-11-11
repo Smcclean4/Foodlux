@@ -20,28 +20,40 @@
   overflow: scroll;
 }
 
-/* .checkout-labels {
-  margin:10px;
-}
-
 .checkout-list {
   display:flex;
   flex-direction:column;
   width:50%;
-  margin:2em 0;
+  margin:2em 1.5em;
 }
 
 .checkout-list li {
   display:flex;
   justify-content: space-between;
   align-items: center;
+  margin:2px;
 }
 
-.checkout-list label {
-  font-size:1.3em;
+.checkout-header {
+  font-family: 'Bubblegum Sans', sans-serif;
+  color:black;
+  text-shadow:grey 2px 5px 2px;
+  font-size: 3.0em;
 }
 
-.checkout-list input {
-  height:30px;
-  font-size:0.8em;
-} */
+.checkout-amount {
+  width:50%;
+  justify-content:right;
+  border:1px solid black;
+}
+
+@media only screen and (max-width:350px), (max-width:450px) {
+  .checkout-background {
+      padding-bottom:2%;
+  }
+}
+@media only screen and (max-width:1028px) and (min-width:1020px) {
+  .checkout-background {
+      padding-bottom:2%;
+  }
+}
