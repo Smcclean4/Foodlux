@@ -79,6 +79,7 @@ const Checkout = () => {
             <div className="checkout-amount">
           <ul>
             <h1>display amount</h1>
+            <h3>display prices</h3>
           </ul>
         </div>
           <Button color="error"
