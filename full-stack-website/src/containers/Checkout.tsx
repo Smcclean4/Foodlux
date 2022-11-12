@@ -18,7 +18,8 @@ const Checkout = () => {
       <div className="checkout-window">
         <p className="checkout-header">Credit or Debit Cart Payment</p>
         <form onSubmit={handleSubmit}>
-            <ul className="checkout-list">
+            <div className="checkout-list">
+            <ul>
               <li>
               <FormLabel sx={{fontSize:"1.3em"}}>Card Number</FormLabel>
               <Input type="text" />
@@ -76,12 +77,11 @@ const Checkout = () => {
               <Input type="text" />
               </li>
             </ul>
-            <div className="checkout-amount">
-          <ul>
-            <h1>display amount</h1>
-            <h3>display prices</h3>
-          </ul>
-        </div>
+            <div className="checkout-amount">             
+                <h1>display amount</h1>
+                <h3>display prices</h3>
+            </div>
+            </div>
           <Button color="error"
           sx={{ "&:hover": { backgroundColor: "red", color: "white" }, marginBottom:"25px" }}
           variant="outlined" endIcon={<SendIcon />} type="submit">

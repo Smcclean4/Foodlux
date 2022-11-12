@@ -18,19 +18,20 @@
   list-style-type: none;
   height: 85vh;
   overflow: scroll;
+  border:2px solid black;
 }
 
 .checkout-list {
   display:flex;
-  flex-direction:column;
-  width:50%;
+  flex-direction:row;
+  width:auto;
   margin:2em 1.5em;
 }
 
 .checkout-list li {
   display:flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content:space-between;
   margin:2px;
 }
 
@@ -43,8 +44,7 @@
 
 .checkout-amount {
   width:50%;
-  justify-content:right;
-  border:1px solid black;
+  text-align:center;
 }
 
 @media only screen and (max-width:350px), (max-width:450px) {
