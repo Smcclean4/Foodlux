@@ -17,6 +17,7 @@
     list-style-type: none;
     height: 65vh;
     overflow: scroll;
+    border:2px solid black;
 }
 .cart-logo {
     color:white;
