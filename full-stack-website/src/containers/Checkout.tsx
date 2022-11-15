@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import FormLabel from '@mui/joy/FormLabel';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send'
@@ -15,6 +16,22 @@ const Checkout = () => {
 
   return (
     <div className="checkout-background">
+      <div className="cart-section">
+      <Button
+      variant="contained"
+      size="large"
+      sx={{
+        backgroundColor: "red",
+        "&:hover": {
+          backgroundColor: "rgb(162, 6, 6)",
+          },
+          marginTop: "20px",
+        }}>
+        <Link className="cart-link" to="/Cart">
+          Back to cart
+        </Link>
+      </Button>
+      </div>
       <div className="checkout-window">
         <p className="checkout-header">Credit or Debit Cart Payment</p>
         <form onSubmit={handleSubmit}>

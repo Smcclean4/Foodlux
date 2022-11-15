@@ -10,6 +10,7 @@
     height:auto;
     min-height:100vh;
     text-align:center;
+    flex-direction: column;
 }
 
 .checkout-window {
@@ -19,6 +20,10 @@
   height: 85vh;
   overflow: scroll;
   border:2px solid black;
+}
+
+.cart-section {
+  margin:25px;
 }
 
 .checkout-list {
