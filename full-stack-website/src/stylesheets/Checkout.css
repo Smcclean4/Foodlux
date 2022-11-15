@@ -20,6 +20,7 @@
   height: 85vh;
   overflow: scroll;
   border:2px solid black;
+  margin: 50px 0;
 }
 
 .cart-section {
@@ -54,7 +55,6 @@
   color:black;
   text-shadow:grey 2px 5px 2px;
   font-size: 3.0em;
-  margin:10px 0;
 }
 
 .checkout-amount {

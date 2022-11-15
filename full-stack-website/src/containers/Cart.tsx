@@ -17,6 +17,9 @@ const Cart = () => {
       await setPrice(prices)
       await setQuantity(quantities)
     }
+    // make local storage function?? .. take in multiple items (i.e. prices, quantities, data) using it as parameters.
+    // JSON.stringify to store it and JSON.parse to retrieve it.
+    // possibly store this data in state?? or const variable.
     setData();
   }, [data])
 
