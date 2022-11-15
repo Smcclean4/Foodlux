@@ -33,6 +33,15 @@
   margin:2em 1.5em;
 }
 
+.cart-link {
+  text-decoration:none;
+  color:white;
+}
+
+.cart-link:hover {
+  color:red;
+}
+
 .checkout-list li {
   display:flex;
   align-items: center;
@@ -45,6 +54,7 @@
   color:black;
   text-shadow:grey 2px 5px 2px;
   font-size: 3.0em;
+  margin:10px 0;
 }
 
 .checkout-amount {

@@ -59,15 +59,9 @@ const Cart = () => {
         <h1 className="cart-logo">Foodlux</h1>
         <div className="checkout-section">
           <Button 
-            variant="contained"
-            size="large"
-            sx={{
-              backgroundColor: "red",
-              "&:hover": {
-                backgroundColor: "rgb(162, 6, 6)",
-                },
-                marginTop: "20px",
-              }}>
+            color="error"
+            sx={{ "&:hover": { backgroundColor: "white"}, marginBottom:"25px", marginTop:"20px", backgroundColor:"red" }}
+            variant="outlined">
             <Link className="checkout-link" to="/Checkout">
             Proceed To Checkout
             </Link>
@@ -75,7 +69,7 @@ const Cart = () => {
         </div>
         <h1 className="cart-header">Cart</h1>
         <div className="cart-window">
-          {data.length !== 0 ? <Cartitems items={data} additem={addItem} removeitem={removeItem} price={price} quantity={quantity} /> : 
+          {data?.length !== 0 ? <Cartitems items={data} additem={addItem} removeitem={removeItem} price={price} quantity={quantity} /> : 
           <>
             <h1>YOUR CART IS EMPTY!</h1>
             <br></br>

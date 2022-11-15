@@ -37,6 +37,15 @@
     text-decoration-color:red;
 }
 
+.checkout-link {
+    text-decoration:none;
+    color:white;
+}
+
+.checkout-link:hover {
+    color:red;
+}
+
 .return-link {
     text-decoration: none;
     color:white;
