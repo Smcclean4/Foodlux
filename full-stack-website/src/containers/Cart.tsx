@@ -9,6 +9,8 @@ const Cart = () => {
   const data = location.state?.data
   let [price, setPrice]: any = useState([])
   let [quantity, setQuantity]: any = useState([])
+  let cartData: any[] = [];
+  const {dataStorage, priceStorage, quantityStorage} = JSON.parse(localStorage.getItem('checkout') || "[]")
 
   useEffect(() => {
     const setData = async () => {
@@ -17,11 +19,17 @@ const Cart = () => {
       await setPrice(prices)
       await setQuantity(quantities)
     }
-    // make local storage function?? .. take in multiple items (i.e. prices, quantities, data) using it as parameters.
-    // JSON.stringify to store it and JSON.parse to retrieve it.
-    // possibly store this data in state?? or const variable.
     setData();
   }, [data])
+
+  useEffect(() => {
+    const storeData = (items:any) => {
+    cartData.push(items);
+    localStorage.setItem('checkout', JSON.stringify(cartData))
+  }
+  storeData([data, price, quantity]);
+  console.log(dataStorage, priceStorage, quantityStorage)
+  }, [quantity, price])
 
   const addItem = (ID: any) => {
     let temp_qty: any = [...quantity]
@@ -32,11 +40,9 @@ const Cart = () => {
     let temp_prc: any = [...price]
     let temp_prcx: any = [temp_prc[ID]]
     let temp_prco = data[ID].price
-    console.log(temp_prco)
     temp_prcx = Number(temp_prcx) + Number(temp_prco)
     temp_prc[ID] = temp_prcx
     setPrice(temp_prc)
-    console.log(price[ID], quantity[ID])
   }
 
   const removeItem = (ID: any) => {
@@ -49,30 +55,34 @@ const Cart = () => {
     let temp_prc: any = [...price]
     let temp_prcx: any = [temp_prc[ID]]
     let temp_prco = data[ID].price
-    console.log(temp_prco)
     temp_prcx = Number(temp_prcx) - Number(temp_prco)
     temp_prc[ID] = temp_prcx
     setPrice(temp_prc)
-    console.log(price[ID], quantity[ID])
   }
 
   return (
     <>
       <div className="cart-background">
-        <h1 className="cart-logo">Foodlux</h1>
         <div className="checkout-section">
           <Button 
-            color="error"
-            sx={{ "&:hover": { backgroundColor: "white"}, marginBottom:"25px", marginTop:"20px", backgroundColor:"red" }}
-            variant="outlined">
+            variant="contained"
+            size="large"
+            sx={{
+              backgroundColor: "red",
+              "&:hover": {
+                backgroundColor: "rgb(162, 6, 6)",
+              },
+              margin: "20px",
+
+            }}>
             <Link className="checkout-link" to="/Checkout">
             Proceed To Checkout
             </Link>
           </Button>
         </div>
-        <h1 className="cart-header">Cart</h1>
+        <p className="cart-header">Cart</p>
         <div className="cart-window">
-          {data?.length !== 0 ? <Cartitems items={data} additem={addItem} removeitem={removeItem} price={price} quantity={quantity} /> : 
+          {data?.length !== 0 ? <Cartitems items={data} additem={addItem} removeitem={removeItem} price={priceStorage} quantity={quantityStorage} /> : 
           <>
             <h1>YOUR CART IS EMPTY!</h1>
             <br></br>
@@ -96,7 +106,7 @@ const Cart = () => {
             }}
           >
             <Link className="return-link" to="/Home">
-              Return
+              Return to home
             </Link>
           </Button>
         </div>

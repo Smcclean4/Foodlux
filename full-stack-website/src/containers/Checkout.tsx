@@ -18,9 +18,14 @@ const Checkout = () => {
     <div className="checkout-background">
       <div className="cart-section">
       <Button
-      color="error"
-      sx={{ "&:hover": { backgroundColor: "white"}, backgroundColor:"red" }}
-      variant="outlined">
+      variant="contained"
+      size="large"
+      sx={{
+        backgroundColor: "red",
+        "&:hover": {
+          backgroundColor: "rgb(162, 6, 6)",
+        }
+      }}>
         <Link className="cart-link" to="/Cart">
           Back to cart
         </Link>

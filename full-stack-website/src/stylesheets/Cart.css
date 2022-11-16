@@ -7,7 +7,6 @@
     height:auto;
     min-height:100vh;
     text-align:center;
-    padding-bottom:5%;
 }
 .cart-window {
     width: 80%;
@@ -19,19 +18,14 @@
     overflow: scroll;
     border:2px solid black;
 }
-.cart-logo {
-    color:white;
-    font-size:100px;
-    text-shadow:black 2px 5px 2px;
-    font-family: 'Bubblegum sans', cursive;
-    padding:30px;
-}
 
 .cart-header {
     background-color:whitesmoke;
-    width:50%;
+    width:10%;
+    font-size:2.5em;
+    font-family: 'Bubblegum sans', sans-serif;
     margin:0 auto;
-    padding:10px 0;
+    padding:5px 5px;
     border-radius:20px 20px 0 0;
     text-decoration:underline;
     text-decoration-color:red;
@@ -40,10 +34,6 @@
 .checkout-link {
     text-decoration:none;
     color:white;
-}
-
-.checkout-link:hover {
-    color:red;
 }
 
 .return-link {
