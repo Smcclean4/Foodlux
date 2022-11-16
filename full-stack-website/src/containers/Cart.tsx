@@ -4,32 +4,27 @@ import { Link, useLocation } from "react-router-dom";
 import Cartitems from "../components/Cartitems";
 import "../stylesheets/Cart.css";
 
+let pricesStorage = JSON.parse(localStorage.getItem('prices') || '[]')
+let quantitiesStorage = JSON.parse(localStorage.getItem('quantities') || '[]')
+
 const Cart = () => { 
   const location: any = useLocation()
-  const data = location.state?.data
-  let [price, setPrice]: any = useState([])
-  let [quantity, setQuantity]: any = useState([])
-  let cartData: any[] = [];
-  const {dataStorage, priceStorage, quantityStorage} = JSON.parse(localStorage.getItem('checkout') || "[]")
+  const cartData = location.state?.data
+  let prices = cartData?.map((items: { price: any; }) => items.price)
+  let quantities = cartData?.map((items: { quantity: any; }) => items.quantity)
+  let [price, setPrice]: any = useState([prices])
+  let [quantity, setQuantity]: any = useState([quantities])
 
   useEffect(() => {
-    const setData = async () => {
-      let prices = data?.map((items: { price: any; }) => items.price)
-      let quantities = data?.map((items: { quantity: any; }) => items.quantity)
-      await setPrice(prices)
-      await setQuantity(quantities)
-    }
-    setData();
-  }, [data])
+      setPrice(pricesStorage)
+      setQuantity(quantitiesStorage)
+  }, [cartData])
 
   useEffect(() => {
-    const storeData = (items:any) => {
-    cartData.push(items);
-    localStorage.setItem('checkout', JSON.stringify(cartData))
-  }
-  storeData([data, price, quantity]);
-  console.log(dataStorage, priceStorage, quantityStorage)
-  }, [quantity, price])
+    localStorage.setItem('prices', JSON.stringify(price))
+    localStorage.setItem('quantities', JSON.stringify(quantity))
+    console.log(pricesStorage, quantitiesStorage)
+  }, [quantity])
 
   const addItem = (ID: any) => {
     let temp_qty: any = [...quantity]
@@ -39,7 +34,7 @@ const Cart = () => {
     setQuantity(temp_qty)
     let temp_prc: any = [...price]
     let temp_prcx: any = [temp_prc[ID]]
-    let temp_prco = data[ID].price
+    let temp_prco = cartData[ID].price
     temp_prcx = Number(temp_prcx) + Number(temp_prco)
     temp_prc[ID] = temp_prcx
     setPrice(temp_prc)
@@ -54,7 +49,7 @@ const Cart = () => {
     setQuantity(temp_qty)
     let temp_prc: any = [...price]
     let temp_prcx: any = [temp_prc[ID]]
-    let temp_prco = data[ID].price
+    let temp_prco = cartData[ID].price
     temp_prcx = Number(temp_prcx) - Number(temp_prco)
     temp_prc[ID] = temp_prcx
     setPrice(temp_prc)
@@ -82,7 +77,7 @@ const Cart = () => {
         </div>
         <p className="cart-header">Cart</p>
         <div className="cart-window">
-          {data?.length !== 0 ? <Cartitems items={data} additem={addItem} removeitem={removeItem} price={priceStorage} quantity={quantityStorage} /> : 
+          {cartData?.length !== 0 ? <Cartitems items={cartData} additem={addItem} removeitem={removeItem} price={price} quantity={quantity} /> : 
           <>
             <h1>YOUR CART IS EMPTY!</h1>
             <br></br>
