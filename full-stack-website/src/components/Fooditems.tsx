@@ -46,7 +46,7 @@ const Fooditems = ({ menu, title, addtocart }) => {
             >
               <h2>Food</h2>
               <Grid
-                sx={{ backgroundColor: "grey" }}
+                sx={{ backgroundColor: "whitesmoke" }}
                 className="b"
                 container
                 spacing={0}
@@ -105,7 +105,7 @@ const Fooditems = ({ menu, title, addtocart }) => {
               <br></br>
               <h2>Drinks</h2>
               <Grid
-                sx={{ backgroundColor: "grey" }}
+                sx={{ backgroundColor: "whitesmoke" }}
                 className="b"
                 container
                 spacing={0}
