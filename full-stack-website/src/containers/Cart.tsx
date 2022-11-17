@@ -10,21 +10,31 @@ let quantitiesStorage = JSON.parse(localStorage.getItem('quantities') || '[]')
 const Cart = () => { 
   const location: any = useLocation()
   const cartData = location.state?.data
-  let prices = cartData?.map((items: { price: any; }) => items.price)
-  let quantities = cartData?.map((items: { quantity: any; }) => items.quantity)
-  let [price, setPrice]: any = useState([prices])
-  let [quantity, setQuantity]: any = useState([quantities])
+  let [price, setPrice]: any = useState([pricesStorage])
+  let [quantity, setQuantity]: any = useState([quantitiesStorage])
 
   useEffect(() => {
-      setPrice(pricesStorage)
-      setQuantity(quantitiesStorage)
+      const setInitialData = () => {
+        let prices = cartData?.map((items: { price: any; }) => items.price)
+        let quantities = cartData?.map((items: { quantity: any; }) => items.quantity)
+        setPrice(prices)
+        setQuantity(quantities)
+        localStorage.setItem('prices', JSON.stringify(price));
+        localStorage.setItem('quantities', JSON.stringify(quantity));
+      }
+
+      const setStorageData = () => {
+        setPrice(pricesStorage)
+        setQuantity(quantitiesStorage)
+      }
+
+      setInitialData().then(() => setStorageData())
   }, [cartData])
 
   useEffect(() => {
     localStorage.setItem('prices', JSON.stringify(price))
     localStorage.setItem('quantities', JSON.stringify(quantity))
-    console.log(pricesStorage, quantitiesStorage)
-  }, [quantity])
+  }, [price, quantity])
 
   const addItem = (ID: any) => {
     let temp_qty: any = [...quantity]
