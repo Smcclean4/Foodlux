@@ -59,7 +59,7 @@ const Home = () => {
           price: 4.25,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "food",
         },
         {
@@ -67,7 +67,7 @@ const Home = () => {
           price: 2.85,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "food",
         },
         {
@@ -75,7 +75,7 @@ const Home = () => {
           price: 3.25,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "food",
         },
         {
@@ -83,7 +83,7 @@ const Home = () => {
           price: 5.25,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "drink",
         },
         {
@@ -91,7 +91,7 @@ const Home = () => {
           price: 1.25,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "drink",
         },
         {
@@ -99,7 +99,7 @@ const Home = () => {
           price: 1.25,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "drink",
         },
       ],
@@ -115,7 +115,7 @@ const Home = () => {
           price: 9.25,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "food",
         },
         {
@@ -123,7 +123,7 @@ const Home = () => {
           price: 7.55,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "food",
         },
         {
@@ -131,7 +131,7 @@ const Home = () => {
           price: 2.15,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "food",
         },
         {
@@ -139,7 +139,7 @@ const Home = () => {
           price: 1.25,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "drink",
         },
         {
@@ -147,7 +147,7 @@ const Home = () => {
           price: 1.25,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "drink",
         },
         {
@@ -155,7 +155,7 @@ const Home = () => {
           price: 1.25,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "drink",
         },
       ],
@@ -171,7 +171,7 @@ const Home = () => {
           price: 8.95,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "food",
         },
         {
@@ -179,7 +179,7 @@ const Home = () => {
           price: 3.75,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "food",
         },
         {
@@ -187,7 +187,7 @@ const Home = () => {
           price: 10.45,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "food",
         },
         {
@@ -195,7 +195,7 @@ const Home = () => {
           price: 1.25,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "drink",
         },
         {
@@ -203,7 +203,7 @@ const Home = () => {
           price: 1.25,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "drink",
         },
         {
@@ -211,7 +211,7 @@ const Home = () => {
           price: 1.25,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "drink",
         },
       ],
@@ -227,7 +227,7 @@ const Home = () => {
           price: 1.15,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "food",
         },
         {
@@ -235,7 +235,7 @@ const Home = () => {
           price: 1.05,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "food",
         },
         {
@@ -243,7 +243,7 @@ const Home = () => {
           price: 1.25,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "drink",
         },
         {
@@ -251,7 +251,7 @@ const Home = () => {
           price: 1.25,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "drink",
         },
         {
@@ -259,7 +259,7 @@ const Home = () => {
           price: 1.25,
           desc: "Get the money and get it all the time",
           image: "money.jpg",
-          quantity:1,
+          quantity: 1,
           type: "drink",
         },
       ],

@@ -7,28 +7,22 @@ import "../stylesheets/Cart.css";
 let pricesStorage = JSON.parse(localStorage.getItem('prices') || '[]')
 let quantitiesStorage = JSON.parse(localStorage.getItem('quantities') || '[]')
 
-const Cart = () => { 
+const Cart = () => {
   const location: any = useLocation()
   const cartData = location.state?.data
-  let [price, setPrice]: any = useState([pricesStorage])
-  let [quantity, setQuantity]: any = useState([quantitiesStorage])
+  let [price, setPrice]: any = useState([])
+  let [quantity, setQuantity]: any = useState([])
+
+  const setStorageData = () => {
+    setPrice(pricesStorage)
+    setQuantity(quantitiesStorage)
+  }
 
   useEffect(() => {
-      const setInitialData = () => {
-        let prices = cartData?.map((items: { price: any; }) => items.price)
-        let quantities = cartData?.map((items: { quantity: any; }) => items.quantity)
-        setPrice(prices)
-        setQuantity(quantities)
-        localStorage.setItem('prices', JSON.stringify(price));
-        localStorage.setItem('quantities', JSON.stringify(quantity));
-      }
-
-      const setStorageData = () => {
-        setPrice(pricesStorage)
-        setQuantity(quantitiesStorage)
-      }
-
-      setInitialData().then(() => setStorageData())
+    let prices = cartData?.map((items: { price: any; }) => items.price)
+    let quantities = cartData?.map((items: { quantity: any; }) => items.quantity)
+    setPrice(prices)
+    setQuantity(quantities)
   }, [cartData])
 
   useEffect(() => {
@@ -69,7 +63,7 @@ const Cart = () => {
     <>
       <div className="cart-background">
         <div className="checkout-section">
-          <Button 
+          <Button
             variant="contained"
             size="large"
             sx={{
@@ -81,22 +75,22 @@ const Cart = () => {
 
             }}>
             <Link className="checkout-link" to="/Checkout">
-            Proceed To Checkout
+              Proceed To Checkout
             </Link>
           </Button>
         </div>
         <p className="cart-header">Cart</p>
         <div className="cart-window">
-          {cartData?.length !== 0 ? <Cartitems items={cartData} additem={addItem} removeitem={removeItem} price={price} quantity={quantity} /> : 
-          <>
-            <h1>YOUR CART IS EMPTY!</h1>
-            <br></br>
-            <br></br>
-            <h1>PLEASE RETURN WHEN YOUVE CHECKED OUT THE STORE AND PURCHASED SOME ITEMS</h1>
-            <br></br>
-            <br></br>
-            <h1>😜</h1>
-          </> }
+          {cartData?.length !== 0 ? <Cartitems items={cartData} additem={addItem} removeitem={removeItem} price={price} quantity={quantity} /> :
+            <>
+              <h1>YOUR CART IS EMPTY!</h1>
+              <br></br>
+              <br></br>
+              <h1>PLEASE RETURN WHEN YOUVE CHECKED OUT THE STORE AND PURCHASED SOME ITEMS</h1>
+              <br></br>
+              <br></br>
+              <h1>😜</h1>
+            </>}
         </div>
         <div className="return-section">
           <Button
