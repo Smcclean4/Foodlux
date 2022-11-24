@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "@mui/material/Button";
 import { Link, useLocation } from "react-router-dom";
 import Cartitems from "../components/Cartitems";
@@ -10,24 +10,15 @@ let quantitiesStorage = JSON.parse(localStorage.getItem('quantities') || '[]')
 const Cart = () => {
   const location: any = useLocation()
   const cartData = location.state?.data
-  let prices = cartData?.map((items: { price: any; }) => items.price)
-  let quantities = cartData?.map((items: { quantity: any; }) => items.quantity)
-  let [price, setPrice]: any = useState([])
-  let [quantity, setQuantity]: any = useState([])
+  const prices = cartData?.map((items: { price: any; }) => items.price)
+  const quantities = cartData?.map((items: { quantity: any; }) => items.quantity)
+  const [price, setPrice]: any = useState(prices)
+  const [quantity, setQuantity]: any = useState(quantities)
 
   useEffect(() => {
-    setPrice(prices)
-    setQuantity(quantities)
     localStorage.setItem('prices', JSON.stringify(price))
     localStorage.setItem('quantities', JSON.stringify(quantity))
-  }, [cartData])
-
-  useEffect(() => {
-    // if theres data in price and quantity set local storage to updated price and quantity?
-    if (pricesStorage && quantitiesStorage) {
-      localStorage.setItem('prices', JSON.stringify(price))
-      localStorage.setItem('quantities', JSON.stringify(quantity))
-    }
+    console.log(pricesStorage, quantitiesStorage)
   }, [price, quantity])
 
   const addItem = (ID: any) => {
