@@ -19,6 +19,8 @@ const Cart = () => {
     localStorage.setItem('prices', JSON.stringify(price))
     localStorage.setItem('quantities', JSON.stringify(quantity))
     console.log(pricesStorage, quantitiesStorage)
+    console.log(price)
+    console.log(quantity)
   }, [price, quantity])
 
   const addItem = (ID: any) => {
