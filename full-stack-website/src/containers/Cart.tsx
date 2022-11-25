@@ -23,6 +23,14 @@ const Cart = () => {
     console.log(quantity)
   }, [price, quantity])
 
+  // useEffect(() => {
+  //   localStorage.setItem('prices', JSON.stringify(price))
+  //   localStorage.setItem('quantities', JSON.stringify(quantity))
+  //   console.log(pricesStorage, quantitiesStorage)
+  //   console.log(price)
+  //   console.log(quantity)
+  // }, [price, quantity])
+
   const addItem = (ID: any) => {
     let temp_qty: any = [...quantity]
     let temp_inc: any = [temp_qty[ID]]
