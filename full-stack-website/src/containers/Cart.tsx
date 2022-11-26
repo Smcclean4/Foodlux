@@ -19,17 +19,14 @@ const Cart = () => {
     localStorage.setItem('prices', JSON.stringify(price))
     localStorage.setItem('quantities', JSON.stringify(quantity))
     console.log(pricesStorage, quantitiesStorage)
-    console.log(price)
-    console.log(quantity)
   }, [price, quantity])
 
-  // useEffect(() => {
-  //   localStorage.setItem('prices', JSON.stringify(price))
-  //   localStorage.setItem('quantities', JSON.stringify(quantity))
-  //   console.log(pricesStorage, quantitiesStorage)
-  //   console.log(price)
-  //   console.log(quantity)
-  // }, [price, quantity])
+  useEffect(() => {
+    if (typeof pricesStorage && quantitiesStorage !== 'undefined' && pricesStorage.length && quantities.length !== 0) {
+      setPrice(pricesStorage)
+      setQuantity(quantitiesStorage)
+    }
+  }, [])
 
   const addItem = (ID: any) => {
     let temp_qty: any = [...quantity]
