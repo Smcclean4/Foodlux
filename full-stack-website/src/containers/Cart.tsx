@@ -12,22 +12,30 @@ const Cart = () => {
   const cartData = location.state?.data
   const prices = cartData?.map((items: { price: any; }) => items.price)
   const quantities = cartData?.map((items: { quantity: any; }) => items.quantity)
-  const [price, setPrice]: any = useState(prices)
-  const [quantity, setQuantity]: any = useState(quantities)
+  // defualts to second condiditon because prices storage isnt technically empty so value becomes blank and defaults to empty prices storage at that location.
+  const [price, setPrice]: any = useState(typeof pricesStorage !== 'undefined' && pricesStorage.length === 0 ? prices : pricesStorage)
+  const [quantity, setQuantity]: any = useState(typeof pricesStorage !== 'undefined' && pricesStorage.length === 0 ? quantities : quantitiesStorage)
+
+  // useEffect(() => {
+  //   if (typeof pricesStorage !== 'undefined' && pricesStorage.length === 0) {
+  //     setPrice(prices)
+  //     setQuantity(quantities)
+  //   }
+  // }, [cartData])
 
   useEffect(() => {
     localStorage.setItem('prices', JSON.stringify(price))
     localStorage.setItem('quantities', JSON.stringify(quantity))
   }, [price, quantity])
 
-  useEffect(() => {
-    if (typeof pricesStorage && quantitiesStorage !== 'undefined' && pricesStorage.length && quantitiesStorage.length !== 0) {
-      setPrice(pricesStorage)
-      setQuantity(quantitiesStorage)
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (typeof pricesStorage && quantitiesStorage !== 'undefined' && pricesStorage.length && quantitiesStorage.length !== 0) {
+  //     setPrice(pricesStorage)
+  //     setQuantity(quantitiesStorage)
+  //   }
+  // }, [])
 
-  // when price and quantity is incremented store local storage data? .. currently only stores when refreshing. 
+  // when price and quantity is incremented store local storage data? .. currently only stores when refreshing. Store temp quantity and price into local storage...?
   const addItem = (ID: any) => {
     let temp_qty: any = [...quantity]
     let temp_inc: any = [temp_qty[ID]]
