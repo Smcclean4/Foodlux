@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import { Link, useLocation } from "react-router-dom";
 import Cartitems from "../components/Cartitems";
@@ -18,16 +18,16 @@ const Cart = () => {
   useEffect(() => {
     localStorage.setItem('prices', JSON.stringify(price))
     localStorage.setItem('quantities', JSON.stringify(quantity))
-    console.log(pricesStorage, quantitiesStorage)
   }, [price, quantity])
 
   useEffect(() => {
-    if (typeof pricesStorage && quantitiesStorage !== 'undefined' && pricesStorage.length && quantities.length !== 0) {
+    if (typeof pricesStorage && quantitiesStorage !== 'undefined' && pricesStorage.length && quantitiesStorage.length !== 0) {
       setPrice(pricesStorage)
       setQuantity(quantitiesStorage)
     }
   }, [])
 
+  // when price and quantity is incremented store local storage data? .. currently only stores when refreshing. 
   const addItem = (ID: any) => {
     let temp_qty: any = [...quantity]
     let temp_inc: any = [temp_qty[ID]]
@@ -43,7 +43,7 @@ const Cart = () => {
   }
 
   const removeItem = (ID: any) => {
-    if (quantity[ID] === 1 && price[ID] === price[ID]) return;
+    if (quantity[ID] === 1) return;
     let temp_qty: any = [...quantity]
     let temp_inc: any = [temp_qty[ID]]
     temp_inc = Number(temp_inc) - 1;

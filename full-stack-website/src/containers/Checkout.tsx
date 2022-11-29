@@ -24,7 +24,7 @@ const Checkout = () => {
             backgroundColor: "red",
             "&:hover": {
               backgroundColor: "rgb(162, 6, 6)",
-            }
+            },
           }}>
           <Link className="cart-link" to="/Cart">
             Back to cart
