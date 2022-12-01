@@ -7,24 +7,21 @@ import "../stylesheets/Cart.css";
 let pricesStorage = JSON.parse(localStorage.getItem('prices') || '[]')
 let quantitiesStorage = JSON.parse(localStorage.getItem('quantities') || '[]')
 
-const Cart = () => { 
+const Cart = () => {
   const location: any = useLocation()
   const cartData = location.state?.data
-  let prices = cartData?.map((items: { price: any; }) => items.price)
-  let quantities = cartData?.map((items: { quantity: any; }) => items.quantity)
-  let [price, setPrice]: any = useState([prices])
-  let [quantity, setQuantity]: any = useState([quantities])
-
-  useEffect(() => {
-      setPrice(pricesStorage)
-      setQuantity(quantitiesStorage)
-  }, [cartData])
+  const prices = cartData?.map((items: { price: any; }) => items.price)
+  const dataId = cartData?.map((items: any, idx: any) => idx)
+  const quantities = cartData?.map((items: { quantity: any; }) => items.quantity)
+  // defualts to second condiditon because prices/quantity storage isnt technically empty so value becomes blank and defaults to empty prices storage at that location.
+  const [price, setPrice]: any = useState(typeof pricesStorage !== 'undefined' && pricesStorage.length === 0 ? prices : pricesStorage)
+  const [quantity, setQuantity]: any = useState(typeof quantitiesStorage !== 'undefined' && quantitiesStorage.length === 0 ? quantities : quantitiesStorage)
 
   useEffect(() => {
     localStorage.setItem('prices', JSON.stringify(price))
     localStorage.setItem('quantities', JSON.stringify(quantity))
-    console.log(pricesStorage, quantitiesStorage)
-  }, [quantity])
+    console.log(dataId)
+  }, [price, quantity])
 
   const addItem = (ID: any) => {
     let temp_qty: any = [...quantity]
@@ -41,7 +38,7 @@ const Cart = () => {
   }
 
   const removeItem = (ID: any) => {
-    if (quantity[ID] === 1 && price[ID] === price[ID]) return;
+    if (quantity[ID] === 1) return;
     let temp_qty: any = [...quantity]
     let temp_inc: any = [temp_qty[ID]]
     temp_inc = Number(temp_inc) - 1;
@@ -59,7 +56,7 @@ const Cart = () => {
     <>
       <div className="cart-background">
         <div className="checkout-section">
-          <Button 
+          <Button
             variant="contained"
             size="large"
             sx={{
@@ -71,22 +68,22 @@ const Cart = () => {
 
             }}>
             <Link className="checkout-link" to="/Checkout">
-            Proceed To Checkout
+              Proceed To Checkout
             </Link>
           </Button>
         </div>
         <p className="cart-header">Cart</p>
         <div className="cart-window">
-          {cartData?.length !== 0 ? <Cartitems items={cartData} additem={addItem} removeitem={removeItem} price={price} quantity={quantity} /> : 
-          <>
-            <h1>YOUR CART IS EMPTY!</h1>
-            <br></br>
-            <br></br>
-            <h1>PLEASE RETURN WHEN YOUVE CHECKED OUT THE STORE AND PURCHASED SOME ITEMS</h1>
-            <br></br>
-            <br></br>
-            <h1>😜</h1>
-          </> }
+          {cartData?.length !== 0 ? <Cartitems items={cartData} additem={addItem} removeitem={removeItem} price={price} quantity={quantity} /> :
+            <>
+              <h1>YOUR CART IS EMPTY!</h1>
+              <br></br>
+              <br></br>
+              <h1>PLEASE RETURN WHEN YOUVE CHECKED OUT THE STORE AND PURCHASED SOME ITEMS</h1>
+              <br></br>
+              <br></br>
+              <h1>😜</h1>
+            </>}
         </div>
         <div className="return-section">
           <Button

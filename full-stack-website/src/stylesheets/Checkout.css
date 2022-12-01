@@ -1,73 +1,75 @@
 @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
 
 .checkout-background {
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background: url("/src/images/pexels-furknsaglam-3109671.jpg");
-    background-position: center;
-    background-size:cover;
-    height:auto;
-    min-height:100vh;
-    text-align:center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("/src/images/pexels-furknsaglam-3109671.jpg");
+  background-position: center;
+  background-size: cover;
+  height: auto;
+  min-height: 100vh;
+  text-align: center;
+  flex-direction: column;
 }
 
 .checkout-window {
-  width: 50%;
+  width: 70%;
   background-color: whitesmoke;
   list-style-type: none;
   height: 75vh;
   overflow: scroll;
-  border:2px solid black;
+  border: 2px solid black;
 }
 
 .cart-section {
-  margin:25px;
+  margin: 25px;
 }
 
 .checkout-list {
-  display:flex;
-  flex-direction:row;
-  width:auto;
-  margin:2em 1.5em;
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  margin: 2em 1.5em;
 }
 
 .cart-link {
-  text-decoration:none;
-  color:white;
+  text-decoration: none;
+  color: white;
 }
 
 .checkout-list li {
-  display:flex;
+  display: flex;
   align-items: center;
-  justify-content:space-between;
-  margin:2px;
+  justify-content: space-between;
+  margin: 2px;
 }
 
 .checkout-header {
   font-family: 'Bubblegum Sans', sans-serif;
-  color:black;
-  text-decoration:underline;
+  color: black;
+  text-decoration: underline;
   text-decoration-color: red;
-  font-size: 2.5em;
-  background-color:white;
-  padding:5px 35px;
-  border-radius:20px 20px 0 0;
+  font-size: 2.0em;
+  background-color: white;
+  padding: 5px 35px;
+  border-radius: 20px 20px 0 0;
 }
 
 .checkout-amount {
-  width:50%;
-  text-align:center;
+  width: 50%;
+  text-align: center;
 }
 
-@media only screen and (max-width:350px), (max-width:450px) {
+@media only screen and (max-width:350px),
+(max-width:450px) {
   .checkout-background {
-      padding-bottom:2%;
+    padding-bottom: 2%;
   }
 }
+
 @media only screen and (max-width:1028px) and (min-width:1020px) {
   .checkout-background {
-      padding-bottom:2%;
+    padding-bottom: 2%;
   }
 }
