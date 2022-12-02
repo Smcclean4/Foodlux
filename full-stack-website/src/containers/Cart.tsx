@@ -11,16 +11,18 @@ const Cart = () => {
   const location: any = useLocation()
   const cartData = location.state?.data
   const prices = cartData?.map((items: { price: any; }) => items.price)
-  const dataId = cartData?.map((items: any, idx: any) => idx)
   const quantities = cartData?.map((items: { quantity: any; }) => items.quantity)
-  // defualts to second condiditon because prices/quantity storage isnt technically empty so value becomes blank and defaults to empty prices storage at that location.
-  const [price, setPrice]: any = useState(typeof pricesStorage !== 'undefined' && pricesStorage.length === 0 ? prices : pricesStorage)
-  const [quantity, setQuantity]: any = useState(typeof quantitiesStorage !== 'undefined' && quantitiesStorage.length === 0 ? quantities : quantitiesStorage)
+  const [price, setPrice]: any = useState([])
+  const [quantity, setQuantity]: any = useState([])
+
+  useEffect(() => {
+    typeof pricesStorage !== 'undefined' && pricesStorage.length === 0 ? setPrice(prices) : setPrice(pricesStorage)
+    typeof quantitiesStorage !== 'undefined' && quantitiesStorage.length === 0 ? setQuantity(quantities) : setQuantity(quantitiesStorage)
+  }, [cartData])
 
   useEffect(() => {
     localStorage.setItem('prices', JSON.stringify(price))
     localStorage.setItem('quantities', JSON.stringify(quantity))
-    console.log(dataId)
   }, [price, quantity])
 
   const addItem = (ID: any) => {
