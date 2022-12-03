@@ -16,9 +16,21 @@ const Cart = () => {
   const [quantity, setQuantity]: any = useState([])
 
   useEffect(() => {
-    typeof pricesStorage !== 'undefined' && pricesStorage.length === 0 ? setPrice(prices) : setPrice(pricesStorage)
-    typeof quantitiesStorage !== 'undefined' && quantitiesStorage.length === 0 ? setQuantity(quantities) : setQuantity(quantitiesStorage)
-  }, [cartData])
+    for (let i = 0; i < cartData.length; i++) {
+      // typeof pricesStorage !== 'undefined' && pricesStorage.length === 0 || !pricesStorage[i] ? setPrice(prices) : setPrice(pricesStorage)
+      // typeof quantitiesStorage !== 'undefined' && quantitiesStorage.length === 0 || !quantitiesStorage[i] ? setQuantity(quantities) : setQuantity(quantitiesStorage)
+      if (typeof pricesStorage && quantitiesStorage !== 'undefined' && pricesStorage.length && quantitiesStorage.length === 0) {
+        setPrice(prices)
+        setQuantity(quantities)
+      } else if (!pricesStorage[i] && !quantitiesStorage[i]) {
+        // fix issue where data at item is empty it defaults to blank storage item instead of cart data price and quantity.
+        console.log('fix edge case logic here!')
+      } else {
+        setPrice(pricesStorage)
+        setQuantity(quantitiesStorage)
+      }
+    }
+  }, [])
 
   useEffect(() => {
     localStorage.setItem('prices', JSON.stringify(price))
