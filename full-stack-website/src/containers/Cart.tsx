@@ -17,14 +17,15 @@ const Cart = () => {
 
   useEffect(() => {
     for (let i = 0; i < cartData.length; i++) {
-      // typeof pricesStorage !== 'undefined' && pricesStorage.length === 0 || !pricesStorage[i] ? setPrice(prices) : setPrice(pricesStorage)
-      // typeof quantitiesStorage !== 'undefined' && quantitiesStorage.length === 0 || !quantitiesStorage[i] ? setQuantity(quantities) : setQuantity(quantitiesStorage)
-      if (typeof pricesStorage && quantitiesStorage !== 'undefined' && pricesStorage.length && quantitiesStorage.length === 0) {
+      // typeof pricesStorage !== 'undefined' && !pricesStorage[i] ? setPrice(prices) : setPrice(pricesStorage)
+      // typeof quantitiesStorage !== 'undefined' && !quantitiesStorage[i] ? setQuantity(quantities) : setQuantity(quantitiesStorage)
+      if (typeof pricesStorage && quantitiesStorage !== 'undefined' && pricesStorage.length === 0) {
         setPrice(prices)
         setQuantity(quantities)
       } else if (!pricesStorage[i] && !quantitiesStorage[i]) {
-        // fix issue where data at item is empty it defaults to blank storage item instead of cart data price and quantity.
-        console.log('fix edge case logic here!')
+        setPrice([...pricesStorage.slice(0, i), prices[i], ...pricesStorage.slice(i + 1)])
+        setQuantity([...quantitiesStorage.slice(0, i), quantities[i], ...quantitiesStorage.slice(i + 1)])
+        console.log(i)
       } else {
         setPrice(pricesStorage)
         setQuantity(quantitiesStorage)
