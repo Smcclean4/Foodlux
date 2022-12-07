@@ -8,27 +8,24 @@ let pricesStorage = JSON.parse(localStorage.getItem('prices') || '[]')
 let quantitiesStorage = JSON.parse(localStorage.getItem('quantities') || '[]')
 
 const Cart = () => {
+  const [price, setPrice]: any = useState([pricesStorage])
+  const [quantity, setQuantity]: any = useState([quantitiesStorage])
+  const [cartInfo, setCartInfo]: any = useState([])
+
   const location: any = useLocation()
-  const cartData = location.state?.data
-  const prices = cartData?.map((items: { price: any; }) => items.price)
-  const quantities = cartData?.map((items: { quantity: any; }) => items.quantity)
-  const [price, setPrice]: any = useState([])
-  const [quantity, setQuantity]: any = useState([])
 
   useEffect(() => {
+    const cartData = location.state?.data
+    const prices = cartData?.map((items: { price: any; }) => items.price)
+    const quantities = cartData?.map((items: { quantity: any; }) => items.quantity)
+
+    setCartInfo(cartData)
+    // fix condition where if multiple entries are added after storage is saved they show up as blank ... 
+    // on each refresh each blank gets filled with data ...
     for (let i = 0; i < cartData.length; i++) {
-      // typeof pricesStorage !== 'undefined' && !pricesStorage[i] ? setPrice(prices) : setPrice(pricesStorage)
-      // typeof quantitiesStorage !== 'undefined' && !quantitiesStorage[i] ? setQuantity(quantities) : setQuantity(quantitiesStorage)
-      if (typeof pricesStorage && quantitiesStorage !== 'undefined' && pricesStorage.length === 0) {
-        setPrice(prices)
-        setQuantity(quantities)
-      } else if (!pricesStorage[i] && !quantitiesStorage[i]) {
+      if (typeof pricesStorage && quantitiesStorage !== 'undefined' && !pricesStorage[i]) {
         setPrice([...pricesStorage.slice(0, i), prices[i], ...pricesStorage.slice(i + 1)])
         setQuantity([...quantitiesStorage.slice(0, i), quantities[i], ...quantitiesStorage.slice(i + 1)])
-        console.log(i)
-      } else {
-        setPrice(pricesStorage)
-        setQuantity(quantitiesStorage)
       }
     }
   }, [])
@@ -46,7 +43,7 @@ const Cart = () => {
     setQuantity(temp_qty)
     let temp_prc: any = [...price]
     let temp_prcx: any = [temp_prc[ID]]
-    let temp_prco = cartData[ID].price
+    let temp_prco = cartInfo[ID].price
     temp_prcx = Number(temp_prcx) + Number(temp_prco)
     temp_prc[ID] = temp_prcx
     setPrice(temp_prc)
@@ -61,7 +58,7 @@ const Cart = () => {
     setQuantity(temp_qty)
     let temp_prc: any = [...price]
     let temp_prcx: any = [temp_prc[ID]]
-    let temp_prco = cartData[ID].price
+    let temp_prco = cartInfo[ID].price
     temp_prcx = Number(temp_prcx) - Number(temp_prco)
     temp_prc[ID] = temp_prcx
     setPrice(temp_prc)
@@ -82,14 +79,14 @@ const Cart = () => {
               margin: "20px",
 
             }}>
-            <Link className="checkout-link" to="/Checkout">
+            <Link className="checkout-link" to="/Checkout" state={{ data: cartInfo, price, quantity }}>
               Proceed To Checkout
             </Link>
           </Button>
         </div>
         <p className="cart-header">Cart</p>
         <div className="cart-window">
-          {cartData?.length !== 0 ? <Cartitems items={cartData} additem={addItem} removeitem={removeItem} price={price} quantity={quantity} /> :
+          {cartInfo?.length !== 0 ? <Cartitems items={cartInfo} additem={addItem} removeitem={removeItem} price={price} quantity={quantity} /> :
             <>
               <h1>YOUR CART IS EMPTY!</h1>
               <br></br>

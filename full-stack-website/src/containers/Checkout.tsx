@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom';
 import FormLabel from '@mui/joy/FormLabel';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send'
@@ -8,6 +8,12 @@ import Input from '@mui/joy/Input';
 import "../stylesheets/Checkout.css"
 
 const Checkout = () => {
+  const location: any = useLocation();
+  const checkoutData: any = location.state?.data
+
+  useEffect(() => {
+    console.log(checkoutData)
+  }, [])
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
