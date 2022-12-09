@@ -4,7 +4,7 @@ import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import "../stylesheets/Cartitems.css";
 
-const Cartitems = ({ items, additem, removeitem, price, quantity }) => {
+const Cartitems = ({ items, additem, removeitem }) => {
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
@@ -32,7 +32,7 @@ const Cartitems = ({ items, additem, removeitem, price, quantity }) => {
               <Grid item xs={3} className="cart-items">
                 <Item>
                   <div>
-                    <li>{price[idx]}</li>
+                    <li>{item.price}</li>
                   </div>
                 </Item>
               </Grid>
@@ -60,7 +60,7 @@ const Cartitems = ({ items, additem, removeitem, price, quantity }) => {
                     padding: "5px 5px",
                   }}
                 >
-                  <span>{quantity[idx]}</span>
+                  <span>{item.quantity}</span>
                 </Item>
               </Grid>
               <Grid item xs={1} className="cart-items">
