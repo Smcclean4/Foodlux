@@ -23,13 +23,18 @@ const Cart = () => {
   }, [cartInfo])
 
   const addItem = (ID: any) => {
-    setCartInfo([...cartInfo.slice(0, ID), { ...cartInfo[ID], price: cartInfo[ID].price + cartInfo[ID].price }, ...cartInfo.slice(ID + 1)])
+    setCartInfo([...cartInfo.slice(0, ID), { ...cartInfo[ID], price: cartInfo[ID].price + cartInfo[ID].price, quantity: cartInfo[ID].quantity + 1 }, ...cartInfo.slice(ID + 1)])
     console.log(cartInfo)
+    console.log(cartInfo[ID].quantity)
     console.log('incremented item!!')
   }
 
   const removeItem = (ID: any) => {
-    console.log('decremented item!!')
+    if (cartInfo[ID].quantity !== 1) {
+      setCartInfo([...cartInfo.slice(0, ID), { ...cartInfo[ID], price: cartInfo[ID].price - cartInfo[ID].price, quantity: cartInfo[ID].quantity - 1 }, ...cartInfo.slice(ID + 1)])
+      console.log(cartInfo)
+      console.log('decremented item!!')
+    }
   }
 
   return (
