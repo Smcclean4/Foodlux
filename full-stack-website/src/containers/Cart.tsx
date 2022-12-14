@@ -10,9 +10,9 @@ const Cart = () => {
   const [cartInfo, setCartInfo]: any = useState(cartStorage)
 
   const location: any = useLocation()
+  const cartData = location.state?.data
 
   useEffect(() => {
-    const cartData = location.state?.data
     setCartInfo(cartData)
     console.log('effect triggered!')
   }, [])
@@ -23,15 +23,14 @@ const Cart = () => {
   }, [cartInfo])
 
   const addItem = (ID: any) => {
-    setCartInfo([...cartInfo.slice(0, ID), { ...cartInfo[ID], price: cartInfo[ID].price + cartInfo[ID].price, quantity: cartInfo[ID].quantity + 1 }, ...cartInfo.slice(ID + 1)])
+    setCartInfo((info: any[]) => info.map((item: { quantity: number; price: any }, i: any) => i === ID ? { ...item, price: (parseFloat(item.price) + parseFloat(cartData[ID].price)).toFixed(2), quantity: item.quantity + 1 } : item))
     console.log(cartInfo)
-    console.log(cartInfo[ID].quantity)
     console.log('incremented item!!')
   }
 
   const removeItem = (ID: any) => {
     if (cartInfo[ID].quantity !== 1) {
-      setCartInfo([...cartInfo.slice(0, ID), { ...cartInfo[ID], price: cartInfo[ID].price - cartInfo[ID].price, quantity: cartInfo[ID].quantity - 1 }, ...cartInfo.slice(ID + 1)])
+      setCartInfo((info: any[]) => info.map((item: { quantity: number; price: any }, i: any) => i === ID ? { ...item, price: (parseFloat(item.price) - parseFloat(cartData[ID].price)).toFixed(2), quantity: item.quantity - 1 } : item))
       console.log(cartInfo)
       console.log('decremented item!!')
     }
