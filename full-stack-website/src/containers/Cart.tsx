@@ -4,33 +4,25 @@ import { Link, useLocation } from "react-router-dom";
 import Cartitems from "../components/Cartitems";
 import "../stylesheets/Cart.css";
 
-let cartStorage = JSON.parse(localStorage.getItem('cartInfoStorage') || '[]')
-
 const Cart = () => {
-  const [cartInfo, setCartInfo]: any = useState(cartStorage)
-
-  const location: any = useLocation()
-  const cartData = location.state?.data
+  const cartFromHomeLocalStorage: any = JSON.parse(localStorage.getItem('cart') || '[]')
+  const [cartInfo, setCartInfo]: any = useState(cartFromHomeLocalStorage)
 
   useEffect(() => {
-    setCartInfo(cartData)
-    console.log('effect triggered!')
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem('cartInfoStorage', JSON.stringify(cartInfo))
-    console.log('data stored.')
+    localStorage.setItem('cart', JSON.stringify(cartInfo))
   }, [cartInfo])
 
   const addItem = (ID: any) => {
-    setCartInfo((info: any[]) => info.map((item: { quantity: number; price: any }, i: any) => i === ID ? { ...item, price: (parseFloat(item.price) + parseFloat(cartData[ID].price)).toFixed(2), quantity: item.quantity + 1 } : item))
+    console.log(typeof cartFromHomeLocalStorage[ID].price)
+    console.log(typeof cartInfo[ID].price)
+    setCartInfo((info: any[]) => info.map((item: { quantity: number; price: number }, i: any) => i === ID ? { ...item, price: (Number(item.price) + Number(cartFromHomeLocalStorage[ID].price)).toFixed(2), quantity: item.quantity + 1 } : item))
     console.log(cartInfo)
     console.log('incremented item!!')
   }
 
   const removeItem = (ID: any) => {
     if (cartInfo[ID].quantity !== 1) {
-      setCartInfo((info: any[]) => info.map((item: { quantity: number; price: any }, i: any) => i === ID ? { ...item, price: (parseFloat(item.price) - parseFloat(cartData[ID].price)).toFixed(2), quantity: item.quantity - 1 } : item))
+      setCartInfo((info: any[]) => info.map((item: { quantity: number; price: number }, i: any) => i === ID ? { ...item, price: (Number(item.price) - Number(cartFromHomeLocalStorage[ID].price)).toFixed(2), quantity: item.quantity - 1 } : item))
       console.log(cartInfo)
       console.log('decremented item!!')
     }
@@ -51,7 +43,7 @@ const Cart = () => {
               margin: "20px",
 
             }}>
-            <Link className="checkout-link" to="/Checkout" state={{ data: cartInfo }}>
+            <Link className="checkout-link" to="/Checkout">
               Proceed To Checkout
             </Link>
           </Button>

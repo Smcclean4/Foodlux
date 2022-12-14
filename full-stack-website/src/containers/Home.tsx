@@ -45,9 +45,6 @@ function allyProps(index: number) {
   };
 }
 
-// getting cart from local storage
-const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
-
 const Home = () => {
   // storing dummy values of food
   const [fastfood] = useState([
@@ -266,8 +263,11 @@ const Home = () => {
     },
   ]);
 
+  // getting cart from local storage
+  const cartFromHomeLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
+
   // store items into cart
-  const [cart, setCart] = useState(cartFromLocalStorage);
+  const [cart, setCart] = useState(cartFromHomeLocalStorage);
 
   // MUI
   const [value, setValue] = useState(0);
@@ -304,7 +304,7 @@ const Home = () => {
       <div className="dynamic-cart-username">
         <h1 className="username">Hi, {`${username}`}!</h1>
         <div>
-          <Link to="/Cart" state={{ data: cart }} >
+          <Link to="/Cart">
             <ShoppingCartIcon className="cart" />
           </Link>
           {/* display cart count */}
