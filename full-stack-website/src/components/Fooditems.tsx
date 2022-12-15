@@ -75,7 +75,7 @@ const Fooditems = ({ menu, title, addtocart }) => {
                   })}
                 </Grid>
                 <Grid item xs={2}>
-                  {menu?.map((prices: { type: string; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
+                  {menu?.map((prices: { type: string; price: number | boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
                     return prices.type === "food" ? (
                       <div key={idx}>
                         <li>{prices.price}</li>

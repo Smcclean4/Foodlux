@@ -1,0 +1,16 @@
+.checkout-container {
+  background-color: grey;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+  padding: 10px;
+  margin: 10px auto;
+}
+
+.checkout-items {
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+}

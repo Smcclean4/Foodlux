@@ -7,23 +7,24 @@ import "../stylesheets/Cart.css";
 const Cart = () => {
   const cartFromHomeLocalStorage: any = JSON.parse(localStorage.getItem('cart') || '[]')
   const [cartInfo, setCartInfo]: any = useState(cartFromHomeLocalStorage)
+  const [cartTotal, setCartTotal] = useState(0)
+
+  const location: any = useLocation();
+  const cartData = location.state?.data
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartInfo))
   }, [cartInfo])
 
   const addItem = (ID: any) => {
-    console.log(typeof cartFromHomeLocalStorage[ID].price)
-    console.log(typeof cartInfo[ID].price)
-    setCartInfo((info: any[]) => info.map((item: { quantity: number; price: number }, i: any) => i === ID ? { ...item, price: (Number(item.price) + Number(cartFromHomeLocalStorage[ID].price)).toFixed(2), quantity: item.quantity + 1 } : item))
-    console.log(cartInfo)
+    setCartInfo((info: any[]) => info.map((item: any, i: any) => i === ID ? { ...item, price: (parseFloat(item.price) + parseFloat(cartData[ID].price)).toFixed(2), quantity: item.quantity + 1 } : item))
     console.log('incremented item!!')
+    console.log(cartFromHomeLocalStorage[ID].price)
   }
 
   const removeItem = (ID: any) => {
     if (cartInfo[ID].quantity !== 1) {
-      setCartInfo((info: any[]) => info.map((item: { quantity: number; price: number }, i: any) => i === ID ? { ...item, price: (Number(item.price) - Number(cartFromHomeLocalStorage[ID].price)).toFixed(2), quantity: item.quantity - 1 } : item))
-      console.log(cartInfo)
+      setCartInfo((info: any[]) => info.map((item: any, i: any) => i === ID ? { ...item, price: (parseFloat(item.price) - parseFloat(cartData[ID].price)).toFixed(2), quantity: item.quantity - 1 } : item))
       console.log('decremented item!!')
     }
   }
@@ -31,7 +32,7 @@ const Cart = () => {
   return (
     <>
       <div className="cart-background">
-        <div className="checkout-section">
+        <div className="return-section">
           <Button
             variant="contained"
             size="large"
@@ -40,11 +41,12 @@ const Cart = () => {
               "&:hover": {
                 backgroundColor: "rgb(162, 6, 6)",
               },
-              margin: "20px",
-
-            }}>
-            <Link className="checkout-link" to="/Checkout">
-              Proceed To Checkout
+              marginTop: "20px",
+              marginBottom: "20px"
+            }}
+          >
+            <Link className="return-link" to="/Home">
+              Back to home
             </Link>
           </Button>
         </div>
@@ -61,7 +63,10 @@ const Cart = () => {
               <h1>😜</h1>
             </>}
         </div>
-        <div className="return-section">
+        <div className="total-section">
+          <h2 className="total">Total: {cartTotal}</h2>
+        </div>
+        <div className="checkout-section">
           <Button
             variant="contained"
             size="large"
@@ -70,11 +75,10 @@ const Cart = () => {
               "&:hover": {
                 backgroundColor: "rgb(162, 6, 6)",
               },
-              marginTop: "20px",
-            }}
-          >
-            <Link className="return-link" to="/Home">
-              Return to home
+              margin: "20px",
+            }}>
+            <Link className="checkout-link" to="/Checkout">
+              Proceed To Checkout
             </Link>
           </Button>
         </div>

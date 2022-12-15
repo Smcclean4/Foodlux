@@ -26,23 +26,24 @@
   margin: 25px;
 }
 
-.checkout-list {
-  display: flex;
-  flex-direction: row;
-  width: auto;
-  margin: 2em 1.5em;
-}
-
 .cart-link {
   text-decoration: none;
   color: white;
 }
 
-.checkout-list li {
+.checkout-menu {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 2px;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.checkout-fields {
+  width: 100%;
+}
+
+.checkout-list {
+  width: 35%;
+  margin: 10px;
 }
 
 .checkout-header {
@@ -56,9 +57,14 @@
   border-radius: 20px 20px 0 0;
 }
 
-.checkout-amount {
+.checkout-values {
   width: 50%;
+  height: 95vh;
+  min-height: 50vh;
   text-align: center;
+  margin: 10px 0;
+  padding: 15px 0;
+  overflow: scroll;
 }
 
 @media only screen and (max-width:350px),
