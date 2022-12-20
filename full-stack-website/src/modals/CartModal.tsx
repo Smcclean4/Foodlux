@@ -5,17 +5,27 @@ import '../stylesheets/CartModal.css'
 
 export const CartModal = ({ isShowing, hide, state }) => isShowing ? createPortal(
   <React.Fragment>
+    <div className="modal-point"></div>
     <div className="cartmodal-container">
       <button className="cartmodal-close" onClick={hide}>
         &times;
       </button>
-      <h1>Hello, I am a Cart Modal</h1>
-      <div className="modal-point"></div>
-      <button className="cartmodal-link">
-        <Link to="/Cart" state={{ data: state }}>
+      <div className="modal-data">
+        {state?.map((item, idx) => {
+          return (
+            <div className="modal-data-container" key={idx}>
+              <p className="modal-data-items">{item.item}</p>
+              <p className="modal-data-items">{item.price}</p>
+              <p className="modal-data-items">{item.quantity}</p>
+            </div>
+          )
+        })}
+      </div>
+      <Link to="/Cart" state={{ data: state }}>
+        <button className="cartmodal-link">
           Go to cart
-        </Link>
-      </button>
+        </button>
+      </Link>
     </div>
   </React.Fragment>, document.body
 ) : null
