@@ -9,11 +9,16 @@ import "../stylesheets/Checkout.css"
 
 const Checkout = () => {
   const cartFromCartLocalStorage: any = JSON.parse(localStorage.getItem('cart') || '[]')
-  const [checkoutData, setCheckoutData]: any = useState(cartFromCartLocalStorage)
+
+  const [checkoutData]: any = useState(cartFromCartLocalStorage)
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     console.log("submitting payment info!")
+  }
+
+  const checkoutTotal = () => {
+    return checkoutData.map((item: { price: any; }) => item.price).reduce((acc: string, val: string) => (parseFloat(acc) + parseFloat(val)).toFixed(2), 0)
   }
 
   return (
@@ -82,8 +87,11 @@ const Checkout = () => {
               <TextField id="outlined-basic" className="checkout-fields" label="Email" variant="outlined" />
             </div>
             <div className="checkout-values">
-              {checkoutData.length !== 0 ? <Checkoutitems details={checkoutData} /> : <h1>There is not checkout data to show..</h1>}
+              {checkoutData.length !== 0 ? <Checkoutitems details={checkoutData} /> : <h1>There is no checkout data to show..</h1>}
             </div>
+          </div>
+          <div className="checkout-total-section">
+            <h2 className="checkout-total">Your Total: {checkoutTotal()}</h2>
           </div>
           <Button color="error"
             sx={{ "&:hover": { backgroundColor: "red", color: "white" }, marginBottom: "25px" }}

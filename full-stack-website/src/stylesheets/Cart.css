@@ -46,6 +46,12 @@
     color: white;
 }
 
+.checkout-return-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 .total-section {
     width: 80%;
     margin: 0 auto;

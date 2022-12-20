@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
@@ -8,7 +7,9 @@ import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import Fooditems from "../components/Fooditems";
+import Homeitems from "../components/Homeitems";
+import { CartModal } from "../modals/CartModal";
+import { useModal } from "../hooks/useModal";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import "../stylesheets/Home.css";
@@ -264,10 +265,13 @@ const Home = () => {
   ]);
 
   // getting cart from local storage
-  const cartFromHomeLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
+  const cartFromHomeLocalStorage: any = JSON.parse(localStorage.getItem("cart") || "[]");
 
   // store items into cart
-  const [cart, setCart] = useState(cartFromHomeLocalStorage);
+  const [cart, setCart]: any = useState(cartFromHomeLocalStorage);
+
+  // cart modal hook
+  const { isShowing, toggle } = useModal();
 
   // MUI
   const [value, setValue] = useState(0);
@@ -304,9 +308,10 @@ const Home = () => {
       <div className="dynamic-cart-username">
         <h1 className="username">Hi, {`${username}`}!</h1>
         <div>
-          <Link to="/Cart" state={{ data: cart }}>
+          <button className="modal-button" onClick={toggle}>
             <ShoppingCartIcon className="cart" />
-          </Link>
+            <CartModal isShowing={isShowing} hide={toggle} state={cart} />
+          </button>
           {/* display cart count */}
           <p className="cart-count">{getCartTotal()}</p>
         </div>
@@ -361,7 +366,7 @@ const Home = () => {
           <TabPanel value={value} index={0} dir={theme.direction}>
             {fastfood.map((val, idx) => {
               return (
-                <Fooditems
+                <Homeitems
                   key={idx}
                   title={val.title}
                   menu={val.menu}
@@ -373,7 +378,7 @@ const Home = () => {
           <TabPanel value={value} index={1} dir={theme.direction}>
             {finedine.map((val, idx) => {
               return (
-                <Fooditems
+                <Homeitems
                   key={idx}
                   title={val.title}
                   menu={val.menu}
@@ -385,7 +390,7 @@ const Home = () => {
           <TabPanel value={value} index={2} dir={theme.direction}>
             {snacks.map((val, idx) => {
               return (
-                <Fooditems
+                <Homeitems
                   key={idx}
                   title={val.title}
                   menu={val.menu}
@@ -397,7 +402,7 @@ const Home = () => {
           <TabPanel value={value} index={3} dir={theme.direction}>
             {alcohol.map((val, idx) => {
               return (
-                <Fooditems
+                <Homeitems
                   key={idx}
                   title={val.title}
                   menu={val.menu}
@@ -414,3 +419,4 @@ const Home = () => {
 };
 
 export default Home;
+

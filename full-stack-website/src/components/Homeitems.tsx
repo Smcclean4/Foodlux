@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-import "../stylesheets/Fooditems.css";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import "../stylesheets/Homeitems.css";
 
 const Fooditems = ({ menu, title, addtocart }) => {
   // checking whether active is on or off based on true or false
