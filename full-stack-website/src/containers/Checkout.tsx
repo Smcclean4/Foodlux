@@ -42,12 +42,12 @@ const Checkout = () => {
       <Box
         className="checkout-window"
         sx={{
-          border: "1px solid black",
-          backgroundColor: "white",
+          backdropFilter: "blur(5px)",
           maxWidth: "80%",
           width: "75%",
           margin: "0 auto",
           padding: "30px",
+          color: "white",
         }}>
         <form onSubmit={handleSubmit}>
           <div className="checkout-menu">

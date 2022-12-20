@@ -11,17 +11,17 @@
 
 .cart-window {
     width: 80%;
-    background-color: whitesmoke;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
     margin: 0 auto;
     padding: 30px 0;
     list-style-type: none;
     height: 65vh;
     overflow: scroll;
-    border: 2px solid black;
 }
 
 .cart-header {
-    background-color: whitesmoke;
+    background-color: black;
     width: 10%;
     font-size: 2.5em;
     font-family: 'Bubblegum sans', sans-serif;
@@ -30,6 +30,8 @@
     border-radius: 20px 20px 0 0;
     text-decoration: underline;
     text-decoration-color: red;
+    color: white;
+    z-index: 1000;
 }
 
 .checkout-link {
@@ -60,10 +62,15 @@
 }
 
 .total {
-    background-color: white;
+    background-color: black;
+    color: white;
     width: 30%;
     border-radius: 0 0 10px 10px;
+    padding: 10px 0;
     font-family: 'Bubblegum sans', sans-serif;
+    font-size: 1.7em;
+    text-decoration: underline;
+    text-decoration-color: red;
 }
 
 @media only screen and (max-width:350px),

@@ -12,15 +12,16 @@ export const CartModal = ({ isShowing, hide, state }) => isShowing ? createPorta
       </button>
       <div className="modal-data">
         {state?.map((item, idx) => {
-          return (
+          return state?.length !== 0 ? (
             <div className="modal-data-container" key={idx}>
               <p className="modal-data-items">{item.item}</p>
               <p className="modal-data-items">{item.price}</p>
               <p className="modal-data-items">{item.quantity}</p>
             </div>
-          )
+          ) : ""
         })}
       </div>
+      {state?.length === 0 ? <h1>Nothing to see here...</h1> : null}
       <Link to="/Cart" state={{ data: state }}>
         <button className="cartmodal-link">
           Go to cart

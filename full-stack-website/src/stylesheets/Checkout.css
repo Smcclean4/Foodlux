@@ -15,11 +15,9 @@
 
 .checkout-window {
   width: 70%;
-  background-color: whitesmoke;
   list-style-type: none;
   height: 65vh;
   overflow: scroll;
-  border: 2px solid black;
 }
 
 .cart-section {
@@ -52,11 +50,11 @@
 
 .checkout-header {
   font-family: 'Bubblegum Sans', sans-serif;
-  color: black;
+  color: white;
   text-decoration: underline;
   text-decoration-color: red;
   font-size: 2.0em;
-  background-color: white;
+  background-color: black;
   padding: 5px 35px;
   border-radius: 20px 20px 0 0;
 }
