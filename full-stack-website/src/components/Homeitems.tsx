@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-import "../stylesheets/Fooditems.css";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import "../stylesheets/Homeitems.css";
 
 const Fooditems = ({ menu, title, addtocart }) => {
   // checking whether active is on or off based on true or false
@@ -75,7 +75,7 @@ const Fooditems = ({ menu, title, addtocart }) => {
                   })}
                 </Grid>
                 <Grid item xs={2}>
-                  {menu?.map((prices: { type: string; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
+                  {menu?.map((prices: { type: string; price: number | boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
                     return prices.type === "food" ? (
                       <div key={idx}>
                         <li>{prices.price}</li>

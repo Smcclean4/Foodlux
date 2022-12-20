@@ -3,55 +3,70 @@
 .home-background {
     background: url("/src/images/pexels-furknsaglam-3109671.jpg");
     background-position: center;
-    background-size:cover;
-    height:auto;
-    min-height:100vh;
-    text-align:center;
+    background-size: cover;
+    height: auto;
+    min-height: 100vh;
+    text-align: center;
 }
+
 .home-logo {
-    color:white;
-    font-size:100px;
-    text-shadow:black 2px 5px 2px;
+    color: white;
+    font-size: 100px;
+    text-shadow: black 2px 5px 2px;
     font-family: 'Bubblegum sans', cursive;
-    padding:30px;
+    padding: 30px;
 }
 
 .username {
-    color:white;
-    font-family:'Bubblegum sans', cursive;
-    text-shadow:black 2px 2px 2px;
+    color: white;
+    font-family: 'Bubblegum sans', cursive;
+    text-shadow: black 2px 2px 2px;
 }
 
 .cart {
-    color:white;
+    color: white;
     font-size: xx-large;
 }
 
 .dynamic-cart-username {
-    display:flex;
+    display: flex;
     justify-content: space-around;
-    margin-bottom:2%;
+    margin-bottom: 2%;
 }
 
 .cart-count {
-    background-color:red;
-    color:white;
+    background-color: red;
+    color: white;
     border-radius: 25px 25px;
 }
 
-@media only screen and (max-width:350px), (max-width:450px) {
+.modal-button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+@media only screen and (max-width:350px),
+(max-width:450px) {
     .home-logo {
-        font-size:70px;
+        font-size: 70px;
     }
+
     .home-background {
-        padding-bottom:2%;
+        padding-bottom: 2%;
     }
 }
+
 @media only screen and (max-width:1028px) and (min-width:1020px) {
     .home-logo {
-        font-size:70px;
+        font-size: 70px;
     }
+
     .home-background {
-        padding-bottom:2%;
+        padding-bottom: 2%;
     }
 }

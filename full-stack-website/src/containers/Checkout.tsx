@@ -1,17 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import FormLabel from '@mui/joy/FormLabel';
 import Button from '@mui/material/Button';
+import Box from "@mui/material/Box";
 import SendIcon from '@mui/icons-material/Send'
-import FormHelperText from '@mui/joy/FormHelperText';
-import Input from '@mui/joy/Input';
+import TextField from "@mui/material/TextField";
+import Checkoutitems from "../components/Checkoutitems"
 import "../stylesheets/Checkout.css"
 
 const Checkout = () => {
+  const cartFromCartLocalStorage: any = JSON.parse(localStorage.getItem('cart') || '[]')
+
+  const [checkoutData]: any = useState(cartFromCartLocalStorage)
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     console.log("submitting payment info!")
+  }
+
+  const checkoutTotal = () => {
+    return checkoutData.map((item: { price: any; }) => item.price).reduce((acc: string, val: string) => (parseFloat(acc) + parseFloat(val)).toFixed(2), 0)
   }
 
   return (
@@ -32,71 +39,59 @@ const Checkout = () => {
         </Button>
       </div>
       <p className="checkout-header">Credit or Debit Card Payment</p>
-      <div className="checkout-window">
+      <Box
+        className="checkout-window"
+        sx={{
+          border: "1px solid black",
+          backgroundColor: "white",
+          maxWidth: "80%",
+          width: "75%",
+          margin: "0 auto",
+          padding: "30px",
+        }}>
         <form onSubmit={handleSubmit}>
-          <div className="checkout-list">
-            <ul>
-              <li>
-                <FormLabel sx={{ fontSize: "1.3em" }}>Card Number</FormLabel>
-                <Input type="text" />
-              </li>
-              <li>
-                <FormLabel sx={{ fontSize: "1.3em" }}>Expiration Date</FormLabel>
-                <Input type="text" />
-                <Input type="text" />
-              </li>
-              <li>
-                <FormLabel sx={{ fontSize: "1.3em" }}>CVV</FormLabel>
-                <Input type="text" />
-              </li>
-              <li>
-                <FormLabel sx={{ fontSize: "1.3em" }}>First Name</FormLabel>
-                <Input type="text" />
-              </li>
-              <li>
-                <FormLabel sx={{ fontSize: "1.3em" }}>Last Name</FormLabel>
-                <Input type="text" />
-              </li>
-              <li>
-                <FormLabel sx={{ fontSize: "1.3em" }}>Country</FormLabel>
-                <Input type="text" />
-                <datalist id="countries">
-                  <option value="list all countries" />
-                </datalist>
-              </li>
-              <li>
-                <FormLabel sx={{ fontSize: "1.3em" }}>Billing Address</FormLabel>
-                <Input type="text" />
-                <Input type="text" />
-              </li>
-              <li>
-                <FormLabel sx={{ fontSize: "1.3em" }}>City</FormLabel>
-                <Input type="text" />
-              </li>
-              <li>
-                <FormLabel sx={{ fontSize: "1.3em" }}>State</FormLabel>
-                <Input type="text" />
-                <datalist id="states">
-                  <option value="list all states within the country" />
-                </datalist>
-              </li>
-              <li>
-                <FormLabel sx={{ fontSize: "1.3em" }}>ZIP</FormLabel>
-                <Input type="text" />
-              </li>
-              <li>
-                <FormLabel sx={{ fontSize: "1.3em" }}>Phone Number</FormLabel>
-                <Input type="text" />
-              </li>
-              <li>
-                <FormLabel sx={{ fontSize: "1.3em" }}>Email Address</FormLabel>
-                <Input type="text" />
-              </li>
-            </ul>
-            <div className="checkout-amount">
-              <h1>display amount</h1>
-              <h3>display prices</h3>
+          <div className="checkout-menu">
+            <div className="checkout-list">
+              <TextField id="outlined-basic" className="checkout-fields" label="Card Number" variant="outlined" />
+              <br></br>
+              <br></br>
+              <TextField id="outlined-basic" className="checkout-fields" label="Expiration Date" variant="outlined" helperText="needs 2 entry boxes" />
+              <br></br>
+              <br></br>
+              <TextField id="outlined-basic" className="checkout-fields" label="CVV" variant="outlined" />
+              <br></br>
+              <br></br>
+              <TextField id="outlined-basic" className="checkout-fields" label="First Name" variant="outlined" />
+              <br></br>
+              <br></br>
+              <TextField id="outlined-basic" className="checkout-fields" label="Last Name" variant="outlined" />
+              <br></br>
+              <br></br>
+              <TextField id="outlined-basic" className="checkout-fields" label="Country" variant="outlined" helperText="needs a list of countries" />
+              <br></br>
+              <br></br>
+              <TextField id="outlined-basic" className="checkout-fields" label="Billing Address" variant="outlined" helperText="needs 2 entry boxes" />
+              <br></br>
+              <TextField id="outlined-basic" className="checkout-fields" label="City" variant="outlined" helperText="may need list of options?" />
+              <br></br>
+              <br></br>
+              <TextField id="outlined-basic" className="checkout-fields" label="State" variant="outlined" helperText="may need list of options?" />
+              <br></br>
+              <br></br>
+              <TextField id="outlined-basic" className="checkout-fields" label="ZIP" variant="outlined" />
+              <br></br>
+              <br></br>
+              <TextField id="outlined-basic" className="checkout-fields" label="Phone" variant="outlined" />
+              <br></br>
+              <br></br>
+              <TextField id="outlined-basic" className="checkout-fields" label="Email" variant="outlined" />
             </div>
+            <div className="checkout-values">
+              {checkoutData.length !== 0 ? <Checkoutitems details={checkoutData} /> : <h1>There is no checkout data to show..</h1>}
+            </div>
+          </div>
+          <div className="checkout-total-section">
+            <h2 className="checkout-total">Your Total: {checkoutTotal()}</h2>
           </div>
           <Button color="error"
             sx={{ "&:hover": { backgroundColor: "red", color: "white" }, marginBottom: "25px" }}
@@ -104,7 +99,7 @@ const Checkout = () => {
             Pay Now
           </Button>
         </form>
-      </div>
+      </Box>
     </div>
   )
 }

@@ -3,61 +3,86 @@
 .cart-background {
     background: url("/src/images/pexels-furknsaglam-3109671.jpg");
     background-position: center;
-    background-size:cover;
-    height:auto;
-    min-height:100vh;
-    text-align:center;
+    background-size: cover;
+    height: auto;
+    min-height: 100vh;
+    text-align: center;
 }
+
 .cart-window {
     width: 80%;
     background-color: whitesmoke;
     margin: 0 auto;
-    padding:30px 0;
+    padding: 30px 0;
     list-style-type: none;
     height: 65vh;
     overflow: scroll;
-    border:2px solid black;
+    border: 2px solid black;
 }
 
 .cart-header {
-    background-color:whitesmoke;
-    width:10%;
-    font-size:2.5em;
+    background-color: whitesmoke;
+    width: 10%;
+    font-size: 2.5em;
     font-family: 'Bubblegum sans', sans-serif;
-    margin:0 auto;
-    padding:5px 5px;
-    border-radius:20px 20px 0 0;
-    text-decoration:underline;
-    text-decoration-color:red;
+    margin: 0 auto;
+    padding: 5px 5px;
+    border-radius: 20px 20px 0 0;
+    text-decoration: underline;
+    text-decoration-color: red;
 }
 
 .checkout-link {
-    text-decoration:none;
-    color:white;
+    text-decoration: none;
+    color: white;
 }
 
 .return-link {
     text-decoration: none;
-    color:white;
+    color: white;
 }
 
 .return-link:active {
-    color:white;
+    color: white;
 }
 
-@media only screen and (max-width:350px), (max-width:450px) {
+.checkout-return-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.total-section {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: right;
+}
+
+.total {
+    background-color: white;
+    width: 30%;
+    border-radius: 0 0 10px 10px;
+    font-family: 'Bubblegum sans', sans-serif;
+}
+
+@media only screen and (max-width:350px),
+(max-width:450px) {
     .cart-logo {
-        font-size:70px;
+        font-size: 70px;
     }
+
     .cart-background {
-        padding-bottom:2%;
+        padding-bottom: 2%;
     }
 }
+
 @media only screen and (max-width:1028px) and (min-width:1020px) {
     .cart-logo {
-        font-size:70px;
+        font-size: 70px;
     }
+
     .cart-background {
-        padding-bottom:2%;
+        padding-bottom: 2%;
     }
 }
