@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Box from "@mui/material/Box";
 import SendIcon from '@mui/icons-material/Send'
 import TextField from "@mui/material/TextField";
+import MenuItem from '@mui/material/MenuItem';
 import Checkoutitems from "../components/Checkoutitems"
 import "../stylesheets/Checkout.css"
 
@@ -12,6 +13,39 @@ const Checkout = () => {
 
   const [checkoutData]: any = useState(cartFromCartLocalStorage)
 
+  const countries = [
+    {
+      country: "USA"
+    },
+    {
+      country: "United Kindom"
+    }, {
+      country: "Uganda"
+    }
+  ]
+
+  const city = [
+    {
+      country: "Compton"
+    },
+    {
+      country: "Los Angeles"
+    }, {
+      country: "Lewiston"
+    }
+  ]
+
+  const state = [
+    {
+      country: "California"
+    },
+    {
+      country: "Bucharest"
+    }, {
+      country: "Texas"
+    }
+  ]
+
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     console.log("submitting payment info!")
@@ -19,6 +53,38 @@ const Checkout = () => {
 
   const checkoutTotal = () => {
     return checkoutData.map((item: { price: any; }) => item.price).reduce((acc: string, val: string) => (parseFloat(acc) + parseFloat(val)).toFixed(2), 0)
+  }
+
+  const checkoutMuiStyling = {
+    '.MuiOutlinedInput-notchedOutline:hover': {
+      borderColor: 'white'
+    },
+    '.MuiOutlinedInput-notchedOutline': {
+      borderColor: 'white'
+    },
+    '.MuiFormLabel-root': {
+      color: 'white'
+    },
+    '.MuiInputBase-input': {
+      color: 'white'
+    },
+    "& label.Mui-focused": {
+      color: "white"
+    },
+    // focused color for input with variant='standard'
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "white"
+    },
+    // focused color for input with variant='filled'
+    "& .MuiFilledInput-underline:after": {
+      borderBottomColor: "white"
+    },
+    // focused color for input with variant='outlined'
+    "& .MuiOutlinedInput-root": {
+      "&.Mui-focused fieldset": {
+        borderColor: "white"
+      }
+    }
   }
 
   return (
@@ -52,49 +118,76 @@ const Checkout = () => {
         <form onSubmit={handleSubmit}>
           <div className="checkout-menu">
             <div className="checkout-list">
-              <TextField id="outlined-basic" className="checkout-fields" label="Card Number" variant="outlined" />
+              <TextField id="outlined-basic" className="checkout-fields" label="Card Number" variant="outlined" sx={{ ...checkoutMuiStyling }} />
               <br></br>
               <br></br>
-              <TextField id="outlined-basic" className="checkout-fields" label="Expiration Date" variant="outlined" helperText="needs 2 entry boxes" />
+              <div className="expiration-date">
+                <TextField id="outlined-basic" className="checkout-fields" label="Expiration Day" variant="outlined" sx={{ ...checkoutMuiStyling, width: "40%" }} />
+                <span className="expiration-slash">/</span>
+                <TextField id="outlined-basic" className="checkout-fields" label="Expiration Year" variant="outlined" sx={{ ...checkoutMuiStyling, width: "50%" }} />
+              </div>
               <br></br>
               <br></br>
-              <TextField id="outlined-basic" className="checkout-fields" label="CVV" variant="outlined" />
+              <TextField id="outlined-basic" className="checkout-fields" label="CVV" variant="outlined" sx={{ ...checkoutMuiStyling }} />
               <br></br>
               <br></br>
-              <TextField id="outlined-basic" className="checkout-fields" label="First Name" variant="outlined" />
+              <TextField id="outlined-basic" className="checkout-fields" label="First Name" variant="outlined" sx={{ ...checkoutMuiStyling }} />
               <br></br>
               <br></br>
-              <TextField id="outlined-basic" className="checkout-fields" label="Last Name" variant="outlined" />
+              <TextField id="outlined-basic" className="checkout-fields" label="Last Name" variant="outlined" sx={{ ...checkoutMuiStyling }} />
               <br></br>
               <br></br>
-              <TextField id="outlined-basic" className="checkout-fields" label="Country" variant="outlined" helperText="needs a list of countries" />
+              <TextField id="outlined-basic" defaultValue="USA" className="checkout-fields" label="Country" variant="outlined" select sx={{ ...checkoutMuiStyling }}>
+                {countries.map((option) => (
+                  <MenuItem key={option.country} value={option.country}>
+                    {option.country}
+                  </MenuItem>
+                ))}
+              </TextField>
               <br></br>
               <br></br>
-              <TextField id="outlined-basic" className="checkout-fields" label="Billing Address" variant="outlined" helperText="needs 2 entry boxes" />
-              <br></br>
-              <TextField id="outlined-basic" className="checkout-fields" label="City" variant="outlined" helperText="may need list of options?" />
-              <br></br>
-              <br></br>
-              <TextField id="outlined-basic" className="checkout-fields" label="State" variant="outlined" helperText="may need list of options?" />
+              <TextField id="outlined-basic" className="checkout-fields" label="Billing Address" variant="outlined" sx={{ ...checkoutMuiStyling }} />
+              <TextField id="outlined-basic" className="checkout-fields" label="Billing Address Continued" variant="outlined" sx={{ ...checkoutMuiStyling }} />
               <br></br>
               <br></br>
-              <TextField id="outlined-basic" className="checkout-fields" label="ZIP" variant="outlined" />
+              <TextField id="outlined-basic" className="checkout-fields" label="City" select variant="outlined" defaultValue="Compton" sx={{ ...checkoutMuiStyling }}>
+                {city.map((option) => (
+                  <MenuItem key={option.country} value={option.country}>
+                    {option.country}
+                  </MenuItem>
+                ))}
+              </TextField>
               <br></br>
               <br></br>
-              <TextField id="outlined-basic" className="checkout-fields" label="Phone" variant="outlined" />
+              <TextField id="outlined-basic" className="checkout-fields" label="State" select variant="outlined" defaultValue="California" sx={{ ...checkoutMuiStyling }}>
+                {state.map((option) => (
+                  <MenuItem key={option.country} value={option.country}>
+                    {option.country}
+                  </MenuItem>
+                ))}
+              </TextField>
               <br></br>
               <br></br>
-              <TextField id="outlined-basic" className="checkout-fields" label="Email" variant="outlined" />
+              <TextField id="outlined-basic" className="checkout-fields" label="ZIP" variant="outlined" sx={{ ...checkoutMuiStyling }} />
+              <br></br>
+              <br></br>
+              <TextField id="outlined-basic" className="checkout-fields" label="Phone" variant="outlined" sx={{ ...checkoutMuiStyling }} />
+              <br></br>
+              <br></br>
+              <TextField id="outlined-basic" className="checkout-fields" label="Email" variant="outlined" sx={{ ...checkoutMuiStyling }} />
             </div>
-            <div className="checkout-values">
-              {checkoutData.length !== 0 ? <Checkoutitems details={checkoutData} /> : <h1>There is no checkout data to show..</h1>}
+            <div className="checkout-values-header-container">
+              <h1 className="checkout-values-header">Cart Items</h1>
+              <div className="checkout-values">
+                {checkoutData.length !== 0 ? <Checkoutitems details={checkoutData} /> : <h1>There is no checkout data to show..</h1>}
+              </div>
             </div>
           </div>
           <div className="checkout-total-section">
             <h2 className="checkout-total">Your Total: {checkoutTotal()}</h2>
           </div>
           <Button color="error"
-            sx={{ "&:hover": { backgroundColor: "red", color: "white" }, marginBottom: "25px" }}
+            sx={{ fontSize: "1.0em", marginTop: "50px", "&:hover": { backgroundColor: "red", color: "white" }, marginBottom: "25px" }}
             variant="outlined" endIcon={<SendIcon />} type="submit">
             Pay Now
           </Button>

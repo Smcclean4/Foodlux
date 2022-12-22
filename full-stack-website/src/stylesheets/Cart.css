@@ -20,14 +20,23 @@
     overflow: scroll;
 }
 
+.cart-window::-webkit-scrollbar,
+.cart-window::-webkit-scrollbar-corner {
+    backdrop-filter: blur(5px);
+}
+
+.cart-window::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 12px;
+}
+
 .cart-header {
     background-color: black;
-    width: 10%;
+    width: 80%;
     font-size: 2.5em;
     font-family: 'Bubblegum sans', sans-serif;
     margin: 0 auto;
     padding: 5px 5px;
-    border-radius: 20px 20px 0 0;
     text-decoration: underline;
     text-decoration-color: red;
     color: white;
