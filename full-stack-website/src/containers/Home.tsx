@@ -11,6 +11,7 @@ import Homeitems from "../components/Homeitems";
 import { CartModal } from "../modals/CartModal";
 import { useModal } from "../hooks/useModal";
 import { LoadingCircle } from "../tools/LoadingCircle"
+import { SearchBar } from "../containers/SearchBar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import "../stylesheets/Home.css";
@@ -306,7 +307,7 @@ const Home = () => {
       setLoading((loading) => !loading)
     }
     loadData();
-  }, [])
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -319,7 +320,8 @@ const Home = () => {
         {/* will be replaced with actual user */}
         <div className="dynamic-cart-username">
           <h1 className="username">Hi, {`${username}`}!</h1>
-          <div className="modal-location">
+          <SearchBar />
+          <div>
             <button className="modal-button" onClick={toggle}>
               <ShoppingCartIcon className="cart" />
               <CartModal isShowing={isShowing} hide={toggle} state={cart} />
@@ -428,11 +430,7 @@ const Home = () => {
         <Outlet />
       </div>
     ) : (
-      <>
-        <div className="home-background">
-        </div>
-        <LoadingCircle />
-      </>
+      <LoadingCircle />
     )
   );
 };

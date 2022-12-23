@@ -2,12 +2,22 @@ import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import { Link, useLocation } from "react-router-dom";
 import Cartitems from "../components/Cartitems";
+import { LoadingCircle } from "../tools/LoadingCircle";
 import "../stylesheets/Cart.css";
 
 const Cart = () => {
   const cartFromHomeLocalStorage: any = JSON.parse(localStorage.getItem('cart') || '[]')
 
   const [cartInfo, setCartInfo]: any = useState(cartFromHomeLocalStorage)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const loadData = async () => {
+      await new Promise((p) => setTimeout(p, 3000));
+      setLoading((loading) => !loading)
+    }
+    loadData();
+  }, [])
 
   const location: any = useLocation()
   const cartData = location.state?.data
@@ -31,7 +41,7 @@ const Cart = () => {
   }
 
   return (
-    <>
+    !loading ? (
       <div className="cart-background">
         <div className="checkout-return-section">
           <div className="return-section">
@@ -86,7 +96,9 @@ const Cart = () => {
           <h2 className="total">Total: {cartTotal()}</h2>
         </div>
       </div>
-    </>
+    ) : (
+      <LoadingCircle />
+    )
   );
 };
 

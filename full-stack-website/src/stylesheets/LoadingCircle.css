@@ -1,0 +1,9 @@
+.loading-background {
+  background: url("/src/images/pexels-furknsaglam-3109671.jpg");
+  background-position: center;
+  background-size: cover;
+  height: auto;
+  min-height: 100vh;
+  text-align: center;
+  opacity: 0.9;
+}
