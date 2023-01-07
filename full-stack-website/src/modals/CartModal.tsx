@@ -1,6 +1,7 @@
 import React from 'react'
 import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
+import Button from "@mui/material/Button";
 import '../stylesheets/CartModal.css'
 
 export const CartModal = ({ isShowing, hide, state }) => isShowing ? createPortal(
@@ -20,12 +21,16 @@ export const CartModal = ({ isShowing, hide, state }) => isShowing ? createPorta
           ) : ""
         })}
       </div>
-      {state?.length === 0 ? <h1>Nothing to see here...</h1> : null}
-      <Link to="/Cart" state={{ data: state }}>
-        <button className="cartmodal-link">
+      {state?.length === 0 ? <h2>Nothing to see here...</h2> : null}
+      <Button sx={{
+        color: 'white', backgroundColor: 'red', padding: '5px 25px', margin: '5px', "&:hover": {
+          backgroundColor: "rgb(162, 6, 6)",
+        },
+      }}>
+        <Link to="/Cart" className="gotocart-link" state={{ data: state }}>
           Go to cart
-        </button>
-      </Link>
+        </Link>
+      </Button>
     </div>
   </React.Fragment>, document.body
 ) : null

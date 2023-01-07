@@ -303,7 +303,7 @@ const Home = () => {
 
   useEffect(() => {
     const loadData = async () => {
-      await new Promise((p) => setTimeout(p, 3000));
+      await new Promise((p) => setTimeout(p, 1000));
       setLoading((loading) => !loading)
     }
     loadData();

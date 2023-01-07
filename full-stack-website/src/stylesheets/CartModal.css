@@ -31,22 +31,9 @@
   border-radius: 12px 12px 0 0;
 }
 
-.cartmodal-link {
-  color: white;
-  padding: 5px 10px;
-  border-radius: 12px;
-  font-size: 1.2em;
+.gotocart-link {
   text-decoration: none;
-  border: none;
-  background-color: red;
-  cursor: pointer;
-  margin: 10px;
-  border: 1px solid black;
-}
-
-.cartmodal-link:hover {
-  color: rgb(222, 222, 222);
-  background-color: rgb(199, 0, 0);
+  color: white;
 }
 
 .modal-data {

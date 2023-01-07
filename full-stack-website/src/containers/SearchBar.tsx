@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Button from "@mui/material/Button";
 import "../stylesheets/SearchBar.css"
 
 export const SearchBar = () => {
@@ -15,7 +16,14 @@ export const SearchBar = () => {
   return (
     <div className="searchbar-container">
       <input className="searchbar-input" value={userInput} onChange={handleChange}></input>
-      <p className="searchbar-button">SEARCH</p>
+      <Button sx={{
+        color: 'white', backgroundColor: 'red', padding: '5px 35px', "&:hover": {
+          backgroundColor: "rgb(162, 6, 6)",
+        },
+        borderRadius: '0 10px 10px 0'
+      }}>
+        Search
+      </Button>
     </div>
   )
 }
