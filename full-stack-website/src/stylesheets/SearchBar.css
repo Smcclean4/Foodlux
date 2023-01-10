@@ -1,7 +1,7 @@
 .searchbar-container {
   display: flex;
   justify-content: space-around;
-  width: 20em;
+  width: 28em;
   align-items: center;
 
 }
@@ -14,4 +14,22 @@
   font-size: 1.3em;
   font-family: 'Times New Roman', Times, serif;
   padding-left: 5px;
+}
+
+.searchbar-navigation {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown {
+  background-color: white;
+  position: absolute;
+  top: 210px;
+  width: 21em;
+  z-index: 1000;
+}
+
+.dropdown-items:hover {
+  background-color: rgb(213, 213, 213);
+  cursor: pointer;
 }

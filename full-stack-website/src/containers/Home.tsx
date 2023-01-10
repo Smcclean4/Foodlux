@@ -61,6 +61,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
+          company: "Bob's Burgers"
         },
         {
           item: "Chili Cheese Fries",
@@ -69,6 +70,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
+          company: "Bob's Burgers"
         },
         {
           item: "Jalepenos",
@@ -77,6 +79,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
+          company: "Bob's Burgers"
         },
         {
           item: "Coke",
@@ -85,6 +88,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
+          company: "Bob's Burgers"
         },
         {
           item: "Sprite",
@@ -93,6 +97,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
+          company: "Bob's Burgers"
         },
         {
           item: "Lemonade",
@@ -101,6 +106,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
+          company: "Bob's Burgers"
         },
       ],
     },
@@ -117,6 +123,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
+          company: "8-11"
         },
         {
           item: "Wings and Tings",
@@ -125,6 +132,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
+          company: "8-11"
         },
         {
           item: "Smetzels",
@@ -133,6 +141,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
+          company: "8-11"
         },
         {
           item: "Water",
@@ -141,6 +150,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
+          company: "8-11"
         },
         {
           item: "Gatorade",
@@ -149,6 +159,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
+          company: "8-11"
         },
         {
           item: "Sprite",
@@ -157,6 +168,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
+          company: "8-11"
         },
       ],
     },
@@ -173,6 +185,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
+          company: "Puth's Chriss"
         },
         {
           item: "Wonton Sushi",
@@ -181,6 +194,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
+          company: "Puth's Chriss"
         },
         {
           item: "Steak and Eggs",
@@ -189,6 +203,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
+          company: "Puth's Chriss"
         },
         {
           item: "Champagne",
@@ -197,6 +212,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
+          company: "Puth's Chriss"
         },
         {
           item: "Water",
@@ -205,6 +221,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
+          company: "Puth's Chriss"
         },
         {
           item: "Strawberry Lemonade",
@@ -213,6 +230,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
+          company: "Puth's Chriss"
         },
       ],
     },
@@ -229,6 +247,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
+          company: "Johnny's Liqour"
         },
         {
           item: "Salami",
@@ -237,6 +256,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
+          company: "Johnny's Liqour"
         },
         {
           item: "Wine",
@@ -245,6 +265,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
+          company: "Johnny's Liqour"
         },
         {
           item: "Titos Vodka",
@@ -253,6 +274,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
+          company: "Johnny's Liqour"
         },
         {
           item: "Hennessey",
@@ -261,6 +283,7 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
+          company: "Johnny's Liqour"
         },
       ],
     },
@@ -320,7 +343,7 @@ const Home = () => {
         {/* will be replaced with actual user */}
         <div className="dynamic-cart-username">
           <h1 className="username">Hi, {`${username}`}!</h1>
-          <SearchBar />
+          <SearchBar data={cart} />
           <div>
             <button className="modal-button" onClick={toggle}>
               <ShoppingCartIcon className="cart" />
