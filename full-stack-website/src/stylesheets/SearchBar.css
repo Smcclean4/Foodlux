@@ -27,6 +27,18 @@
   top: 210px;
   width: 21em;
   z-index: 1000;
+  max-height: 28em;
+  overflow: scroll;
+}
+
+.dropdown::-webkit-scrollbar,
+.dropdown::-webkit-scrollbar-corner {
+  backdrop-filter: blur(5px);
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 12px;
 }
 
 .dropdown-items:hover {

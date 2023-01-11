@@ -5,6 +5,7 @@ import "../stylesheets/SearchBar.css"
 export const SearchBar = ({ data }) => {
   const [userInput, setUserInput] = useState("")
   const [dropDown, setDropDown] = useState([])
+  const [open, setOpen] = useState(false)
 
   const handleChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
     setUserInput(e.target.value)
@@ -12,15 +13,14 @@ export const SearchBar = ({ data }) => {
     setDropDown(filteredData)
   }
 
-  useEffect(() => {
-    console.log(userInput)
-    console.log(data)
-  }, [userInput])
+  const dropDownFocusToggle = () => {
+    setOpen(!open)
+  }
 
   return (
     <div className="searchbar-navigation">
       <div className="searchbar-container">
-        <input className="searchbar-input" value={userInput} onChange={handleChange}></input>
+        <input className="searchbar-input" value={userInput} onChange={handleChange} onBlur={dropDownFocusToggle} onFocus={dropDownFocusToggle}></input>
         <Button sx={{
           color: 'white', backgroundColor: 'red', padding: '5px 35px', "&:hover": {
             backgroundColor: "rgb(162, 6, 6)",
@@ -30,20 +30,22 @@ export const SearchBar = ({ data }) => {
           Search
         </Button>
       </div>
-      <div className="dropdown">
-        {dropDown?.map((items: any, idx) => {
-          return (
-            dropDown.length ? (
-              <ul key={idx} className="dropdown-items">
-                <li>
-                  <h2>{items.item}</h2>
-                  <h5><i>from {items.company}</i></h5>
-                </li>
-              </ul>
-            ) : <h4>Item Cannot Be Found.</h4>
-          )
-        })}
-      </div>
+      {open ? (
+        <div className="dropdown">
+          {dropDown.length !== 0 ? (
+            dropDown?.map((items: any, idx) => {
+              return (
+                <ul key={idx} className="dropdown-items">
+                  <li>
+                    <h2>{items.item}</h2>
+                    <h5><i>from {items.company}</i></h5>
+                  </li>
+                </ul>
+              )
+            })
+          ) : <h4>Item Cannot Be Found.</h4>}
+        </div>
+      ) : <></>}
     </div>
   )
 }
