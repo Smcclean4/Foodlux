@@ -4,12 +4,17 @@ import "../stylesheets/SearchBar.css"
 
 export const SearchBar = ({ data }) => {
   const [userInput, setUserInput] = useState("")
-  const [dropDown, setDropDown] = useState([])
+  const [dropDown, setDropDown]: any = useState([])
   const [open, setOpen] = useState(false)
 
   const handleChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
     setUserInput(e.target.value)
-    const filteredData = data.filter((item: { item: string; }) => item.item.toLowerCase().includes(userInput))
+    const dataItems: any = [];
+    let dataInfo: any;
+    dataInfo = data.map((menu: any[]) => menu.map((food: { menu: any[]; }) => food.menu.map((items) => {
+      dataItems.push(items)
+    })))
+    const filteredData = dataItems.filter((val: { item: string; }) => val.item.toLowerCase().includes(userInput.toLowerCase()))
     setDropDown(filteredData)
   }
 
@@ -33,12 +38,12 @@ export const SearchBar = ({ data }) => {
       {open ? (
         <div className="dropdown">
           {dropDown.length !== 0 ? (
-            dropDown?.map((items: any, idx) => {
+            dropDown?.map((dropDownItems: any, idx: React.Key | null | undefined) => {
               return (
                 <ul key={idx} className="dropdown-items">
                   <li>
-                    <h2>{items.item}</h2>
-                    <h5><i>from {items.company}</i></h5>
+                    <h2>{dropDownItems.item}</h2>
+                    <h5><i>from {dropDownItems.company}</i></h5>
                   </li>
                 </ul>
               )

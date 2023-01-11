@@ -343,7 +343,7 @@ const Home = () => {
         {/* will be replaced with actual user */}
         <div className="dynamic-cart-username">
           <h1 className="username">Hi, {`${username}`}!</h1>
-          <SearchBar data={cart} />
+          <SearchBar data={[fastfood, finedine, snacks, alcohol]} />
           <div>
             <button className="modal-button" onClick={toggle}>
               <ShoppingCartIcon className="cart" />
