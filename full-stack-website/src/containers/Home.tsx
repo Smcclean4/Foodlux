@@ -48,9 +48,26 @@ function allyProps(index: number) {
   };
 }
 
+export type CartType = {
+  item: string;
+  price: number;
+  desc: string;
+  image: string;
+  quantity: number;
+  type: string;
+  company: string;
+  category: string;
+}
+
+export interface CartInfoInterface {
+  [x: string]: any;
+  title: string;
+  menu: CartType[];
+}
+
 const Home = () => {
   // storing dummy values of food
-  const [fastfood] = useState([
+  const [fastfood] = useState<CartInfoInterface[]>([
     {
       title: "Bob's Burgers",
       menu: [
@@ -61,7 +78,8 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
-          company: "Bob's Burgers"
+          company: "Bob's Burgers",
+          category: "fastfood"
         },
         {
           item: "Chili Cheese Fries",
@@ -70,7 +88,8 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
-          company: "Bob's Burgers"
+          company: "Bob's Burgers",
+          category: "fastfood"
         },
         {
           item: "Jalepenos",
@@ -79,7 +98,8 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
-          company: "Bob's Burgers"
+          company: "Bob's Burgers",
+          category: "fastfood"
         },
         {
           item: "Coke",
@@ -88,7 +108,8 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
-          company: "Bob's Burgers"
+          company: "Bob's Burgers",
+          category: "fastfood"
         },
         {
           item: "Sprite",
@@ -97,7 +118,8 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
-          company: "Bob's Burgers"
+          company: "Bob's Burgers",
+          category: "fastfood"
         },
         {
           item: "Lemonade",
@@ -106,13 +128,14 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
-          company: "Bob's Burgers"
+          company: "Bob's Burgers",
+          category: "fastfood"
         },
       ],
     },
   ]);
 
-  const [snacks] = useState([
+  const [snacks] = useState<CartInfoInterface[]>([
     {
       title: "8-11",
       menu: [
@@ -123,7 +146,8 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
-          company: "8-11"
+          company: "8-11",
+          category: "snacks"
         },
         {
           item: "Wings and Tings",
@@ -132,7 +156,8 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
-          company: "8-11"
+          company: "8-11",
+          category: "snacks"
         },
         {
           item: "Smetzels",
@@ -141,7 +166,8 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
-          company: "8-11"
+          company: "8-11",
+          category: "snacks"
         },
         {
           item: "Water",
@@ -150,7 +176,8 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
-          company: "8-11"
+          company: "8-11",
+          category: "snacks"
         },
         {
           item: "Gatorade",
@@ -159,7 +186,8 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
-          company: "8-11"
+          company: "8-11",
+          category: "snacks"
         },
         {
           item: "Sprite",
@@ -168,13 +196,14 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
-          company: "8-11"
+          company: "8-11",
+          category: "snacks"
         },
       ],
     },
   ]);
 
-  const [finedine] = useState([
+  const [finedine] = useState<CartInfoInterface[]>([
     {
       title: "Puth's Chriss",
       menu: [
@@ -185,7 +214,8 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
-          company: "Puth's Chriss"
+          company: "Puth's Chriss",
+          category: "finedine"
         },
         {
           item: "Wonton Sushi",
@@ -194,7 +224,8 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
-          company: "Puth's Chriss"
+          company: "Puth's Chriss",
+          category: "finedine"
         },
         {
           item: "Steak and Eggs",
@@ -203,7 +234,8 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
-          company: "Puth's Chriss"
+          company: "Puth's Chriss",
+          category: "finedine"
         },
         {
           item: "Champagne",
@@ -212,7 +244,8 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
-          company: "Puth's Chriss"
+          company: "Puth's Chriss",
+          category: "finedine"
         },
         {
           item: "Water",
@@ -221,7 +254,8 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
-          company: "Puth's Chriss"
+          company: "Puth's Chriss",
+          category: "finedine"
         },
         {
           item: "Strawberry Lemonade",
@@ -230,13 +264,14 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
-          company: "Puth's Chriss"
+          company: "Puth's Chriss",
+          category: "finedine"
         },
       ],
     },
   ]);
 
-  const [alcohol] = useState([
+  const [alcohol] = useState<CartInfoInterface[]>([
     {
       title: "Johnny's Liqour",
       menu: [
@@ -247,7 +282,8 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
-          company: "Johnny's Liqour"
+          company: "Johnny's Liqour",
+          category: "alcohol"
         },
         {
           item: "Salami",
@@ -256,7 +292,8 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "food",
-          company: "Johnny's Liqour"
+          company: "Johnny's Liqour",
+          category: "alcohol"
         },
         {
           item: "Wine",
@@ -265,7 +302,8 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
-          company: "Johnny's Liqour"
+          company: "Johnny's Liqour",
+          category: "alcohol"
         },
         {
           item: "Titos Vodka",
@@ -274,7 +312,8 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
-          company: "Johnny's Liqour"
+          company: "Johnny's Liqour",
+          category: "alcohol"
         },
         {
           item: "Hennessey",
@@ -283,17 +322,18 @@ const Home = () => {
           image: "money.jpg",
           quantity: 1,
           type: "drink",
-          company: "Johnny's Liqour"
+          company: "Johnny's Liqour",
+          category: "alcohol"
         },
       ],
     },
   ]);
 
   // getting cart from local storage
-  const cartFromHomeLocalStorage: any = JSON.parse(localStorage.getItem("cart") || "[]");
+  const cartFromHomeLocalStorage: CartInfoInterface[] = JSON.parse(localStorage.getItem("cart") || "[]");
 
   // store items into cart
-  const [cart, setCart]: any = useState(cartFromHomeLocalStorage);
+  const [cart, setCart] = useState<CartInfoInterface[]>(cartFromHomeLocalStorage);
   // loading state
   const [loading, setLoading] = useState(true)
 
@@ -315,7 +355,10 @@ const Home = () => {
   // example username
   let username = "Carolina";
 
-  const addCart = (food: any) => {
+  // all categories
+  const categories = [fastfood, finedine, snacks, alcohol]
+
+  const addCart = (food: CartInfoInterface) => {
     // set cart data
     setCart([...cart, food]);
   };
@@ -334,6 +377,7 @@ const Home = () => {
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
+    console.log(cartFromHomeLocalStorage)
   }, [cart]);
 
   return (
@@ -347,7 +391,7 @@ const Home = () => {
           <div>
             <button className="modal-button" onClick={toggle}>
               <ShoppingCartIcon className="cart" />
-              <CartModal isShowing={isShowing} hide={toggle} state={cart} />
+              <CartModal isShowing={isShowing} hide={toggle} state={cart} origin={categories} />
             </button>
             {/* display cart count */}
             <p className="cart-count">{getCartTotal()}</p>

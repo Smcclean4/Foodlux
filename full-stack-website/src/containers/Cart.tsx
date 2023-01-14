@@ -3,12 +3,14 @@ import Button from "@mui/material/Button";
 import { Link, useLocation } from "react-router-dom";
 import Cartitems from "../components/Cartitems";
 import { LoadingCircle } from "../tools/LoadingCircle";
+import { CartInfoInterface } from "./Home";
 import "../stylesheets/Cart.css";
 
 const Cart = () => {
-  const cartFromHomeLocalStorage: any = JSON.parse(localStorage.getItem('cart') || '[]')
 
-  const [cartInfo, setCartInfo]: any = useState(cartFromHomeLocalStorage)
+  const cartFromHomeLocalStorage: CartInfoInterface[] = JSON.parse(localStorage.getItem('cart') || '[]')
+
+  const [cartInfo, setCartInfo] = useState<CartInfoInterface[]>(cartFromHomeLocalStorage)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -20,23 +22,33 @@ const Cart = () => {
   }, [])
 
   const location: any = useLocation()
-  const cartData = location.state?.data
+  const originData = location.state?.data
+  const originItems: any[] = [];
+  let originSubData: any;
+  originSubData = originData.map((menu: any[]) => menu.map((food: { menu: any[]; }) => food.menu.map((items) => originItems.push(items))))
+  const cartItems: any[] = [];
+  let cartSubData: any;
+  cartSubData = cartInfo.map((items) => cartItems.push(items.item))
+  const filteredOriginItems = originItems.filter((val, idx) => val.item.includes(cartItems[idx]))
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartInfo))
+    console.log(originItems)
+    console.log(cartItems)
+    console.log(filteredOriginItems)
   }, [cartInfo])
 
   const cartTotal = () => {
-    return cartInfo.map((item: { price: any; }) => item.price).reduce((acc: string, val: string) => (parseFloat(acc) + parseFloat(val)).toFixed(2), 0)
+    return cartInfo.map((item) => item.price).reduce((acc, val) => (Number(acc) + Number(val)).toFixed(2), 0)
   }
 
-  const addItem = (ID: any) => {
-    setCartInfo((info: any[]) => info.map((item: any, i: any) => i === ID ? { ...item, price: (parseFloat(item.price) + parseFloat(cartData[ID].price)).toFixed(2), quantity: item.quantity + 1 } : item))
+  const addItem = (ID: number) => {
+    setCartInfo((info) => info.map((item, i) => i === ID ? { ...item, price: (Number(item.price) + Number(originData[ID])), quantity: item.quantity + 1 } : item));
   }
 
-  const removeItem = (ID: any) => {
+  const removeItem = (ID: number) => {
     if (cartInfo[ID].quantity !== 1) {
-      setCartInfo((info: any[]) => info.map((item: any, i: any) => i === ID ? { ...item, price: (parseFloat(item.price) - parseFloat(cartData[ID].price)).toFixed(2), quantity: item.quantity - 1 } : item))
+      setCartInfo((info) => info.map((item, i) => i === ID ? { ...item, price: (Number(item.price) - Number(originData[ID])), quantity: item.quantity - 1 } : item));
     }
   }
 
