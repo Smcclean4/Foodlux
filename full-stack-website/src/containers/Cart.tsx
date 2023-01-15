@@ -23,19 +23,14 @@ const Cart = () => {
 
   const location: any = useLocation()
   const originData = location.state?.data
-  const originItems: any[] = [];
-  let originSubData: any;
-  originSubData = originData.map((menu: any[]) => menu.map((food: { menu: any[]; }) => food.menu.map((items) => originItems.push(items))))
-  const cartItems: any[] = [];
-  let cartSubData: any;
-  cartSubData = cartInfo.map((items) => cartItems.push(items.item))
-  const filteredOriginItems = originItems.filter((val, idx) => val.item.includes(cartItems[idx]))
+  const origin: any[] = []
+  const originItems = originData.map((menu: any[]) => menu.map((food: { menu: any[]; }) => food.menu.map((items) => {
+    origin.push(items)
+  })))
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartInfo))
     console.log(originItems)
-    console.log(cartItems)
-    console.log(filteredOriginItems)
   }, [cartInfo])
 
   const cartTotal = () => {
@@ -43,12 +38,12 @@ const Cart = () => {
   }
 
   const addItem = (ID: number) => {
-    setCartInfo((info) => info.map((item, i) => i === ID ? { ...item, price: (Number(item.price) + Number(originData[ID])), quantity: item.quantity + 1 } : item));
+    setCartInfo((info) => info.map((item, i) => i === ID ? { ...item, price: (Number(item.price) + Number(origin[ID].price)).toFixed(2), quantity: item.quantity + 1 } : item));
   }
 
   const removeItem = (ID: number) => {
     if (cartInfo[ID].quantity !== 1) {
-      setCartInfo((info) => info.map((item, i) => i === ID ? { ...item, price: (Number(item.price) - Number(originData[ID])), quantity: item.quantity - 1 } : item));
+      setCartInfo((info) => info.map((item, i) => i === ID ? { ...item, price: (Number(item.price) - Number(origin[ID].price)).toFixed(2), quantity: item.quantity - 1 } : item));
     }
   }
 
