@@ -22,15 +22,16 @@ const Cart = () => {
   }, [])
 
   const location: any = useLocation()
-  const originData = location.state?.data
-  const origin: any[] = []
-  const originItems = originData.map((menu: any[]) => menu.map((food: { menu: any[]; }) => food.menu.map((items) => {
-    origin.push(items)
+  const homeData = location.state?.data
+
+  const home: any[] = []
+  const homeItems = homeData?.map((menu: any[]) => menu.map((food: { menu: any[]; }) => food.menu.map((items) => {
+    home.push(items)
   })))
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartInfo))
-    console.log(originItems)
+    console.log(homeItems)
   }, [cartInfo])
 
   const cartTotal = () => {
@@ -38,12 +39,12 @@ const Cart = () => {
   }
 
   const addItem = (ID: number) => {
-    setCartInfo((info) => info.map((item, i) => i === ID ? { ...item, price: (Number(item.price) + Number(origin[ID].price)).toFixed(2), quantity: item.quantity + 1 } : item));
+    setCartInfo((info) => info?.map((item, i) => i === ID ? { ...item, price: (Number(item.price) + Number(home[ID]?.price)).toFixed(2), quantity: item.quantity + 1 } : item));
   }
 
   const removeItem = (ID: number) => {
     if (cartInfo[ID].quantity !== 1) {
-      setCartInfo((info) => info.map((item, i) => i === ID ? { ...item, price: (Number(item.price) - Number(origin[ID].price)).toFixed(2), quantity: item.quantity - 1 } : item));
+      setCartInfo((info) => info?.map((item, i) => i === ID ? { ...item, price: (Number(item.price) - Number(home[ID]?.price)).toFixed(2), quantity: item.quantity - 1 } : item));
     }
   }
 
@@ -80,7 +81,7 @@ const Cart = () => {
                 },
                 margin: "20px",
               }}>
-              <Link className="checkout-link" to="/Checkout">
+              <Link className="checkout-link" to="/Checkout" state={{ data: cartInfo }}>
                 Proceed To Checkout
               </Link>
             </Button>

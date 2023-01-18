@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Box from "@mui/material/Box";
 import SendIcon from '@mui/icons-material/Send'
@@ -8,12 +8,15 @@ import MenuItem from '@mui/material/MenuItem';
 import Checkoutitems from "../components/Checkoutitems"
 import "../stylesheets/Checkout.css"
 import { LoadingCircle } from '../tools/LoadingCircle';
+import { CartInfoInterface } from "./Home";
 
 const Checkout = () => {
-  const cartFromCartLocalStorage: any = JSON.parse(localStorage.getItem('cart') || '[]')
 
-  const [checkoutData]: any = useState(cartFromCartLocalStorage)
+  const [checkoutData, setCheckoutData] = useState<CartInfoInterface[]>([])
   const [loading, setLoading] = useState(true)
+
+  const location: any = useLocation()
+  const cartData = location.state?.data
 
   useEffect(() => {
     const loadData = async () => {
@@ -21,6 +24,11 @@ const Checkout = () => {
       setLoading((loading) => !loading)
     }
     loadData();
+  }, [])
+
+  useEffect(() => {
+    console.log(cartData)
+    setCheckoutData(cartData)
   }, [])
 
   const countries = [
@@ -62,7 +70,7 @@ const Checkout = () => {
   }
 
   const checkoutTotal = () => {
-    return checkoutData.map((item: { price: any; }) => item.price).reduce((acc: string, val: string) => (parseFloat(acc) + parseFloat(val)).toFixed(2), 0)
+    return checkoutData?.map((item) => item.price).reduce((acc: string, val: string) => (parseFloat(acc) + parseFloat(val)).toFixed(2), 0)
   }
 
   const checkoutMuiStyling = {
@@ -190,7 +198,7 @@ const Checkout = () => {
               <div className="checkout-values-header-container">
                 <h1 className="checkout-values-header">Cart Items</h1>
                 <div className="checkout-values">
-                  {checkoutData.length !== 0 ? <Checkoutitems details={checkoutData} /> : <h1>There is no checkout data to show..</h1>}
+                  {checkoutData?.length !== 0 ? <Checkoutitems details={checkoutData} /> : <h1>There is no checkout data to show..</h1>}
                 </div>
               </div>
             </div>
