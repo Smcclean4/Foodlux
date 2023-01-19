@@ -1,37 +1,54 @@
 import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Cartitems from "../components/Cartitems";
+import { LoadingCircle } from "../tools/LoadingCircle";
+import { CartInfoInterface } from "../api/Categories";
+import { Categories } from "../api/Categories"
 import "../stylesheets/Cart.css";
 
 const Cart = () => {
-  const cartFromHomeLocalStorage: any = JSON.parse(localStorage.getItem('cart') || '[]')
 
-  const [cartInfo, setCartInfo]: any = useState(cartFromHomeLocalStorage)
+  const cartFromHomeLocalStorage: CartInfoInterface[] = JSON.parse(localStorage.getItem('cart') || '[]')
 
-  const location: any = useLocation()
-  const cartData = location.state?.data
+  const [cartInfo, setCartInfo] = useState<CartInfoInterface[]>(cartFromHomeLocalStorage)
+  const [loading, setLoading] = useState(true)
+
+  const { fastfood, finedine, snacks, alcohol } = Categories()
+  const homeData = [fastfood, finedine, snacks, alcohol]
+
+  const home: any[] = []
+  let homeItems: any
+  homeItems = homeData?.map((menu: any[]) => menu.map((food: { menu: any[]; }) => food.menu.map((items) => home.push(items))))
+
+  useEffect(() => {
+    const loadData = async () => {
+      await new Promise((p) => setTimeout(p, 1000));
+      setLoading((loading) => !loading)
+    }
+    loadData();
+  }, [])
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartInfo))
   }, [cartInfo])
 
   const cartTotal = () => {
-    return cartInfo.map((item: { price: any; }) => item.price).reduce((acc: string, val: string) => (parseFloat(acc) + parseFloat(val)).toFixed(2), 0)
+    return cartInfo.map((item) => item.price).reduce((acc, val) => (Number(acc) + Number(val)).toFixed(2), 0)
   }
 
-  const addItem = (ID: any) => {
-    setCartInfo((info: any[]) => info.map((item: any, i: any) => i === ID ? { ...item, price: (parseFloat(item.price) + parseFloat(cartData[ID].price)).toFixed(2), quantity: item.quantity + 1 } : item))
+  const addItem = (ID: number) => {
+    setCartInfo((info) => info?.map((item, i) => i === ID ? { ...item, price: (Number(item.price) + Number(home[ID].price)).toFixed(2), quantity: item.quantity + 1 } : item));
   }
 
-  const removeItem = (ID: any) => {
+  const removeItem = (ID: number) => {
     if (cartInfo[ID].quantity !== 1) {
-      setCartInfo((info: any[]) => info.map((item: any, i: any) => i === ID ? { ...item, price: (parseFloat(item.price) - parseFloat(cartData[ID].price)).toFixed(2), quantity: item.quantity - 1 } : item))
+      setCartInfo((info) => info?.map((item, i) => i === ID ? { ...item, price: (Number(item.price) - Number(home[ID].price)).toFixed(2), quantity: item.quantity - 1 } : item));
     }
   }
 
   return (
-    <>
+    !loading ? (
       <div className="cart-background">
         <div className="checkout-return-section">
           <div className="return-section">
@@ -63,7 +80,7 @@ const Cart = () => {
                 },
                 margin: "20px",
               }}>
-              <Link className="checkout-link" to="/Checkout">
+              <Link className="checkout-link" to="/Checkout" state={{ cart: cartInfo }}>
                 Proceed To Checkout
               </Link>
             </Button>
@@ -86,7 +103,9 @@ const Cart = () => {
           <h2 className="total">Total: {cartTotal()}</h2>
         </div>
       </div>
-    </>
+    ) : (
+      <LoadingCircle />
+    )
   );
 };
 

@@ -1,60 +1,53 @@
 .cartmodal-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   text-align: center;
   flex-direction: column;
   align-items: center;
   box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
-  background-color: white;
-  border: 2px solid whitesmoke;
-  border-radius: 12px;
-  position: fixed;
+  background-color: whitesmoke;
+  border-radius: 12px 0 12px 12px;
+  position: absolute;
   width: 300px;
   height: 375px;
   /* top, left , right , bottom etc. */
-  top: 215px;
-  right: 260px;
+  top: 230px;
+  right: 300px;
 }
 
 .cartmodal-close {
   padding: 0;
-  height: 0;
-  width: 0;
+  height: 30px;
+  width: 30px;
+  position: relative;
+  bottom: 30px;
   align-self: flex-end;
-  position: absolute;
-  top: 20px;
-  right: 40px;
-  background-color: white;
+  background: none;
   color: red;
   font-size: 2.0em;
   border: none;
   cursor: pointer;
+  background-color: whitesmoke;
+  border-radius: 12px 12px 0 0;
 }
 
-.modal-point {
-  position: fixed;
-  height: 50px;
-  width: 50px;
-  background-color: white;
-  top: 195px;
-  right: 392px;
-  transform: rotate(45deg);
-}
-
-.cartmodal-link {
-  color: white;
-  padding: 5px 10px;
-  border-radius: 12px;
-  font-size: 1.2em;
+.gotocart-link {
   text-decoration: none;
-  border: none;
-  background-color: red;
-  cursor: pointer;
-  margin: 10px;
+  color: white;
 }
 
 .modal-data {
   overflow: scroll;
+}
+
+.modal-data::-webkit-scrollbar,
+.modal-data::-webkit-scrollbar-corner {
+  backdrop-filter: blur(5px);
+}
+
+.modal-data::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 12px;
 }
 
 .modal-data-container {
@@ -64,12 +57,13 @@
   border-radius: 12px;
   padding: 10px;
   margin: 10px;
-  background-color: grey;
+  background-color: white;
+  box-shadow: 0px 1px 4px grey;
 }
 
 .modal-data-items {
   font-size: 1.0em;
-  color: white;
+  color: black;
   padding: 5px;
   margin: 0 5px;
 }

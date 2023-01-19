@@ -15,16 +15,24 @@
 
 .checkout-window {
   width: 70%;
-  background-color: whitesmoke;
   list-style-type: none;
-  height: 65vh;
+  height: 70vh;
   overflow: scroll;
-  border: 2px solid black;
+}
+
+.checkout-window::-webkit-scrollbar,
+.checkout-window::-webkit-scrollbar-corner {
+  backdrop-filter: blur(5px);
+}
+
+.checkout-window::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 12px;
 }
 
 .cart-section {
   display: flex;
-  margin: 25px;
+  margin: 0 0 35px 0;
   width: 60%;
   flex-direction: row;
   justify-content: left;
@@ -38,37 +46,62 @@
 .checkout-menu {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .checkout-fields {
-  width: 100%;
+  width: 80%;
 }
 
 .checkout-list {
-  width: 35%;
   margin: 10px;
+  width: 50%;
 }
 
 .checkout-header {
   font-family: 'Bubblegum Sans', sans-serif;
-  color: black;
+  width: 75%;
+  color: white;
   text-decoration: underline;
   text-decoration-color: red;
   font-size: 2.0em;
-  background-color: white;
-  padding: 5px 35px;
-  border-radius: 20px 20px 0 0;
+  background-color: black;
+  padding: 15px 35px;
+
+}
+
+.checkout-values-header-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.checkout-values-header {
+  color: white;
+  text-decoration: underline;
+  text-decoration-color: red;
+  font-family: 'Bubblegum Sans', sans-serif;
+  margin: 0 0 25px 0;
 }
 
 .checkout-values {
-  width: 50%;
   height: 100vh;
   min-height: 50vh;
   text-align: center;
-  margin: 10px 0;
-  padding: 15px 0;
+  padding: 25px 0;
   overflow: scroll;
+  border: 1px solid black;
+  border-radius: 12px;
+}
+
+.checkout-values::-webkit-scrollbar,
+.checkout-values::-webkit-scrollbar-corner {
+  backdrop-filter: blur(5px);
+}
+
+.checkout-values::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 12px;
 }
 
 .checkout-total-section {
@@ -76,7 +109,21 @@
 }
 
 .checkout-total {
+  font-size: 1.7em;
   font-family: 'Bubblegum Sans', sans-serif;
+  margin-top: 50px;
+}
+
+.expiration-date {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.expiration-slash {
+  font-size: 3.0em;
 }
 
 @media only screen and (max-width:350px),
