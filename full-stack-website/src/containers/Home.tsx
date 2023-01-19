@@ -12,6 +12,8 @@ import { CartModal } from "../modals/CartModal";
 import { useModal } from "../hooks/useModal";
 import { LoadingCircle } from "../tools/LoadingCircle"
 import { SearchBar } from "../containers/SearchBar";
+import { CartInfoInterface } from "../api/Categories";
+import { Categories } from "../api/Categories"
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import "../stylesheets/Home.css";
@@ -48,292 +50,14 @@ function allyProps(index: number) {
   };
 }
 
-export type CartType = {
-  item: string;
-  price: number;
-  desc: string;
-  image: string;
-  quantity: number;
-  type: string;
-  company: string;
-  category: string;
-}
-
-export interface CartInfoInterface {
-  [x: string]: any;
-  title: string;
-  menu: CartType[];
-}
-
 const Home = () => {
-  // storing dummy values of food
-  const [fastfood] = useState<CartInfoInterface[]>([
-    {
-      title: "Bob's Burgers",
-      menu: [
-        {
-          item: "Bacon Burger",
-          price: 4.25,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "food",
-          company: "Bob's Burgers",
-          category: "fastfood"
-        },
-        {
-          item: "Chili Cheese Fries",
-          price: 2.85,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "food",
-          company: "Bob's Burgers",
-          category: "fastfood"
-        },
-        {
-          item: "Jalepenos",
-          price: 3.25,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "food",
-          company: "Bob's Burgers",
-          category: "fastfood"
-        },
-        {
-          item: "Coke",
-          price: 5.25,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "drink",
-          company: "Bob's Burgers",
-          category: "fastfood"
-        },
-        {
-          item: "Sprite",
-          price: 1.25,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "drink",
-          company: "Bob's Burgers",
-          category: "fastfood"
-        },
-        {
-          item: "Lemonade",
-          price: 1.25,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "drink",
-          company: "Bob's Burgers",
-          category: "fastfood"
-        },
-      ],
-    },
-  ]);
-
-  const [snacks] = useState<CartInfoInterface[]>([
-    {
-      title: "8-11",
-      menu: [
-        {
-          item: "Hot Cat",
-          price: 9.25,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "food",
-          company: "8-11",
-          category: "snacks"
-        },
-        {
-          item: "Wings and Tings",
-          price: 7.55,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "food",
-          company: "8-11",
-          category: "snacks"
-        },
-        {
-          item: "Smetzels",
-          price: 2.15,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "food",
-          company: "8-11",
-          category: "snacks"
-        },
-        {
-          item: "Water",
-          price: 1.25,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "drink",
-          company: "8-11",
-          category: "snacks"
-        },
-        {
-          item: "Gatorade",
-          price: 1.25,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "drink",
-          company: "8-11",
-          category: "snacks"
-        },
-        {
-          item: "Sprite",
-          price: 1.25,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "drink",
-          company: "8-11",
-          category: "snacks"
-        },
-      ],
-    },
-  ]);
-
-  const [finedine] = useState<CartInfoInterface[]>([
-    {
-      title: "Puth's Chriss",
-      menu: [
-        {
-          item: "Ramen",
-          price: 8.95,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "food",
-          company: "Puth's Chriss",
-          category: "finedine"
-        },
-        {
-          item: "Wonton Sushi",
-          price: 3.75,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "food",
-          company: "Puth's Chriss",
-          category: "finedine"
-        },
-        {
-          item: "Steak and Eggs",
-          price: 10.45,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "food",
-          company: "Puth's Chriss",
-          category: "finedine"
-        },
-        {
-          item: "Champagne",
-          price: 1.25,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "drink",
-          company: "Puth's Chriss",
-          category: "finedine"
-        },
-        {
-          item: "Water",
-          price: 1.25,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "drink",
-          company: "Puth's Chriss",
-          category: "finedine"
-        },
-        {
-          item: "Strawberry Lemonade",
-          price: 1.25,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "drink",
-          company: "Puth's Chriss",
-          category: "finedine"
-        },
-      ],
-    },
-  ]);
-
-  const [alcohol] = useState<CartInfoInterface[]>([
-    {
-      title: "Johnny's Liqour",
-      menu: [
-        {
-          item: "Crackers",
-          price: 1.15,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "food",
-          company: "Johnny's Liqour",
-          category: "alcohol"
-        },
-        {
-          item: "Salami",
-          price: 1.05,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "food",
-          company: "Johnny's Liqour",
-          category: "alcohol"
-        },
-        {
-          item: "Wine",
-          price: 1.25,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "drink",
-          company: "Johnny's Liqour",
-          category: "alcohol"
-        },
-        {
-          item: "Titos Vodka",
-          price: 1.25,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "drink",
-          company: "Johnny's Liqour",
-          category: "alcohol"
-        },
-        {
-          item: "Hennessey",
-          price: 1.25,
-          desc: "Get the money and get it all the time",
-          image: "money.jpg",
-          quantity: 1,
-          type: "drink",
-          company: "Johnny's Liqour",
-          category: "alcohol"
-        },
-      ],
-    },
-  ]);
 
   // getting cart from local storage
   const cartFromHomeLocalStorage: CartInfoInterface[] = JSON.parse(localStorage.getItem("cart") || "[]");
 
   // store items into cart
   const [cart, setCart] = useState<CartInfoInterface[]>(cartFromHomeLocalStorage);
+
   // loading state
   const [loading, setLoading] = useState(true)
 
@@ -356,6 +80,7 @@ const Home = () => {
   let username = "Carolina";
 
   // all categories
+  const { fastfood, finedine, snacks, alcohol }: any = Categories()
   const categories = [fastfood, finedine, snacks, alcohol]
 
   const addCart = (food: CartInfoInterface) => {
@@ -377,7 +102,6 @@ const Home = () => {
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
-    console.log(cartFromHomeLocalStorage)
   }, [cart]);
 
   return (
@@ -387,11 +111,11 @@ const Home = () => {
         {/* will be replaced with actual user */}
         <div className="dynamic-cart-username">
           <h1 className="username">Hi, {`${username}`}!</h1>
-          <SearchBar data={[fastfood, finedine, snacks, alcohol]} />
+          <SearchBar data={categories} />
           <div>
             <button className="modal-button" onClick={toggle}>
               <ShoppingCartIcon className="cart" />
-              <CartModal isShowing={isShowing} hide={toggle} state={cart} origin={categories} />
+              <CartModal isShowing={isShowing} hide={toggle} state={cart} />
             </button>
             {/* display cart count */}
             <p className="cart-count">{getCartTotal()}</p>
@@ -445,7 +169,7 @@ const Home = () => {
             onChangeIndex={handleChangeIndex}
           >
             <TabPanel value={value} index={0} dir={theme.direction}>
-              {fastfood.map((val, idx) => {
+              {fastfood?.map((val: { title: any; menu: any; }, idx: React.Key | null | undefined) => {
                 return (
                   <Homeitems
                     key={idx}
@@ -457,7 +181,7 @@ const Home = () => {
               })}
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
-              {finedine.map((val, idx) => {
+              {finedine?.map((val: { title: any; menu: any; }, idx: React.Key | null | undefined) => {
                 return (
                   <Homeitems
                     key={idx}
@@ -469,7 +193,7 @@ const Home = () => {
               })}
             </TabPanel>
             <TabPanel value={value} index={2} dir={theme.direction}>
-              {snacks.map((val, idx) => {
+              {snacks?.map((val: { title: any; menu: any; }, idx: React.Key | null | undefined) => {
                 return (
                   <Homeitems
                     key={idx}
@@ -481,7 +205,7 @@ const Home = () => {
               })}
             </TabPanel>
             <TabPanel value={value} index={3} dir={theme.direction}>
-              {alcohol.map((val, idx) => {
+              {alcohol?.map((val: { title: any; menu: any; }, idx: React.Key | null | undefined) => {
                 return (
                   <Homeitems
                     key={idx}

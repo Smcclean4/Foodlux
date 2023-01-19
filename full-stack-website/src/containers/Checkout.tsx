@@ -8,15 +8,15 @@ import MenuItem from '@mui/material/MenuItem';
 import Checkoutitems from "../components/Checkoutitems"
 import "../stylesheets/Checkout.css"
 import { LoadingCircle } from '../tools/LoadingCircle';
-import { CartInfoInterface } from "./Home";
+import { CartInfoInterface } from "../api/Categories";
 
 const Checkout = () => {
 
   const [checkoutData, setCheckoutData] = useState<CartInfoInterface[]>([])
   const [loading, setLoading] = useState(true)
 
-  const location: any = useLocation()
-  const cartData = location.state?.data
+  const location: any = useLocation();
+  const cartData = location.state?.cart
 
   useEffect(() => {
     const loadData = async () => {
@@ -24,10 +24,6 @@ const Checkout = () => {
       setLoading((loading) => !loading)
     }
     loadData();
-  }, [])
-
-  useEffect(() => {
-    console.log(cartData)
     setCheckoutData(cartData)
   }, [])
 
@@ -70,7 +66,7 @@ const Checkout = () => {
   }
 
   const checkoutTotal = () => {
-    return checkoutData?.map((item) => item.price).reduce((acc: string, val: string) => (parseFloat(acc) + parseFloat(val)).toFixed(2), 0)
+    return checkoutData.map((item) => item.price).reduce((acc: string, val: string) => (parseFloat(acc) + parseFloat(val)).toFixed(2), 0)
   }
 
   const checkoutMuiStyling = {

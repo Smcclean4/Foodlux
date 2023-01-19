@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Button from "@mui/material/Button";
 import '../stylesheets/CartModal.css'
 
-export const CartModal = ({ isShowing, hide, state, origin }) => isShowing ? createPortal(
+export const CartModal = ({ isShowing, hide, state }) => isShowing ? createPortal(
   <React.Fragment>
     <div className="cartmodal-container">
       <button className="cartmodal-close" onClick={hide}>
@@ -27,7 +27,7 @@ export const CartModal = ({ isShowing, hide, state, origin }) => isShowing ? cre
           backgroundColor: "rgb(162, 6, 6)",
         },
       }}>
-        <Link to="/Cart" className="gotocart-link" state={{ data: origin }}>
+        <Link to="/Cart" className="gotocart-link">
           Go to cart
         </Link>
       </Button>

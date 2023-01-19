@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Cartitems from "../components/Cartitems";
 import { LoadingCircle } from "../tools/LoadingCircle";
-import { CartInfoInterface } from "./Home";
+import { CartInfoInterface } from "../api/Categories";
+import { Categories } from "../api/Categories"
 import "../stylesheets/Cart.css";
 
 const Cart = () => {
@@ -13,6 +14,13 @@ const Cart = () => {
   const [cartInfo, setCartInfo] = useState<CartInfoInterface[]>(cartFromHomeLocalStorage)
   const [loading, setLoading] = useState(true)
 
+  const { fastfood, finedine, snacks, alcohol } = Categories()
+  const homeData = [fastfood, finedine, snacks, alcohol]
+
+  const home: any[] = []
+  let homeItems: any
+  homeItems = homeData?.map((menu: any[]) => menu.map((food: { menu: any[]; }) => food.menu.map((items) => home.push(items))))
+
   useEffect(() => {
     const loadData = async () => {
       await new Promise((p) => setTimeout(p, 1000));
@@ -21,17 +29,8 @@ const Cart = () => {
     loadData();
   }, [])
 
-  const location: any = useLocation()
-  const homeData = location.state?.data
-
-  const home: any[] = []
-  const homeItems = homeData?.map((menu: any[]) => menu.map((food: { menu: any[]; }) => food.menu.map((items) => {
-    home.push(items)
-  })))
-
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartInfo))
-    console.log(homeItems)
   }, [cartInfo])
 
   const cartTotal = () => {
@@ -39,12 +38,12 @@ const Cart = () => {
   }
 
   const addItem = (ID: number) => {
-    setCartInfo((info) => info?.map((item, i) => i === ID ? { ...item, price: (Number(item.price) + Number(home[ID]?.price)).toFixed(2), quantity: item.quantity + 1 } : item));
+    setCartInfo((info) => info?.map((item, i) => i === ID ? { ...item, price: (Number(item.price) + Number(home[ID].price)).toFixed(2), quantity: item.quantity + 1 } : item));
   }
 
   const removeItem = (ID: number) => {
     if (cartInfo[ID].quantity !== 1) {
-      setCartInfo((info) => info?.map((item, i) => i === ID ? { ...item, price: (Number(item.price) - Number(home[ID]?.price)).toFixed(2), quantity: item.quantity - 1 } : item));
+      setCartInfo((info) => info?.map((item, i) => i === ID ? { ...item, price: (Number(item.price) - Number(home[ID].price)).toFixed(2), quantity: item.quantity - 1 } : item));
     }
   }
 
@@ -81,7 +80,7 @@ const Cart = () => {
                 },
                 margin: "20px",
               }}>
-              <Link className="checkout-link" to="/Checkout" state={{ data: cartInfo }}>
+              <Link className="checkout-link" to="/Checkout" state={{ cart: cartInfo }}>
                 Proceed To Checkout
               </Link>
             </Button>

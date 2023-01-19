@@ -48,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-swipeable-views": "^0.13.1",
     "jest": "^27.5.1",
     "source-map-loader": "^4.0.0",
     "ts-loader": "^9.4.1",
