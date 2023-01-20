@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Button from "@mui/material/Button";
 import "../stylesheets/SearchBar.css"
 
-const SearchBar = ({ data, navclick }) => {
+const SearchBar = ({ data }) => {
   const [userInput, setUserInput] = useState("")
   const [dropDown, setDropDown]: any = useState([])
   const [open, setOpen] = useState(false)
@@ -22,6 +22,10 @@ const SearchBar = ({ data, navclick }) => {
     setOpen(!open)
   }
 
+  const clickingSearchItems = (ID: React.Key) => {
+    console.log(`search item clicked at ${ID}`)
+  };
+
   return (
     <div className="searchbar-navigation">
       <div className="searchbar-container">
@@ -38,10 +42,10 @@ const SearchBar = ({ data, navclick }) => {
       {open ? (
         <div className="dropdown">
           {dropDown?.length !== 0 ? (
-            dropDown?.map((dropDownItems: { item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; company: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
+            dropDown?.map((dropDownItems: { item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; company: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key) => {
               return (
-                <div key={idx}>
-                  <ul className="dropdown-items" onClick={() => navclick(idx)}>
+                <div key={idx} onClick={() => clickingSearchItems(idx)}>
+                  <ul className="dropdown-items">
                     <li>
                       <h2>{dropDownItems.item}</h2>
                       <h5><i>from {dropDownItems.company}</i></h5>

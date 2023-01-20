@@ -8,7 +8,7 @@ const Fooditems = ({ menu, title, addtocart }) => {
 
   const [render, setRender] = useState(false);
 
-  const handleClick = () => {
+  const renderChange = () => {
     setRender(!render);
   };
 
@@ -20,7 +20,7 @@ const Fooditems = ({ menu, title, addtocart }) => {
             sx={{ marginBottom: "5px", backgroundColor: "dodgerblue" }}
             variant="contained"
             className="button active"
-            onClick={() => handleClick()}
+            onClick={() => renderChange()}
           >
             {title}
           </Button>

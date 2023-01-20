@@ -86,16 +86,11 @@ const Home = () => {
   };
 
   const addCart = (food: CartInfoInterface) => {
-    // set cart data
     setCart([...cart, food]);
   };
 
   const getCartTotal = () => {
     return cart.reduce((sum: number) => sum + 1, 0);
-  };
-
-  const clickingSearchItems = (ID: number) => {
-    console.log(`search item clicked at ${ID}`)
   };
 
   useEffect(() => {
@@ -117,7 +112,7 @@ const Home = () => {
         {/* will be replaced with actual user */}
         <div className="dynamic-cart-username">
           <h1 className="username">Hi, {`${username}`}!</h1>
-          <SearchBar data={categories} navclick={clickingSearchItems} />
+          <SearchBar data={categories} />
           <div>
             <button className="modal-button" onClick={toggle}>
               <ShoppingCartIcon className="cart" />
