@@ -11,7 +11,7 @@ import Homeitems from "../components/Homeitems";
 import { CartModal } from "../modals/CartModal";
 import { useModal } from "../hooks/useModal";
 import { LoadingCircle } from "../tools/LoadingCircle"
-import { SearchBar } from "../containers/SearchBar";
+import SearchBar from "../containers/SearchBar";
 import { CartInfoInterface } from "../api/Categories";
 import { Categories } from "../api/Categories"
 import Tabs from "@mui/material/Tabs";
@@ -68,13 +68,7 @@ const Home = () => {
   const [value, setValue] = useState(0);
   const theme = useTheme();
 
-  const handleChangeIndex = (index: React.SetStateAction<number>) => {
-    setValue(index);
-  };
-
-  const handleChange = (event: any, newValue: React.SetStateAction<number>) => {
-    setValue(newValue);
-  };
+  const [searchClickedValue, setSearchClickedValue] = useState('')
 
   // example username
   let username = "Carolina";
@@ -83,6 +77,14 @@ const Home = () => {
   const { fastfood, finedine, snacks, alcohol }: any = Categories()
   const categories = [fastfood, finedine, snacks, alcohol]
 
+  const handleChangeIndex = (index: React.SetStateAction<number>) => {
+    setValue(index);
+  };
+
+  const handleChange = (event: any, newValue: React.SetStateAction<number>) => {
+    setValue(newValue);
+  };
+
   const addCart = (food: CartInfoInterface) => {
     // set cart data
     setCart([...cart, food]);
@@ -90,6 +92,10 @@ const Home = () => {
 
   const getCartTotal = () => {
     return cart.reduce((sum: number) => sum + 1, 0);
+  };
+
+  const clickingSearchItems = (ID: number) => {
+    console.log(`search item clicked at ${ID}`)
   };
 
   useEffect(() => {
@@ -111,7 +117,7 @@ const Home = () => {
         {/* will be replaced with actual user */}
         <div className="dynamic-cart-username">
           <h1 className="username">Hi, {`${username}`}!</h1>
-          <SearchBar data={categories} />
+          <SearchBar data={categories} navclick={clickingSearchItems} />
           <div>
             <button className="modal-button" onClick={toggle}>
               <ShoppingCartIcon className="cart" />

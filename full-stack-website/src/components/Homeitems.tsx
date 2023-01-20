@@ -1,24 +1,15 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import "../stylesheets/Homeitems.css";
 
 const Fooditems = ({ menu, title, addtocart }) => {
-  // checking whether active is on or off based on true or false
+
   const [render, setRender] = useState(false);
-  // previously used useEffect to combat opening 2 at once??
-  let statusRef: any = useRef();
 
-  useEffect(() => {
-    let status = document.querySelector(".button");
-    statusRef.current = status
-  });
-
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    statusRef.current.classList.toggle("active", render === true);
-    statusRef.current.classList.contains("active") ? setRender(false) : setRender(true);
+  const handleClick = () => {
+    setRender(!render);
   };
 
   return (
@@ -29,7 +20,7 @@ const Fooditems = ({ menu, title, addtocart }) => {
             sx={{ marginBottom: "5px", backgroundColor: "dodgerblue" }}
             variant="contained"
             className="button active"
-            onClick={(e) => handleClick(e)}
+            onClick={() => handleClick()}
           >
             {title}
           </Button>

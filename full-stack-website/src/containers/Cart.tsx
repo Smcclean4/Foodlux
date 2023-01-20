@@ -15,7 +15,8 @@ const Cart = () => {
   const [loading, setLoading] = useState(true)
 
   const { fastfood, finedine, snacks, alcohol } = Categories()
-  const homeData = [fastfood, finedine, snacks, alcohol]
+  const categories = [fastfood, finedine, snacks, alcohol]
+  const homeData = categories
 
   const home: any[] = []
   let homeItems: any
@@ -24,7 +25,7 @@ const Cart = () => {
   useEffect(() => {
     const loadData = async () => {
       await new Promise((p) => setTimeout(p, 1000));
-      setLoading((loading) => !loading)
+      setLoading((loading) => !loading);
     }
     loadData();
   }, [])

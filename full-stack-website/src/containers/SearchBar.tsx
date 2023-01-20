@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Button from "@mui/material/Button";
 import "../stylesheets/SearchBar.css"
 
-export const SearchBar = ({ data }) => {
+const SearchBar = ({ data, navclick }) => {
   const [userInput, setUserInput] = useState("")
   const [dropDown, setDropDown]: any = useState([])
   const [open, setOpen] = useState(false)
@@ -37,15 +37,17 @@ export const SearchBar = ({ data }) => {
       </div>
       {open ? (
         <div className="dropdown">
-          {dropDown.length !== 0 ? (
-            dropDown?.map((dropDownItems: any, idx: React.Key | null | undefined) => {
+          {dropDown?.length !== 0 ? (
+            dropDown?.map((dropDownItems: { item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; company: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
               return (
-                <ul key={idx} className="dropdown-items">
-                  <li>
-                    <h2>{dropDownItems.item}</h2>
-                    <h5><i>from {dropDownItems.company}</i></h5>
-                  </li>
-                </ul>
+                <div key={idx}>
+                  <ul className="dropdown-items" onClick={() => navclick(idx)}>
+                    <li>
+                      <h2>{dropDownItems.item}</h2>
+                      <h5><i>from {dropDownItems.company}</i></h5>
+                    </li>
+                  </ul>
+                </div>
               )
             })
           ) : <h4>Item Cannot Be Found.</h4>}
@@ -54,3 +56,5 @@ export const SearchBar = ({ data }) => {
     </div>
   )
 }
+
+export default SearchBar
