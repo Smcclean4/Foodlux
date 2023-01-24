@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import "../stylesheets/Homeitems.css";
 
-const Fooditems = ({ menu, title, addtocart }) => {
+const Homeitems = ({ menu, title, addtocart }) => {
 
   const [render, setRender] = useState(false);
 
@@ -160,4 +160,4 @@ const Fooditems = ({ menu, title, addtocart }) => {
   );
 };
 
-export default Fooditems;
+export default Homeitems;

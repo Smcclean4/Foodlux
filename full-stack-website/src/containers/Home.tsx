@@ -68,8 +68,6 @@ const Home = () => {
   const [value, setValue] = useState(0);
   const theme = useTheme();
 
-  const [searchClickedValue, setSearchClickedValue] = useState('')
-
   // example username
   let username = "Carolina";
 
@@ -88,6 +86,11 @@ const Home = () => {
   const addCart = (food: CartInfoInterface) => {
     setCart([...cart, food]);
   };
+
+  const searchForItem = (searchTermItem: string, searchTermCategory: string) => {
+    searchTermCategory == 'fastfood' ? setValue(0) : searchTermCategory == 'finedine' ? setValue(1) : searchTermCategory == 'snacks' ? setValue(2) : searchTermCategory == 'alcohol' ? setValue(3) : setValue(0)
+    console.log(searchTermItem, searchTermCategory)
+  }
 
   const getCartTotal = () => {
     return cart.reduce((sum: number) => sum + 1, 0);
@@ -112,7 +115,7 @@ const Home = () => {
         {/* will be replaced with actual user */}
         <div className="dynamic-cart-username">
           <h1 className="username">Hi, {`${username}`}!</h1>
-          <SearchBar data={categories} />
+          <SearchBar data={categories} searchforitem={searchForItem} />
           <div>
             <button className="modal-button" onClick={toggle}>
               <ShoppingCartIcon className="cart" />
