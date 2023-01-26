@@ -5,7 +5,7 @@ import "../stylesheets/SearchBar.css"
 
 const SearchBar = ({ data, searchforitem }) => {
   const [userInput, setUserInput]: any = useState("")
-  const [userInputCategory, setUserInputCategory]: any = useState("")
+  const [userInputInfo, setUserInputInfo]: any = useState({ searchTermCompany: '', searchTermCategory: '' })
   const [dropDown, setDropDown] = useState([])
   const [open, setOpen] = useState(false)
 
@@ -21,7 +21,7 @@ const SearchBar = ({ data, searchforitem }) => {
   }
 
   const searchClick = () => {
-    searchforitem(userInput.toLowerCase(), userInputCategory)
+    searchforitem(userInput, userInputInfo)
     setUserInput("")
   }
 
@@ -55,7 +55,7 @@ const SearchBar = ({ data, searchforitem }) => {
                   <Button
                     onMouseDown={() => {
                       setUserInput(dropDownItems.item)
-                      setUserInputCategory(dropDownItems.category)
+                      setUserInputInfo({ searchTermCompany: dropDownItems.company, searchTermCategory: dropDownItems.category })
                     }}
                     sx={{
                       color: "black"

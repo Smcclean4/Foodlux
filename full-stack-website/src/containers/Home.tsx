@@ -75,6 +75,9 @@ const Home = () => {
   const { fastfood, finedine, snacks, alcohol }: any = Categories()
   const categories = [fastfood, finedine, snacks, alcohol]
 
+  // search item and company
+  const [infoFromSearch, setItemsFromSearch] = useState({ itemFromSearch: '', companyFromSearch: '' })
+
   const handleChangeIndex = (index: React.SetStateAction<number>) => {
     setValue(index);
   };
@@ -87,9 +90,10 @@ const Home = () => {
     setCart([...cart, food]);
   };
 
-  const searchForItem = (searchTermItem: string, searchTermCategory: string) => {
+  const searchForItem = (searchTermItem: string, searchTermInfo: string) => {
+    const { searchTermCompany, searchTermCategory }: any = searchTermInfo;
     searchTermCategory == 'fastfood' ? setValue(0) : searchTermCategory == 'finedine' ? setValue(1) : searchTermCategory == 'snacks' ? setValue(2) : searchTermCategory == 'alcohol' ? setValue(3) : setValue(0)
-    console.log(searchTermItem, searchTermCategory)
+    setItemsFromSearch({ itemFromSearch: searchTermItem, companyFromSearch: searchTermCompany })
   }
 
   const getCartTotal = () => {
@@ -180,6 +184,7 @@ const Home = () => {
                     title={val.title}
                     menu={val.menu}
                     addtocart={addCart}
+                    searchinfo={infoFromSearch}
                   />
                 );
               })}
@@ -192,6 +197,7 @@ const Home = () => {
                     title={val.title}
                     menu={val.menu}
                     addtocart={addCart}
+                    searchinfo={infoFromSearch}
                   />
                 );
               })}
@@ -204,6 +210,7 @@ const Home = () => {
                     title={val.title}
                     menu={val.menu}
                     addtocart={addCart}
+                    searchinfo={infoFromSearch}
                   />
                 );
               })}
@@ -216,6 +223,7 @@ const Home = () => {
                     title={val.title}
                     menu={val.menu}
                     addtocart={addCart}
+                    searchinfo={infoFromSearch}
                   />
                 );
               })}

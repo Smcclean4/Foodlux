@@ -1,16 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import "../stylesheets/Homeitems.css";
 
-const Homeitems = ({ menu, title, addtocart }) => {
+const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
 
   const [render, setRender] = useState(false);
+  const [found, setFound] = useState("rgba(255, 0, 0, 0.547)");
 
   const renderChange = () => {
     setRender(!render);
   };
+
+  const searchItemIdentified = (item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined) => {
+    setTimeout(() => {
+      setFound("")
+    }, 1000)
+    return searchinfo.itemFromSearch === item ? found : ""
+  }
+
+  const compareSearchInfo = () => {
+    return searchinfo.companyFromSearch === title ? setRender(true) : null
+  }
+
+  useEffect(() => {
+    compareSearchInfo()
+  }, [searchinfo])
 
   return (
     <>
@@ -57,19 +73,17 @@ const Homeitems = ({ menu, title, addtocart }) => {
                 <Grid item xs={4}>
                   {menu?.map((food: { type: string; item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
                     return food.type === "food" ? (
-                      <div key={idx}>
+                      <div key={idx} style={{ backgroundColor: searchItemIdentified(food.item) }}>
                         <li>{food.item}</li>
                       </div>
-                    ) : (
-                      ""
-                    );
+                    ) : ""
                   })}
                 </Grid>
                 <Grid item xs={2}>
                   {menu?.map((prices: { type: string; price: number | boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
                     return prices.type === "food" ? (
                       <div key={idx}>
-                        <li>{prices.price}</li>
+                        <li>&#36;{prices.price}</li>
                       </div>
                     ) : (
                       ""
@@ -115,7 +129,7 @@ const Homeitems = ({ menu, title, addtocart }) => {
                 <Grid item xs={4}>
                   {menu?.map((drink: { type: string; item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
                     return drink.type === "drink" ? (
-                      <div key={idx}>
+                      <div key={idx} style={{ backgroundColor: searchItemIdentified(drink.item) }}>
                         <li>{drink.item}</li>
                       </div>
                     ) : (
@@ -127,7 +141,7 @@ const Homeitems = ({ menu, title, addtocart }) => {
                   {menu?.map((prices: { type: string; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
                     return prices.type === "drink" ? (
                       <div key={idx}>
-                        <li>{prices.price}</li>
+                        <li>&#36;{prices.price}</li>
                       </div>
                     ) : (
                       ""
