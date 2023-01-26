@@ -1,25 +1,32 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import "../stylesheets/Homeitems.css";
 
-const Fooditems = ({ menu, title, addtocart }) => {
-  // checking whether active is on or off based on true or false
+const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
+
   const [render, setRender] = useState(false);
-  // previously used useEffect to combat opening 2 at once??
-  let statusRef: any = useRef();
+  const [found, setFound] = useState("rgba(255, 0, 0, 0.547)");
+
+  const renderChange = () => {
+    setRender(!render);
+  };
+
+  const searchItemIdentified = (item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined) => {
+    setTimeout(() => {
+      setFound("")
+    }, 1000)
+    return searchinfo.itemFromSearch === item ? found : ""
+  }
+
+  const compareSearchInfo = () => {
+    return searchinfo.companyFromSearch === title ? setRender(true) : null
+  }
 
   useEffect(() => {
-    let status = document.querySelector(".button");
-    statusRef.current = status
-  });
-
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    statusRef.current.classList.toggle("active", render === true);
-    statusRef.current.classList.contains("active") ? setRender(false) : setRender(true);
-  };
+    compareSearchInfo()
+  }, [searchinfo])
 
   return (
     <>
@@ -29,7 +36,7 @@ const Fooditems = ({ menu, title, addtocart }) => {
             sx={{ marginBottom: "5px", backgroundColor: "dodgerblue" }}
             variant="contained"
             className="button active"
-            onClick={(e) => handleClick(e)}
+            onClick={() => renderChange()}
           >
             {title}
           </Button>
@@ -66,19 +73,17 @@ const Fooditems = ({ menu, title, addtocart }) => {
                 <Grid item xs={4}>
                   {menu?.map((food: { type: string; item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
                     return food.type === "food" ? (
-                      <div key={idx}>
+                      <div key={idx} style={{ backgroundColor: searchItemIdentified(food.item) }}>
                         <li>{food.item}</li>
                       </div>
-                    ) : (
-                      ""
-                    );
+                    ) : ""
                   })}
                 </Grid>
                 <Grid item xs={2}>
                   {menu?.map((prices: { type: string; price: number | boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
                     return prices.type === "food" ? (
                       <div key={idx}>
-                        <li>{prices.price}</li>
+                        <li>&#36;{prices.price}</li>
                       </div>
                     ) : (
                       ""
@@ -124,7 +129,7 @@ const Fooditems = ({ menu, title, addtocart }) => {
                 <Grid item xs={4}>
                   {menu?.map((drink: { type: string; item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
                     return drink.type === "drink" ? (
-                      <div key={idx}>
+                      <div key={idx} style={{ backgroundColor: searchItemIdentified(drink.item) }}>
                         <li>{drink.item}</li>
                       </div>
                     ) : (
@@ -136,7 +141,7 @@ const Fooditems = ({ menu, title, addtocart }) => {
                   {menu?.map((prices: { type: string; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
                     return prices.type === "drink" ? (
                       <div key={idx}>
-                        <li>{prices.price}</li>
+                        <li>&#36;{prices.price}</li>
                       </div>
                     ) : (
                       ""
@@ -169,4 +174,4 @@ const Fooditems = ({ menu, title, addtocart }) => {
   );
 };
 
-export default Fooditems;
+export default Homeitems;

@@ -15,7 +15,7 @@ export const CartModal = ({ isShowing, hide, state }) => isShowing ? createPorta
           return state?.length !== 0 ? (
             <div className="modal-data-container" key={idx}>
               <p className="modal-data-items">{item.item}</p>
-              <p className="modal-data-items">{item.price}</p>
+              <p className="modal-data-items">&#36;{item.price}</p>
               <p className="modal-data-items">{item.quantity}</p>
             </div>
           ) : ""

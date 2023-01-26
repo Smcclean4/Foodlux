@@ -13,9 +13,9 @@ const Cart = () => {
 
   const [cartInfo, setCartInfo] = useState<CartInfoInterface[]>(cartFromHomeLocalStorage)
   const [loading, setLoading] = useState(true)
-
   const { fastfood, finedine, snacks, alcohol } = Categories()
-  const homeData = [fastfood, finedine, snacks, alcohol]
+  const categories = [fastfood, finedine, snacks, alcohol]
+  const homeData = categories
 
   const home: any[] = []
   let homeItems: any
@@ -24,13 +24,14 @@ const Cart = () => {
   useEffect(() => {
     const loadData = async () => {
       await new Promise((p) => setTimeout(p, 1000));
-      setLoading((loading) => !loading)
+      setLoading((loading) => !loading);
     }
     loadData();
   }, [])
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartInfo))
+    // item.quantity is less than or equal to 1 set icons!!!
   }, [cartInfo])
 
   const cartTotal = () => {

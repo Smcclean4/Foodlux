@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import RemoveIcon from '@mui/icons-material/Remove';
+import AddIcon from '@mui/icons-material/Add';
 import { styled } from "@mui/material/styles";
 import "../stylesheets/Cartitems.css";
 
@@ -32,7 +35,7 @@ const Cartitems = ({ items, additem, removeitem }) => {
               <Grid item xs={3} className="cart-items">
                 <Item>
                   <div>
-                    <li>{item.price}</li>
+                    <li>&#36;{item.price}</li>
                   </div>
                 </Item>
               </Grid>
@@ -40,16 +43,18 @@ const Cartitems = ({ items, additem, removeitem }) => {
                 <Item
                   onClick={() => removeitem(idx)}
                   sx={{
+                    display: "flex",
+                    justifyContent: "center",
                     color: "red",
                     fontSize: "1.5em",
-                    padding: "0 5px",
+                    padding: "5px",
                     '&:hover': {
                       cursor: "pointer",
                       backgroundColor: "whitesmoke",
                     }
                   }}
                 >
-                  -
+                  {item.quantity === 1 ? <DeleteForeverIcon /> : <RemoveIcon />}
                 </Item>
               </Grid>
               <Grid item xs={1} className="cart-items">
@@ -67,16 +72,18 @@ const Cartitems = ({ items, additem, removeitem }) => {
                 <Item
                   onClick={() => additem(idx)}
                   sx={{
+                    display: "flex",
+                    justifyContent: "center",
                     color: "dodgerblue",
                     fontSize: "1.5em",
-                    padding: "0 5px",
+                    padding: "5px",
                     '&:hover': {
                       cursor: "pointer",
                       backgroundColor: "whitesmoke",
                     }
                   }}
                 >
-                  +
+                  <AddIcon />
                 </Item>
               </Grid>
               <Grid item xs={4} className="cart-items">
