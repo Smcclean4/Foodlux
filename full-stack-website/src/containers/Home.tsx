@@ -92,7 +92,7 @@ const Home = () => {
 
   const searchForItem = (searchTermItem: string, searchTermInfo: string) => {
     const { searchTermCompany, searchTermCategory }: any = searchTermInfo;
-    searchTermCategory == 'fastfood' ? setValue(0) : searchTermCategory == 'finedine' ? setValue(1) : searchTermCategory == 'snacks' ? setValue(2) : searchTermCategory == 'alcohol' ? setValue(3) : setValue(0)
+    searchTermCategory === 'fastfood' ? setValue(0) : searchTermCategory === 'finedine' ? setValue(1) : searchTermCategory === 'snacks' ? setValue(2) : searchTermCategory === 'alcohol' ? setValue(3) : setValue(0)
     setItemsFromSearch({ itemFromSearch: searchTermItem, companyFromSearch: searchTermCompany })
   }
 

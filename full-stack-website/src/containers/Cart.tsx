@@ -31,7 +31,6 @@ const Cart = () => {
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartInfo))
-    // item.quantity is less than or equal to 1 set icons!!!
   }, [cartInfo])
 
   const cartTotal = () => {

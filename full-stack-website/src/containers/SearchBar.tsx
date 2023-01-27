@@ -13,9 +13,7 @@ const SearchBar = ({ data, searchforitem }) => {
     setUserInput(e.target.value)
     const dataItems: any = [];
     let dataInfo: CartInfoInterface;
-    dataInfo = data.map((menu: { menu: any; }[]) => menu.map((food: { menu: any[] }) => food.menu.map((items: any) => {
-      dataItems.push(items)
-    })))
+    dataInfo = data.map((menu: { menu: any; }[]) => menu.map((food: { menu: any[] }) => food.menu.map((items: any) => dataItems.push(items))))
     const filteredData = dataItems.filter((val: { item: string; }) => val.item.toLowerCase().includes(userInput.toLowerCase()))
     setDropDown(filteredData)
   }

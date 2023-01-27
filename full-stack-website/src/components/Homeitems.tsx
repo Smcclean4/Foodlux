@@ -14,19 +14,22 @@ const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
   };
 
   const searchItemIdentified = (item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined) => {
-    setTimeout(() => {
-      setFound("")
-    }, 1000)
-    return searchinfo.itemFromSearch === item ? found : ""
-  }
-
-  const compareSearchInfo = () => {
-    return searchinfo.companyFromSearch === title ? setRender(true) : null
+    if (searchinfo.itemFromSearch === item) {
+      setTimeout(() => {
+        setFound("")
+      }, 1000)
+      return found
+    } else {
+      return ""
+    }
   }
 
   useEffect(() => {
+    const compareSearchInfo = () => {
+      return searchinfo.companyFromSearch === title ? setRender(true) : null
+    }
     compareSearchInfo()
-  }, [searchinfo])
+  }, [searchinfo, title])
 
   return (
     <>
