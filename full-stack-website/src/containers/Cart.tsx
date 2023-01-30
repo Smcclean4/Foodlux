@@ -5,6 +5,8 @@ import Cartitems from "../components/Cartitems";
 import { LoadingCircle } from "../tools/LoadingCircle";
 import { CartInfoInterface } from "../api/Categories";
 import { Categories } from "../api/Categories"
+import { useModal } from "../hooks/useModal"
+import { DeleteForeverModal } from "../modals/DeleteForeverModal";
 import "../stylesheets/Cart.css";
 
 const Cart = () => {
@@ -12,7 +14,11 @@ const Cart = () => {
   const cartFromHomeLocalStorage: CartInfoInterface[] = JSON.parse(localStorage.getItem('cart') || '[]')
 
   const [cartInfo, setCartInfo] = useState<CartInfoInterface[]>(cartFromHomeLocalStorage)
+  const [deleteItemName, setDeleteItemName] = useState()
   const [loading, setLoading] = useState(true)
+
+  const { isShowing, toggle } = useModal();
+
   const { fastfood, finedine, snacks, alcohol } = Categories()
   const categories = [fastfood, finedine, snacks, alcohol]
   const homeData = categories
@@ -38,12 +44,25 @@ const Cart = () => {
   }
 
   const addItem = (ID: number) => {
-    setCartInfo((info) => info?.map((item, i) => i === ID ? { ...item, price: (Number(item.price) + Number(home[ID].price)).toFixed(2), quantity: item.quantity + 1 } : item));
+    setCartInfo((info) => info?.map((item, i) => {
+      let homeValueAtId: any = []
+      let filteredHomePrice: number[] = home.filter((val, i) => val.item.includes(item.item) ? homeValueAtId.push(home[i].price) : 0)
+      return i === ID ? { ...item, price: (Number(item.price) + Number(homeValueAtId)).toFixed(2), quantity: item.quantity + 1 } : item
+    }));
   }
 
   const removeItem = (ID: number) => {
     if (cartInfo[ID].quantity !== 1) {
-      setCartInfo((info) => info?.map((item, i) => i === ID ? { ...item, price: (Number(item.price) - Number(home[ID].price)).toFixed(2), quantity: item.quantity - 1 } : item));
+      setCartInfo((info) => info?.map((item, i) => {
+        let homeValueAtId: any = []
+        let filteredHomePrice: number[] = home.filter((val, i) => val.item.includes(item.item) && val.company.includes(item.company) ? homeValueAtId.push(home[i].price) : 0)
+        return i === ID ? { ...item, price: (Number(item.price) - Number(homeValueAtId)).toFixed(2), quantity: item.quantity - 1 } : item
+      }));
+    }
+
+    if (cartInfo[ID].quantity === 1) {
+      setDeleteItemName(cartInfo[ID].item)
+      toggle()
     }
   }
 
@@ -98,9 +117,10 @@ const Cart = () => {
               <br></br>
               <h1>🍔</h1>
             </>}
+          <DeleteForeverModal isShowing={isShowing} hide={toggle} item={deleteItemName} />
         </div>
         <div className="total-section">
-          <h2 className="total">Total: {cartTotal()}</h2>
+          <h2 className="total">Total: &#36;{cartTotal()}</h2>
         </div>
       </div>
     ) : (
