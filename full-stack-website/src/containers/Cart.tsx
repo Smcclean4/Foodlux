@@ -14,7 +14,7 @@ const Cart = () => {
   const cartFromHomeLocalStorage: CartInfoInterface[] = JSON.parse(localStorage.getItem('cart') || '[]')
 
   const [cartInfo, setCartInfo] = useState<CartInfoInterface[]>(cartFromHomeLocalStorage)
-  const [deleteItemName, setDeleteItemName] = useState()
+  const [deleteItem, setDeleteItem] = useState({ deleteItemName: '', deleteCompany: '' })
   const [loading, setLoading] = useState(true)
 
   const { isShowing, toggle } = useModal();
@@ -61,9 +61,15 @@ const Cart = () => {
     }
 
     if (cartInfo[ID].quantity === 1) {
-      setDeleteItemName(cartInfo[ID].item)
+      setDeleteItem({ deleteItemName: cartInfo[ID].item, deleteCompany: cartInfo[ID].company })
       toggle()
     }
+  }
+
+  const deleteItemFromCart = () => {
+    // still deletes all items with the same name... figure out problem
+    setCartInfo((state) => state.filter((val) => !val.item.includes(deleteItem.deleteItemName)).filter((val) => !val.company.includes(deleteItem.deleteCompany)))
+    toggle()
   }
 
   return (
@@ -117,7 +123,7 @@ const Cart = () => {
               <br></br>
               <h1>🍔</h1>
             </>}
-          <DeleteForeverModal isShowing={isShowing} hide={toggle} item={deleteItemName} />
+          <DeleteForeverModal isShowing={isShowing} hide={toggle} item={deleteItem} deleteitem={deleteItemFromCart} />
         </div>
         <div className="total-section">
           <h2 className="total">Total: &#36;{cartTotal()}</h2>

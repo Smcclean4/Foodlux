@@ -32,7 +32,7 @@ const SearchBar = ({ data, searchforitem }) => {
       <div className="searchbar-container">
         <input className="searchbar-input" type="search" value={userInput} onChange={handleChange} onFocus={dropDownFocusToggle} onBlur={dropDownFocusToggle}></input>
         <Button sx={{
-          color: 'white', backgroundColor: 'red', padding: '5px 35px', "&:hover": {
+          color: 'white', backgroundColor: 'red', padding: '2px 35px', "&:hover": {
             backgroundColor: "rgb(162, 6, 6)",
           },
           borderRadius: '0 10px 10px 0'

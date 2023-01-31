@@ -4,11 +4,11 @@ import Button from "@mui/material/Button";
 import '../stylesheets/DeleteForeverModal.css'
 import { red } from '@mui/material/colors';
 
-export const DeleteForeverModal = ({ isShowing, hide, item }) => isShowing ? createPortal(
+export const DeleteForeverModal = ({ isShowing, hide, item, deleteitem }) => isShowing ? createPortal(
   <React.Fragment>
     <div className="deleteforevermodal-container">
       <h1 className="deleteforevermodal-header">Preparing to delete item.</h1>
-      <p className="deleteforevermodal-subtext">Are you sure you want to delete {item} from your cart?</p>
+      <p className="deleteforevermodal-subtext">Are you sure you want to delete your {item.deleteCompany} {item.deleteItemName} from your cart?</p>
       <div className="button-options">
         <Button sx={{
           backgroundColor: "grey", color: "white", "&:hover": {
@@ -22,7 +22,8 @@ export const DeleteForeverModal = ({ isShowing, hide, item }) => isShowing ? cre
           backgroundColor: "red", color: "white", "&:hover": {
             backgroundColor: "rgb(162, 6, 6)"
           }, margin: "20px", fontSize: "1.1em"
-        }}>
+        }}
+          onClick={deleteitem}>
           Proceed
         </Button>
       </div>

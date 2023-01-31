@@ -39,7 +39,7 @@ const Checkoutitems = ({ details }) => {
               <Grid item xs={4} className="checkout-items">
                 <Item>
                   <div>
-                    <li>{detail.price}</li>
+                    <li>&#36;{detail.price}</li>
                   </div>
                 </Item>
               </Grid>

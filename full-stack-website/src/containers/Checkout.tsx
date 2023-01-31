@@ -199,7 +199,7 @@ const Checkout = () => {
               </div>
             </div>
             <div className="checkout-total-section">
-              <h2 className="checkout-total">Your Total: {checkoutTotal()}</h2>
+              <h2 className="checkout-total">Your Total: &#36;{checkoutTotal()}</h2>
             </div>
             <Button color="error"
               sx={{ fontSize: "1.0em", marginTop: "50px", "&:hover": { backgroundColor: "red", color: "white" }, marginBottom: "25px" }}
