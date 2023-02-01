@@ -67,11 +67,11 @@ const Cart = () => {
   }
 
   const deleteItemFromCart = () => {
-    // setCartInfo((state) => state.filter((val) => val.company === deleteItem.deleteCompany ? !val.item.includes(deleteItem.deleteItemName) : undefined))
-    let filteredData = cartInfo.filter((val) => {
-      return !val.company.includes(deleteItem.deleteCompany)
-    })
-    console.log(filteredData)
+    setCartInfo((state) => state.filter((val, i) => {
+      if (!cartInfo[i].company.includes(deleteItem.deleteCompany) || !cartInfo[i].item.includes(deleteItem.deleteItemName)) {
+        return !val.item.includes(deleteItem.deleteCompany)
+      }
+    }))
     toggle()
   }
 
