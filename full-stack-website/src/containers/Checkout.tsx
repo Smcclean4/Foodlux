@@ -105,19 +105,19 @@ const Checkout = () => {
     !loading ? (
       <div className="checkout-background">
         <div className="cart-section">
-          <Button
-            variant="contained"
-            size="large"
-            sx={{
-              backgroundColor: "red",
-              "&:hover": {
-                backgroundColor: "rgb(162, 6, 6)",
-              },
-            }}>
-            <Link className="cart-link" to="/Cart">
+          <Link className="cart-link" to="/Cart">
+            <Button
+              variant="contained"
+              size="large"
+              sx={{
+                backgroundColor: "red",
+                "&:hover": {
+                  backgroundColor: "rgb(162, 6, 6)",
+                },
+              }}>
               Back to cart
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </div>
         <p className="checkout-header">Credit or Debit Card Payment</p>
         <Box

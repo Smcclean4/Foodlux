@@ -22,15 +22,15 @@ export const CartModal = ({ isShowing, hide, state }) => isShowing ? createPorta
         })}
       </div>
       {state?.length === 0 ? <h2>Nothing to see here...</h2> : null}
-      <Button sx={{
-        color: 'white', backgroundColor: 'red', padding: '5px 25px', margin: '5px', "&:hover": {
-          backgroundColor: "rgb(162, 6, 6)",
-        },
-      }}>
-        <Link to="/Cart" className="gotocart-link">
-          Go to cart
-        </Link>
-      </Button>
+      <Link to="/Cart" className="gotocart-link">
+        <Button sx={{
+          color: 'white', backgroundColor: 'red', padding: '5px 25px', margin: '5px', "&:hover": {
+            backgroundColor: "rgb(162, 6, 6)",
+          },
+        }}>
+          Go To Cart
+        </Button>
+      </Link>
     </div>
   </React.Fragment>, document.body
 ) : null

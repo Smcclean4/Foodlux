@@ -45,8 +45,8 @@ const Cart = () => {
 
   const addItem = (ID: number) => {
     setCartInfo((info) => info?.map((item, i) => {
-      let homeValueAtId: any = []
-      let filteredHomePrice: number[] = home.filter((val, i) => val.item.includes(item.item) ? homeValueAtId.push(home[i].price) : 0)
+      let homeValueAtId: number[] = []
+      let filteredHomePrice: number[] = home.filter((val, i) => val.item.includes(item.item) && val.company.includes(item.company) ? homeValueAtId.push(home[i].price) : 0)
       return i === ID ? { ...item, price: (Number(item.price) + Number(homeValueAtId)).toFixed(2), quantity: item.quantity + 1 } : item
     }));
   }
@@ -54,7 +54,7 @@ const Cart = () => {
   const removeItem = (ID: number) => {
     if (cartInfo[ID].quantity !== 1) {
       setCartInfo((info) => info?.map((item, i) => {
-        let homeValueAtId: any = []
+        let homeValueAtId: number[] = []
         let filteredHomePrice: number[] = home.filter((val, i) => val.item.includes(item.item) && val.company.includes(item.company) ? homeValueAtId.push(home[i].price) : 0)
         return i === ID ? { ...item, price: (Number(item.price) - Number(homeValueAtId)).toFixed(2), quantity: item.quantity - 1 } : item
       }));
@@ -67,8 +67,11 @@ const Cart = () => {
   }
 
   const deleteItemFromCart = () => {
-    // still deletes all items with the same name... figure out problem
-    setCartInfo((state) => state.filter((val) => !val.item.includes(deleteItem.deleteItemName)).filter((val) => !val.company.includes(deleteItem.deleteCompany)))
+    // setCartInfo((state) => state.filter((val) => val.company === deleteItem.deleteCompany ? !val.item.includes(deleteItem.deleteItemName) : undefined))
+    let filteredData = cartInfo.filter((val) => {
+      return !val.company.includes(deleteItem.deleteCompany)
+    })
+    console.log(filteredData)
     toggle()
   }
 
@@ -77,38 +80,38 @@ const Cart = () => {
       <div className="cart-background">
         <div className="checkout-return-section">
           <div className="return-section">
-            <Button
-              variant="contained"
-              size="large"
-              sx={{
-                backgroundColor: "red",
-                "&:hover": {
-                  backgroundColor: "rgb(162, 6, 6)",
-                },
-                marginTop: "20px",
-                marginBottom: "20px"
-              }}
-            >
-              <Link className="return-link" to="/Home">
+            <Link className="return-link" to="/Home">
+              <Button
+                variant="contained"
+                size="large"
+                sx={{
+                  backgroundColor: "red",
+                  "&:hover": {
+                    backgroundColor: "rgb(162, 6, 6)",
+                  },
+                  marginTop: "20px",
+                  marginBottom: "20px"
+                }}
+              >
                 Back to home
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
           <div className="checkout-section">
-            <Button
-              variant="contained"
-              size="large"
-              sx={{
-                backgroundColor: "red",
-                "&:hover": {
-                  backgroundColor: "rgb(162, 6, 6)",
-                },
-                margin: "20px",
-              }}>
-              <Link className="checkout-link" to="/Checkout" state={{ cart: cartInfo }}>
+            <Link className="checkout-link" to="/Checkout" state={{ cart: cartInfo }}>
+              <Button
+                variant="contained"
+                size="large"
+                sx={{
+                  backgroundColor: "red",
+                  "&:hover": {
+                    backgroundColor: "rgb(162, 6, 6)",
+                  },
+                  margin: "20px",
+                }}>
                 Proceed To Checkout
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         </div>
         <p className="cart-header">Cart</p>
