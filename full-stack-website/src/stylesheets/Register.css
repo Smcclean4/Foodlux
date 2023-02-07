@@ -1,47 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
 
 .register-background {
-    background: url("/src/images/pexels-furknsaglam-3109671.jpg");
+    background: url("/src/assets/pexels-furknsaglam-3109671.jpg");
     background-position: center;
-    background-size:cover;
-    height:auto;
-    min-height:100vh;
-    text-align:center;
-    padding-bottom:5%;
+    background-size: cover;
+    height: auto;
+    min-height: 100vh;
+    text-align: center;
+    padding-bottom: 5%;
 }
+
 .register-logo {
-    color:white;
-    font-size:150px;
-    text-shadow:black 2px 5px 2px;
+    color: white;
+    font-size: 150px;
+    text-shadow: black 2px 5px 2px;
     font-family: 'Bubblegum sans', cursive;
-    padding:30px;
+    padding: 30px;
 }
+
 .register-header {
-    font-size:80px;
+    font-size: 80px;
     font-family: 'Bubblegum sans', cursive;
-    padding:5px;
-    text-shadow:red 0 2px 0;
+    padding: 5px;
+    text-shadow: red 0 2px 0;
 }
+
 .register-span {
-    color:red;
+    color: red;
 }
+
 .register-span:hover {
-    text-decoration:underline;
-    cursor:pointer;
+    text-decoration: underline;
+    cursor: pointer;
 }
-@media only screen and (max-width:350px), (max-width:450px) {
+
+@media only screen and (max-width:350px),
+(max-width:450px) {
     .register-logo {
-        font-size:80px;
+        font-size: 80px;
     }
+
     .register-header {
-        font-size:50px;
+        font-size: 50px;
     }
 }
+
 @media only screen and (max-width:1028px) and (min-width:1020px) {
     .register-logo {
-        font-size:70px;
+        font-size: 70px;
     }
+
     .register-header {
-        font-size:40px;
+        font-size: 40px;
     }
 }

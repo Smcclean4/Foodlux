@@ -1,15 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
+
 .ff-wrapper {
     display: grid;
     grid-template-columns: 25% 75%;
-    grid-template-rows: 100%;
     grid-template-areas:
         "company info"
         "company info";
 }
 
+.food-image {
+    height: 100px;
+}
+
+.drink-image {
+    height: 100px;
+}
+
+.menu-titles {
+    font-size: 3.0em;
+    font-family: "Bubblegum Sans", cursive;
+    text-decoration: underline;
+    text-decoration-color: red;
+}
+
 .a {
     grid-area: company;
-    border-right: 1px solid grey;
+    border-right: 1px solid white;
 }
 
 .b {
@@ -23,13 +39,8 @@ ul {
 }
 
 li {
-    padding: 5px;
-}
-
-.btn-styling {
-    display: list-item;
-    list-style-type: none;
-    padding: 1.7px;
+    font-size: 1.3em;
+    padding: 35px;
 }
 
 @media only screen and (max-width:350px),

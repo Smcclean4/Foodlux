@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
 
 .home-background {
-    background: url("/src/images/pexels-furknsaglam-3109671.jpg");
+    background: url("/src/assets/pexels-furknsaglam-3109671.jpg");
     background-position: center;
     background-size: cover;
     height: auto;
     min-height: 100vh;
     text-align: center;
+    padding-bottom: 2%;
 }
 
 .home-logo {

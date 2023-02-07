@@ -117,7 +117,7 @@ const Cart = () => {
         <p className="cart-header">Cart</p>
         <div className="cart-window">
           {cartInfo?.length !== 0 ? <Cartitems items={cartInfo} additem={addItem} removeitem={removeItem} /> :
-            <>
+            <div className="cart-dummydata">
               <h1>YOUR CART IS EMPTY!</h1>
               <br></br>
               <br></br>
@@ -125,7 +125,7 @@ const Cart = () => {
               <br></br>
               <br></br>
               <h1>🍔</h1>
-            </>}
+            </div>}
           <DeleteForeverModal isShowing={isShowing} hide={toggle} item={deleteItem} deleteitem={deleteItemFromCart} />
         </div>
         <div className="total-section">

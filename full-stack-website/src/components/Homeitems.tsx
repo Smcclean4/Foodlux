@@ -56,7 +56,7 @@ const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
                 color: "white",
               }}
             >
-              <h2>Food</h2>
+              <p className="menu-titles">Food</p>
               <Grid
                 className="b"
                 container
@@ -66,11 +66,9 @@ const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
                   {menu?.map((images: { type: string; image: string | undefined; }, idx: React.Key | null | undefined) => {
                     return images.type === "food" ? (
                       <div key={idx}>
-                        <img alt="" src={images.image} />
+                        <img alt="" src={images.image} className="food-image" />
                       </div>
-                    ) : (
-                      ""
-                    );
+                    ) : ""
                   })}
                 </Grid>
                 <Grid item xs={4}>
@@ -88,31 +86,34 @@ const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
                       <div key={idx}>
                         <li>&#36;{prices.price}</li>
                       </div>
-                    ) : (
-                      ""
-                    );
+                    ) : ""
                   })}
                 </Grid>
                 <Grid item xs={2}>
                   {menu?.map((_: { type: string; }, idx: React.Key | "") => {
                     return _.type === "food" ? (
-                      <span className="btn-styling" key={idx}>
-                        <Button
-                          onClick={() => addtocart(menu[idx])}
-                          sx={{ color: "dodgerblue" }}
-                          size="small"
-                        >
-                          Add
-                        </Button>
-                      </span>
-                    ) : (
-                      ""
-                    );
+                      <div key={idx}>
+                        <li>
+                          <Button
+                            onClick={() => addtocart(menu[idx])}
+                            sx={{
+                              color: "white", backgroundColor: "dodgerblue", "&:hover": {
+                                color: "white",
+                                backgroundColor: "rgb(22, 110, 199)",
+                              }
+                            }}
+                            size="small"
+                          >
+                            Add
+                          </Button>
+                        </li>
+                      </div>
+                    ) : ""
                   })}
                 </Grid>
               </Grid>
               <br></br>
-              <h2>Drinks</h2>
+              <p className="menu-titles">Drinks</p>
               <Grid
                 className="b"
                 container
@@ -122,11 +123,9 @@ const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
                   {menu?.map((images: { type: string; image: string | undefined; }, idx: React.Key | null | undefined) => {
                     return images.type === "drink" ? (
                       <div key={idx}>
-                        <img alt="" src={images.image} />
+                        <img alt="" src={images.image} className="drink-image" />
                       </div>
-                    ) : (
-                      ""
-                    );
+                    ) : ""
                   })}
                 </Grid>
                 <Grid item xs={4}>
@@ -135,9 +134,7 @@ const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
                       <div key={idx} style={{ backgroundColor: searchItemIdentified(drink.item) }}>
                         <li>{drink.item}</li>
                       </div>
-                    ) : (
-                      ""
-                    );
+                    ) : ""
                   })}
                 </Grid>
                 <Grid item xs={2}>
@@ -146,26 +143,29 @@ const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
                       <div key={idx}>
                         <li>&#36;{prices.price}</li>
                       </div>
-                    ) : (
-                      ""
-                    );
+                    ) : ""
                   })}
                 </Grid>
                 <Grid item xs={2}>
                   {menu?.map((_: { type: string; }, idx: React.Key | "") => {
                     return _.type === "drink" ? (
-                      <span className="btn-styling" key={idx}>
-                        <Button
-                          onClick={() => addtocart(menu[idx])}
-                          sx={{ color: "dodgerblue" }}
-                          size="small"
-                        >
-                          Add
-                        </Button>
-                      </span>
-                    ) : (
-                      ""
-                    );
+                      <div key={idx}>
+                        <li>
+                          <Button
+                            onClick={() => addtocart(menu[idx])}
+                            sx={{
+                              color: "white", backgroundColor: "dodgerblue", "&:hover": {
+                                color: "white",
+                                backgroundColor: "rgb(22, 110, 199)",
+                              }
+                            }}
+                            size="small"
+                          >
+                            Add
+                          </Button>
+                        </li>
+                      </div>
+                    ) : ""
                   })}
                 </Grid>
               </Grid>
