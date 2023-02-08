@@ -17,7 +17,7 @@ const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
     if (searchinfo.itemFromSearch === item) {
       setTimeout(() => {
         setFound("")
-      }, 1000)
+      }, 5000)
       return found
     } else {
       return ""
@@ -62,37 +62,46 @@ const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
                 container
                 spacing={0}
               >
-                <Grid item xs={4}>
+                <Grid item xs={2.5}>
                   {menu?.map((images: { type: string; image: string | undefined; }, idx: React.Key | null | undefined) => {
                     return images.type === "food" ? (
-                      <div key={idx}>
+                      <div key={idx} className="home-items">
                         <img alt="" src={images.image} className="food-image" />
                       </div>
                     ) : ""
                   })}
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={1.5}>
                   {menu?.map((food: { type: string; item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
                     return food.type === "food" ? (
-                      <div key={idx} style={{ backgroundColor: searchItemIdentified(food.item) }}>
-                        <li>{food.item}</li>
+                      <div key={idx} className="home-items">
+                        <li style={{ backgroundColor: searchItemIdentified(food.item) }}>{food.item}</li>
                       </div>
                     ) : ""
                   })}
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={6}>
+                  {menu?.map((descs: { type: string; desc: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
+                    return descs.type === "food" ? (
+                      <div key={idx} className="home-items-desc">
+                        <li>{descs.desc}</li>
+                      </div>
+                    ) : ""
+                  })}
+                </Grid>
+                <Grid item xs={1}>
                   {menu?.map((prices: { type: string; price: number | boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
                     return prices.type === "food" ? (
-                      <div key={idx}>
+                      <div key={idx} className="home-items">
                         <li>&#36;{prices.price}</li>
                       </div>
                     ) : ""
                   })}
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={1}>
                   {menu?.map((_: { type: string; }, idx: React.Key | "") => {
                     return _.type === "food" ? (
-                      <div key={idx}>
+                      <div key={idx} className="home-items">
                         <li>
                           <Button
                             onClick={() => addtocart(menu[idx])}
@@ -119,37 +128,46 @@ const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
                 container
                 spacing={0}
               >
-                <Grid item xs={4}>
+                <Grid item xs={2.5}>
                   {menu?.map((images: { type: string; image: string | undefined; }, idx: React.Key | null | undefined) => {
                     return images.type === "drink" ? (
-                      <div key={idx}>
+                      <div key={idx} className="home-items">
                         <img alt="" src={images.image} className="drink-image" />
                       </div>
                     ) : ""
                   })}
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={1.5}>
                   {menu?.map((drink: { type: string; item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
                     return drink.type === "drink" ? (
-                      <div key={idx} style={{ backgroundColor: searchItemIdentified(drink.item) }}>
-                        <li>{drink.item}</li>
+                      <div key={idx} className="home-items">
+                        <li style={{ backgroundColor: searchItemIdentified(drink.item) }}>{drink.item}</li>
                       </div>
                     ) : ""
                   })}
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={6}>
+                  {menu?.map((descs: { type: string; desc: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
+                    return descs.type === "drink" ? (
+                      <div key={idx} className="home-items-desc">
+                        <li>{descs.desc}</li>
+                      </div>
+                    ) : ""
+                  })}
+                </Grid>
+                <Grid item xs={1}>
                   {menu?.map((prices: { type: string; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
                     return prices.type === "drink" ? (
-                      <div key={idx}>
+                      <div key={idx} className="home-items">
                         <li>&#36;{prices.price}</li>
                       </div>
                     ) : ""
                   })}
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={1}>
                   {menu?.map((_: { type: string; }, idx: React.Key | "") => {
                     return _.type === "drink" ? (
-                      <div key={idx}>
+                      <div key={idx} className="home-items">
                         <li>
                           <Button
                             onClick={() => addtocart(menu[idx])}
