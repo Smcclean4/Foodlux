@@ -19,7 +19,7 @@ const Checkoutitems = ({ details }) => {
         container
         spacing={3}
       >
-        {details?.map((detail: { image: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; quantity: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
+        {details?.map((detail: { image: string | undefined, item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; quantity: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
           return (
             <div className="checkout-container" key={idx}>
               <Grid item className="checkout-items">
@@ -32,7 +32,7 @@ const Checkoutitems = ({ details }) => {
               <Grid item xs={5} className="checkout-items">
                 <Item>
                   <div>
-                    <li>{detail.image}</li>
+                    <img alt="" src={detail.image} className="detail-image" />
                   </div>
                 </Item>
               </Grid>

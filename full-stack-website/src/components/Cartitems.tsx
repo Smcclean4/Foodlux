@@ -22,13 +22,20 @@ const Cartitems = ({ items, additem, removeitem }) => {
         container
         spacing={3}
       >
-        {items?.map((item: { image: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; quantity: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; desc: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key) => {
+        {items?.map((item: { image: string | undefined, price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; quantity: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; desc: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key) => {
           return (
             <div className="cart-container" key={idx}>
-              <Grid item xs={6} className="cart-items">
+              <Grid item xs={3} className="cart-items">
                 <Item>
                   <div>
-                    <li>{item.image}</li>
+                    <img alt="" src={item.image} className="item-images" />
+                  </div>
+                </Item>
+              </Grid>
+              <Grid item xs={3} className="cart-items">
+                <Item>
+                  <div>
+                    <li>{item.item}</li>
                   </div>
                 </Item>
               </Grid>
@@ -86,14 +93,7 @@ const Cartitems = ({ items, additem, removeitem }) => {
                   <AddIcon />
                 </Item>
               </Grid>
-              <Grid item xs={4} className="cart-items">
-                <Item>
-                  <div>
-                    <li>{item.item}</li>
-                  </div>
-                </Item>
-              </Grid>
-              <Grid item xs={7} className="cart-items">
+              <Grid item xs={12} className="cart-items">
                 <Item>
                   <div>
                     <li>{item.desc}</li>
