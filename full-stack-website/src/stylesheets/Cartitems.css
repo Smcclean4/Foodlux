@@ -15,6 +15,10 @@
   text-align: center;
 }
 
+.cart-items-desc {
+  text-align: left;
+}
+
 .item-images {
   height: 150px;
 }
