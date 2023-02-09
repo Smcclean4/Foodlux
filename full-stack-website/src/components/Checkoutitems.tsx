@@ -22,13 +22,6 @@ const Checkoutitems = ({ details }) => {
         {details?.map((detail: { image: string | undefined, item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; quantity: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
           return (
             <div className="checkout-container" key={idx}>
-              <Grid item className="checkout-items">
-                <Item>
-                  <div>
-                    <li>{detail.item}</li>
-                  </div>
-                </Item>
-              </Grid>
               <Grid item xs={5} className="checkout-items">
                 <Item>
                   <div>
@@ -36,19 +29,28 @@ const Checkoutitems = ({ details }) => {
                   </div>
                 </Item>
               </Grid>
-              <Grid item xs={4} className="checkout-items">
-                <Item>
-                  <div>
-                    <li>&#36;{detail.price}</li>
-                  </div>
-                </Item>
-              </Grid>
-              <Grid item xs={3} className="checkout-items">
-                <Item>
-                  <div>
-                    <li>{detail.quantity}</li>
-                  </div>
-                </Item>
+              <Grid item container sm xs={12}>
+                <Grid item xs={12} className="checkout-items">
+                  <Item>
+                    <div>
+                      <li>{detail.item}</li>
+                    </div>
+                  </Item>
+                </Grid>
+                <Grid item xs={6} className="checkout-items">
+                  <Item>
+                    <div>
+                      <li>&#36;{detail.price}</li>
+                    </div>
+                  </Item>
+                </Grid>
+                <Grid item xs={6} className="checkout-items">
+                  <Item>
+                    <div>
+                      <li>QTY: {detail.quantity}</li>
+                    </div>
+                  </Item>
+                </Grid>
               </Grid>
             </div>
           )
