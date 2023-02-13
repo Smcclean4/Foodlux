@@ -1,9 +1,7 @@
 .searchbar-container {
   display: flex;
   justify-content: space-around;
-  width: 28em;
   align-items: center;
-
 }
 
 .searchbar-input {

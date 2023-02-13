@@ -17,7 +17,8 @@ const Checkoutitems = ({ details }) => {
     <>
       <Grid
         container
-        spacing={3}
+        spacing={{ xs: 2, md: 3 }}
+        columns={{ xs: 1, sm: 2, md: 2, lg: 12 }}
       >
         {details?.map((detail: { image: string | undefined, item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; quantity: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
           return (

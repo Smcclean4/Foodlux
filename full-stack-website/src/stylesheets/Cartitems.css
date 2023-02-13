@@ -20,5 +20,11 @@
 }
 
 .item-images {
-  height: 150px;
+  height: 140px;
+}
+
+@media only screen and (max-width:1280px) {
+  .item-images {
+    height: 125px;
+  }
 }

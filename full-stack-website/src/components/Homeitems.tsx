@@ -36,7 +36,7 @@ const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
       <div className="ff-wrapper">
         <div className="ff-grid a">
           <Button
-            sx={{ marginBottom: "5px", backgroundColor: "dodgerblue" }}
+            sx={{ marginBottom: "5px", marginRight: "5px", backgroundColor: "dodgerblue" }}
             variant="contained"
             className="button active"
             onClick={() => renderChange()}
@@ -60,49 +60,23 @@ const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
               <Grid
                 className="b"
                 container
-                spacing={0}
-              >
-                <Grid item xs={2.5}>
-                  {menu?.map((images: { type: string; image: string | undefined; }, idx: React.Key | null | undefined) => {
-                    return images.type === "food" ? (
-                      <div key={idx} className="home-items">
-                        <img alt="" src={images.image} className="food-image" />
-                      </div>
-                    ) : ""
-                  })}
-                </Grid>
-                <Grid item xs={1.5}>
-                  {menu?.map((food: { type: string; item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
-                    return food.type === "food" ? (
-                      <div key={idx} className="home-items">
-                        <li style={{ backgroundColor: searchItemIdentified(food.item) }}>{food.item}</li>
-                      </div>
-                    ) : ""
-                  })}
-                </Grid>
-                <Grid item xs={6}>
-                  {menu?.map((descs: { type: string; desc: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
-                    return descs.type === "food" ? (
-                      <div key={idx} className="home-items-desc">
-                        <li>{descs.desc}</li>
-                      </div>
-                    ) : ""
-                  })}
-                </Grid>
-                <Grid item xs={1}>
-                  {menu?.map((prices: { type: string; price: number | boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
-                    return prices.type === "food" ? (
-                      <div key={idx} className="home-items">
-                        <li>&#36;{prices.price}</li>
-                      </div>
-                    ) : ""
-                  })}
-                </Grid>
-                <Grid item xs={1}>
-                  {menu?.map((_: { type: string; }, idx: React.Key | "") => {
-                    return _.type === "food" ? (
-                      <div key={idx} className="home-items">
-                        <li>
+                spacing={{ xs: 0, md: 3 }}
+                columns={{ xs: 1, sm: 2, md: 12 }}>
+                {menu?.map((items, idx) => {
+                  if (items.type === "food") {
+                    return (
+                      <div className="home-item-group" key={idx}>
+                        <Grid item xs={4} className="home-items">
+                          <img alt="" src={items.image} className="item-image" />
+                        </Grid>
+                        <Grid item xs={6} className="home-items-desc">
+                          <li style={{ backgroundColor: searchItemIdentified(items.item) }}><b><i>{items.item}</i></b></li>
+                          <li>{items.desc}</li>
+                        </Grid>
+                        <Grid item xs={1} className="home-items">
+                          <li>&#36;{items.price}</li>
+                        </Grid>
+                        <Grid item xs={1} className="home-items">
                           <Button
                             onClick={() => addtocart(menu[idx])}
                             sx={{
@@ -111,64 +85,38 @@ const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
                                 backgroundColor: "rgb(22, 110, 199)",
                               }
                             }}
-                            size="small"
+                            size="large"
                           >
                             Add
                           </Button>
-                        </li>
+                        </Grid>
                       </div>
-                    ) : ""
-                  })}
-                </Grid>
+                    )
+                  }
+                })}
               </Grid>
               <br></br>
               <p className="menu-titles">Drinks</p>
               <Grid
                 className="b"
                 container
-                spacing={0}
-              >
-                <Grid item xs={2.5}>
-                  {menu?.map((images: { type: string; image: string | undefined; }, idx: React.Key | null | undefined) => {
-                    return images.type === "drink" ? (
-                      <div key={idx} className="home-items">
-                        <img alt="" src={images.image} className="drink-image" />
-                      </div>
-                    ) : ""
-                  })}
-                </Grid>
-                <Grid item xs={1.5}>
-                  {menu?.map((drink: { type: string; item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
-                    return drink.type === "drink" ? (
-                      <div key={idx} className="home-items">
-                        <li style={{ backgroundColor: searchItemIdentified(drink.item) }}>{drink.item}</li>
-                      </div>
-                    ) : ""
-                  })}
-                </Grid>
-                <Grid item xs={6}>
-                  {menu?.map((descs: { type: string; desc: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
-                    return descs.type === "drink" ? (
-                      <div key={idx} className="home-items-desc">
-                        <li>{descs.desc}</li>
-                      </div>
-                    ) : ""
-                  })}
-                </Grid>
-                <Grid item xs={1}>
-                  {menu?.map((prices: { type: string; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
-                    return prices.type === "drink" ? (
-                      <div key={idx} className="home-items">
-                        <li>&#36;{prices.price}</li>
-                      </div>
-                    ) : ""
-                  })}
-                </Grid>
-                <Grid item xs={1}>
-                  {menu?.map((_: { type: string; }, idx: React.Key | "") => {
-                    return _.type === "drink" ? (
-                      <div key={idx} className="home-items">
-                        <li>
+                spacing={{ xs: 0, md: 3 }}
+                columns={{ xs: 1, sm: 2, md: 12 }}>
+                {menu?.map((items, idx) => {
+                  if (items.type === "drink") {
+                    return (
+                      <div className="home-item-group" key={idx}>
+                        <Grid item xs={4} className="home-items">
+                          <img alt="" src={items.image} className="item-image" />
+                        </Grid>
+                        <Grid item xs={6} className="home-items-desc">
+                          <li style={{ backgroundColor: searchItemIdentified(items.item) }}><b><i>{items.item}</i></b></li>
+                          <li>{items.desc}</li>
+                        </Grid>
+                        <Grid item xs={1} className="home-items">
+                          <li>&#36;{items.price}</li>
+                        </Grid>
+                        <Grid item xs={1} className="home-items">
                           <Button
                             onClick={() => addtocart(menu[idx])}
                             sx={{
@@ -177,15 +125,15 @@ const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
                                 backgroundColor: "rgb(22, 110, 199)",
                               }
                             }}
-                            size="small"
+                            size="large"
                           >
                             Add
                           </Button>
-                        </li>
+                        </Grid>
                       </div>
-                    ) : ""
-                  })}
-                </Grid>
+                    )
+                  }
+                })}
               </Grid>
             </Box>
           </>

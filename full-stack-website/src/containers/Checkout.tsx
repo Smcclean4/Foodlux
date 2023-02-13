@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Box from "@mui/material/Box";
 import SendIcon from '@mui/icons-material/Send'
@@ -19,7 +19,25 @@ const Checkout = () => {
   const [loading, setLoading] = useState(true)
 
   const location: any = useLocation();
+  const navigate = useNavigate();
   const cartData = location.state?.cart
+
+
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    console.log("submitting payment info!")
+    setSubmitting(true)
+    const submitData = async () => {
+      await new Promise(() => setTimeout(() => {
+        navigate('/Home')
+      }, 15000))
+    }
+    submitData();
+  }
+
+  const checkoutTotal = () => {
+    return checkoutData.map((item) => item.price).reduce((acc: string, val: string) => (parseFloat(acc) + parseFloat(val)).toFixed(2), 0)
+  }
 
   useEffect(() => {
     const loadData = async () => {
@@ -62,21 +80,6 @@ const Checkout = () => {
       country: "Texas"
     }
   ]
-
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-    console.log("submitting payment info!")
-    setSubmitting(true);
-    const submitData = async () => {
-      await new Promise((p) => setTimeout(p, 15000));
-      setSubmitting((loading) => !loading)
-    }
-    submitData();
-  }
-
-  const checkoutTotal = () => {
-    return checkoutData.map((item) => item.price).reduce((acc: string, val: string) => (parseFloat(acc) + parseFloat(val)).toFixed(2), 0)
-  }
 
   const checkoutMuiStyling = {
     '.MuiOutlinedInput-notchedOutline:hover': {

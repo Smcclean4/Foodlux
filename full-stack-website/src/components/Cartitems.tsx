@@ -23,7 +23,8 @@ const Cartitems = ({ items, additem, removeitem }) => {
           <div className="cart-container" key={idx}>
             <Grid
               container
-              spacing={2}
+              spacing={{ xs: 2, md: 3 }}
+              columns={{ xs: 2, sm: 2, md: 2, lg: 12 }}
             >
               <Grid item xs={4}>
                 <Item>
@@ -33,7 +34,7 @@ const Cartitems = ({ items, additem, removeitem }) => {
                 </Item>
               </Grid>
               <Grid item xs={12} sm container spacing={1}>
-                <Grid item xs={6}>
+                <Grid item xs={5}>
                   <Item>
                     <div className="cart-items">
                       <li>{item.item}</li>
@@ -47,7 +48,7 @@ const Cartitems = ({ items, additem, removeitem }) => {
                     </div>
                   </Item>
                 </Grid>
-                <Grid item xs={1}>
+                <Grid item xs={1.5}>
                   <Item
                     onClick={() => removeitem(idx)}
                     sx={{
@@ -75,7 +76,7 @@ const Cartitems = ({ items, additem, removeitem }) => {
                     <span>{item.quantity}</span>
                   </Item>
                 </Grid>
-                <Grid item xs={1}>
+                <Grid item xs={1.5}>
                   <Item
                     onClick={() => additem(idx)}
                     sx={{

@@ -4,10 +4,8 @@ import "../stylesheets/Foodluxbus.css"
 export const Foodluxbus = ({ timer, settimer }) => {
 
   useEffect(() => {
-    if (timer >= 0) {
-      setTimeout(() => (settimer((seconds) => seconds - 1)), 1000);
-    } else {
-      settimer(15)
+    if (timer > 0) {
+      setTimeout(() => (settimer((seconds) => seconds - 1)), 1000)
     }
   }, [timer])
 
