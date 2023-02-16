@@ -10,11 +10,19 @@ const userRegisterSchema = new Schema({
     type: String,
     required: true,
   },
+  username: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     required: true,
   },
   password: {
+    type: String,
+    required: true,
+  },
+  confirmpassword: {
     type: String,
     required: true,
   },
@@ -26,4 +34,4 @@ const userRegisterSchema = new Schema({
 
 const userRegisterModel = mongoose.model("register", userRegisterSchema);
 
-module.exports = userRegisterModel;
+export default userRegisterModel;

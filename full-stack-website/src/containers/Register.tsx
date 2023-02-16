@@ -1,14 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
-import { Link } from "react-router-dom";
+import axios from 'axios'
+import { Link, useNavigate } from "react-router-dom";
 import "../stylesheets/Register.css";
 
 const Register = () => {
-  function handleSubmit(e: { preventDefault: () => void; }) {
-    e.preventDefault();
+
+  const [userRegisterInfo, setUserRegisterInfo] = useState({
+    firstname: '',
+    lastname: '',
+    username: '',
+    email: '',
+    password: '',
+    confirmpassword: ''
+  })
+  const [registerErr, setRegisterErr] = useState('')
+  const navigate = useNavigate();
+
+  const handleChange = ({ currentTarget: input }) => {
+    setUserRegisterInfo({ ...userRegisterInfo, [input.name]: input.value })
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      if (userRegisterInfo.password === userRegisterInfo.confirmpassword) {
+        await axios.post('http://localhost:8080/registerUser', userRegisterInfo).then(res => console.log(res.data))
+        navigate('/Login', { replace: true })
+      }
+    } catch (error) {
+      if (error.response && error.response.status >= 400 && error.response.status <= 500) {
+        setRegisterErr(error.reponse.data.message)
+      }
+    }
   }
 
   return (
@@ -39,6 +67,10 @@ const Register = () => {
             label="First Name"
             margin="dense"
             variant="outlined"
+            name="firstname"
+            value={userRegisterInfo.firstname}
+            onChange={handleChange}
+            required
           />
           <br></br>
           <br></br>
@@ -47,6 +79,10 @@ const Register = () => {
             label="Last Name"
             margin="dense"
             variant="outlined"
+            name="lastname"
+            value={userRegisterInfo.lastname}
+            onChange={handleChange}
+            required
           />
           <br></br>
           <br></br>
@@ -55,6 +91,10 @@ const Register = () => {
             label="Username"
             margin="dense"
             variant="outlined"
+            name="username"
+            value={userRegisterInfo.username}
+            onChange={handleChange}
+            required
           />
           <br></br>
           <br></br>
@@ -64,26 +104,36 @@ const Register = () => {
             type="email"
             margin="dense"
             variant="outlined"
+            name="email"
+            value={userRegisterInfo.email}
+            onChange={handleChange}
+            required
           />
           <br></br>
           <br></br>
           <TextField
-            required
             className="register-fields"
             label="Password"
             type="password"
             margin="dense"
             variant="filled"
+            name="password"
+            value={userRegisterInfo.password}
+            onChange={handleChange}
+            required
           />
           <br></br>
           <br></br>
           <TextField
-            required
             className="register-fields"
             label="Confirm Password"
             type="password"
             margin="dense"
             variant="filled"
+            name="confirmpassword"
+            value={userRegisterInfo.confirmpassword}
+            onChange={handleChange}
+            required
           />
           <br></br>
           <br></br>
@@ -97,13 +147,14 @@ const Register = () => {
           </Button>
           <br></br>
           <br></br>
+          {registerErr && <div>{registerErr}</div>}
           <p className="registration-login">
             do you have an account?{" "}
             <Link
               style={{
                 color: "red",
               }}
-              to="/Login"
+              to="/"
             >
               Log In
             </Link>

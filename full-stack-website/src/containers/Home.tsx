@@ -7,6 +7,7 @@ import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Homeitems from "../components/Homeitems";
 import { CartModal } from "../modals/CartModal";
 import { useModal } from "../hooks/useModal";
@@ -99,6 +100,11 @@ const Home = () => {
   const getCartTotal = () => {
     return cart.reduce((sum: number) => sum + 1, 0);
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    window.location.reload();
+  }
 
   useEffect(() => {
     const loadData = async () => {
@@ -230,6 +236,19 @@ const Home = () => {
             </TabPanel>
           </SwipeableViews>
         </Box>
+        <Button
+          variant="contained"
+          size="large"
+          sx={{
+            margin: "10px 0",
+            backgroundColor: "red",
+            "&:hover": {
+              backgroundColor: "rgb(162, 6, 6)",
+            }
+          }}
+          onClick={handleLogout}>
+          Logout
+        </Button>
         <Outlet />
       </div>
     ) : (
