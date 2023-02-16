@@ -1,11 +1,13 @@
 import express from "express";
 import bcrypt from "bcrypt";
-import registeredUser from "./schema/registerSchema.js";
+import userRegisterModel from "./schema/registerSchema.js";
 const router = express.Router();
 
 router.post("/", async (req, res) => {
   try {
-    const user = await registeredUser.findOne({ username: req.body.username });
+    const user = await userRegisterModel.findOne({
+      username: req.body.username,
+    });
 
     if (!user) {
       return res.status(401).send({ message: "username is incorrect..." });

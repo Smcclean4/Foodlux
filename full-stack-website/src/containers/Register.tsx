@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -24,13 +24,21 @@ const Register = () => {
     setUserRegisterInfo({ ...userRegisterInfo, [input.name]: input.value })
   }
 
+  useEffect(() => {
+    console.log(userRegisterInfo)
+  }, [userRegisterInfo])
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       if (userRegisterInfo.password === userRegisterInfo.confirmpassword) {
-        await axios.post('http://localhost:8080/registerUser', userRegisterInfo).then(res => console.log(res.data))
+        console.log('money')
+        await axios.post("http://localhost:" + process.env.PORT + "/registerUser.js", userRegisterInfo).then(res => console.log(res.data))
+        console.log('got money')
         navigate('/Login', { replace: true })
+      } else {
+        setRegisterErr("passwords don't match")
       }
     } catch (error) {
       if (error.response && error.response.status >= 400 && error.response.status <= 500) {
@@ -56,10 +64,9 @@ const Register = () => {
       >
         <form
           className="box"
-          onSubmit={() => handleSubmit}
+          onSubmit={handleSubmit}
           action="/"
           method="post"
-          target="_blank"
           autoComplete="on">
           <p className="register-header">Register</p>
           <TextField
@@ -142,6 +149,7 @@ const Register = () => {
             sx={{ "&:hover": { backgroundColor: "red", color: "white" } }}
             variant="outlined"
             endIcon={<SendIcon />}
+            type="submit"
           >
             Register
           </Button>

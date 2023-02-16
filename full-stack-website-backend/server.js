@@ -11,18 +11,25 @@ const app = express();
 
 mongoose.set("strictQuery", false);
 
-mongoose.connect(source, (err) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log("Connected to DB! :)");
-  }
-});
+mongoose.connect(
+  source,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Connected to DB! :)");
+    }
+  },
+);
 
 app.use(express.json());
 app.use(cors());
-app.use("/registerUser", registerUser);
-app.use("/userAuth", userAuth);
+app.use("/registerUser.js", registerUser);
+app.use("/userAuth.js", userAuth);
 
 app.get("/", (req, res) => {
   res.send("Displaying the backend!! ;)");

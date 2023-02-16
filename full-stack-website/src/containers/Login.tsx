@@ -24,7 +24,7 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const { data: res } = await axios.post('http://localhost:8080/userAuth', userLoginInfo)
+      const { data: res } = await axios.post(`http://localhost:${process.env.PORT}/userAuth.js`, userLoginInfo)
       console.log(userLoginInfo)
       localStorage.setItem('token', res.data)
       window.location.replace('/')
@@ -88,6 +88,7 @@ const Login = () => {
             sx={{ "&:hover": { backgroundColor: "red", color: "white" } }}
             variant="outlined"
             endIcon={<SendIcon />}
+            type="submit"
           >
             Log In
           </Button>

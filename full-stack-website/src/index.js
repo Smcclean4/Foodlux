@@ -18,7 +18,7 @@ ReactDOM.render(
       {user && <Route path="/" element={<Home />} />}
       {user && <Route path="Cart" element={<Cart />} />}
       {user && <Route path="Checkout" element={<Checkout />} />}
-      <Route path="/" element={<Navigate replace to="/Login" />} />
+      <Route path="/" element={<Navigate replace to="Login" />} />
       <Route
         path="*"
         element={

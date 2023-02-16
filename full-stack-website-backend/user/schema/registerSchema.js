@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-const { Schema } = mongoose;
+import mongoose, { Schema } from "mongoose";
 
 const userRegisterSchema = new Schema({
   firstname: {
@@ -32,6 +31,6 @@ const userRegisterSchema = new Schema({
   },
 });
 
-const userRegisterModel = mongoose.model("register", userRegisterSchema);
+const userRegisterModel = mongoose.model("users", userRegisterSchema);
 
 export default userRegisterModel;
