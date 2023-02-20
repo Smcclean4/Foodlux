@@ -1,14 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
-import { Link } from "react-router-dom";
+import axios from 'axios';
 import "../stylesheets/Register.css";
 
 const Register = () => {
-  function handleSubmit(e: { preventDefault: () => void; }) {
-    e.preventDefault();
+
+  const [userRegisterInfo, setUserRegisterInfo] = useState({
+    firstname: '',
+    lastname: '',
+    username: '',
+    email: '',
+    password: '',
+    confirmpassword: ''
+  })
+  const [registerErr, setRegisterErr] = useState('')
+  const navigate = useNavigate();
+
+  const handleChange = ({ currentTarget: input }) => {
+    setUserRegisterInfo({ ...userRegisterInfo, [input.name]: input.value })
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      if (userRegisterInfo.password === userRegisterInfo.confirmpassword) {
+        await axios.post(`http://localhost:${process.env.REACT_APP_PORT}/registerUser.js`, userRegisterInfo).then(res => console.log(res.data)).catch(err => console.log(err))
+        navigate('/Login', { replace: true })
+      } else {
+        setRegisterErr("passwords don't match")
+      }
+    } catch (error) {
+      if (error.response && error.response.status >= 400 && error.response.status <= 500) {
+        setRegisterErr(error.response.data.message)
+      }
+    }
   }
 
   return (
@@ -27,79 +57,110 @@ const Register = () => {
         }}
       >
         <form
-        className="box"
-        onSubmit={() => handleSubmit}
-        action="/"
-        method="post"
-        target="_blank"
-        autoComplete="on">
-        <p className="register-header">Register</p>
-        <TextField
-          className="register-fields"
-          label="Full Name"
-          margin="dense"
-          variant="outlined"
-        />
-        <br></br>
-        <br></br>
-        <TextField
-          className="register-fields"
-          label="Username"
-          margin="dense"
-          variant="outlined"
-        />
-        <br></br>
-        <br></br>
-        <TextField
-          className="register-fields"
-          label="Email"
-          type="email"
-          margin="dense"
-          variant="outlined"
-        />
-        <br></br>
-        <br></br>
-        <TextField
-          required
-          className="register-fields"
-          label="Password"
-          type="password"
-          margin="dense"
-          variant="filled"
-        />
-        <br></br>
-        <br></br>
-        <TextField
-          required
-          className="register-fields"
-          label="Confirm Password"
-          type="password"
-          margin="dense"
-          variant="filled"
-        />
-        <br></br>
-        <br></br>
-        <Button
-          color="error"
-          sx={{ "&:hover": { backgroundColor: "red", color: "white" } }}
-          variant="outlined"
-          endIcon={<SendIcon />}
-        >
-          Register
-        </Button>
-        <br></br>
-        <br></br>
-        <p className="registration-login">
-          do you have an account?{" "}
-          <Link
-            style={{
-              color: "red",
-            }}
-            to="/Login"
+          className="box"
+          onSubmit={handleSubmit}
+          action="/"
+          method="post"
+          autoComplete="on">
+          <p className="register-header">Register</p>
+          <TextField
+            className="register-fields"
+            label="First Name"
+            margin="dense"
+            variant="outlined"
+            name="firstname"
+            value={userRegisterInfo.firstname}
+            onChange={handleChange}
+            required
+          />
+          <br></br>
+          <br></br>
+          <TextField
+            className="register-fields"
+            label="Last Name"
+            margin="dense"
+            variant="outlined"
+            name="lastname"
+            value={userRegisterInfo.lastname}
+            onChange={handleChange}
+            required
+          />
+          <br></br>
+          <br></br>
+          <TextField
+            className="register-fields"
+            label="Username"
+            margin="dense"
+            variant="outlined"
+            name="username"
+            value={userRegisterInfo.username}
+            onChange={handleChange}
+            required
+          />
+          <br></br>
+          <br></br>
+          <TextField
+            className="register-fields"
+            label="Email"
+            type="email"
+            margin="dense"
+            variant="outlined"
+            name="email"
+            value={userRegisterInfo.email}
+            onChange={handleChange}
+            required
+          />
+          <br></br>
+          <br></br>
+          <TextField
+            className="register-fields"
+            label="Password"
+            type="password"
+            margin="dense"
+            variant="filled"
+            name="password"
+            value={userRegisterInfo.password}
+            onChange={handleChange}
+            required
+          />
+          <br></br>
+          <br></br>
+          <TextField
+            className="register-fields"
+            label="Confirm Password"
+            type="password"
+            margin="dense"
+            variant="filled"
+            name="confirmpassword"
+            value={userRegisterInfo.confirmpassword}
+            onChange={handleChange}
+            required
+          />
+          <br></br>
+          <br></br>
+          <Button
+            color="error"
+            sx={{ "&:hover": { backgroundColor: "red", color: "white" } }}
+            variant="outlined"
+            endIcon={<SendIcon />}
+            type="submit"
           >
-            Log In
-          </Link>
-        </p>
+            Register
+          </Button>
+          <br></br>
+          <br></br>
+          {registerErr && <div>{registerErr}</div>}
+          <p className="registration-login">
+            do you have an account?{" "}
+            <Link
+              style={{
+                color: "red",
+              }}
+              to="/"
+            >
+              Log In
+            </Link>
+          </p>
         </form>
       </Box>
     </div>

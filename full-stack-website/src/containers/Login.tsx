@@ -1,14 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
+import axios from 'axios';
 import { Link } from "react-router-dom";
 import "../stylesheets/Login.css";
 
 const Login = () => {
-  function handleSubmit(e: { preventDefault: () => void; }) {
-    e.preventDefault();
+
+  const [userLoginInfo, setUserLoginInfo] = useState({
+    username: '',
+    password: ''
+  })
+
+  const [loginErr, setLoginErr] = useState('');
+
+  const handleChange = ({ currentTarget: input }) => {
+    setUserLoginInfo({ ...userLoginInfo, [input.name]: input.value })
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const { data: res } = await axios.post(`http://localhost:${process.env.REACT_APP_PORT}/userAuth.js`, userLoginInfo)
+      console.log(userLoginInfo)
+      localStorage.setItem('token', res.data)
+      window.location.replace('/')
+    } catch (error) {
+      if (error.response && error.response.status >= 400 && error.response.status <= 500) {
+        setLoginErr(error.response.data.message)
+      }
+    }
   }
 
   return (
@@ -27,52 +51,61 @@ const Login = () => {
         }}
       >
         <form
-        onSubmit={() => handleSubmit}
-        className="box"
-        action="/"
-        method="post"
-        target="_blank"
-        autoComplete="on">
-        <p className="login-header">Login</p>
-        <TextField
-          className="login-fields"
-          label="Username"
-          margin="dense"
-          variant="outlined"
-        />
-        <br></br>
-        <br></br>
-        <TextField
-          required
-          className="login-fields"
-          label="Password"
-          type="password"
-          margin="dense"
-          variant="filled"
-        />
-        <br></br>
-        <br></br>
-        <Button
-          color="error"
-          sx={{ "&:hover": { backgroundColor: "red", color: "white" } }}
-          variant="outlined"
-          endIcon={<SendIcon />}
-        >
-          Log In
-        </Button>
-        <br></br>
-        <br></br>
-        <p className="registration-login">
-          don't have an account?{" "}
-          <Link
-            style={{
-              color: "red",
-            }}
-            to="/Register"
+          onSubmit={handleSubmit}
+          className="box"
+          action="/"
+          method="post"
+          target="_blank"
+          autoComplete="on">
+          <p className="login-header">Login</p>
+          <TextField
+            className="login-fields"
+            label="Username"
+            margin="dense"
+            variant="outlined"
+            name="username"
+            value={userLoginInfo.username}
+            onChange={handleChange}
+            required
+          />
+          <br></br>
+          <br></br>
+          <TextField
+            className="login-fields"
+            label="Password"
+            type="password"
+            margin="dense"
+            variant="filled"
+            name="password"
+            value={userLoginInfo.password}
+            onChange={handleChange}
+            required
+          />
+          <br></br>
+          <br></br>
+          <Button
+            color="error"
+            sx={{ "&:hover": { backgroundColor: "red", color: "white" } }}
+            variant="outlined"
+            endIcon={<SendIcon />}
+            type="submit"
           >
-            Register
-          </Link>
-        </p>
+            Log In
+          </Button>
+          <br></br>
+          <br></br>
+          {loginErr && <h3 className="error">{loginErr}</h3>}
+          <p className="registration-login">
+            don't have an account?{" "}
+            <Link
+              style={{
+                color: "red",
+              }}
+              to="/Register"
+            >
+              Register
+            </Link>
+          </p>
         </form>
       </Box>
     </div>

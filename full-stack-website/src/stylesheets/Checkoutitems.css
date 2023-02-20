@@ -9,8 +9,12 @@
 }
 
 .checkout-items {
-  padding: 10px;
+  padding: 5px;
   width: 100%;
   text-align: center;
   align-items: center;
+}
+
+.detail-image {
+  height: 75px;
 }

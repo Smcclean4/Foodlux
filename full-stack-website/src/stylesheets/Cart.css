@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
 
 .cart-background {
-    background: url("/src/images/pexels-furknsaglam-3109671.jpg");
+    background: url("/src/assets/pexels-furknsaglam-3109671.jpg");
     background-position: center;
     background-size: cover;
     height: auto;
@@ -61,7 +61,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    padding-top: 35px;
 }
 
 .total-section {
@@ -81,6 +80,10 @@
     font-size: 1.7em;
     text-decoration: underline;
     text-decoration-color: red;
+}
+
+.cart-dummydata {
+    color: white;
 }
 
 @media only screen and (max-width:350px),

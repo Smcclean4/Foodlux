@@ -67,3 +67,12 @@
   padding: 5px;
   margin: 0 5px;
 }
+
+@media only screen and (max-width:1280px) {
+  .cartmodal-container {
+    position: fixed;
+    top: 100;
+    right: 0;
+    margin: 10px;
+  }
+}

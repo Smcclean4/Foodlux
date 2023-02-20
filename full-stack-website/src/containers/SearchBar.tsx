@@ -13,9 +13,7 @@ const SearchBar = ({ data, searchforitem }) => {
     setUserInput(e.target.value)
     const dataItems: any = [];
     let dataInfo: CartInfoInterface;
-    dataInfo = data.map((menu: { menu: any; }[]) => menu.map((food: { menu: any[] }) => food.menu.map((items: any) => {
-      dataItems.push(items)
-    })))
+    dataInfo = data.map((menu: { menu: any; }[]) => menu.map((food: { menu: any[] }) => food.menu.map((items: any) => dataItems.push(items))))
     const filteredData = dataItems.filter((val: { item: string; }) => val.item.toLowerCase().includes(userInput.toLowerCase()))
     setDropDown(filteredData)
   }
@@ -34,7 +32,7 @@ const SearchBar = ({ data, searchforitem }) => {
       <div className="searchbar-container">
         <input className="searchbar-input" type="search" value={userInput} onChange={handleChange} onFocus={dropDownFocusToggle} onBlur={dropDownFocusToggle}></input>
         <Button sx={{
-          color: 'white', backgroundColor: 'red', padding: '5px 35px', "&:hover": {
+          color: 'white', backgroundColor: 'red', padding: '2px 35px', "&:hover": {
             backgroundColor: "rgb(162, 6, 6)",
           },
           borderRadius: '0 10px 10px 0'

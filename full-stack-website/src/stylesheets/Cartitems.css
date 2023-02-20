@@ -3,14 +3,28 @@
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
-  align-self: space-around;
   flex-wrap: wrap;
   width: 70%;
   padding: 20px;
   margin: 10px auto;
+  flex-direction: row;
 }
 
 .cart-items {
-  padding: 10px;
+  padding: 5px;
   text-align: center;
+}
+
+.cart-items-desc {
+  text-align: left;
+}
+
+.item-images {
+  height: 140px;
+}
+
+@media only screen and (max-width:1280px) {
+  .item-images {
+    height: 125px;
+  }
 }

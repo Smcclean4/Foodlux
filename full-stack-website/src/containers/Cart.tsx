@@ -5,6 +5,8 @@ import Cartitems from "../components/Cartitems";
 import { LoadingCircle } from "../tools/LoadingCircle";
 import { CartInfoInterface } from "../api/Categories";
 import { Categories } from "../api/Categories"
+import { useModal } from "../hooks/useModal"
+import { DeleteForeverModal } from "../modals/DeleteForeverModal";
 import "../stylesheets/Cart.css";
 
 const Cart = () => {
@@ -12,7 +14,11 @@ const Cart = () => {
   const cartFromHomeLocalStorage: CartInfoInterface[] = JSON.parse(localStorage.getItem('cart') || '[]')
 
   const [cartInfo, setCartInfo] = useState<CartInfoInterface[]>(cartFromHomeLocalStorage)
+  const [deleteItem, setDeleteItem] = useState({ deleteItemName: '', deleteCompany: '' })
   const [loading, setLoading] = useState(true)
+
+  const { isShowing, toggle } = useModal();
+
   const { fastfood, finedine, snacks, alcohol } = Categories()
   const categories = [fastfood, finedine, snacks, alcohol]
   const homeData = categories
@@ -31,7 +37,6 @@ const Cart = () => {
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartInfo))
-    // item.quantity is less than or equal to 1 set icons!!!
   }, [cartInfo])
 
   const cartTotal = () => {
@@ -39,13 +44,35 @@ const Cart = () => {
   }
 
   const addItem = (ID: number) => {
-    setCartInfo((info) => info?.map((item, i) => i === ID ? { ...item, price: (Number(item.price) + Number(home[ID].price)).toFixed(2), quantity: item.quantity + 1 } : item));
+    setCartInfo((info) => info?.map((item, i) => {
+      let homeValueAtId: number[] = []
+      let filteredHomePrice: number[] = home.filter((val, i) => val.item.includes(item.item) && val.company.includes(item.company) ? homeValueAtId.push(home[i].price) : 0)
+      return i === ID ? { ...item, price: (Number(item.price) + Number(homeValueAtId)).toFixed(2), quantity: item.quantity + 1 } : item
+    }));
   }
 
   const removeItem = (ID: number) => {
     if (cartInfo[ID].quantity !== 1) {
-      setCartInfo((info) => info?.map((item, i) => i === ID ? { ...item, price: (Number(item.price) - Number(home[ID].price)).toFixed(2), quantity: item.quantity - 1 } : item));
+      setCartInfo((info) => info?.map((item, i) => {
+        let homeValueAtId: number[] = []
+        let filteredHomePrice: number[] = home.filter((val, i) => val.item.includes(item.item) && val.company.includes(item.company) ? homeValueAtId.push(home[i].price) : 0)
+        return i === ID ? { ...item, price: (Number(item.price) - Number(homeValueAtId)).toFixed(2), quantity: item.quantity - 1 } : item
+      }));
     }
+
+    if (cartInfo[ID].quantity === 1) {
+      setDeleteItem({ deleteItemName: cartInfo[ID].item, deleteCompany: cartInfo[ID].company })
+      toggle()
+    }
+  }
+
+  const deleteItemFromCart = () => {
+    setCartInfo((state) => state.filter((val, i) => {
+      if (!cartInfo[i].company.includes(deleteItem.deleteCompany) || !cartInfo[i].item.includes(deleteItem.deleteItemName)) {
+        return !val.item.includes(deleteItem.deleteCompany)
+      }
+    }))
+    toggle()
   }
 
   return (
@@ -53,44 +80,44 @@ const Cart = () => {
       <div className="cart-background">
         <div className="checkout-return-section">
           <div className="return-section">
-            <Button
-              variant="contained"
-              size="large"
-              sx={{
-                backgroundColor: "red",
-                "&:hover": {
-                  backgroundColor: "rgb(162, 6, 6)",
-                },
-                marginTop: "20px",
-                marginBottom: "20px"
-              }}
-            >
-              <Link className="return-link" to="/Home">
+            <Link className="return-link" to="/">
+              <Button
+                variant="contained"
+                size="large"
+                sx={{
+                  backgroundColor: "red",
+                  "&:hover": {
+                    backgroundColor: "rgb(162, 6, 6)",
+                  },
+                  marginTop: "20px",
+                  marginBottom: "20px"
+                }}
+              >
                 Back to home
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
           <div className="checkout-section">
-            <Button
-              variant="contained"
-              size="large"
-              sx={{
-                backgroundColor: "red",
-                "&:hover": {
-                  backgroundColor: "rgb(162, 6, 6)",
-                },
-                margin: "20px",
-              }}>
-              <Link className="checkout-link" to="/Checkout" state={{ cart: cartInfo }}>
+            <Link className="checkout-link" to="/Checkout" state={{ cart: cartInfo }}>
+              <Button
+                variant="contained"
+                size="large"
+                sx={{
+                  backgroundColor: "red",
+                  "&:hover": {
+                    backgroundColor: "rgb(162, 6, 6)",
+                  },
+                  margin: "20px",
+                }}>
                 Proceed To Checkout
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         </div>
         <p className="cart-header">Cart</p>
         <div className="cart-window">
           {cartInfo?.length !== 0 ? <Cartitems items={cartInfo} additem={addItem} removeitem={removeItem} /> :
-            <>
+            <div className="cart-dummydata">
               <h1>YOUR CART IS EMPTY!</h1>
               <br></br>
               <br></br>
@@ -98,10 +125,11 @@ const Cart = () => {
               <br></br>
               <br></br>
               <h1>🍔</h1>
-            </>}
+            </div>}
+          <DeleteForeverModal isShowing={isShowing} hide={toggle} item={deleteItem} deleteitem={deleteItemFromCart} />
         </div>
         <div className="total-section">
-          <h2 className="total">Total: {cartTotal()}</h2>
+          <h2 className="total">Total: &#36;{cartTotal()}</h2>
         </div>
       </div>
     ) : (

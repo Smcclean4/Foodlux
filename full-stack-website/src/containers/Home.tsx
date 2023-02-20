@@ -7,6 +7,7 @@ import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Homeitems from "../components/Homeitems";
 import { CartModal } from "../modals/CartModal";
 import { useModal } from "../hooks/useModal";
@@ -14,6 +15,7 @@ import { LoadingCircle } from "../tools/LoadingCircle"
 import SearchBar from "../containers/SearchBar";
 import { CartInfoInterface } from "../api/Categories";
 import { Categories } from "../api/Categories"
+import { UserData } from "../api/UserData"
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import "../stylesheets/Home.css";
@@ -68,12 +70,12 @@ const Home = () => {
   const [value, setValue] = useState(0);
   const theme = useTheme();
 
-  // example username
-  let username = "Carolina";
-
   // all categories
   const { fastfood, finedine, snacks, alcohol }: any = Categories()
   const categories = [fastfood, finedine, snacks, alcohol]
+
+  // all user data
+  const { username }: any = UserData()
 
   // search item and company
   const [infoFromSearch, setItemsFromSearch] = useState({ itemFromSearch: '', companyFromSearch: '' })
@@ -92,13 +94,19 @@ const Home = () => {
 
   const searchForItem = (searchTermItem: string, searchTermInfo: string) => {
     const { searchTermCompany, searchTermCategory }: any = searchTermInfo;
-    searchTermCategory == 'fastfood' ? setValue(0) : searchTermCategory == 'finedine' ? setValue(1) : searchTermCategory == 'snacks' ? setValue(2) : searchTermCategory == 'alcohol' ? setValue(3) : setValue(0)
+    searchTermCategory === 'fastfood' ? setValue(0) : searchTermCategory === 'finedine' ? setValue(1) : searchTermCategory === 'snacks' ? setValue(2) : searchTermCategory === 'alcohol' ? setValue(3) : setValue(0)
     setItemsFromSearch({ itemFromSearch: searchTermItem, companyFromSearch: searchTermCompany })
   }
 
   const getCartTotal = () => {
     return cart.reduce((sum: number) => sum + 1, 0);
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('cart')
+    window.location.reload();
+  }
 
   useEffect(() => {
     const loadData = async () => {
@@ -129,7 +137,7 @@ const Home = () => {
             <p className="cart-count">{getCartTotal()}</p>
           </div>
         </div>
-        <Box sx={{ backdropFilter: "blur(5px)", width: "90%", margin: "0 auto" }}>
+        <Box sx={{ backdropFilter: "blur(5px)", width: "95%", margin: "0 auto" }}>
           <AppBar position="static">
             <Tabs
               sx={{
@@ -230,6 +238,19 @@ const Home = () => {
             </TabPanel>
           </SwipeableViews>
         </Box>
+        <Button
+          variant="contained"
+          size="large"
+          sx={{
+            margin: "10px 0",
+            backgroundColor: "red",
+            "&:hover": {
+              backgroundColor: "rgb(162, 6, 6)",
+            }
+          }}
+          onClick={handleLogout}>
+          Logout
+        </Button>
         <Outlet />
       </div>
     ) : (
