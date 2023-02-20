@@ -7,9 +7,9 @@ export const UserData = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        // await axios.get(`http://localhost:${process.env.REACT_APP_PORT}/registerUser.js`)
-        //   .then(res => console.log(res))
-        //   .catch(err => console.log(err))
+        await axios.get(`http://localhost:${process.env.REACT_APP_PORT}/`)
+          .then(res => setUsername(res.data))
+          .catch(err => console.log(err))
       } catch (error) {
         console.log(error)
       }
