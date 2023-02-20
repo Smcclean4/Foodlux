@@ -28,8 +28,8 @@ mongoose.connect(
 
 app.use(express.json());
 app.use(cors());
-app.use("/registerUser.js", registerUser);
-app.use("/userAuth.js", userAuth);
+app.use("/registerUser", registerUser);
+app.use("/userAuth", userAuth);
 
 app.get("/", (req, res) => {
   res.send("Displaying the backend!! ;)");

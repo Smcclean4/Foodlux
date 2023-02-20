@@ -30,7 +30,7 @@ const Checkout = () => {
     const submitData = async () => {
       await new Promise(() => setTimeout(() => {
         localStorage.removeItem('cart')
-        navigate('/')
+        navigate('/Home')
       }, 15000))
     }
     submitData();

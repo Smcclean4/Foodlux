@@ -29,7 +29,7 @@ const Register = () => {
 
     try {
       if (userRegisterInfo.password === userRegisterInfo.confirmpassword) {
-        await axios.post(`http://localhost:${process.env.REACT_APP_PORT}/registerUser.js`, userRegisterInfo).then(res => console.log(res.data)).catch(err => console.log(err))
+        await axios.post(`http://localhost:${process.env.REACT_APP_PORT}/registerUser`, userRegisterInfo).then(res => console.log(res.data)).catch(err => console.log(err))
         navigate('/Login', { replace: true })
       } else {
         setRegisterErr("passwords don't match")

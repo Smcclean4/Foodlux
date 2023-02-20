@@ -80,7 +80,7 @@ const Cart = () => {
       <div className="cart-background">
         <div className="checkout-return-section">
           <div className="return-section">
-            <Link className="return-link" to="/">
+            <Link className="return-link" to="/Home">
               <Button
                 variant="contained"
                 size="large"

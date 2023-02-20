@@ -105,7 +105,8 @@ const Home = () => {
   const handleLogout = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('cart')
-    window.location.reload();
+    window.location.reload()
+    window.location.replace('/')
   }
 
   useEffect(() => {

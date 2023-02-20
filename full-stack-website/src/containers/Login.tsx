@@ -24,10 +24,10 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const { data: res } = await axios.post(`http://localhost:${process.env.REACT_APP_PORT}/userAuth.js`, userLoginInfo)
+      const { data: res } = await axios.post(`http://localhost:${process.env.REACT_APP_PORT}/userAuth`, userLoginInfo)
       console.log(userLoginInfo)
       localStorage.setItem('token', res.data)
-      window.location.replace('/')
+      window.location.replace('/Home')
     } catch (error) {
       if (error.response && error.response.status >= 400 && error.response.status <= 500) {
         setLoginErr(error.response.data.message)
