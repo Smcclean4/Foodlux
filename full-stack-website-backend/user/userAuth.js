@@ -30,4 +30,16 @@ router.post("/", async (req, res) => {
   }
 });
 
+// router.get("/", async (req, res) => {
+//   try {
+//     const user = await userRegisterModel.findOne({
+//       username: req.body.username,
+//     });
+
+//     return user;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
+
 export default router;

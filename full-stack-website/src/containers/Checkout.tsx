@@ -29,7 +29,8 @@ const Checkout = () => {
     setSubmitting(true)
     const submitData = async () => {
       await new Promise(() => setTimeout(() => {
-        navigate('/Home')
+        localStorage.removeItem('cart')
+        navigate('/')
       }, 15000))
     }
     submitData();

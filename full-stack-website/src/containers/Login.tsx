@@ -24,13 +24,13 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const { data: res } = await axios.post(`http://localhost:${process.env.PORT}/userAuth.js`, userLoginInfo)
+      const { data: res } = await axios.post(`http://localhost:${process.env.REACT_APP_PORT}/userAuth.js`, userLoginInfo)
       console.log(userLoginInfo)
       localStorage.setItem('token', res.data)
       window.location.replace('/')
     } catch (error) {
       if (error.response && error.response.status >= 400 && error.response.status <= 500) {
-        setLoginErr(error.reponse.data.message)
+        setLoginErr(error.response.data.message)
       }
     }
   }
@@ -94,7 +94,7 @@ const Login = () => {
           </Button>
           <br></br>
           <br></br>
-          {loginErr && <div>{loginErr}</div>}
+          {loginErr && <h3 className="error">{loginErr}</h3>}
           <p className="registration-login">
             don't have an account?{" "}
             <Link

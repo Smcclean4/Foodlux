@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
-import axios from 'axios'
-import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
 import "../stylesheets/Register.css";
 
 const Register = () => {
@@ -24,25 +24,19 @@ const Register = () => {
     setUserRegisterInfo({ ...userRegisterInfo, [input.name]: input.value })
   }
 
-  useEffect(() => {
-    console.log(userRegisterInfo)
-  }, [userRegisterInfo])
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       if (userRegisterInfo.password === userRegisterInfo.confirmpassword) {
-        console.log('money')
-        await axios.post("http://localhost:" + process.env.PORT + "/registerUser.js", userRegisterInfo).then(res => console.log(res.data))
-        console.log('got money')
+        await axios.post(`http://localhost:${process.env.REACT_APP_PORT}/registerUser.js`, userRegisterInfo).then(res => console.log(res.data)).catch(err => console.log(err))
         navigate('/Login', { replace: true })
       } else {
         setRegisterErr("passwords don't match")
       }
     } catch (error) {
       if (error.response && error.response.status >= 400 && error.response.status <= 500) {
-        setRegisterErr(error.reponse.data.message)
+        setRegisterErr(error.response.data.message)
       }
     }
   }

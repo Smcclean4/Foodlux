@@ -15,6 +15,7 @@ import { LoadingCircle } from "../tools/LoadingCircle"
 import SearchBar from "../containers/SearchBar";
 import { CartInfoInterface } from "../api/Categories";
 import { Categories } from "../api/Categories"
+import { UserData } from "../api/UserData"
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import "../stylesheets/Home.css";
@@ -69,12 +70,12 @@ const Home = () => {
   const [value, setValue] = useState(0);
   const theme = useTheme();
 
-  // example username
-  let username = "Carolina";
-
   // all categories
   const { fastfood, finedine, snacks, alcohol }: any = Categories()
   const categories = [fastfood, finedine, snacks, alcohol]
+
+  // all user data
+  const { username }: any = UserData()
 
   // search item and company
   const [infoFromSearch, setItemsFromSearch] = useState({ itemFromSearch: '', companyFromSearch: '' })
@@ -103,6 +104,7 @@ const Home = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token')
+    localStorage.removeItem('cart')
     window.location.reload();
   }
 

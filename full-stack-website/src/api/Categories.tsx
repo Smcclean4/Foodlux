@@ -1,5 +1,3 @@
-// import React, { useState } from 'react'
-
 export type CartType = {
   item: string;
   price: number;
