@@ -52,7 +52,6 @@ const Login = () => {
       >
         <form
           onSubmit={handleSubmit}
-          className="box"
           action="/"
           method="post"
           target="_blank"
@@ -68,8 +67,6 @@ const Login = () => {
             onChange={handleChange}
             required
           />
-          <br></br>
-          <br></br>
           <TextField
             className="login-fields"
             label="Password"

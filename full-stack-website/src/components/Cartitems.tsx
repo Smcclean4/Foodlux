@@ -23,32 +23,33 @@ const Cartitems = ({ items, additem, removeitem }) => {
           <div className="cart-container" key={idx}>
             <Grid
               container
-              spacing={{ xs: 2, md: 3 }}
-              columns={{ xs: 2, sm: 2, md: 2, lg: 12 }}
+              spacing={3}
             >
-              <Grid item xs={4}>
-                <Item>
-                  <div className="cart-items">
-                    <img alt="" src={item.image} className="item-images" />
-                  </div>
-                </Item>
-              </Grid>
-              <Grid item xs={12} sm container spacing={1}>
-                <Grid item xs={5}>
+              <Grid item xs={4} container spacing={2} columns={{ xs: 1, sm: 1, md: 1, lg: 12 }} >
+                <Grid item xs={12}>
                   <Item>
                     <div className="cart-items">
                       <li>{item.item}</li>
                     </div>
                   </Item>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={12}>
+                  <Item>
+                    <div className="cart-items">
+                      <img alt="" src={item.image} className="item-images" />
+                    </div>
+                  </Item>
+                </Grid>
+              </Grid>
+              <Grid item xs={8} container spacing={2} columns={{ xs: 6, sm: 6, md: 6, lg: 12 }} >
+                <Grid item xs={6}>
                   <Item>
                     <div className="cart-items">
                       <li>&#36;{item.price}</li>
                     </div>
                   </Item>
                 </Grid>
-                <Grid item xs={1.5}>
+                <Grid item xs={2}>
                   <Item
                     onClick={() => removeitem(idx)}
                     sx={{
@@ -62,21 +63,21 @@ const Cartitems = ({ items, additem, removeitem }) => {
                       }
                     }}
                   >
-                    {item.quantity === 1 ? <DeleteForeverIcon fontSize="large" /> : <RemoveIcon />}
+                    {item.quantity === 1 ? <DeleteForeverIcon fontSize="medium" /> : <RemoveIcon />}
                   </Item>
                 </Grid>
-                <Grid item xs={1}>
+                <Grid item xs={2}>
                   <Item
                     sx={{
                       color: "black",
-                      fontSize: "1.8em",
+                      fontSize: "1.3em",
                       padding: "5px 5px",
                     }}
                   >
                     <span>{item.quantity}</span>
                   </Item>
                 </Grid>
-                <Grid item xs={1.5}>
+                <Grid item xs={2}>
                   <Item
                     onClick={() => additem(idx)}
                     sx={{
@@ -90,10 +91,10 @@ const Cartitems = ({ items, additem, removeitem }) => {
                       }
                     }}
                   >
-                    <AddIcon fontSize="large" />
+                    <AddIcon fontSize="medium" />
                   </Item>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} >
                   <Item>
                     <div className="cart-items-desc">
                       <li>{item.desc}</li>

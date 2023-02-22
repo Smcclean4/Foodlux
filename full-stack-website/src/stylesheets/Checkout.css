@@ -126,15 +126,13 @@
   font-size: 3.0em;
 }
 
-@media only screen and (max-width:350px),
-(max-width:450px) {
-  .checkout-background {
-    padding-bottom: 2%;
+@media only screen and (max-width:1200px) {
+  .checkout-menu {
+    flex-direction: column;
   }
-}
 
-@media only screen and (max-width:1028px) and (min-width:1020px) {
-  .checkout-background {
-    padding-bottom: 2%;
+  .checkout-list,
+  .checkout-values-header-container {
+    width: 100%;
   }
 }

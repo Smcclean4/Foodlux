@@ -10,8 +10,6 @@ router.post("/", async (req, res) => {
       username: req.body.username,
     });
 
-    app.set("user", req.body.username);
-
     if (!user) {
       return res.status(401).send({ message: "username is incorrect..." });
     }
@@ -26,7 +24,8 @@ router.post("/", async (req, res) => {
     }
 
     if (user && validPassword) {
-      return res.send("logged in!!!");
+      app.set("user", req.body.username);
+      return res.send("logged in!");
     }
   } catch (err) {
     console.log(err);

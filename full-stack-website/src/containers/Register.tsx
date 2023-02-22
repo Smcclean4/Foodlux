@@ -50,21 +50,20 @@ const Register = () => {
           borderRadius: "25px 25px",
           backgroundColor: "white",
           boxShadow: "black 0px 0px 20px",
-          maxWidth: "250px",
-          width: "75%",
+          maxWidth: "415px",
+          width: "50%",
           margin: "0 auto",
           padding: "30px",
         }}
       >
         <form
-          className="box"
           onSubmit={handleSubmit}
           action="/"
           method="post"
           autoComplete="on">
           <p className="register-header">Register</p>
           <TextField
-            className="register-fields"
+            sx={{ margin: "5px" }}
             label="First Name"
             margin="dense"
             variant="outlined"
@@ -73,10 +72,8 @@ const Register = () => {
             onChange={handleChange}
             required
           />
-          <br></br>
-          <br></br>
           <TextField
-            className="register-fields"
+            sx={{ margin: "5px" }}
             label="Last Name"
             margin="dense"
             variant="outlined"
@@ -85,10 +82,8 @@ const Register = () => {
             onChange={handleChange}
             required
           />
-          <br></br>
-          <br></br>
           <TextField
-            className="register-fields"
+            sx={{ margin: "5px" }}
             label="Username"
             margin="dense"
             variant="outlined"
@@ -97,10 +92,8 @@ const Register = () => {
             onChange={handleChange}
             required
           />
-          <br></br>
-          <br></br>
           <TextField
-            className="register-fields"
+            sx={{ margin: "5px" }}
             label="Email"
             type="email"
             margin="dense"
@@ -110,10 +103,8 @@ const Register = () => {
             onChange={handleChange}
             required
           />
-          <br></br>
-          <br></br>
           <TextField
-            className="register-fields"
+            sx={{ margin: "5px" }}
             label="Password"
             type="password"
             margin="dense"
@@ -123,10 +114,8 @@ const Register = () => {
             onChange={handleChange}
             required
           />
-          <br></br>
-          <br></br>
           <TextField
-            className="register-fields"
+            sx={{ margin: "5px" }}
             label="Confirm Password"
             type="password"
             margin="dense"

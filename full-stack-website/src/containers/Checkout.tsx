@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import SendIcon from '@mui/icons-material/Send'
 import TextField from "@mui/material/TextField";
 import MenuItem from '@mui/material/MenuItem';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Checkoutitems from "../components/Checkoutitems"
 import "../stylesheets/Checkout.css"
 import { LoadingCircle } from '../tools/LoadingCircle';
@@ -129,12 +130,13 @@ const Checkout = () => {
                     "&:hover": {
                       backgroundColor: "rgb(162, 6, 6)",
                     },
-                  }}>
-                  Back to cart
+                  }}
+                  startIcon={<ArrowBackIosIcon />}>
+                  Cart
                 </Button>
               </Link>
             </div>
-            <p className="checkout-header">Credit or Debit Card Payment</p>
+            <p className="checkout-header">Credit/Debit Card Payment</p>
             <Box
               className="checkout-window"
               sx={{

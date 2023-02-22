@@ -40,13 +40,20 @@ li {
 .home-item-group {
     display: flex;
     flex-wrap: wrap;
-    margin: 20px 0;
+    margin: 2% 0;
     width: 100%;
 }
 
 .home-items-desc {
     height: 175px;
     text-align: left;
+}
+
+
+@media only screen and (max-width:550px) {
+    .home-items-desc {
+        font-size: 0.8em;
+    }
 }
 
 @media only screen and (max-width:1280px) {

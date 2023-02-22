@@ -4,19 +4,19 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import "../stylesheets/Homeitems.css";
 
-const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
-
-  const [render, setRender] = useState(false);
+const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) => {
+  // changes the background color of item to red depending on if the item is found or not
   const [found, setFound] = useState("rgba(255, 0, 0, 0.547)");
 
   const renderChange = () => {
-    setRender(!render);
+    setrender(!render);
   };
 
+  // checks if the search info (item) input into search matches any of the current items listed.. if it does make it red and if not return and empty string
   const searchItemIdentified = (item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined) => {
     if (searchinfo.itemFromSearch === item) {
       setTimeout(() => {
-        setFound("")
+        setFound('')
       }, 5000)
       return found
     } else {
@@ -25,11 +25,12 @@ const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
   }
 
   useEffect(() => {
+    // if company that was apart of search matches the current titles listed open it.. once new search information is input run function again
     const compareSearchInfo = () => {
-      return searchinfo.companyFromSearch === title ? setRender(true) : null
+      return searchinfo.companyFromSearch === title ? setrender(true) : null
     }
     compareSearchInfo()
-  }, [searchinfo, title])
+  }, [searchinfo])
 
   return (
     <>
@@ -39,7 +40,7 @@ const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
             sx={{ marginBottom: "5px", marginRight: "5px", backgroundColor: "dodgerblue" }}
             variant="contained"
             className="button active"
-            onClick={() => renderChange()}
+            onClick={renderChange}
           >
             {title}
           </Button>
@@ -60,8 +61,8 @@ const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
               <Grid
                 className="b"
                 container
-                spacing={{ xs: 0, md: 3 }}
-                columns={{ xs: 1, sm: 2, md: 12 }}>
+                spacing={{ xs: 2, md: 3 }}
+                columns={{ xs: 2, sm: 2, md: 12 }}>
                 {menu?.map((items, idx) => {
                   if (items.type === "food") {
                     return (
@@ -101,7 +102,7 @@ const Homeitems = ({ menu, title, addtocart, searchinfo }) => {
                 className="b"
                 container
                 spacing={{ xs: 0, md: 3 }}
-                columns={{ xs: 1, sm: 2, md: 12 }}>
+                columns={{ xs: 2, sm: 2, md: 12 }}>
                 {menu?.map((items, idx) => {
                   if (items.type === "drink") {
                     return (
