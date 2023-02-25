@@ -13,17 +13,21 @@ import { CartInfoInterface } from "../api/Categories";
 import { Foodluxbus } from '../tools/Foodluxbus';
 
 const Checkout = () => {
-
+  // stores data from cart 
   const [checkoutData, setCheckoutData] = useState<CartInfoInterface[]>([])
+  // stores the amount of seconds that the foodlux bus page will be displayed
   const [seconds, setSeconds] = useState(15);
+  // displays the submitting page which has the foodlux bus component
   const [submitting, setSubmitting] = useState(false)
+  // shows the loading animation when loading onto the page
   const [loading, setLoading] = useState(true)
 
+  // using location to get state data from cart and using navigation for directing back to home after submittion
   const location: any = useLocation();
   const navigate = useNavigate();
   const cartData = location.state?.cart
 
-
+  // handles submittion of user data and handles removing cart and navigation to home after timer has finished
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     console.log("submitting payment info!")
@@ -36,11 +40,11 @@ const Checkout = () => {
     }
     submitData();
   }
-
+  // gets checkout total of items in cart
   const checkoutTotal = () => {
     return checkoutData.map((item) => item.price).reduce((acc: string, val: string) => (parseFloat(acc) + parseFloat(val)).toFixed(2), 0)
   }
-
+  // loading animation
   useEffect(() => {
     const loadData = async () => {
       await new Promise((p) => setTimeout(p, 1000));

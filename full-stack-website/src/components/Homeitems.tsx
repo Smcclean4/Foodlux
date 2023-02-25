@@ -79,7 +79,7 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
                         </Grid>
                         <Grid item xs={1} className="home-items">
                           <Button
-                            onClick={() => addtocart(menu[idx])}
+                            onClick={() => addtocart(menu[idx], idx)}
                             sx={{
                               color: "white", backgroundColor: "dodgerblue", "&:hover": {
                                 color: "white",
@@ -119,7 +119,7 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
                         </Grid>
                         <Grid item xs={1} className="home-items">
                           <Button
-                            onClick={() => addtocart(menu[idx])}
+                            onClick={() => addtocart(menu[idx], idx)}
                             sx={{
                               color: "white", backgroundColor: "dodgerblue", "&:hover": {
                                 color: "white",

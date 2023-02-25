@@ -86,8 +86,24 @@ const Home = () => {
     setRender(false)
   };
   // add item to current cart list
-  const addCart = (food: CartInfoInterface) => {
-    setCart([...cart, food]);
+  const addCart = (food: CartInfoInterface, idx) => {
+    // push specific items that are in home into this variable
+    const home: any[] = []
+    // all items that are being mapped through
+    let homeItems: any
+    homeItems = categories?.map((menu: any[]) => menu.map((food: { menu: any[]; }) => food.menu.map((items) => home.push(items))))
+    // if cart is empty add initial item .. else if go through check
+    if (cart.length <= 0) {
+      setCart([...cart, food])
+    } else if (cart[idx]?.item.includes(food.item) && cart[idx]?.company.includes(food.company)) {
+      setCart((info) => info?.map((item, i) => {
+        let homeValueAtId: number[] = []
+        let filteredHomePrice: number[] = home.filter((val, i) => val.item.includes(item.item) && val.company.includes(item.company) ? homeValueAtId.push(home[i].price) : 0)
+        return i === idx ? { ...item, price: (Number(item.price) + Number(homeValueAtId)).toFixed(2), quantity: item.quantity + 1 } : item
+      }))
+    } else {
+      setCart([...cart, food]);
+    }
   };
   // search for item using item, company, category
   // using this function as bait and fishing rod to bring searched information from search component into home component in order to pass it down to homeitems component

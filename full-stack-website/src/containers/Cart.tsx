@@ -26,13 +26,11 @@ const Cart = () => {
   const { fastfood, finedine, snacks, alcohol }: any = Categories()
   // array of all categories and values that are being passed to search bar
   const categories = [fastfood, finedine, snacks, alcohol]
-  // storing the categories in a single variable
-  const homeData = categories
   // push specific items that are in home into this variable
   const home: any[] = []
   // all items that are being mapped through
   let homeItems: any
-  homeItems = homeData?.map((menu: any[]) => menu.map((food: { menu: any[]; }) => food.menu.map((items) => home.push(items))))
+  homeItems = categories?.map((menu: any[]) => menu.map((food: { menu: any[]; }) => food.menu.map((items) => home.push(items))))
   // gets the total price of the items that are currently in the cart
   const cartTotal = () => {
     return cartInfo.map((item) => item.price).reduce((acc, val) => (Number(acc) + Number(val)).toFixed(2), 0)
@@ -64,7 +62,7 @@ const Cart = () => {
   const deleteItemFromCart = () => {
     setCartInfo((state) => state.filter((val, i) => {
       if (!cartInfo[i].company.includes(deleteItem.deleteCompany) || !cartInfo[i].item.includes(deleteItem.deleteItemName)) {
-        return !val.item.includes(deleteItem.deleteCompany)
+        return val
       }
     }))
     toggle()
