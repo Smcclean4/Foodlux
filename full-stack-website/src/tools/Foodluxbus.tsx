@@ -1,11 +1,20 @@
 import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import "../stylesheets/Foodluxbus.css"
 
 export const Foodluxbus = ({ timer, settimer }) => {
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (timer > 0) {
       setTimeout(() => (settimer((seconds) => seconds - 1)), 1000)
+    } else {
+      const submitData = () => {
+        console.log("submitting payment info!")
+        localStorage.removeItem('cart')
+        navigate('/Home')
+      }
+      submitData();
     }
   }, [timer])
 

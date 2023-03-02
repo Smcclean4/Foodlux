@@ -8,7 +8,7 @@ import axios from 'axios';
 import "../stylesheets/Register.css";
 
 const Register = () => {
-
+  // stores user register info into state
   const [userRegisterInfo, setUserRegisterInfo] = useState({
     firstname: '',
     lastname: '',
@@ -17,13 +17,14 @@ const Register = () => {
     password: '',
     confirmpassword: ''
   })
+  // handles error for try catch 
   const [registerErr, setRegisterErr] = useState('')
   const navigate = useNavigate();
-
+  // handles input information for register info
   const handleChange = ({ currentTarget: input }) => {
     setUserRegisterInfo({ ...userRegisterInfo, [input.name]: input.value })
   }
-
+  // submits user register info
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -138,7 +139,7 @@ const Register = () => {
           </Button>
           <br></br>
           <br></br>
-          {registerErr && <div>{registerErr}</div>}
+          {registerErr && <h3 className="error">{registerErr}</h3>}
           <p className="registration-login">
             do you have an account?{" "}
             <Link

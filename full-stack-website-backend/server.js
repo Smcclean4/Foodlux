@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import registerUser from "./user/registerUser.js";
 import userAuth from "./user/userAuth.js";
+import sendEmail from "./email/sendEmail.js";
 import * as dotenv from "dotenv";
 dotenv.config();
 const source = process.env.ATLAS_DB;
@@ -30,6 +31,7 @@ app.use(express.json());
 app.use(cors());
 app.use("/registerUser", registerUser);
 app.use("/userAuth", userAuth);
+app.use("/sendEmail", sendEmail);
 
 app.get("/", (req, res) => {
   res.send("Displaying the backend!! ;)");

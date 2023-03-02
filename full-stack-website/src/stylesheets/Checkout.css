@@ -124,6 +124,11 @@
 
 .expiration-slash {
   font-size: 3.0em;
+  margin: 0 10px;
+}
+
+.error {
+  color: red;
 }
 
 @media only screen and (max-width:1200px) {

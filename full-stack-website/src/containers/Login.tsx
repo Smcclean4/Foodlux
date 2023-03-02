@@ -8,18 +8,18 @@ import { Link } from "react-router-dom";
 import "../stylesheets/Login.css";
 
 const Login = () => {
-
+  // stores user login info into state
   const [userLoginInfo, setUserLoginInfo] = useState({
     username: '',
     password: ''
   })
-
+  // logs error for try catch
   const [loginErr, setLoginErr] = useState('');
-
+  // handles changes for form that stays into state
   const handleChange = ({ currentTarget: input }) => {
     setUserLoginInfo({ ...userLoginInfo, [input.name]: input.value })
   }
-
+  // submits user info
   const handleSubmit = async (event) => {
     event.preventDefault();
 
