@@ -1,45 +1,65 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Box from "@mui/material/Box";
 import SendIcon from '@mui/icons-material/Send'
 import TextField from "@mui/material/TextField";
 import MenuItem from '@mui/material/MenuItem';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Checkoutitems from "../components/Checkoutitems"
 import "../stylesheets/Checkout.css"
 import { LoadingCircle } from '../tools/LoadingCircle';
 import { CartInfoInterface } from "../api/Categories";
 import { Foodluxbus } from '../tools/Foodluxbus';
+import axios from 'axios';
 
 const Checkout = () => {
-
+  // stores data from cart 
   const [checkoutData, setCheckoutData] = useState<CartInfoInterface[]>([])
+  // stores the amount of seconds that the foodlux bus page will be displayed
   const [seconds, setSeconds] = useState(15);
+  // displays the submitting page which has the foodlux bus component
   const [submitting, setSubmitting] = useState(false)
+  // shows the loading animation when loading onto the page
   const [loading, setLoading] = useState(true)
+  // logs error
+  const [checkoutErr, setCheckoutErr] = useState('')
+  // put user email info into state
+  const [userEmailInfo, setUserEmailInfo] = useState({
+    firstname: "",
+    lastname: "",
+    country: "",
+    city: "",
+    state: "",
+    zip: "",
+    email: ""
+  })
 
+  // using location to get state data from cart and using navigation for directing back to home after submittion
   const location: any = useLocation();
-  const navigate = useNavigate();
   const cartData = location.state?.cart
 
-
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-    console.log("submitting payment info!")
-    setSubmitting(true)
-    const submitData = async () => {
-      await new Promise(() => setTimeout(() => {
-        localStorage.removeItem('cart')
-        navigate('/')
-      }, 15000))
-    }
-    submitData();
+  // handles change of user inputs for user email info
+  const handleChange = ({ target: input }) => {
+    setUserEmailInfo({ ...userEmailInfo, [input.name]: input.value })
+    console.log(userEmailInfo)
   }
 
+  // handles submittion of user data and handles removing cart and navigation to home after timer has finished
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await axios.post(`http://localhost:${process.env.REACT_APP_PORT}/sendEmail`, userEmailInfo).then(res => console.log(res.data)).catch(err => console.log(err))
+      setSubmitting(true)
+    } catch (error) {
+      setCheckoutErr(error.message)
+    }
+  }
+  // gets checkout total of items in cart
   const checkoutTotal = () => {
     return checkoutData.map((item) => item.price).reduce((acc: string, val: string) => (parseFloat(acc) + parseFloat(val)).toFixed(2), 0)
   }
-
+  // loading animation
   useEffect(() => {
     const loadData = async () => {
       await new Promise((p) => setTimeout(p, 1000));
@@ -49,39 +69,47 @@ const Checkout = () => {
     setCheckoutData(cartData)
   }, [])
 
+  // countries for payment
   const countries = [
     {
       country: "USA"
-    },
-    {
-      country: "United Kindom"
-    }, {
-      country: "Uganda"
     }
   ]
-
+  // cities for payment
   const city = [
     {
-      country: "Compton"
+      city: "Compton"
     },
     {
-      country: "Los Angeles"
+      city: "Los Angeles"
     }, {
-      country: "Lewiston"
+      city: "Santa Monica"
     }
   ]
-
+  // states for payment
   const state = [
     {
-      country: "California"
+      state: "California"
     },
     {
-      country: "Bucharest"
+      state: "New York"
     }, {
-      country: "Texas"
+      state: "Texas"
     }
   ]
-
+  // zip for payment
+  const zip = [
+    {
+      zip: "90210"
+    },
+    {
+      zip: "90220"
+    },
+    {
+      zip: "90260"
+    }
+  ]
+  // styling for each input section.. manipulating Material UI
   const checkoutMuiStyling = {
     '.MuiOutlinedInput-notchedOutline:hover': {
       borderColor: 'white'
@@ -115,6 +143,7 @@ const Checkout = () => {
   }
 
   return (
+    // if payment is being submitted run foodlux bus operation
     submitting ? <Foodluxbus timer={seconds} settimer={setSeconds} /> :
       (
         !loading ? (
@@ -129,12 +158,13 @@ const Checkout = () => {
                     "&:hover": {
                       backgroundColor: "rgb(162, 6, 6)",
                     },
-                  }}>
-                  Back to cart
+                  }}
+                  startIcon={<ArrowBackIosIcon />}>
+                  Cart
                 </Button>
               </Link>
             </div>
-            <p className="checkout-header">Credit or Debit Card Payment</p>
+            <p className="checkout-header">Credit/Debit Card Payment</p>
             <Box
               className="checkout-window"
               sx={{
@@ -145,29 +175,31 @@ const Checkout = () => {
                 padding: "30px",
                 color: "white",
               }}>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} action="/"
+                method="post"
+                autoComplete="on">
                 <div className="checkout-menu">
                   <div className="checkout-list">
-                    <TextField id="outlined-basic" className="checkout-fields" label="Card Number" variant="outlined" sx={{ ...checkoutMuiStyling }} />
+                    <TextField id="outlined-basic" className="checkout-fields" label="Card Number" variant="outlined" disabled sx={{ ...checkoutMuiStyling }} />
                     <br></br>
                     <br></br>
                     <div className="expiration-date">
-                      <TextField id="outlined-basic" className="checkout-fields" label="Expiration Day" variant="outlined" sx={{ ...checkoutMuiStyling, width: "40%" }} />
+                      <TextField id="outlined-basic" className="checkout-fields" label="Expiration Day" variant="outlined" disabled sx={{ ...checkoutMuiStyling }} />
                       <span className="expiration-slash">/</span>
-                      <TextField id="outlined-basic" className="checkout-fields" label="Expiration Year" variant="outlined" sx={{ ...checkoutMuiStyling, width: "50%" }} />
+                      <TextField id="outlined-basic" className="checkout-fields" label="Expiration Year" variant="outlined" disabled sx={{ ...checkoutMuiStyling }} />
                     </div>
                     <br></br>
                     <br></br>
-                    <TextField id="outlined-basic" className="checkout-fields" label="CVV" variant="outlined" sx={{ ...checkoutMuiStyling }} />
+                    <TextField id="outlined-basic" className="checkout-fields" label="CVV" variant="outlined" disabled sx={{ ...checkoutMuiStyling }} />
                     <br></br>
                     <br></br>
-                    <TextField id="outlined-basic" className="checkout-fields" label="First Name" variant="outlined" sx={{ ...checkoutMuiStyling }} />
+                    <TextField id="outlined-basic" className="checkout-fields" label="First Name" variant="outlined" name="firstname" required sx={{ ...checkoutMuiStyling }} value={userEmailInfo.firstname} onChange={handleChange} />
                     <br></br>
                     <br></br>
-                    <TextField id="outlined-basic" className="checkout-fields" label="Last Name" variant="outlined" sx={{ ...checkoutMuiStyling }} />
+                    <TextField id="outlined-basic" className="checkout-fields" label="Last Name" variant="outlined" name="lastname" required value={userEmailInfo.lastname} onChange={handleChange} sx={{ ...checkoutMuiStyling }} />
                     <br></br>
                     <br></br>
-                    <TextField id="outlined-basic" defaultValue="USA" className="checkout-fields" label="Country" variant="outlined" select sx={{ ...checkoutMuiStyling }}>
+                    <TextField id="outlined-basic" defaultValue="USA" className="checkout-fields" label="Country" variant="outlined" select value={userEmailInfo.country} name="country" required onChange={handleChange} sx={{ ...checkoutMuiStyling }}>
                       {countries.map((option) => (
                         <MenuItem key={option.country} value={option.country}>
                           {option.country}
@@ -176,35 +208,44 @@ const Checkout = () => {
                     </TextField>
                     <br></br>
                     <br></br>
-                    <TextField id="outlined-basic" className="checkout-fields" label="Billing Address" variant="outlined" sx={{ ...checkoutMuiStyling }} />
-                    <TextField id="outlined-basic" className="checkout-fields" label="Billing Address Continued" variant="outlined" sx={{ ...checkoutMuiStyling }} />
+                    <TextField id="outlined-basic" className="checkout-fields" label="Billing Address" variant="outlined" disabled sx={{ ...checkoutMuiStyling }} />
+                    <TextField id="outlined-basic" className="checkout-fields" label="Billing Address Continued" variant="outlined" disabled sx={{ ...checkoutMuiStyling }} />
                     <br></br>
                     <br></br>
-                    <TextField id="outlined-basic" className="checkout-fields" label="City" select variant="outlined" defaultValue="Compton" sx={{ ...checkoutMuiStyling }}>
+                    <TextField id="outlined-basic" className="checkout-fields" label="City" select variant="outlined" defaultValue="Los Angeles" sx={{ ...checkoutMuiStyling }} value={userEmailInfo.city} name="city" required onChange={handleChange} >
                       {city.map((option) => (
-                        <MenuItem key={option.country} value={option.country}>
-                          {option.country}
+                        <MenuItem key={option.city} value={option.city}>
+                          {option.city}
                         </MenuItem>
                       ))}
                     </TextField>
                     <br></br>
                     <br></br>
-                    <TextField id="outlined-basic" className="checkout-fields" label="State" select variant="outlined" defaultValue="California" sx={{ ...checkoutMuiStyling }}>
+                    <TextField id="outlined-basic" className="checkout-fields" label="State" select variant="outlined" defaultValue="California" sx={{ ...checkoutMuiStyling }} value={userEmailInfo.state} name="state" required onChange={handleChange} >
                       {state.map((option) => (
-                        <MenuItem key={option.country} value={option.country}>
-                          {option.country}
+                        <MenuItem key={option.state} value={option.state}>
+                          {option.state}
                         </MenuItem>
                       ))}
                     </TextField>
                     <br></br>
                     <br></br>
-                    <TextField id="outlined-basic" className="checkout-fields" label="ZIP" variant="outlined" sx={{ ...checkoutMuiStyling }} />
+                    <TextField id="outlined-basic" className="checkout-fields" label="ZIP" variant="outlined" select defaultValue="90210" sx={{ ...checkoutMuiStyling }} value={userEmailInfo.zip} name="zip" required onChange={handleChange}>
+                      {zip.map((option) => (
+                        <MenuItem key={option.zip} value={option.zip}>
+                          {option.zip}
+                        </MenuItem>
+                      ))}
+                    </TextField>
                     <br></br>
                     <br></br>
-                    <TextField id="outlined-basic" className="checkout-fields" label="Phone" variant="outlined" sx={{ ...checkoutMuiStyling }} />
+                    <TextField id="outlined-basic" className="checkout-fields" label="Phone" variant="outlined" disabled sx={{ ...checkoutMuiStyling }} />
                     <br></br>
                     <br></br>
-                    <TextField id="outlined-basic" className="checkout-fields" label="Email" variant="outlined" sx={{ ...checkoutMuiStyling }} />
+                    <TextField id="outlined-basic" className="checkout-fields" label="Email" variant="outlined" name="email" required sx={{ ...checkoutMuiStyling }} value={userEmailInfo.email} onChange={handleChange} />
+                    <br></br>
+                    <br></br>
+                    {checkoutErr && <h3 className="error">{checkoutErr}</h3>}
                   </div>
                   <div className="checkout-values-header-container">
                     <h1 className="checkout-values-header">Cart Items</h1>

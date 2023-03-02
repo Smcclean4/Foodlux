@@ -8,26 +8,26 @@ import { Link } from "react-router-dom";
 import "../stylesheets/Login.css";
 
 const Login = () => {
-
+  // stores user login info into state
   const [userLoginInfo, setUserLoginInfo] = useState({
     username: '',
     password: ''
   })
-
+  // logs error for try catch
   const [loginErr, setLoginErr] = useState('');
-
+  // handles changes for form that stays into state
   const handleChange = ({ currentTarget: input }) => {
     setUserLoginInfo({ ...userLoginInfo, [input.name]: input.value })
   }
-
+  // submits user info
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { data: res } = await axios.post(`http://localhost:${process.env.REACT_APP_PORT}/userAuth.js`, userLoginInfo)
+      const { data: res } = await axios.post(`http://localhost:${process.env.REACT_APP_PORT}/userAuth`, userLoginInfo)
       console.log(userLoginInfo)
       localStorage.setItem('token', res.data)
-      window.location.replace('/')
+      window.location.replace('/Home')
     } catch (error) {
       if (error.response && error.response.status >= 400 && error.response.status <= 500) {
         setLoginErr(error.response.data.message)
@@ -52,7 +52,6 @@ const Login = () => {
       >
         <form
           onSubmit={handleSubmit}
-          className="box"
           action="/"
           method="post"
           target="_blank"
@@ -68,8 +67,6 @@ const Login = () => {
             onChange={handleChange}
             required
           />
-          <br></br>
-          <br></br>
           <TextField
             className="login-fields"
             label="Password"

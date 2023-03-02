@@ -8,7 +8,7 @@ import axios from 'axios';
 import "../stylesheets/Register.css";
 
 const Register = () => {
-
+  // stores user register info into state
   const [userRegisterInfo, setUserRegisterInfo] = useState({
     firstname: '',
     lastname: '',
@@ -17,19 +17,20 @@ const Register = () => {
     password: '',
     confirmpassword: ''
   })
+  // handles error for try catch 
   const [registerErr, setRegisterErr] = useState('')
   const navigate = useNavigate();
-
+  // handles input information for register info
   const handleChange = ({ currentTarget: input }) => {
     setUserRegisterInfo({ ...userRegisterInfo, [input.name]: input.value })
   }
-
+  // submits user register info
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       if (userRegisterInfo.password === userRegisterInfo.confirmpassword) {
-        await axios.post(`http://localhost:${process.env.REACT_APP_PORT}/registerUser.js`, userRegisterInfo).then(res => console.log(res.data)).catch(err => console.log(err))
+        await axios.post(`http://localhost:${process.env.REACT_APP_PORT}/registerUser`, userRegisterInfo).then(res => console.log(res.data)).catch(err => console.log(err))
         navigate('/Login', { replace: true })
       } else {
         setRegisterErr("passwords don't match")
@@ -50,21 +51,20 @@ const Register = () => {
           borderRadius: "25px 25px",
           backgroundColor: "white",
           boxShadow: "black 0px 0px 20px",
-          maxWidth: "250px",
-          width: "75%",
+          maxWidth: "415px",
+          width: "50%",
           margin: "0 auto",
           padding: "30px",
         }}
       >
         <form
-          className="box"
           onSubmit={handleSubmit}
           action="/"
           method="post"
           autoComplete="on">
           <p className="register-header">Register</p>
           <TextField
-            className="register-fields"
+            sx={{ margin: "5px" }}
             label="First Name"
             margin="dense"
             variant="outlined"
@@ -73,10 +73,8 @@ const Register = () => {
             onChange={handleChange}
             required
           />
-          <br></br>
-          <br></br>
           <TextField
-            className="register-fields"
+            sx={{ margin: "5px" }}
             label="Last Name"
             margin="dense"
             variant="outlined"
@@ -85,10 +83,8 @@ const Register = () => {
             onChange={handleChange}
             required
           />
-          <br></br>
-          <br></br>
           <TextField
-            className="register-fields"
+            sx={{ margin: "5px" }}
             label="Username"
             margin="dense"
             variant="outlined"
@@ -97,10 +93,8 @@ const Register = () => {
             onChange={handleChange}
             required
           />
-          <br></br>
-          <br></br>
           <TextField
-            className="register-fields"
+            sx={{ margin: "5px" }}
             label="Email"
             type="email"
             margin="dense"
@@ -110,10 +104,8 @@ const Register = () => {
             onChange={handleChange}
             required
           />
-          <br></br>
-          <br></br>
           <TextField
-            className="register-fields"
+            sx={{ margin: "5px" }}
             label="Password"
             type="password"
             margin="dense"
@@ -123,10 +115,8 @@ const Register = () => {
             onChange={handleChange}
             required
           />
-          <br></br>
-          <br></br>
           <TextField
-            className="register-fields"
+            sx={{ margin: "5px" }}
             label="Confirm Password"
             type="password"
             margin="dense"
@@ -149,7 +139,7 @@ const Register = () => {
           </Button>
           <br></br>
           <br></br>
-          {registerErr && <div>{registerErr}</div>}
+          {registerErr && <h3 className="error">{registerErr}</h3>}
           <p className="registration-login">
             do you have an account?{" "}
             <Link

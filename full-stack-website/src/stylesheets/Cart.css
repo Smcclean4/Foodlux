@@ -85,24 +85,3 @@
 .cart-dummydata {
     color: white;
 }
-
-@media only screen and (max-width:350px),
-(max-width:450px) {
-    .cart-logo {
-        font-size: 70px;
-    }
-
-    .cart-background {
-        padding-bottom: 2%;
-    }
-}
-
-@media only screen and (max-width:1028px) and (min-width:1020px) {
-    .cart-logo {
-        font-size: 70px;
-    }
-
-    .cart-background {
-        padding-bottom: 2%;
-    }
-}

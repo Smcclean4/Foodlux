@@ -9,6 +9,16 @@
     text-align: center;
 }
 
+.home-window::-webkit-scrollbar,
+.home-window::-webkit-scrollbar-corner {
+    backdrop-filter: blur(5px);
+}
+
+.home-window::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 12px;
+}
+
 .home-logo {
     color: white;
     font-size: 100px;
@@ -49,6 +59,10 @@
     font: inherit;
     cursor: pointer;
     outline: inherit;
+}
+
+.modal-container {
+    width: 200px;
 }
 
 @media only screen and (max-width:350px),

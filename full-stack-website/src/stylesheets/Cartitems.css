@@ -4,19 +4,24 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  width: 70%;
+  width: 80%;
   padding: 20px;
   margin: 10px auto;
   flex-direction: row;
 }
 
 .cart-items {
-  padding: 5px;
   text-align: center;
 }
 
 .cart-items-desc {
   text-align: left;
+  padding: 20px;
+}
+
+.cart-items,
+.cart-items-desc {
+  font-size: 1.2em;
 }
 
 .item-images {
@@ -24,7 +29,7 @@
 }
 
 @media only screen and (max-width:1280px) {
-  .item-images {
-    height: 125px;
+  .cart-items-desc {
+    padding: 0;
   }
 }

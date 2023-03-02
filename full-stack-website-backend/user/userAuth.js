@@ -2,6 +2,7 @@ import express from "express";
 import bcrypt from "bcrypt";
 import userRegisterModel from "./schema/registerSchema.js";
 const router = express.Router();
+const app = express();
 
 router.post("/", async (req, res) => {
   try {
@@ -23,21 +24,17 @@ router.post("/", async (req, res) => {
     }
 
     if (user && validPassword) {
-      return res.send("logged in!!!");
+      app.set("user", req.body.username);
+      return res.send("logged in!");
     }
   } catch (err) {
     console.log(err);
   }
 });
 
-router.get("/", async (req, res) => {
+router.get("/fetchUserName", (req, res) => {
   try {
-    const user = await userRegisterModel.findOne({
-      username: req.body.username,
-    });
-    if (user) {
-      return res.send("getting user...");
-    }
+    return res.send(app.get("user"));
   } catch (error) {
     console.log(error);
   }

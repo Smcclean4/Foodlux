@@ -7,7 +7,6 @@
     height: auto;
     min-height: 100vh;
     text-align: center;
-    padding-bottom: 5%;
 }
 
 .register-logo {
@@ -34,8 +33,12 @@
     cursor: pointer;
 }
 
+.error {
+    color: red;
+}
+
 @media only screen and (max-width:350px),
-(max-width:450px) {
+(max-width:490px) {
     .register-logo {
         font-size: 80px;
     }
@@ -52,5 +55,11 @@
 
     .register-header {
         font-size: 40px;
+    }
+}
+
+@media only screen and (max-width: 1020px) {
+    .register-background {
+        padding-bottom: 5%;
     }
 }
