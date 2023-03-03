@@ -15,7 +15,7 @@ export const UserData = () => {
       }
     }
     fetchUserData();
-  }, [])
+  }, [username])
 
   return {
     username

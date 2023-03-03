@@ -9,13 +9,29 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Checkoutitems from "../components/Checkoutitems"
 import "../stylesheets/Checkout.css"
 import { LoadingCircle } from '../tools/LoadingCircle';
-import { CartInfoInterface } from "../api/Categories";
 import { Foodluxbus } from '../tools/Foodluxbus';
 import axios from 'axios';
 
 const Checkout = () => {
-  // stores data from cart 
-  const [checkoutData, setCheckoutData] = useState<CartInfoInterface[]>([])
+  type EmailInfoData = {
+    item: string[];
+    price: number[];
+    quantity: number[];
+  }
+
+  interface UserEmailInfoInterface {
+    firstname: string;
+    lastname: string;
+    country: string;
+    city: string;
+    state: string;
+    zip: string;
+    email: string;
+    data: EmailInfoData
+  }
+  // using location to get state data from cart and using navigation for directing back to home after submittion
+  const location: any = useLocation();
+  const cartData = location.state?.cart
   // stores the amount of seconds that the foodlux bus page will be displayed
   const [seconds, setSeconds] = useState(15);
   // displays the submitting page which has the foodlux bus component
@@ -25,39 +41,39 @@ const Checkout = () => {
   // logs error
   const [checkoutErr, setCheckoutErr] = useState('')
   // put user email info into state
-  const [userEmailInfo, setUserEmailInfo] = useState({
+  const [userEmailInfo, setUserEmailInfo] = useState<UserEmailInfoInterface>({
     firstname: "",
     lastname: "",
     country: "",
     city: "",
     state: "",
     zip: "",
-    email: ""
+    email: "",
+    data: {
+      item: cartData.map((val) => val.item),
+      price: cartData.map((val) => val.price),
+      quantity: cartData.map((val) => val.quantity)
+    }
   })
-
-  // using location to get state data from cart and using navigation for directing back to home after submittion
-  const location: any = useLocation();
-  const cartData = location.state?.cart
 
   // handles change of user inputs for user email info
   const handleChange = ({ target: input }) => {
     setUserEmailInfo({ ...userEmailInfo, [input.name]: input.value })
-    console.log(userEmailInfo)
   }
 
   // handles submittion of user data and handles removing cart and navigation to home after timer has finished
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post(`http://localhost:${process.env.REACT_APP_PORT}/sendEmail`, userEmailInfo).then(res => console.log(res.data)).catch(err => console.log(err))
       setSubmitting(true)
+      await axios.post(`http://localhost:${process.env.REACT_APP_PORT}/sendEmail`, userEmailInfo).then(res => console.log(res.data)).catch(err => console.log(err))
     } catch (error) {
       setCheckoutErr(error.message)
     }
   }
   // gets checkout total of items in cart
   const checkoutTotal = () => {
-    return checkoutData.map((item) => item.price).reduce((acc: string, val: string) => (parseFloat(acc) + parseFloat(val)).toFixed(2), 0)
+    return cartData.map((item) => item.price).reduce((acc: string, val: string) => (parseFloat(acc) + parseFloat(val)).toFixed(2), 0)
   }
   // loading animation
   useEffect(() => {
@@ -66,7 +82,7 @@ const Checkout = () => {
       setLoading((loading) => !loading)
     }
     loadData();
-    setCheckoutData(cartData)
+    console.log(userEmailInfo)
   }, [])
 
   // countries for payment
@@ -250,7 +266,7 @@ const Checkout = () => {
                   <div className="checkout-values-header-container">
                     <h1 className="checkout-values-header">Cart Items</h1>
                     <div className="checkout-values">
-                      {checkoutData?.length !== 0 ? <Checkoutitems details={checkoutData} /> : <h1>There is no checkout data to show..</h1>}
+                      {cartData?.length !== 0 ? <Checkoutitems details={cartData} /> : <h1>There is no checkout data to show..</h1>}
                     </div>
                   </div>
                 </div>

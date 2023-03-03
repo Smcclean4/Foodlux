@@ -10,9 +10,8 @@ export const Foodluxbus = ({ timer, settimer }) => {
       setTimeout(() => (settimer((seconds) => seconds - 1)), 1000)
     } else {
       const submitData = () => {
-        console.log("submitting payment info!")
         localStorage.removeItem('cart')
-        navigate('/Home')
+        navigate('/Home', { replace: true })
       }
       submitData();
     }
