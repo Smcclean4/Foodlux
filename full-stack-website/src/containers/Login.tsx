@@ -8,8 +8,12 @@ import { Link } from "react-router-dom";
 import "../stylesheets/Login.css";
 
 const Login = () => {
+  interface LoginInterface {
+    username: string;
+    password: string;
+  }
   // stores user login info into state
-  const [userLoginInfo, setUserLoginInfo] = useState({
+  const [userLoginInfo, setUserLoginInfo] = useState<LoginInterface>({
     username: '',
     password: ''
   })

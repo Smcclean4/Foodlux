@@ -13,21 +13,13 @@ import { Foodluxbus } from '../tools/Foodluxbus';
 import axios from 'axios';
 
 const Checkout = () => {
-  type EmailInfoData = {
-    item: string[];
-    price: number[];
-    quantity: number[];
-  }
-
   interface UserEmailInfoInterface {
     firstname: string;
-    lastname: string;
     country: string;
     city: string;
     state: string;
     zip: string;
     email: string;
-    data: EmailInfoData
   }
   // using location to get state data from cart and using navigation for directing back to home after submittion
   const location: any = useLocation();
@@ -43,17 +35,11 @@ const Checkout = () => {
   // put user email info into state
   const [userEmailInfo, setUserEmailInfo] = useState<UserEmailInfoInterface>({
     firstname: "",
-    lastname: "",
     country: "",
     city: "",
     state: "",
     zip: "",
-    email: "",
-    data: {
-      item: cartData.map((val) => val.item),
-      price: cartData.map((val) => val.price),
-      quantity: cartData.map((val) => val.quantity)
-    }
+    email: ""
   })
 
   // handles change of user inputs for user email info
@@ -82,7 +68,6 @@ const Checkout = () => {
       setLoading((loading) => !loading)
     }
     loadData();
-    console.log(userEmailInfo)
   }, [])
 
   // countries for payment
@@ -212,7 +197,7 @@ const Checkout = () => {
                     <TextField id="outlined-basic" className="checkout-fields" label="First Name" variant="outlined" name="firstname" required sx={{ ...checkoutMuiStyling }} value={userEmailInfo.firstname} onChange={handleChange} />
                     <br></br>
                     <br></br>
-                    <TextField id="outlined-basic" className="checkout-fields" label="Last Name" variant="outlined" name="lastname" required value={userEmailInfo.lastname} onChange={handleChange} sx={{ ...checkoutMuiStyling }} />
+                    <TextField id="outlined-basic" className="checkout-fields" label="Last Name" variant="outlined" name="lastname" sx={{ ...checkoutMuiStyling }} disabled />
                     <br></br>
                     <br></br>
                     <TextField id="outlined-basic" defaultValue="USA" className="checkout-fields" label="Country" variant="outlined" select value={userEmailInfo.country} name="country" required onChange={handleChange} sx={{ ...checkoutMuiStyling }}>

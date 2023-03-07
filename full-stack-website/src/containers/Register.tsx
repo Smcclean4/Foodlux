@@ -8,8 +8,16 @@ import axios from 'axios';
 import "../stylesheets/Register.css";
 
 const Register = () => {
+  interface RegisterInterface {
+    firstname: string;
+    lastname: string;
+    username: string;
+    email: string;
+    password: string;
+    confirmpassword: string;
+  }
   // stores user register info into state
-  const [userRegisterInfo, setUserRegisterInfo] = useState({
+  const [userRegisterInfo, setUserRegisterInfo] = useState<RegisterInterface>({
     firstname: '',
     lastname: '',
     username: '',
@@ -17,7 +25,7 @@ const Register = () => {
     password: '',
     confirmpassword: ''
   })
-  // handles error for try catch 
+  // handles error for try catch
   const [registerErr, setRegisterErr] = useState('')
   const navigate = useNavigate();
   // handles input information for register info

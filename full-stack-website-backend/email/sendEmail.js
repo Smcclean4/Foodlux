@@ -4,17 +4,18 @@ const router = express.Router();
 
 router.post("/", (req, res) => {
   let message =
-    "<div style='text-align:center; width:75%; margin: 0 auto; background-color:#BB9CEF; color:white; padding:20px'>" +
+    "<div style='text-align:center; width:75%; margin: 0 auto; background-color:#BB9CEF; color:white !important; padding:20px'>" +
     "<h1 style='font-family: Courier New'>" +
-    `Hi, ${req.body.firstname} ${req.body.lastname} your Order Will Be There Shortly Be On The Lookout!` +
+    `Hi, ${req.body.firstname} your Order Will Be There Shortly Be On The Lookout!` +
     "</h1>" +
     "<p style='font-size:50px; font-family: Courier New'>" +
     "<b>Foodlux!</b>" +
     "</p>" +
-    "<img style='height:250px' src='https://svgshare.com/i/q0Z.svg' />" +
+    "<img src='https://i.imgur.com/6h2Bamk.png' title='Foodlux Bus' style='height: 250px' />" +
     "<p style='font-size:25px; font-family: Courier New'>" +
     "Dear valued customer, <br> Thank you for choosing FoodLux! We appreciate your order and promise to prepare it with the freshest ingredients and utmost care. We aim to make your experience with us seamless and convenient. We look forward to serving you again soon! <br> -The FoodLux Team" +
     "</p>" +
+    `<h5>Order is being deliverd to address ending in ${req.body.city}, ${req.body.state} ${req.body.zip} ${req.body.country}.</h5>` +
     "</div>";
 
   let messageOptions = {

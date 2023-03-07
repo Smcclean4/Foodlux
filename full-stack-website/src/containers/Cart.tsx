@@ -29,8 +29,7 @@ const Cart = () => {
   // push specific items that are in home into this variable
   const home: any[] = []
   // all items that are being mapped through
-  let homeItems: any
-  homeItems = categories?.map((menu: any[]) => menu.map((food: { menu: any[]; }) => food.menu.map((items) => home.push(items))))
+  categories?.forEach((menu: any[]) => menu.map((food: { menu: any[]; }) => food.menu.map((items) => home.push(items))))
   // gets the total price of the items that are currently in the cart
   const cartTotal = () => {
     return cartInfo.map((item) => item.price).reduce((acc, val) => (Number(acc) + Number(val)).toFixed(2), 0)
@@ -39,7 +38,7 @@ const Cart = () => {
   const addItem = (ID: number) => {
     setCartInfo((info) => info?.map((item, i) => {
       let homeValueAtId: number[] = []
-      let filteredHomePrice: number[] = home.filter((val, i) => val.item.includes(item.item) && val.company.includes(item.company) ? homeValueAtId.push(home[i].price) : 0)
+      home.filter((val, i) => val.item.includes(item.item) && val.company.includes(item.company) ? homeValueAtId.push(home[i].price) : 0)
       return i === ID ? { ...item, price: (Number(item.price) + Number(homeValueAtId)).toFixed(2), quantity: item.quantity + 1 } : item
     }));
   }
@@ -48,7 +47,7 @@ const Cart = () => {
     if (cartInfo[ID].quantity !== 1) {
       setCartInfo((info) => info?.map((item, i) => {
         let homeValueAtId: number[] = []
-        let filteredHomePrice: number[] = home.filter((val, i) => val.item.includes(item.item) && val.company.includes(item.company) ? homeValueAtId.push(home[i].price) : 0)
+        home.filter((val, i) => val.item.includes(item.item) && val.company.includes(item.company) ? homeValueAtId.push(home[i].price) : 0)
         return i === ID ? { ...item, price: (Number(item.price) - Number(homeValueAtId)).toFixed(2), quantity: item.quantity - 1 } : item
       }));
     }
@@ -63,6 +62,8 @@ const Cart = () => {
     setCartInfo((state) => state.filter((val, i) => {
       if (!cartInfo[i].company.includes(deleteItem.deleteCompany) || !cartInfo[i].item.includes(deleteItem.deleteItemName)) {
         return val
+      } else {
+        return false
       }
     }))
     toggle()

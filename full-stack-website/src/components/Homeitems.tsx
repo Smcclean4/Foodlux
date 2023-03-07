@@ -30,7 +30,7 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
       return searchinfo.companyFromSearch === title ? setrender(true) : null
     }
     compareSearchInfo()
-  }, [searchinfo])
+  }, [searchinfo, setrender, title])
 
   return (
     <>
@@ -64,9 +64,9 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
                 spacing={{ xs: 2, md: 3 }}
                 columns={{ xs: 2, sm: 2, md: 12 }}>
                 {menu?.map((items, idx) => {
-                  if (items.type === "food") {
-                    return (
-                      <div className="home-item-group" key={idx}>
+                  return (
+                    items.type === "food" ?
+                      (<div className="home-item-group" key={idx}>
                         <Grid item xs={4} className="home-items">
                           <img alt="" src={items.image} className="item-image" />
                         </Grid>
@@ -91,9 +91,8 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
                             Add
                           </Button>
                         </Grid>
-                      </div>
-                    )
-                  }
+                      </div>) : ""
+                  )
                 })}
               </Grid>
               <br></br>
@@ -104,9 +103,9 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
                 spacing={{ xs: 0, md: 3 }}
                 columns={{ xs: 2, sm: 2, md: 12 }}>
                 {menu?.map((items, idx) => {
-                  if (items.type === "drink") {
-                    return (
-                      <div className="home-item-group" key={idx}>
+                  return (
+                    items.type === "drink" ?
+                      (<div className="home-item-group" key={idx}>
                         <Grid item xs={4} className="home-items">
                           <img alt="" src={items.image} className="item-image" />
                         </Grid>
@@ -131,9 +130,8 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
                             Add
                           </Button>
                         </Grid>
-                      </div>
-                    )
-                  }
+                      </div>) : ""
+                  )
                 })}
               </Grid>
             </Box>

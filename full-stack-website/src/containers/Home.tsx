@@ -86,11 +86,12 @@ const Home = () => {
     setRender(false)
   };
   // add item to current cart list
-  const addCart = (food: CartInfoInterface, idx) => {
+  const addCart = (food: CartInfoInterface) => {
     // push specific items that are in home into this variable
     const home: any[] = []
     // all items that are being mapped through
-    let homeItems = categories?.map((menu: any[]) => menu.map((food: { menu: any[]; }) => food.menu.map((items) => home.push(items))))
+    categories?.forEach((menu: any[]) => menu.map((food: { menu: any[]; }) => food.menu.map((items) => home.push(items))))
+    // check if item that is being added exists
     const itemExists = (item, company, category) => {
       return cart.some((el) => {
         return el.item === item && el.company === company && el.category === category
@@ -100,7 +101,7 @@ const Home = () => {
     if (itemExists(food.item, food.company, food.category)) {
       setCart((info) => info?.map((item, i) => {
         let homeValueAtId: number[] = []
-        let filteredHomePrice: number[] = home.filter((val, i) => val.item.includes(item.item) && val.company.includes(item.company) ? homeValueAtId.push(home[i].price) : 0)
+        home.filter((val, i) => val.item.includes(item.item) && val.company.includes(item.company) ? homeValueAtId.push(home[i].price) : 0)
         return item.item === food.item && item.company === food.company && item.category === food.category ? { ...item, price: (Number(item.price) + Number(homeValueAtId)).toFixed(2), quantity: item.quantity + 1 } : item
       }))
     } else {

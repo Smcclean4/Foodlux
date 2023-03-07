@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Button from "@mui/material/Button";
 import SearchIcon from '@mui/icons-material/Search';
-import { CartInfoInterface } from '../api/Categories';
 import "../stylesheets/SearchBar.css"
 
 const SearchBar = ({ data, searchforitem }) => {
@@ -14,8 +13,7 @@ const SearchBar = ({ data, searchforitem }) => {
   const handleChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
     setUserInput(e.target.value)
     const dataItems: any = [];
-    let dataInfo: CartInfoInterface;
-    dataInfo = data.map((menu: { menu: any; }[]) => menu.map((food: { menu: any[] }) => food.menu.map((items: any) => dataItems.push(items))))
+    data.forEach((menu: { menu: any; }[]) => menu.map((food: { menu: any[] }) => food.menu.map((items: any) => dataItems.push(items))))
     const filteredData = dataItems.filter((val: { item: string; }) => val.item.toLowerCase().includes(userInput.toLowerCase()))
     setDropDown(filteredData)
   }
