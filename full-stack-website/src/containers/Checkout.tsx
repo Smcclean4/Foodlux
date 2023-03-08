@@ -48,18 +48,22 @@ const Checkout = () => {
   }
 
   // handles submittion of user data and handles removing cart and navigation to home after timer has finished
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     try {
-      setSubmitting(true)
-      await axios.post(`http://localhost:${process.env.REACT_APP_PORT}/sendEmail`, userEmailInfo).then(res => console.log(res.data)).catch(err => console.log(err))
+      if (cartData?.length > 0) {
+        setSubmitting(true)
+        await axios.post(`http://localhost:${process.env.REACT_APP_PORT}/sendEmail`, userEmailInfo).then(res => console.log(res.data)).catch(err => console.log(err))
+      } else {
+        setCheckoutErr("Checkout once you've added something to your Cart!")
+      }
     } catch (error) {
       setCheckoutErr(error.message)
     }
   }
   // gets checkout total of items in cart
   const checkoutTotal = () => {
-    return cartData.map((item) => item.price).reduce((acc: string, val: string) => (parseFloat(acc) + parseFloat(val)).toFixed(2), 0)
+    return cartData.map((item: { price: any; }) => item.price).reduce((acc: string, val: string) => (parseFloat(acc) + parseFloat(val)).toFixed(2), 0)
   }
   // loading animation
   useEffect(() => {

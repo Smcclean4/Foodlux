@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./stylesheets/index.css";
 import Register from "./containers/Register";
 import Login from "./containers/Login";
-import Home from "./containers/Home";
+import Home from "./containers/Home/Home";
 import Cart from "./containers/Cart";
 import Checkout from "./containers/Checkout";
 import React from "react";

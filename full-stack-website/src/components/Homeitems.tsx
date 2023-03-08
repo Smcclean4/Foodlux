@@ -37,7 +37,11 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
       <div className="ff-wrapper">
         <div className="ff-grid a">
           <Button
-            sx={{ marginBottom: "5px", marginRight: "5px", backgroundColor: "dodgerblue" }}
+            sx={{
+              marginBottom: "5px", marginRight: "5px", backgroundColor: "red", "&:hover": {
+                backgroundColor: "rgb(162, 6, 6)",
+              }
+            }}
             variant="contained"
             className="button active"
             onClick={renderChange}
@@ -63,7 +67,7 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
                 container
                 spacing={{ xs: 2, md: 3 }}
                 columns={{ xs: 2, sm: 2, md: 12 }}>
-                {menu?.map((items, idx) => {
+                {menu?.map((items: { type: string; image: string | undefined; item: {} | null | undefined; desc: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key) => {
                   return (
                     items.type === "food" ?
                       (<div className="home-item-group" key={idx}>
@@ -81,9 +85,8 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
                           <Button
                             onClick={() => addtocart(menu[idx], idx)}
                             sx={{
-                              color: "white", backgroundColor: "dodgerblue", "&:hover": {
-                                color: "white",
-                                backgroundColor: "rgb(22, 110, 199)",
+                              color: "white", backgroundColor: "red", "&:hover": {
+                                backgroundColor: "rgb(162, 6, 6)",
                               }
                             }}
                             size="large"
@@ -102,7 +105,7 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
                 container
                 spacing={{ xs: 0, md: 3 }}
                 columns={{ xs: 2, sm: 2, md: 12 }}>
-                {menu?.map((items, idx) => {
+                {menu?.map((items: { type: string; image: string | undefined; item: {} | null | undefined; desc: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key) => {
                   return (
                     items.type === "drink" ?
                       (<div className="home-item-group" key={idx}>
@@ -120,9 +123,8 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
                           <Button
                             onClick={() => addtocart(menu[idx], idx)}
                             sx={{
-                              color: "white", backgroundColor: "dodgerblue", "&:hover": {
-                                color: "white",
-                                backgroundColor: "rgb(22, 110, 199)",
+                              color: "white", backgroundColor: "red", "&:hover": {
+                                backgroundColor: "rgb(162, 6, 6)",
                               }
                             }}
                             size="large"

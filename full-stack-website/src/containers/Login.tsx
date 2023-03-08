@@ -24,7 +24,7 @@ const Login = () => {
     setUserLoginInfo({ ...userLoginInfo, [input.name]: input.value })
   }
   // submits user info
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
 
     try {

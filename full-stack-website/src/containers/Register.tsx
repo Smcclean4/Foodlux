@@ -33,7 +33,7 @@ const Register = () => {
     setUserRegisterInfo({ ...userRegisterInfo, [input.name]: input.value })
   }
   // submits user register info
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
 
     try {

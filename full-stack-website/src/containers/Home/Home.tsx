@@ -9,17 +9,17 @@ import Typography from "@mui/material/Typography";
 import LogoutIcon from '@mui/icons-material/Logout';
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Homeitems from "../components/Homeitems";
-import { CartModal } from "../modals/CartModal";
-import { useModal } from "../hooks/useModal";
-import { LoadingCircle } from "../tools/LoadingCircle"
-import SearchBar from "../containers/SearchBar";
-import { CartInfoInterface } from "../api/Categories";
-import { Categories } from "../api/Categories"
-import { UserData } from "../api/UserData"
+import Homeitems from "../../components/Homeitems";
+import { CartModal } from "../../modals/CartModal";
+import { useModal } from "../../hooks/useModal";
+import { LoadingCircle } from "../../tools/LoadingCircle"
+import SearchBar from "../SearchBar";
+import { CartInfoInterface } from "../../api/Categories";
+import { Categories } from "../../api/Categories"
+import { UserData } from "../../api/UserData"
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import "../stylesheets/Home.css";
+import "../../stylesheets/Home.css";
 
 function TabPanel(props: { [x: string]: any; children: any; value: any; index: any; }) {
   const { children, value, index, ...other } = props;
@@ -37,7 +37,7 @@ function TabPanel(props: { [x: string]: any; children: any; value: any; index: a
         </Box>
       )}
     </div>
-  );
+  )
 }
 
 TabPanel.propTypes = {
@@ -92,7 +92,7 @@ const Home = () => {
     // all items that are being mapped through
     categories?.forEach((menu: any[]) => menu.map((food: { menu: any[]; }) => food.menu.map((items) => home.push(items))))
     // check if item that is being added exists
-    const itemExists = (item, company, category) => {
+    const itemExists = (item: any, company: any, category: any) => {
       return cart.some((el) => {
         return el.item === item && el.company === company && el.category === category
       })
