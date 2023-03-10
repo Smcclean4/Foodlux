@@ -83,7 +83,7 @@ const Cart = () => {
 
   return (
     !loading ? (
-      <div className="cart-background">
+      <div className="cart-background" data-testid="Cart">
         <div className="checkout-return-section">
           <div className="return-section">
             <Link className="return-link" to="/Home">

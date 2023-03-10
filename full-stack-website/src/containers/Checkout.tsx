@@ -152,7 +152,7 @@ const Checkout = () => {
     submitting ? <Foodluxbus timer={seconds} settimer={setSeconds} /> :
       (
         !loading ? (
-          <div className="checkout-background">
+          <div className="checkout-background" data-testid="Checkout">
             <div className="cart-section">
               <Link className="cart-link" to="/Cart">
                 <Button

@@ -51,7 +51,7 @@ const Register = () => {
   }
 
   return (
-    <div className="register-background">
+    <div className="register-background" data-testid="Register">
       <p className="register-logo">Foodlux</p>
       <Box
         sx={{

@@ -40,7 +40,7 @@ const Login = () => {
   }
 
   return (
-    <div className="login-background">
+    <div className="login-background" data-testid="Login">
       <p className="login-logo">Foodlux</p>
       <Box
         sx={{

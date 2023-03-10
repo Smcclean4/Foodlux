@@ -9,17 +9,17 @@ import Typography from "@mui/material/Typography";
 import LogoutIcon from '@mui/icons-material/Logout';
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Homeitems from "../../components/Homeitems";
-import { CartModal } from "../../modals/CartModal";
-import { useModal } from "../../hooks/useModal";
-import { LoadingCircle } from "../../tools/LoadingCircle"
-import SearchBar from "../SearchBar";
-import { CartInfoInterface } from "../../api/Categories";
-import { Categories } from "../../api/Categories"
-import { UserData } from "../../api/UserData"
+import Homeitems from "../components/Homeitems";
+import { CartModal } from "../modals/CartModal";
+import { useModal } from "../hooks/useModal";
+import { LoadingCircle } from "../tools/LoadingCircle"
+import SearchBar from "./SearchBar";
+import { CartInfoInterface } from "../api/Categories";
+import { Categories } from "../api/Categories"
+import { UserData } from "../api/UserData"
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import "../../stylesheets/Home.css";
+import "../stylesheets/Home.css";
 
 function TabPanel(props: { [x: string]: any; children: any; value: any; index: any; }) {
   const { children, value, index, ...other } = props;
@@ -147,7 +147,7 @@ const Home = () => {
 
   return (
     !loading ? (
-      <div className="home-background">
+      <div className="home-background" data-testid="Home">
         <p className="home-logo">Foodlux</p>
         <div className="dynamic-cart-username">
           <h1 className="username">Hi, {`${username}`}!</h1>
