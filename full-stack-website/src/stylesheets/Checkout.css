@@ -14,7 +14,8 @@
 }
 
 .checkout-window {
-  width: 70%;
+  width: 75%;
+  max-width: 80%;
   list-style-type: none;
   height: 70vh;
   overflow: scroll;
@@ -32,7 +33,6 @@
 
 .cart-section {
   display: flex;
-  margin: 0 0 35px 0;
   width: 60%;
   flex-direction: row;
   justify-content: left;
@@ -85,7 +85,7 @@
 }
 
 .checkout-values {
-  height: 100vh;
+  height: 100%;
   min-height: 50vh;
   text-align: center;
   padding: 25px 0;

@@ -4,7 +4,6 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Link } from "react-router-dom";
 import Cartitems from "../components/Cartitems";
-import { LoadingCircle } from "../tools/LoadingCircle";
 import { CartInfoInterface } from "../api/Categories";
 import { Categories } from "../api/Categories"
 import { useModal } from "../hooks/useModal"
@@ -18,8 +17,6 @@ const Cart = () => {
   const [cartInfo, setCartInfo] = useState<CartInfoInterface[]>(cartFromHomeLocalStorage)
   // stores the item that is looking to be deleted and the company that is looking to be deleted
   const [deleteItem, setDeleteItem] = useState({ deleteItemName: '', deleteCompany: '' })
-  // set loading state for loading animation between pages
-  const [loading, setLoading] = useState(true)
   // delete modal hook that shows whether the modal is showing (true or false) or not and also toggle which changes this value
   const { isShowing, toggle } = useModal();
   // all category names and its values 
@@ -68,80 +65,68 @@ const Cart = () => {
     }))
     toggle()
   }
-  // loading effect for loading animation
-  useEffect(() => {
-    const loadData = async () => {
-      await new Promise((p) => setTimeout(p, 1000));
-      setLoading((loading) => !loading);
-    }
-    loadData();
-  }, [])
   // stores item into local storage each time the cart is modified
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartInfo))
   }, [cartInfo])
 
   return (
-    !loading ? (
-      <div className="cart-background" data-testid="Cart">
-        <div className="checkout-return-section">
-          <div className="return-section">
-            <Link className="return-link" to="/Home">
-              <Button
-                variant="contained"
-                size="medium"
-                sx={{
-                  backgroundColor: "red",
-                  "&:hover": {
-                    backgroundColor: "rgb(162, 6, 6)",
-                  },
-                  margin: "20px"
-                }}
-                startIcon={<ArrowBackIosIcon />}
-              >
-                <span className="link-text">Home</span>
-              </Button>
-            </Link>
-          </div>
-          <div className="checkout-section">
-            <Link className="checkout-link" to="/Checkout" state={{ cart: cartInfo }}>
-              <Button
-                variant="contained"
-                size="medium"
-                sx={{
-                  backgroundColor: "red",
-                  "&:hover": {
-                    backgroundColor: "rgb(162, 6, 6)",
-                  },
-                  margin: "20px",
-                }}
-                endIcon={<ArrowForwardIosIcon />}>
-                <span className="link-text">Checkout</span>
-              </Button>
-            </Link>
-          </div>
+    <div className="cart-background" data-testid="Cart">
+      <div className="checkout-return-section">
+        <div className="return-section">
+          <Link className="return-link" to="/Home">
+            <Button
+              variant="contained"
+              size="large"
+              sx={{
+                backgroundColor: "red",
+                "&:hover": {
+                  backgroundColor: "rgb(162, 6, 6)",
+                },
+                margin: "30px"
+              }}
+              startIcon={<ArrowBackIosIcon />}
+            >
+              <span className="link-text">Home</span>
+            </Button>
+          </Link>
         </div>
-        <p className="cart-header">Cart</p>
-        <div className="cart-window">
-          {cartInfo?.length !== 0 ? <Cartitems items={cartInfo} additem={addItem} removeitem={removeItem} /> :
-            <div className="cart-dummydata">
-              <h1>YOUR CART IS EMPTY!</h1>
-              <br></br>
-              <br></br>
-              <h1>PLEASE RETURN WHEN YOUVE CHECKED OUT THE STORE AND PURCHASED SOME ITEMS</h1>
-              <br></br>
-              <br></br>
-              <h1>🍔</h1>
-            </div>}
-          <DeleteForeverModal isShowing={isShowing} hide={toggle} item={deleteItem} deleteitem={deleteItemFromCart} />
-        </div>
-        <div className="total-section">
-          <h2 className="total">Total: &#36;{cartTotal()}</h2>
+        <div className="checkout-section">
+          <Link className="checkout-link" to="/Checkout" state={{ cart: cartInfo }}>
+            <Button
+              variant="contained"
+              size="large"
+              sx={{
+                backgroundColor: "red",
+                "&:hover": {
+                  backgroundColor: "rgb(162, 6, 6)",
+                },
+                margin: "30px",
+              }}
+              endIcon={<ArrowForwardIosIcon />}>
+              <span className="link-text">Checkout</span>
+            </Button>
+          </Link>
         </div>
       </div>
-    ) : (
-      <LoadingCircle />
-    )
+      <p className="cart-header">Cart</p>
+      <div className="cart-window">
+        {cartInfo?.length !== 0 ? <Cartitems items={cartInfo} additem={addItem} removeitem={removeItem} /> :
+          <div className="cart-dummydata">
+            <h1>YOUR CART IS EMPTY!</h1>
+            <br></br>
+            <br></br>
+            <h1>PLEASE RETURN WHEN YOUVE CHECKED OUT THE STORE AND PURCHASED SOME ITEMS</h1>
+            <br></br>
+            <br></br>
+            <h1>🍔</h1>
+          </div>}
+        <DeleteForeverModal isShowing={isShowing} hide={toggle} item={deleteItem} deleteitem={deleteItemFromCart} />
+      </div>
+      <div className="total-section">
+        <h2 className="total">Total: &#36;{cartTotal()}</h2>
+      </div>
+    </div>
   );
 };
 

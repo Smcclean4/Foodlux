@@ -59,8 +59,6 @@ const Home = () => {
   const cartFromHomeLocalStorage: CartInfoInterface[] = JSON.parse(localStorage.getItem("cart") || "[]");
   // store cart items that are coming from the home local storage
   const [cart, setCart] = useState<CartInfoInterface[]>(cartFromHomeLocalStorage);
-  // set loading state for loading animation between pages
-  const [loading, setLoading] = useState(true)
   // cart modal hook that shows whether the modal is showing (true or false) or not and also toggle which changes this value
   const { isShowing, toggle } = useModal();
   // toggles whether company tab is opened or not and changes depending on that info
@@ -132,163 +130,151 @@ const Home = () => {
     window.location.reload()
     window.location.replace('/')
   }
-  // loading effect for loading animation
-  useEffect(() => {
-    const loadData = async () => {
-      await new Promise((p) => setTimeout(p, 1000));
-      setLoading((loading) => !loading)
-    }
-    loadData();
-  }, []);
   // stores item into local storage each time the cart is modified
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
   return (
-    !loading ? (
-      <div className="home-background" data-testid="Home">
-        <p className="home-logo">Foodlux</p>
-        <div className="dynamic-cart-username">
-          <h1 className="username">Hi, {`${username}`}!</h1>
-          {/* pond for bait and fishing rod that brings in search terms */}
-          <SearchBar data={categories} searchforitem={searchForItem} />
-          <div className="modal-container">
-            <button className="modal-button" onClick={toggle}>
-              <ShoppingCartIcon className="cart" />
-              <CartModal isShowing={isShowing} hide={toggle} state={cart} />
-              <p className="cart-count">{getCartTotal()}</p>
-            </button>
-          </div>
+    <div className="home-background" data-testid="Home">
+      <p className="home-logo">Foodlux</p>
+      <div className="dynamic-cart-username">
+        <h1 className="username">Hi, {`${username}`}!</h1>
+        {/* pond for bait and fishing rod that brings in search terms */}
+        <SearchBar data={categories} searchforitem={searchForItem} />
+        <div className="modal-container">
+          <button className="modal-button" onClick={toggle}>
+            <ShoppingCartIcon className="cart" />
+            <CartModal isShowing={isShowing} hide={toggle} state={cart} />
+            <p className="cart-count">{getCartTotal()}</p>
+          </button>
         </div>
-        <Box className="home-window" sx={{ backdropFilter: "blur(5px)", width: "95%", margin: "0 auto", height: checkClosed, overflow: "scroll" }}>
-          <AppBar position="sticky">
-            <Tabs
-              sx={{
-                backgroundColor: "black",
-                "& .MuiTabs-indicator": {
-                  borderBottom: "2px solid red",
-                },
-              }}
-              value={value}
-              onChange={handleChange}
-              indicatorColor="secondary"
-              aria-label="Foodlux tabs"
-              textColor="inherit"
-              variant="fullWidth"
-            >
-              <Tab
-                icon={<h1>🍔</h1>}
-                aria-label="fflogo"
-                label="FAST FOOD"
-                {...allyProps(0)}
-              />
-              <Tab
-                icon={<h1>🍜</h1>}
-                aria-label="fdlogo"
-                label="FINE DINING"
-                {...allyProps(1)}
-              />
-              <Tab
-                icon={<h1>🍿</h1>}
-                aria-label="snlogo"
-                label="SNACKS"
-                {...allyProps(2)}
-              />
-              <Tab
-                icon={<h1>🍷</h1>}
-                aria-label="alclogo"
-                label="ALCOHOL"
-                {...allyProps(3)}
-              />
-            </Tabs>
-          </AppBar>
-          <SwipeableViews
-            axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-            index={value}
-            onChangeIndex={handleChangeIndex}
-          >
-            <TabPanel value={value} index={0} dir={theme.direction}>
-              {fastfood?.map((val: { title: any; menu: any; }, idx: React.Key | null | undefined) => {
-                return (
-                  <Homeitems
-                    key={idx}
-                    title={val.title}
-                    menu={val.menu}
-                    addtocart={addCart}
-                    searchinfo={infoFromSearch}
-                    render={render}
-                    setrender={setRender}
-                  />
-                );
-              })}
-            </TabPanel>
-            <TabPanel value={value} index={1} dir={theme.direction}>
-              {finedine?.map((val: { title: any; menu: any; }, idx: React.Key | null | undefined) => {
-                return (
-                  <Homeitems
-                    key={idx}
-                    title={val.title}
-                    menu={val.menu}
-                    addtocart={addCart}
-                    searchinfo={infoFromSearch}
-                    render={render}
-                    setrender={setRender}
-                  />
-                );
-              })}
-            </TabPanel>
-            <TabPanel value={value} index={2} dir={theme.direction}>
-              {snacks?.map((val: { title: any; menu: any; }, idx: React.Key | null | undefined) => {
-                return (
-                  <Homeitems
-                    key={idx}
-                    title={val.title}
-                    menu={val.menu}
-                    addtocart={addCart}
-                    searchinfo={infoFromSearch}
-                    render={render}
-                    setrender={setRender}
-                  />
-                );
-              })}
-            </TabPanel>
-            <TabPanel value={value} index={3} dir={theme.direction}>
-              {alcohol?.map((val: { title: any; menu: any; }, idx: React.Key | null | undefined) => {
-                return (
-                  <Homeitems
-                    key={idx}
-                    title={val.title}
-                    menu={val.menu}
-                    addtocart={addCart}
-                    searchinfo={infoFromSearch}
-                    render={render}
-                    setrender={setRender}
-                  />
-                );
-              })}
-            </TabPanel>
-          </SwipeableViews>
-        </Box>
-        <Button
-          variant="contained"
-          size="medium"
-          sx={{
-            margin: "10px 0",
-            backgroundColor: "red",
-            "&:hover": {
-              backgroundColor: "rgb(162, 6, 6)",
-            }
-          }}
-          onClick={handleLogout}
-          endIcon={<LogoutIcon />}>
-          Logout
-        </Button>
-        <Outlet />
       </div>
-    ) : (
-      <LoadingCircle />
-    )
+      <Box className="home-window" sx={{ backdropFilter: "blur(5px)", width: "95%", margin: "0 auto", height: checkClosed, overflow: "scroll" }}>
+        <AppBar position="sticky">
+          <Tabs
+            sx={{
+              backgroundColor: "black",
+              "& .MuiTabs-indicator": {
+                borderBottom: "2px solid red",
+              },
+            }}
+            value={value}
+            onChange={handleChange}
+            indicatorColor="secondary"
+            aria-label="Foodlux tabs"
+            textColor="inherit"
+            variant="fullWidth"
+          >
+            <Tab
+              icon={<h1>🍔</h1>}
+              aria-label="fflogo"
+              label="FAST FOOD"
+              {...allyProps(0)}
+            />
+            <Tab
+              icon={<h1>🍜</h1>}
+              aria-label="fdlogo"
+              label="FINE DINING"
+              {...allyProps(1)}
+            />
+            <Tab
+              icon={<h1>🍿</h1>}
+              aria-label="snlogo"
+              label="SNACKS"
+              {...allyProps(2)}
+            />
+            <Tab
+              icon={<h1>🍷</h1>}
+              aria-label="alclogo"
+              label="ALCOHOL"
+              {...allyProps(3)}
+            />
+          </Tabs>
+        </AppBar>
+        <SwipeableViews
+          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+          index={value}
+          onChangeIndex={handleChangeIndex}
+        >
+          <TabPanel value={value} index={0} dir={theme.direction}>
+            {fastfood?.map((val: { title: any; menu: any; }, idx: React.Key | null | undefined) => {
+              return (
+                <Homeitems
+                  key={idx}
+                  title={val.title}
+                  menu={val.menu}
+                  addtocart={addCart}
+                  searchinfo={infoFromSearch}
+                  render={render}
+                  setrender={setRender}
+                />
+              );
+            })}
+          </TabPanel>
+          <TabPanel value={value} index={1} dir={theme.direction}>
+            {finedine?.map((val: { title: any; menu: any; }, idx: React.Key | null | undefined) => {
+              return (
+                <Homeitems
+                  key={idx}
+                  title={val.title}
+                  menu={val.menu}
+                  addtocart={addCart}
+                  searchinfo={infoFromSearch}
+                  render={render}
+                  setrender={setRender}
+                />
+              );
+            })}
+          </TabPanel>
+          <TabPanel value={value} index={2} dir={theme.direction}>
+            {snacks?.map((val: { title: any; menu: any; }, idx: React.Key | null | undefined) => {
+              return (
+                <Homeitems
+                  key={idx}
+                  title={val.title}
+                  menu={val.menu}
+                  addtocart={addCart}
+                  searchinfo={infoFromSearch}
+                  render={render}
+                  setrender={setRender}
+                />
+              );
+            })}
+          </TabPanel>
+          <TabPanel value={value} index={3} dir={theme.direction}>
+            {alcohol?.map((val: { title: any; menu: any; }, idx: React.Key | null | undefined) => {
+              return (
+                <Homeitems
+                  key={idx}
+                  title={val.title}
+                  menu={val.menu}
+                  addtocart={addCart}
+                  searchinfo={infoFromSearch}
+                  render={render}
+                  setrender={setRender}
+                />
+              );
+            })}
+          </TabPanel>
+        </SwipeableViews>
+      </Box>
+      <Button
+        variant="contained"
+        size="medium"
+        sx={{
+          margin: "10px 0",
+          backgroundColor: "red",
+          "&:hover": {
+            backgroundColor: "rgb(162, 6, 6)",
+          }
+        }}
+        onClick={handleLogout}
+        endIcon={<LogoutIcon />}>
+        Logout
+      </Button>
+      <Outlet />
+    </div>
   );
 };
 
