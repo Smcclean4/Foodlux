@@ -5,13 +5,14 @@ import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import "../stylesheets/Login.css";
+import "../../stylesheets/Login.css";
+
+export interface LoginInterface {
+  username: string;
+  password: string;
+}
 
 const Login = () => {
-  interface LoginInterface {
-    username: string;
-    password: string;
-  }
   // stores user login info into state
   const [userLoginInfo, setUserLoginInfo] = useState<LoginInterface>({
     username: '',

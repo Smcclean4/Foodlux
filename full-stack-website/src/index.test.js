@@ -1,7 +1,7 @@
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Login from "./containers/Login";
+import Login from "./containers/Login/Login";
 import Register from "./containers/Register";
 import Home from "./containers/Home";
 import Cart from "./containers/Cart";

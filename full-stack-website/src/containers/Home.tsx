@@ -14,9 +14,9 @@ import { CartModal } from "../modals/CartModal";
 import { useModal } from "../hooks/useModal";
 import { LoadingCircle } from "../tools/LoadingCircle"
 import SearchBar from "./SearchBar";
-import { CartInfoInterface } from "../api/Categories";
-import { Categories } from "../api/Categories"
-import { UserData } from "../api/UserData"
+import { CartInfoInterface } from "../api/Categories/Categories";
+import { Categories } from "../api/Categories/Categories"
+import { UserData } from "../api/UserData/UserData"
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import "../stylesheets/Home.css";

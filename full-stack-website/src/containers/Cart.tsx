@@ -4,8 +4,8 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Link } from "react-router-dom";
 import Cartitems from "../components/Cartitems";
-import { CartInfoInterface } from "../api/Categories";
-import { Categories } from "../api/Categories"
+import { CartInfoInterface } from "../api/Categories/Categories";
+import { Categories } from "../api/Categories/Categories"
 import { useModal } from "../hooks/useModal"
 import { DeleteForeverModal } from "../modals/DeleteForeverModal";
 import "../stylesheets/Cart.css";

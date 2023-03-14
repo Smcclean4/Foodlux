@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./stylesheets/index.css";
 
 const Register = React.lazy(() => import("./containers/Register"));
-const Login = React.lazy(() => import("./containers/Login"));
+const Login = React.lazy(() => import("./containers/Login/Login"));
 const Home = React.lazy(() => import("./containers/Home"));
 const Cart = React.lazy(() => import("./containers/Cart"));
 const Checkout = React.lazy(() => import("./containers/Checkout"));
@@ -18,17 +18,21 @@ const App = () => {
   useEffect(() => {
     const delay = setTimeout(() => {
       setIsLoading(false);
-    }, 5000);
+    }, 3000);
     return () => clearTimeout(delay);
   }, [isLoading]);
 
-  const handleRouteChange = () => {
-    setIsLoading((loading) => !loading);
+  const handleRouteStart = () => {
+    setIsLoading(true);
+  };
+
+  const handleRouteEnd = () => {
+    setIsLoading(false);
   };
 
   return (
     <BrowserRouter>
-      <Routes onStart={handleRouteChange} onEnd={handleRouteChange}>
+      <Routes onStart={handleRouteStart} onEnd={handleRouteEnd}>
         <Route
           path="Register"
           element={

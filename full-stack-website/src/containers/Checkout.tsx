@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import Box from "@mui/material/Box";
 import SendIcon from '@mui/icons-material/Send'
 import TextField from "@mui/material/TextField";
 import MenuItem from '@mui/material/MenuItem';
@@ -151,7 +150,7 @@ const Checkout = () => {
                   "&:hover": {
                     backgroundColor: "rgb(162, 6, 6)",
                   },
-                  margin: "40px 0",
+                  margin: "30px",
                 }}
                 startIcon={<ArrowBackIosIcon />}>
                 Cart
@@ -159,16 +158,7 @@ const Checkout = () => {
             </Link>
           </div>
           <p className="checkout-header">Credit/Debit Card Payment</p>
-          <Box
-            className="checkout-window"
-            sx={{
-              backdropFilter: "blur(5px)",
-              maxWidth: "80%",
-              width: "75%",
-              margin: "0 auto",
-              padding: "30px",
-              color: "white",
-            }}>
+          <div className="checkout-window">
             <form onSubmit={handleSubmit} action="/"
               method="post"
               autoComplete="on">
@@ -244,7 +234,7 @@ const Checkout = () => {
                 <div className="checkout-values-header-container">
                   <h1 className="checkout-values-header">Cart Items</h1>
                   <div className="checkout-values">
-                    {cartData?.length !== 0 ? <Checkoutitems details={cartData} /> : <h1>There is no checkout data to show..</h1>}
+                    {cartData?.length !== 0 ? <Checkoutitems details={cartData} /> : <h1 className="checkout-dummydata">There is no checkout data to show..</h1>}
                   </div>
                 </div>
               </div>
@@ -257,7 +247,7 @@ const Checkout = () => {
                 Pay Now
               </Button>
             </form>
-          </Box>
+          </div>
         </div>
       )
   )
