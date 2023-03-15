@@ -5,17 +5,18 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import axios from 'axios';
-import "../stylesheets/Register.css";
+import "../../stylesheets/Register.css";
+
+export interface RegisterInterface {
+  firstname: string;
+  lastname: string;
+  username: string;
+  email: string;
+  password: string;
+  confirmpassword: string;
+}
 
 const Register = () => {
-  interface RegisterInterface {
-    firstname: string;
-    lastname: string;
-    username: string;
-    email: string;
-    password: string;
-    confirmpassword: string;
-  }
   // stores user register info into state
   const [userRegisterInfo, setUserRegisterInfo] = useState<RegisterInterface>({
     firstname: '',
@@ -73,7 +74,7 @@ const Register = () => {
           <p className="register-header">Register</p>
           <TextField
             sx={{ margin: "5px" }}
-            label="First Name"
+            aria-label="First Name"
             margin="dense"
             variant="outlined"
             name="firstname"
@@ -83,7 +84,7 @@ const Register = () => {
           />
           <TextField
             sx={{ margin: "5px" }}
-            label="Last Name"
+            aria-label="Last Name"
             margin="dense"
             variant="outlined"
             name="lastname"
@@ -93,7 +94,7 @@ const Register = () => {
           />
           <TextField
             sx={{ margin: "5px" }}
-            label="Username"
+            aria-label="Username"
             margin="dense"
             variant="outlined"
             name="username"
@@ -103,7 +104,7 @@ const Register = () => {
           />
           <TextField
             sx={{ margin: "5px" }}
-            label="Email"
+            aria-label="Email"
             type="email"
             margin="dense"
             variant="outlined"
@@ -114,7 +115,7 @@ const Register = () => {
           />
           <TextField
             sx={{ margin: "5px" }}
-            label="Password"
+            aria-label="Password"
             type="password"
             margin="dense"
             variant="filled"
@@ -125,7 +126,7 @@ const Register = () => {
           />
           <TextField
             sx={{ margin: "5px" }}
-            label="Confirm Password"
+            aria-label="Confirm Password"
             type="password"
             margin="dense"
             variant="filled"
@@ -137,11 +138,13 @@ const Register = () => {
           <br></br>
           <br></br>
           <Button
+            role="button"
             color="error"
             sx={{ "&:hover": { backgroundColor: "red", color: "white" } }}
             variant="outlined"
             endIcon={<SendIcon />}
             type="submit"
+            name="submit"
           >
             Register
           </Button>

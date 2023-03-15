@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
 
     if (user && validPassword) {
       app.set("user", req.body.username);
-      return res.send("logged in!");
+      return res.send({ token: "logged in!" });
     }
   } catch (err) {
     console.log(err);

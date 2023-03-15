@@ -12,7 +12,6 @@ import Button from "@mui/material/Button";
 import Homeitems from "../components/Homeitems";
 import { CartModal } from "../modals/CartModal";
 import { useModal } from "../hooks/useModal";
-import { LoadingCircle } from "../tools/LoadingCircle"
 import SearchBar from "./SearchBar";
 import { CartInfoInterface } from "../api/Categories/Categories";
 import { Categories } from "../api/Categories/Categories"

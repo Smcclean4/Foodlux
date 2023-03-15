@@ -4,7 +4,7 @@ import React, { Suspense, useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./stylesheets/index.css";
 
-const Register = React.lazy(() => import("./containers/Register"));
+const Register = React.lazy(() => import("./containers/Register/Register"));
 const Login = React.lazy(() => import("./containers/Login/Login"));
 const Home = React.lazy(() => import("./containers/Home"));
 const Cart = React.lazy(() => import("./containers/Cart"));

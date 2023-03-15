@@ -20,6 +20,7 @@ router.post("/", async (req, res) => {
     .save()
     .then((data) => {
       res.json(data);
+      res.send({ token: "User Registered!" });
     })
     .catch((err) => {
       console.log(err);
