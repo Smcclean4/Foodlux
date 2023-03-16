@@ -4,7 +4,7 @@ import { LoginInterface } from './Login';
 describe('checking if login page correctly fetches data', () => {
   const exampleUserLoginInfo = { username: "testman", password: "test123" };
   const exampleWrongUserLoginInfo = { username: "testguy", password: "test456" };
-  const exampleUserObject = {
+  const exampleUserLoginInfoInterface = {
     username: expect.any(String),
     password: expect.any(String)
   }
@@ -21,6 +21,6 @@ describe('checking if login page correctly fetches data', () => {
   })
 
   test('check that user info that is being submitted is adhering to login interface', () => {
-    expect(exampleUserLoginInfo,).toMatchObject<LoginInterface>(exampleUserObject)
+    expect(exampleUserLoginInfo,).toMatchObject<LoginInterface>(exampleUserLoginInfoInterface)
   })
 })

@@ -2,12 +2,12 @@ import React from 'react'
 import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
 import Button from "@mui/material/Button";
-import '../stylesheets/CartModal.css'
+import '../../stylesheets/CartModal.css'
 
 export const CartModal = ({ isShowing, hide, state }) => isShowing ? createPortal(
   <React.Fragment>
     <div className="cartmodal-container">
-      <button className="cartmodal-close" onClick={hide}>
+      <button className="cartmodal-close" onClick={hide} data-testid="cart-close">
         &times;
       </button>
       <div className="modal-data">

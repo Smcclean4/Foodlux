@@ -52,7 +52,7 @@ const Register = () => {
   }
 
   return (
-    <div className="register-background" data-testid="Register">
+    <div className="register-background">
       <p className="register-logo">Foodlux</p>
       <Box
         sx={{
@@ -70,11 +70,13 @@ const Register = () => {
           onSubmit={handleSubmit}
           action="/"
           method="post"
+          data-testid="Register"
           autoComplete="on">
           <p className="register-header">Register</p>
           <TextField
             sx={{ margin: "5px" }}
             aria-label="First Name"
+            inputProps={{ "data-testid": "firstname-input" }}
             margin="dense"
             variant="outlined"
             name="firstname"
@@ -85,6 +87,7 @@ const Register = () => {
           <TextField
             sx={{ margin: "5px" }}
             aria-label="Last Name"
+            inputProps={{ "data-testid": "lastname-input" }}
             margin="dense"
             variant="outlined"
             name="lastname"
@@ -95,6 +98,7 @@ const Register = () => {
           <TextField
             sx={{ margin: "5px" }}
             aria-label="Username"
+            inputProps={{ "data-testid": "username-input" }}
             margin="dense"
             variant="outlined"
             name="username"
@@ -105,6 +109,7 @@ const Register = () => {
           <TextField
             sx={{ margin: "5px" }}
             aria-label="Email"
+            inputProps={{ "data-testid": "email-input" }}
             type="email"
             margin="dense"
             variant="outlined"
@@ -116,6 +121,7 @@ const Register = () => {
           <TextField
             sx={{ margin: "5px" }}
             aria-label="Password"
+            inputProps={{ "data-testid": "password-input" }}
             type="password"
             margin="dense"
             variant="filled"
@@ -127,6 +133,7 @@ const Register = () => {
           <TextField
             sx={{ margin: "5px" }}
             aria-label="Confirm Password"
+            inputProps={{ "data-testid": "confirmpassword-input" }}
             type="password"
             margin="dense"
             variant="filled"

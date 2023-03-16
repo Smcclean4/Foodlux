@@ -6,7 +6,8 @@ jest.mock('react-router-dom', () => ({
 
 import axios from 'axios';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import { render, waitFor, fireEvent } from '@testing-library/react';
+import { render, waitFor, fireEvent, queryByLabelText } from '@testing-library/react';
+import { RegisterInterface } from './Register';
 import "@testing-library/jest-dom";
 import Register from './Register';
 import React from 'react';
@@ -14,17 +15,27 @@ import React from 'react';
 jest.mock('axios')
 
 describe('checking if register page correctly fetches data', () => {
-  test('making sure that register user is working correctly', async () => {
-    const exampleRegisterUserData = {
-      firstname: 'test',
-      lastname: 'man',
-      username: 'testman',
-      email: 'test@test.com',
-      password: 'test123',
-      confirmpassword: 'test123'
-    }
+  const exampleRegisterUserData = {
+    firstname: 'test',
+    lastname: 'man',
+    username: 'testman',
+    email: 'test@test.com',
+    password: 'test123',
+    confirmpassword: 'test123'
+  }
 
-    const { getByTestId, getByLabelText } = render(
+  const exampleRegisterUserDataInterface = {
+    firstname: expect.any(String),
+    lastname: expect.any(String),
+    username: expect.any(String),
+    email: expect.any(String),
+    password: expect.any(String),
+    confirmpassword: expect.any(String)
+  }
+
+  test('making sure that register user is working correctly', async () => {
+
+    const { getByTestId } = render(
       <MemoryRouter>
         <Register />
       </MemoryRouter>
@@ -32,22 +43,22 @@ describe('checking if register page correctly fetches data', () => {
 
     const form = getByTestId('Register')
 
-    fireEvent.change(getByLabelText('First Name'), {
+    fireEvent.change(getByTestId('firstname-input'), {
       target: { value: exampleRegisterUserData.firstname },
     });
-    fireEvent.change(getByLabelText('Last Name'), {
+    fireEvent.change(getByTestId('lastname-input'), {
       target: { value: exampleRegisterUserData.lastname },
     });
-    fireEvent.change(getByLabelText('Username'), {
+    fireEvent.change(getByTestId('username-input'), {
       target: { value: exampleRegisterUserData.username },
     });
-    fireEvent.change(getByLabelText('Email'), {
+    fireEvent.change(getByTestId('email-input'), {
       target: { value: exampleRegisterUserData.email },
     });
-    fireEvent.change(getByLabelText('Password'), {
+    fireEvent.change(getByTestId('password-input'), {
       target: { value: exampleRegisterUserData.password },
     });
-    fireEvent.change(getByLabelText('Confirm Password'), {
+    fireEvent.change(getByTestId('confirmpassword-input'), {
       target: { value: exampleRegisterUserData.confirmpassword },
     });
 
@@ -56,5 +67,9 @@ describe('checking if register page correctly fetches data', () => {
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledWith(`http://localhost:${process.env.REACT_APP_PORT}/registerUser`, exampleRegisterUserData)
     })
+  })
+
+  test('testing to see if info that is being submitted is adhering to register interface', () => {
+    expect(exampleRegisterUserData).toMatchObject<RegisterInterface>(exampleRegisterUserDataInterface)
   })
 })

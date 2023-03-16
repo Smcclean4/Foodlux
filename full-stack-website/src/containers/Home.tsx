@@ -10,9 +10,9 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Homeitems from "../components/Homeitems";
-import { CartModal } from "../modals/CartModal";
+import { CartModal } from "../modals/CartModal/CartModal";
 import { useModal } from "../hooks/useModal";
-import SearchBar from "./SearchBar";
+import SearchBar from "./SearchBar/SearchBar";
 import { CartInfoInterface } from "../api/Categories/Categories";
 import { Categories } from "../api/Categories/Categories"
 import { UserData } from "../api/UserData/UserData"

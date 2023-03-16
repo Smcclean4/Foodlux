@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
 import Button from "@mui/material/Button";
 import SearchIcon from '@mui/icons-material/Search';
-import "../stylesheets/SearchBar.css"
+import "../../stylesheets/SearchBar.css"
+
+export interface UserInputInterface {
+  searchTermCompany: string;
+  searchTermCategory: string;
+}
 
 const SearchBar = ({ data, searchforitem }) => {
-  const [userInput, setUserInput]: any = useState("")
-  const [userInputInfo, setUserInputInfo]: any = useState({ searchTermCompany: '', searchTermCategory: '' })
+  const [userInput, setUserInput] = useState("")
+  const [userInputInfo, setUserInputInfo] = useState<UserInputInterface>({ searchTermCompany: '', searchTermCategory: '' })
   const [dropDown, setDropDown] = useState([])
   const [open, setOpen] = useState(false)
 
@@ -38,7 +43,6 @@ const SearchBar = ({ data, searchforitem }) => {
             backgroundColor: "rgb(162, 6, 6)",
           },
           borderRadius: '0 10px 10px 0'
-
         }}
           onClick={searchClick}
           endIcon={<SearchIcon />}>
@@ -48,9 +52,7 @@ const SearchBar = ({ data, searchforitem }) => {
       {open ? (
         <div className="dropdown">
           {dropDown?.length !== 0 ? (
-            dropDown?.map((dropDownItems: {
-              category: string; item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal; company: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal;
-            }, idx: React.Key) => {
+            dropDown?.map((dropDownItems: any, idx: React.Key) => {
               return (
                 <div key={idx} className="dropdown-items">
                   <Button
