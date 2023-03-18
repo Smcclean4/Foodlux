@@ -35,11 +35,7 @@ describe('checking if register page correctly fetches data', () => {
 
   test('making sure that register user is working correctly', async () => {
 
-    const { getByTestId } = render(
-      <MemoryRouter>
-        <Register />
-      </MemoryRouter>
-    );
+    const { getByTestId } = render(<Register />, { wrapper: MemoryRouter });
 
     const form = getByTestId('Register')
 

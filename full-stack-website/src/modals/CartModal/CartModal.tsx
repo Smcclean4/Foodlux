@@ -7,7 +7,7 @@ import '../../stylesheets/CartModal.css'
 export const CartModal = ({ isShowing, hide, state }) => isShowing ? createPortal(
   <React.Fragment>
     <div className="cartmodal-container">
-      <button className="cartmodal-close" onClick={hide} data-testid="cart-close">
+      <button className="cartmodal-close" onClick={hide} data-testid="cartmodal-close">
         &times;
       </button>
       <div className="modal-data">
