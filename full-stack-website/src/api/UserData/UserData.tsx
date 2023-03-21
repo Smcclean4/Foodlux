@@ -11,10 +11,10 @@ export const UserData = () => {
           .then(res => setUsername(res.data))
           .catch(err => console.log(err))
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     }
-    fetchUserData();
+    fetchUserData()
   }, [username])
 
   return {

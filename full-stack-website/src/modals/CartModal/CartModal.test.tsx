@@ -9,9 +9,9 @@ describe('making sure that cart modal props and functionality works ', () => {
   test('make sure that toggle is being clicked', () => {
     const toggle = jest.fn();
     const cart = [];
-    const { getByTestId } = render(<CartModal isShowing={isShowing} hide={toggle} state={cart} />, { wrapper: MemoryRouter })
+    const testid = [];
+    const { getByTestId } = render(<CartModal isShowing={isShowing} hide={toggle} state={cart} title={testid} />, { wrapper: MemoryRouter })
     const toggleButton = getByTestId('cartmodal-close');
-
     fireEvent.click(toggleButton);
     expect(toggle).toHaveBeenCalledTimes(1);
   })

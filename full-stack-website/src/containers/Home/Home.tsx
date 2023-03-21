@@ -9,16 +9,16 @@ import Typography from "@mui/material/Typography";
 import LogoutIcon from '@mui/icons-material/Logout';
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Homeitems from "../components/Homeitems";
-import { CartModal } from "../modals/CartModal/CartModal";
-import { useModal } from "../hooks/useModal";
-import SearchBar from "./SearchBar/SearchBar";
-import { CartInfoInterface } from "../api/Categories/Categories";
-import { Categories } from "../api/Categories/Categories"
-import { UserData } from "../api/UserData/UserData"
+import Homeitems from "../../components/Homeitems";
+import { CartModal } from "../../modals/CartModal/CartModal";
+import { useModal } from "../../hooks/useModal";
+import SearchBar from "../SearchBar/SearchBar";
+import { CartInfoInterface } from "../../api/Categories/Categories";
+import { Categories } from "../../api/Categories/Categories"
+import { UserData } from "../../api/UserData/UserData"
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import "../stylesheets/Home.css";
+import "../../stylesheets/Home.css";
 
 function TabPanel(props: { [x: string]: any; children: any; value: any; index: any; }) {
   const { children, value, index, ...other } = props;
@@ -140,11 +140,11 @@ const Home = () => {
       <div className="dynamic-cart-username">
         <h1 className="username">Hi, {`${username}`}!</h1>
         {/* pond for bait and fishing rod that brings in search terms */}
-        <SearchBar data={categories} searchforitem={searchForItem} />
+        <SearchBar data={categories} searchforitem={searchForItem} datatestid='search-bar' />
         <div className="modal-container">
           <button className="modal-button" onClick={toggle}>
             <ShoppingCartIcon className="cart" />
-            <CartModal isShowing={isShowing} hide={toggle} state={cart} />
+            <CartModal isShowing={isShowing} hide={toggle} state={cart} title='cart-modal' />
             <p className="cart-count">{getCartTotal()}</p>
           </button>
         </div>

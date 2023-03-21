@@ -8,7 +8,7 @@ export interface UserInputInterface {
   searchTermCategory: string;
 }
 
-const SearchBar = ({ data, searchforitem }) => {
+const SearchBar = ({ data, searchforitem, datatestid }) => {
   const [userInput, setUserInput] = useState("")
   const [userInputInfo, setUserInputInfo] = useState<UserInputInterface>({ searchTermCompany: '', searchTermCategory: '' })
   const [dropDown, setDropDown] = useState([])
@@ -35,7 +35,7 @@ const SearchBar = ({ data, searchforitem }) => {
   }
 
   return (
-    <div className="searchbar-navigation">
+    <div className="searchbar-navigation" data-testid={datatestid}>
       <div className="searchbar-container">
         <input className="searchbar-input" type="search" value={userInput} onChange={handleChange} onFocus={dropDownFocusToggle} onBlur={dropDownFocusToggle} onKeyDown={e => e.key === 'Enter' && searchClick()}></input>
         <Button sx={{

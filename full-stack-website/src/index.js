@@ -6,7 +6,7 @@ import "./stylesheets/index.css";
 
 const Register = React.lazy(() => import("./containers/Register/Register"));
 const Login = React.lazy(() => import("./containers/Login/Login"));
-const Home = React.lazy(() => import("./containers/Home"));
+const Home = React.lazy(() => import("./containers/Home/Home"));
 const Cart = React.lazy(() => import("./containers/Cart"));
 const Checkout = React.lazy(() => import("./containers/Checkout"));
 
