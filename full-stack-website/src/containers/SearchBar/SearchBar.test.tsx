@@ -21,8 +21,7 @@ describe('looking through searchbar and checking functionality', () => {
   test('testing when the search button is clicked it stores values and makes the search happen', () => {
     const searchForItem = jest.fn();
     const data = '';
-    const testid = '';
-    const { getByText } = render(<SearchBar data={data} searchforitem={searchForItem} datatestid={testid} />)
+    const { getByText } = render(<SearchBar data={data} searchforitem={searchForItem} />)
     const button = getByText('Search')
     fireEvent.click(button)
     expect(searchForItem).toHaveBeenCalledTimes(1);

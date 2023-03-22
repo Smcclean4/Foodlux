@@ -9,8 +9,8 @@ import Typography from "@mui/material/Typography";
 import LogoutIcon from '@mui/icons-material/Logout';
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Homeitems from "../../components/Homeitems";
-import { CartModal } from "../../modals/CartModal/CartModal";
+import Homeitems from "../../components/Homeitems/Homeitems";
+import CartModal from "../../modals/CartModal/CartModal";
 import { useModal } from "../../hooks/useModal";
 import SearchBar from "../SearchBar/SearchBar";
 import { CartInfoInterface } from "../../api/Categories/Categories";
@@ -84,12 +84,12 @@ const Home = () => {
   };
   // add item to current cart list
   const addCart = (food: CartInfoInterface) => {
-    // push specific items that are in home into this variable
-    const home: any[] = []
     // all items that are being mapped through
     categories?.forEach((menu: any[]) => menu.map((food: { menu: any[]; }) => food.menu.map((items) => home.push(items))))
+    // push specific items that are in home into this variable
+    const home: any[] = []
     // check if item that is being added exists
-    const itemExists = (item: any, company: any, category: any) => {
+    const itemExists = (item: string, company: string, category: string) => {
       return cart.some((el) => {
         return el.item === item && el.company === company && el.category === category
       })
@@ -140,11 +140,11 @@ const Home = () => {
       <div className="dynamic-cart-username">
         <h1 className="username">Hi, {`${username}`}!</h1>
         {/* pond for bait and fishing rod that brings in search terms */}
-        <SearchBar data={categories} searchforitem={searchForItem} datatestid='search-bar' />
+        <SearchBar data={categories} searchforitem={searchForItem} />
         <div className="modal-container">
           <button className="modal-button" onClick={toggle}>
             <ShoppingCartIcon className="cart" />
-            <CartModal isShowing={isShowing} hide={toggle} state={cart} title='cart-modal' />
+            <CartModal isShowing={isShowing} hide={toggle} state={cart} />
             <p className="cart-count">{getCartTotal()}</p>
           </button>
         </div>

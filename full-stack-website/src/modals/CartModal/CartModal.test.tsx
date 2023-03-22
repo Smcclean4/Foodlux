@@ -1,6 +1,6 @@
 import { render, fireEvent } from "@testing-library/react";
 import { BrowserRouter, MemoryRouter, Link, Route, Routes } from "react-router-dom";
-import { CartModal } from "./CartModal";
+import CartModal from "./CartModal";
 import React from 'react'
 
 describe('making sure that cart modal props and functionality works ', () => {
@@ -9,8 +9,7 @@ describe('making sure that cart modal props and functionality works ', () => {
   test('make sure that toggle is being clicked', () => {
     const toggle = jest.fn();
     const cart = [];
-    const testid = [];
-    const { getByTestId } = render(<CartModal isShowing={isShowing} hide={toggle} state={cart} title={testid} />, { wrapper: MemoryRouter })
+    const { getByTestId } = render(<CartModal isShowing={isShowing} hide={toggle} state={cart} />, { wrapper: MemoryRouter })
     const toggleButton = getByTestId('cartmodal-close');
     fireEvent.click(toggleButton);
     expect(toggle).toHaveBeenCalledTimes(1);
