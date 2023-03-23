@@ -53,7 +53,6 @@ function allyProps(index: number) {
 }
 
 const Home = () => {
-
   // gets cart from local storage and stores it using cartinfointerface 
   const cartFromHomeLocalStorage: CartInfoInterface[] = JSON.parse(localStorage.getItem("cart") || "[]");
   // store cart items that are coming from the home local storage
