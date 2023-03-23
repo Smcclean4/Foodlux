@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
 
 .checkout-background {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: url("/src/assets/pexels-furknsaglam-3109671.jpg");
   background-position: center;
   background-size: cover;
@@ -14,9 +11,13 @@
 }
 
 .checkout-window {
-  width: 70%;
+  width: 80%;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  margin: 0 auto;
+  padding: 30px 0;
   list-style-type: none;
-  height: 70vh;
+  height: 65vh;
   overflow: scroll;
 }
 
@@ -30,12 +31,16 @@
   border-radius: 12px;
 }
 
+.checkout-dummydata {
+  color: white;
+}
+
 .cart-section {
   display: flex;
-  margin: 0 0 35px 0;
-  width: 60%;
   flex-direction: row;
   justify-content: left;
+  width: 60%;
+  margin: 0 auto;
 }
 
 .cart-link {
@@ -59,15 +64,16 @@
 }
 
 .checkout-header {
-  font-family: 'Bubblegum Sans', sans-serif;
-  width: 75%;
-  color: white;
+  background-color: black;
+  width: 80%;
+  font-size: 2.5em;
+  font-family: 'Bubblegum sans', sans-serif;
+  margin: 0 auto;
+  padding: 15px 0px;
   text-decoration: underline;
   text-decoration-color: red;
-  font-size: 2.0em;
-  background-color: black;
-  padding: 15px 35px;
-
+  color: white;
+  z-index: 1000;
 }
 
 .checkout-values-header-container {
@@ -85,7 +91,7 @@
 }
 
 .checkout-values {
-  height: 100vh;
+  height: 100%;
   min-height: 50vh;
   text-align: center;
   padding: 25px 0;
@@ -112,6 +118,7 @@
   font-size: 1.7em;
   font-family: 'Bubblegum Sans', sans-serif;
   margin-top: 50px;
+  color: white;
 }
 
 .expiration-date {
@@ -125,6 +132,7 @@
 .expiration-slash {
   font-size: 3.0em;
   margin: 0 10px;
+  color: white;
 }
 
 .error {

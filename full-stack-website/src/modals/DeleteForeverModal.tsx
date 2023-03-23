@@ -2,7 +2,6 @@ import React from 'react'
 import { createPortal } from 'react-dom'
 import Button from "@mui/material/Button";
 import '../stylesheets/DeleteForeverModal.css'
-import { red } from '@mui/material/colors';
 
 export const DeleteForeverModal = ({ isShowing, hide, item, deleteitem }) => isShowing ? createPortal(
   <React.Fragment>

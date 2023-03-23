@@ -5,11 +5,20 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import axios from 'axios';
-import "../stylesheets/Register.css";
+import "../../stylesheets/Register.css";
+
+export interface RegisterInterface {
+  firstname: string;
+  lastname: string;
+  username: string;
+  email: string;
+  password: string;
+  confirmpassword: string;
+}
 
 const Register = () => {
   // stores user register info into state
-  const [userRegisterInfo, setUserRegisterInfo] = useState({
+  const [userRegisterInfo, setUserRegisterInfo] = useState<RegisterInterface>({
     firstname: '',
     lastname: '',
     username: '',
@@ -17,7 +26,7 @@ const Register = () => {
     password: '',
     confirmpassword: ''
   })
-  // handles error for try catch 
+  // handles error for try catch
   const [registerErr, setRegisterErr] = useState('')
   const navigate = useNavigate();
   // handles input information for register info
@@ -25,7 +34,7 @@ const Register = () => {
     setUserRegisterInfo({ ...userRegisterInfo, [input.name]: input.value })
   }
   // submits user register info
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
 
     try {
@@ -61,11 +70,13 @@ const Register = () => {
           onSubmit={handleSubmit}
           action="/"
           method="post"
+          data-testid="Register"
           autoComplete="on">
           <p className="register-header">Register</p>
           <TextField
             sx={{ margin: "5px" }}
-            label="First Name"
+            aria-label="First Name"
+            inputProps={{ "data-testid": "firstname-input" }}
             margin="dense"
             variant="outlined"
             name="firstname"
@@ -75,7 +86,8 @@ const Register = () => {
           />
           <TextField
             sx={{ margin: "5px" }}
-            label="Last Name"
+            aria-label="Last Name"
+            inputProps={{ "data-testid": "lastname-input" }}
             margin="dense"
             variant="outlined"
             name="lastname"
@@ -85,7 +97,8 @@ const Register = () => {
           />
           <TextField
             sx={{ margin: "5px" }}
-            label="Username"
+            aria-label="Username"
+            inputProps={{ "data-testid": "username-input" }}
             margin="dense"
             variant="outlined"
             name="username"
@@ -95,7 +108,8 @@ const Register = () => {
           />
           <TextField
             sx={{ margin: "5px" }}
-            label="Email"
+            aria-label="Email"
+            inputProps={{ "data-testid": "email-input" }}
             type="email"
             margin="dense"
             variant="outlined"
@@ -106,7 +120,8 @@ const Register = () => {
           />
           <TextField
             sx={{ margin: "5px" }}
-            label="Password"
+            aria-label="Password"
+            inputProps={{ "data-testid": "password-input" }}
             type="password"
             margin="dense"
             variant="filled"
@@ -117,7 +132,8 @@ const Register = () => {
           />
           <TextField
             sx={{ margin: "5px" }}
-            label="Confirm Password"
+            aria-label="Confirm Password"
+            inputProps={{ "data-testid": "confirmpassword-input" }}
             type="password"
             margin="dense"
             variant="filled"
@@ -129,11 +145,13 @@ const Register = () => {
           <br></br>
           <br></br>
           <Button
+            role="button"
             color="error"
             sx={{ "&:hover": { backgroundColor: "red", color: "white" } }}
             variant="outlined"
             endIcon={<SendIcon />}
             type="submit"
+            name="submit"
           >
             Register
           </Button>

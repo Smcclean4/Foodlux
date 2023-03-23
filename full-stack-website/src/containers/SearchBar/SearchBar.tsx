@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 import Button from "@mui/material/Button";
 import SearchIcon from '@mui/icons-material/Search';
-import { CartInfoInterface } from '../api/Categories';
-import "../stylesheets/SearchBar.css"
+import "../../stylesheets/SearchBar.css"
+
+export interface UserInputInterface {
+  searchTermCompany: string;
+  searchTermCategory: string;
+}
 
 const SearchBar = ({ data, searchforitem }) => {
-  const [userInput, setUserInput]: any = useState("")
-  const [userInputInfo, setUserInputInfo]: any = useState({ searchTermCompany: '', searchTermCategory: '' })
+  const [userInput, setUserInput] = useState("")
+  const [userInputInfo, setUserInputInfo] = useState<UserInputInterface>({ searchTermCompany: '', searchTermCategory: '' })
   const [dropDown, setDropDown] = useState([])
   const [open, setOpen] = useState(false)
 
@@ -14,8 +18,7 @@ const SearchBar = ({ data, searchforitem }) => {
   const handleChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
     setUserInput(e.target.value)
     const dataItems: any = [];
-    let dataInfo: CartInfoInterface;
-    dataInfo = data.map((menu: { menu: any; }[]) => menu.map((food: { menu: any[] }) => food.menu.map((items: any) => dataItems.push(items))))
+    data.forEach((menu: { menu: any; }[]) => menu.map((food: { menu: any[] }) => food.menu.map((items: any) => dataItems.push(items))))
     const filteredData = dataItems.filter((val: { item: string; }) => val.item.toLowerCase().includes(userInput.toLowerCase()))
     setDropDown(filteredData)
   }
@@ -32,7 +35,7 @@ const SearchBar = ({ data, searchforitem }) => {
   }
 
   return (
-    <div className="searchbar-navigation">
+    <div className="searchbar-navigation" data-testid="search-bar">
       <div className="searchbar-container">
         <input className="searchbar-input" type="search" value={userInput} onChange={handleChange} onFocus={dropDownFocusToggle} onBlur={dropDownFocusToggle} onKeyDown={e => e.key === 'Enter' && searchClick()}></input>
         <Button sx={{
@@ -40,7 +43,6 @@ const SearchBar = ({ data, searchforitem }) => {
             backgroundColor: "rgb(162, 6, 6)",
           },
           borderRadius: '0 10px 10px 0'
-
         }}
           onClick={searchClick}
           endIcon={<SearchIcon />}>
@@ -50,9 +52,7 @@ const SearchBar = ({ data, searchforitem }) => {
       {open ? (
         <div className="dropdown">
           {dropDown?.length !== 0 ? (
-            dropDown?.map((dropDownItems: {
-              category: string; item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal; company: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal;
-            }, idx: React.Key) => {
+            dropDown?.map((dropDownItems: any, idx: React.Key) => {
               return (
                 <div key={idx} className="dropdown-items">
                   <Button

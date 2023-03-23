@@ -5,11 +5,16 @@ import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import "../stylesheets/Login.css";
+import "../../stylesheets/Login.css";
+
+export interface LoginInterface {
+  username: string;
+  password: string;
+}
 
 const Login = () => {
   // stores user login info into state
-  const [userLoginInfo, setUserLoginInfo] = useState({
+  const [userLoginInfo, setUserLoginInfo] = useState<LoginInterface>({
     username: '',
     password: ''
   })
@@ -20,7 +25,7 @@ const Login = () => {
     setUserLoginInfo({ ...userLoginInfo, [input.name]: input.value })
   }
   // submits user info
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
 
     try {
@@ -36,7 +41,7 @@ const Login = () => {
   }
 
   return (
-    <div className="login-background">
+    <div className="login-background" data-testid="Login">
       <p className="login-logo">Foodlux</p>
       <Box
         sx={{
