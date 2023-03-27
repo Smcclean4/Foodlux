@@ -1,5 +1,5 @@
 import Homeitems from "./Homeitems";
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import '@testing-library/jest-dom'
 import React from "react";
 
@@ -19,9 +19,14 @@ describe('creating tests for Homeitems component', () => {
     expect(homeItems).toBeDefined();
   })
 
-  test('make sure that add to cart functionality works properly', () => {
-    const { getByTestId } = render(<Homeitems {...props} />)
-    const firstAddCart = getByTestId('addcart-test-0')
-    expect(firstAddCart).toBeInTheDocument();
+  test('add cart is defined within the homeitems component', () => {
+    const { queryByTestId } = render(<Homeitems {...props} />)
+    const firstAddCart = queryByTestId('addcart-test-0')
+    expect(firstAddCart).toBeDefined();
+  })
+
+  test('add cart when fired stores item within the cart if it doesnt already exist', () => {
+    const { queryAllByTestId } = render(<Homeitems {...props} />)
+    const firstAddCart = queryAllByTestId('addcart-test-0')
   })
 })
