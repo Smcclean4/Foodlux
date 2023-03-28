@@ -5,9 +5,9 @@ import SendIcon from '@mui/icons-material/Send'
 import TextField from "@mui/material/TextField";
 import MenuItem from '@mui/material/MenuItem';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import Checkoutitems from "../components/Checkoutitems"
-import "../stylesheets/Checkout.css"
-import { Foodluxbus } from '../tools/Foodluxbus';
+import Checkoutitems from "../../components/Checkoutitems"
+import "../../stylesheets/Checkout.css"
+import { Foodluxbus } from '../../tools/Foodluxbus';
 import axios from 'axios';
 
 const Checkout = () => {

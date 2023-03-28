@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 import Button from "@mui/material/Button";
 import '../../stylesheets/CartModal.css'
 
-const CartModal = ({ isShowing, hide, state }) => isShowing ? createPortal(
-  <div className="cartmodal-container" >
+export const CartModal = ({ isShowing, hide, state }) => isShowing ? createPortal(
+  <div className="cartmodal-container" data-testid="cartmodal-test">
     <button className="cartmodal-close" onClick={hide} data-testid="cartmodal-close">
       &times;
     </button>
@@ -32,5 +32,3 @@ const CartModal = ({ isShowing, hide, state }) => isShowing ? createPortal(
     </Link>
   </div>, document.body
 ) : null
-
-export default CartModal

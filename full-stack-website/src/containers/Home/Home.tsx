@@ -10,7 +10,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Homeitems from "../../components/Homeitems/Homeitems";
-import CartModal from "../../modals/CartModal/CartModal";
+import { CartModal } from "../../modals/CartModal/CartModal";
 import { useModal } from "../../hooks/useModal";
 import SearchBar from "../SearchBar/SearchBar";
 import { CartInfoInterface } from "../../api/Categories/Categories";
@@ -83,10 +83,10 @@ const Home = () => {
   };
   // add item to current cart list
   const addCart = (food: CartInfoInterface) => {
-    // all items that are being mapped through
-    categories?.forEach((menu: any[]) => menu.map((food: { menu: any[]; }) => food.menu.map((items) => home.push(items))))
     // push specific items that are in home into this variable
     const home: any[] = []
+    // all items that are being mapped through
+    categories?.forEach((menu: any[]) => menu.map((food: { menu: any[]; }) => food.menu.map((items) => home.push(items))))
     // check if item that is being added exists
     const itemExists = (item: string, company: string, category: string) => {
       return cart.some((el) => {

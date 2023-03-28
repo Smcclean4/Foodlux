@@ -4,8 +4,8 @@ import "@testing-library/jest-dom";
 import Login from "./containers/Login/Login";
 import Register from "./containers/Register/Register";
 import Home from "./containers/Home/Home";
-import Cart from "./containers/Cart";
-import Checkout from "./containers/Checkout";
+import Cart from "./containers/Cart/Cart";
+import Checkout from "./containers/Checkout/Checkout";
 
 describe("Making sure that routes in index.js work correctly", () => {
   test('renders correct content for "/Login route', () => {

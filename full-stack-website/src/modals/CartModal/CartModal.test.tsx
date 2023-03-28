@@ -1,18 +1,28 @@
 import { render, fireEvent } from "@testing-library/react";
 import { BrowserRouter, MemoryRouter, Link, Route, Routes } from "react-router-dom";
-import CartModal from "./CartModal";
+import '@testing-library/jest-dom'
+import { CartModal } from "./CartModal";
 import React from 'react'
 
 describe('making sure that cart modal props and functionality works ', () => {
-  const isShowing = true || false;
+  const props = {
+    isShowing: true || false,
+    hide: jest.fn(),
+    state: []
+  }
+
+  test('making sure that the cart modal renders correctly', () => {
+    const { getByTestId } = render(<CartModal {...props} />, { wrapper: MemoryRouter })
+    let cartModal = getByTestId('cartmodal-test')
+    expect(cartModal).toBeInTheDocument();
+    expect(cartModal).toBeDefined();
+  })
 
   test('make sure that toggle is being clicked', () => {
-    const toggle = jest.fn();
-    const cart = [];
-    const { getByTestId } = render(<CartModal isShowing={isShowing} hide={toggle} state={cart} />, { wrapper: MemoryRouter })
+    const { getByTestId } = render(<CartModal {...props} />, { wrapper: MemoryRouter })
     const toggleButton = getByTestId('cartmodal-close');
     fireEvent.click(toggleButton);
-    expect(toggle).toHaveBeenCalledTimes(1);
+    expect(props.hide).toHaveBeenCalledTimes(1);
   })
 
   test('testing if go to cart button is being clicked', () => {
@@ -28,6 +38,7 @@ describe('making sure that cart modal props and functionality works ', () => {
   })
 
   test('making sure that isShowing is a boolean', () => {
+    const isShowing = true || false;
     expect(typeof isShowing === 'boolean').toBe(true);
   })
 })
