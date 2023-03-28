@@ -10,15 +10,16 @@ import "../../stylesheets/Checkout.css"
 import { Foodluxbus } from '../../tools/Foodluxbus';
 import axios from 'axios';
 
+export interface UserEmailInfoInterface {
+  firstname: string;
+  country: string;
+  city: string;
+  state: string;
+  zip: string;
+  email: string;
+}
+
 const Checkout = () => {
-  interface UserEmailInfoInterface {
-    firstname: string;
-    country: string;
-    city: string;
-    state: string;
-    zip: string;
-    email: string;
-  }
   // using location to get state data from cart and using navigation for directing back to home after submittion
   const location: any = useLocation();
   const cartData = location.state?.cart
@@ -152,7 +153,8 @@ const Checkout = () => {
                   },
                   margin: "30px",
                 }}
-                startIcon={<ArrowBackIosIcon />}>
+                startIcon={<ArrowBackIosIcon />}
+                data-testid='cart-button-test'>
                 Cart
               </Button>
             </Link>
@@ -161,7 +163,8 @@ const Checkout = () => {
           <div className="checkout-window">
             <form onSubmit={handleSubmit} action="/"
               method="post"
-              autoComplete="on">
+              autoComplete="on"
+              data-testid="send-email">
               <div className="checkout-menu">
                 <div className="checkout-list">
                   <TextField id="outlined-basic" className="checkout-fields" label="Card Number" variant="outlined" disabled sx={{ ...checkoutMuiStyling }} />
@@ -177,13 +180,13 @@ const Checkout = () => {
                   <TextField id="outlined-basic" className="checkout-fields" label="CVV" variant="outlined" disabled sx={{ ...checkoutMuiStyling }} />
                   <br></br>
                   <br></br>
-                  <TextField id="outlined-basic" className="checkout-fields" label="First Name" variant="outlined" name="firstname" required sx={{ ...checkoutMuiStyling }} value={userEmailInfo.firstname} onChange={handleChange} />
+                  <TextField id="outlined-basic" className="checkout-fields" label="First Name" variant="outlined" name="firstname" required sx={{ ...checkoutMuiStyling }} value={userEmailInfo.firstname} onChange={handleChange} inputProps={{ "data-testid": "firstname-input" }} />
                   <br></br>
                   <br></br>
                   <TextField id="outlined-basic" className="checkout-fields" label="Last Name" variant="outlined" name="lastname" sx={{ ...checkoutMuiStyling }} disabled />
                   <br></br>
                   <br></br>
-                  <TextField id="outlined-basic" defaultValue="USA" className="checkout-fields" label="Country" variant="outlined" select value={userEmailInfo.country} name="country" required onChange={handleChange} sx={{ ...checkoutMuiStyling }}>
+                  <TextField id="outlined-basic" defaultValue="USA" className="checkout-fields" label="Country" variant="outlined" select value={userEmailInfo.country} name="country" required onChange={handleChange} sx={{ ...checkoutMuiStyling }} inputProps={{ "data-testid": "country-input" }}>
                     {countries.map((option) => (
                       <MenuItem key={option.country} value={option.country}>
                         {option.country}
@@ -196,7 +199,7 @@ const Checkout = () => {
                   <TextField id="outlined-basic" className="checkout-fields" label="Billing Address Continued" variant="outlined" disabled sx={{ ...checkoutMuiStyling }} />
                   <br></br>
                   <br></br>
-                  <TextField id="outlined-basic" className="checkout-fields" label="City" select variant="outlined" defaultValue="Los Angeles" sx={{ ...checkoutMuiStyling }} value={userEmailInfo.city} name="city" required onChange={handleChange} >
+                  <TextField id="outlined-basic" className="checkout-fields" label="City" select variant="outlined" defaultValue="Los Angeles" sx={{ ...checkoutMuiStyling }} value={userEmailInfo.city} name="city" required onChange={handleChange} inputProps={{ "data-testid": "city-input" }}>
                     {city.map((option) => (
                       <MenuItem key={option.city} value={option.city}>
                         {option.city}
@@ -205,7 +208,7 @@ const Checkout = () => {
                   </TextField>
                   <br></br>
                   <br></br>
-                  <TextField id="outlined-basic" className="checkout-fields" label="State" select variant="outlined" defaultValue="California" sx={{ ...checkoutMuiStyling }} value={userEmailInfo.state} name="state" required onChange={handleChange} >
+                  <TextField id="outlined-basic" className="checkout-fields" label="State" select variant="outlined" defaultValue="California" sx={{ ...checkoutMuiStyling }} value={userEmailInfo.state} name="state" required onChange={handleChange} inputProps={{ "data-testid": "state-input" }}>
                     {state.map((option) => (
                       <MenuItem key={option.state} value={option.state}>
                         {option.state}
@@ -214,7 +217,7 @@ const Checkout = () => {
                   </TextField>
                   <br></br>
                   <br></br>
-                  <TextField id="outlined-basic" className="checkout-fields" label="ZIP" variant="outlined" select defaultValue="90210" sx={{ ...checkoutMuiStyling }} value={userEmailInfo.zip} name="zip" required onChange={handleChange}>
+                  <TextField id="outlined-basic" className="checkout-fields" label="ZIP" variant="outlined" select defaultValue="90210" sx={{ ...checkoutMuiStyling }} value={userEmailInfo.zip} name="zip" required onChange={handleChange} inputProps={{ "data-testid": "zip-input" }}>
                     {zip.map((option) => (
                       <MenuItem key={option.zip} value={option.zip}>
                         {option.zip}
@@ -226,7 +229,7 @@ const Checkout = () => {
                   <TextField id="outlined-basic" className="checkout-fields" label="Phone" variant="outlined" disabled sx={{ ...checkoutMuiStyling }} />
                   <br></br>
                   <br></br>
-                  <TextField id="outlined-basic" className="checkout-fields" label="Email" variant="outlined" name="email" required sx={{ ...checkoutMuiStyling }} value={userEmailInfo.email} onChange={handleChange} />
+                  <TextField id="outlined-basic" className="checkout-fields" label="Email" variant="outlined" name="email" required sx={{ ...checkoutMuiStyling }} value={userEmailInfo.email} onChange={handleChange} inputProps={{ "data-testid": "email-input" }} />
                   <br></br>
                   <br></br>
                   {checkoutErr && <h3 className="error">{checkoutErr}</h3>}
