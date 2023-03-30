@@ -1,3 +1,5 @@
+jest.mock('axios')
+
 import axios from 'axios';
 import { MemoryRouter } from 'react-router-dom';
 import { render, waitFor, fireEvent } from '@testing-library/react';
@@ -6,7 +8,6 @@ import "@testing-library/jest-dom";
 import Register from './Register';
 import React from 'react';
 
-jest.mock('axios')
 
 describe('checking if register page correctly fetches data', () => {
   const exampleRegisterUserData = {

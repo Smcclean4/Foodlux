@@ -2,7 +2,7 @@ import React from 'react'
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
-import "../stylesheets/Checkoutitems.css"
+import "../../stylesheets/Checkoutitems.css"
 
 const Checkoutitems = ({ details }) => {
   const Item = styled(Paper)(({ theme }) => ({
@@ -14,7 +14,7 @@ const Checkoutitems = ({ details }) => {
   }));
 
   return (
-    <>
+    <div data-testid="Checkoutitems">
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
@@ -26,7 +26,7 @@ const Checkoutitems = ({ details }) => {
               <Grid item xs={5} className="checkout-items">
                 <Item>
                   <div>
-                    <img alt="" src={detail.image} className="detail-image" />
+                    <img alt="" src={detail.image} className="detail-image" data-testid={`image-test-${idx}`} />
                   </div>
                 </Item>
               </Grid>
@@ -34,21 +34,21 @@ const Checkoutitems = ({ details }) => {
                 <Grid item xs={12} className="checkout-items">
                   <Item>
                     <div>
-                      <li>{detail.item}</li>
+                      <li data-testid={`item-test-${idx}`}>{detail.item}</li>
                     </div>
                   </Item>
                 </Grid>
                 <Grid item xs={6} className="checkout-items">
                   <Item>
                     <div>
-                      <li>&#36;{detail.price}</li>
+                      <li data-testid={`price-test-${idx}`}>&#36;{detail.price}</li>
                     </div>
                   </Item>
                 </Grid>
                 <Grid item xs={6} className="checkout-items">
                   <Item>
                     <div>
-                      <li>QTY: {detail.quantity}</li>
+                      <li data-testid={`quantity-test-${idx}`}>QTY: {detail.quantity}</li>
                     </div>
                   </Item>
                 </Grid>
@@ -57,7 +57,7 @@ const Checkoutitems = ({ details }) => {
           )
         })}
       </Grid>
-    </>
+    </div>
   )
 }
 

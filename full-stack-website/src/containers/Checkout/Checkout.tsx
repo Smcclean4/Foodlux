@@ -5,9 +5,9 @@ import SendIcon from '@mui/icons-material/Send'
 import TextField from "@mui/material/TextField";
 import MenuItem from '@mui/material/MenuItem';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import Checkoutitems from "../../components/Checkoutitems"
+import Checkoutitems from "../../components/Checkoutitems/Checkoutitems"
 import "../../stylesheets/Checkout.css"
-import { Foodluxbus } from '../../tools/Foodluxbus';
+import { Foodluxbus } from '../../tools/Foodluxbus/Foodluxbus';
 import axios from 'axios';
 
 export interface UserEmailInfoInterface {
@@ -368,7 +368,7 @@ const Checkout = () => {
               </div>
               <Button color="error"
                 sx={{ fontSize: "1.0em", marginTop: "50px", "&:hover": { backgroundColor: "red", color: "white" }, marginBottom: "25px" }}
-                variant="outlined" endIcon={<SendIcon />} type="submit">
+                variant="outlined" endIcon={<SendIcon />} type="submit" name="submit" role="button">
                 Pay Now
               </Button>
             </form>
