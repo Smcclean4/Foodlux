@@ -76,6 +76,7 @@ const Register = () => {
           <TextField
             sx={{ margin: "5px" }}
             aria-label="First Name"
+            label="First Name"
             inputProps={{ "data-testid": "firstname-input" }}
             margin="dense"
             variant="outlined"
@@ -87,6 +88,7 @@ const Register = () => {
           <TextField
             sx={{ margin: "5px" }}
             aria-label="Last Name"
+            label="Label Name"
             inputProps={{ "data-testid": "lastname-input" }}
             margin="dense"
             variant="outlined"
@@ -98,6 +100,7 @@ const Register = () => {
           <TextField
             sx={{ margin: "5px" }}
             aria-label="Username"
+            label="Username"
             inputProps={{ "data-testid": "username-input" }}
             margin="dense"
             variant="outlined"
@@ -109,6 +112,7 @@ const Register = () => {
           <TextField
             sx={{ margin: "5px" }}
             aria-label="Email"
+            label="Email"
             inputProps={{ "data-testid": "email-input" }}
             type="email"
             margin="dense"
@@ -121,6 +125,7 @@ const Register = () => {
           <TextField
             sx={{ margin: "5px" }}
             aria-label="Password"
+            label="Password"
             inputProps={{ "data-testid": "password-input" }}
             type="password"
             margin="dense"
@@ -133,6 +138,7 @@ const Register = () => {
           <TextField
             sx={{ margin: "5px" }}
             aria-label="Confirm Password"
+            label="Confirm Password"
             inputProps={{ "data-testid": "confirmpassword-input" }}
             type="password"
             margin="dense"
