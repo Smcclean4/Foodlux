@@ -90,7 +90,7 @@ export const Categories = () => {
       title: "8-11",
       menu: [
         {
-          item: "Hot Cat",
+          item: "Hot Chic",
           price: 9.25,
           desc: "Bring the heat to your taste buds with our spicy and savory Hot Chicken. Marinated in a blend of spices and seasonings, our juicy and tender chicken is crispy-fried to perfection and drenched in a fiery hot sauce that will leave your mouth tingling with pleasure.",
           image: "/images/item-images/pexels-engin-akyurt-2673353.jpg",

@@ -5,7 +5,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import { styled } from "@mui/material/styles";
-import "../stylesheets/Cartitems.css";
+import "../../stylesheets/Cartitems.css";
 
 const Cartitems = ({ items, additem, removeitem }) => {
   const Item = styled(Paper)(({ theme }) => ({
@@ -17,7 +17,7 @@ const Cartitems = ({ items, additem, removeitem }) => {
   }));
 
   return (
-    <>
+    <div data-testid="Cartitems">
       {items?.map((item: { image: string | undefined, price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; quantity: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; desc: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key) => {
         return (
           <div className="cart-container" key={idx}>
@@ -29,14 +29,14 @@ const Cartitems = ({ items, additem, removeitem }) => {
                 <Grid item xs={12}>
                   <Item>
                     <div className="cart-items">
-                      <li>{item.item}</li>
+                      <li data-testid="cart-items-test">{item.item}</li>
                     </div>
                   </Item>
                 </Grid>
                 <Grid item xs={12}>
                   <Item>
                     <div className="cart-items">
-                      <img alt="" src={item.image} className="item-images" />
+                      <img alt="" src={item.image} className="item-images" data-testid="cart-image-test" />
                     </div>
                   </Item>
                 </Grid>
@@ -45,7 +45,7 @@ const Cartitems = ({ items, additem, removeitem }) => {
                 <Grid item xs={6}>
                   <Item>
                     <div className="cart-items">
-                      <li>&#36;{item.price}</li>
+                      <li data-testid="cart-price-test">&#36;{item.price}</li>
                     </div>
                   </Item>
                 </Grid>
@@ -74,7 +74,7 @@ const Cartitems = ({ items, additem, removeitem }) => {
                       padding: "5px 5px",
                     }}
                   >
-                    <span>{item.quantity}</span>
+                    <span data-testid="cart-quantity-test">{item.quantity}</span>
                   </Item>
                 </Grid>
                 <Grid item xs={2}>
@@ -97,7 +97,7 @@ const Cartitems = ({ items, additem, removeitem }) => {
                 <Grid item xs={12} >
                   <Item>
                     <div className="cart-items-desc">
-                      <li>{item.desc}</li>
+                      <li data-testid="cart-desc-test">{item.desc}</li>
                     </div>
                   </Item>
                 </Grid>
@@ -106,7 +106,7 @@ const Cartitems = ({ items, additem, removeitem }) => {
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 

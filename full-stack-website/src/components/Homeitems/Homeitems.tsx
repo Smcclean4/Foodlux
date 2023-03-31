@@ -44,6 +44,7 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
           variant="contained"
           className="button active"
           onClick={renderChange}
+          data-testid="title-button-test"
         >
           {title}
         </Button>
@@ -66,8 +67,8 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
             spacing={{ xs: 2, md: 3 }}
             columns={{ xs: 2, sm: 2, md: 12 }}>
             {menu?.map((items: { type: string; image: string | undefined; item: {} | null | undefined; desc: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key) =>
-              items.type === "food" ?
-                (<div className="home-item-group" key={idx}>
+              items.type === 'food' ?
+                <div className="home-item-group" key={idx}>
                   <Grid item xs={4} className="home-items">
                     <img alt="" src={items.image} className="item-image" />
                   </Grid>
@@ -92,7 +93,7 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
                       Add
                     </Button>
                   </Grid>
-                </div>) : ""
+                </div> : ''
             )}
           </Grid>
           <br></br>
@@ -102,36 +103,34 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
             container
             spacing={{ xs: 0, md: 3 }}
             columns={{ xs: 2, sm: 2, md: 12 }}>
-            {menu?.map((items: { type: string; image: string | undefined; item: {} | null | undefined; desc: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key) => {
-              return (
-                items.type === "drink" ?
-                  (<div className="home-item-group" key={idx}>
-                    <Grid item xs={4} className="home-items">
-                      <img alt="" src={items.image} className="item-image" />
-                    </Grid>
-                    <Grid item xs={6} className="home-items-desc">
-                      <li style={{ backgroundColor: searchItemIdentified(items.item) }}><b><i>{items.item}</i></b></li>
-                      <li>{items.desc}</li>
-                    </Grid>
-                    <Grid item xs={1} className="home-items">
-                      <li>&#36;{items.price}</li>
-                    </Grid>
-                    <Grid item xs={1} className="home-items">
-                      <Button
-                        onClick={() => addtocart(menu[idx], idx)}
-                        sx={{
-                          color: "white", backgroundColor: "red", "&:hover": {
-                            backgroundColor: "rgb(162, 6, 6)",
-                          }
-                        }}
-                        size="large"
-                      >
-                        Add
-                      </Button>
-                    </Grid>
-                  </div>) : ""
-              )
-            })}
+            {menu?.map((items: { type: string; image: string | undefined; item: {} | null | undefined; desc: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key) =>
+              items.type === 'drink' ?
+                <div className="home-item-group" key={idx}>
+                  <Grid item xs={4} className="home-items">
+                    <img alt="" src={items.image} className="item-image" />
+                  </Grid>
+                  <Grid item xs={6} className="home-items-desc">
+                    <li style={{ backgroundColor: searchItemIdentified(items.item) }}><b><i>{items.item}</i></b></li>
+                    <li>{items.desc}</li>
+                  </Grid>
+                  <Grid item xs={1} className="home-items">
+                    <li>&#36;{items.price}</li>
+                  </Grid>
+                  <Grid item xs={1} className="home-items">
+                    <Button
+                      onClick={() => addtocart(menu[idx], idx)}
+                      sx={{
+                        color: "white", backgroundColor: "red", "&:hover": {
+                          backgroundColor: "rgb(162, 6, 6)",
+                        }
+                      }}
+                      size="large"
+                    >
+                      Add
+                    </Button>
+                  </Grid>
+                </div> : ''
+            )}
           </Grid>
         </Box>
       )}

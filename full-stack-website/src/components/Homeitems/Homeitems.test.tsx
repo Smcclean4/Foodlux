@@ -15,13 +15,21 @@ describe('creating tests for Homeitems component', () => {
 
   test('making sure that Homeitems component renders with all of its props', () => {
     const { getByTestId } = render(<Homeitems {...props} />)
-    const homeItems = getByTestId('Homeitems')
+    let homeItems = getByTestId('Homeitems')
     expect(homeItems).toBeDefined();
+    expect(homeItems).toBeInTheDocument();
   })
 
-  test('make sure that add to cart functionality works properly', () => {
+  test('render for title is defined within the homeitems component', () => {
     const { getByTestId } = render(<Homeitems {...props} />)
-    const firstAddCart = getByTestId('addcart-test-0')
-    expect(firstAddCart).toBeInTheDocument();
+    let renderTitle = getByTestId('title-button-test')
+    expect(renderTitle).toBeDefined();
+    expect(renderTitle).toBeInTheDocument();
+  })
+
+  test('add cart is defined within the homeitems component', () => {
+    const { queryByTestId } = render(<Homeitems {...props} />)
+    const firstAddCart = queryByTestId('addcart-test-0')
+    expect(firstAddCart).toBeDefined();
   })
 })

@@ -3,12 +3,12 @@ import Button from "@mui/material/Button";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Link } from "react-router-dom";
-import Cartitems from "../components/Cartitems";
-import { CartInfoInterface } from "../api/Categories/Categories";
-import { Categories } from "../api/Categories/Categories"
-import { useModal } from "../hooks/useModal"
-import { DeleteForeverModal } from "../modals/DeleteForeverModal";
-import "../stylesheets/Cart.css";
+import Cartitems from "../../components/Cartitems/Cartitems";
+import { CartInfoInterface } from "../../api/Categories/Categories";
+import { Categories } from "../../api/Categories/Categories"
+import { useModal } from "../../hooks/useModal"
+import { DeleteForeverModal } from "../../modals/DeleteForeverModal/DeleteForeverModal";
+import "../../stylesheets/Cart.css";
 
 const Cart = () => {
   // putting home cart local storage into variable with the cart info interface structure
@@ -86,6 +86,7 @@ const Cart = () => {
                 margin: "30px"
               }}
               startIcon={<ArrowBackIosIcon />}
+              data-testid="home-button-test"
             >
               <span className="link-text">Home</span>
             </Button>
@@ -103,7 +104,8 @@ const Cart = () => {
                 },
                 margin: "30px",
               }}
-              endIcon={<ArrowForwardIosIcon />}>
+              endIcon={<ArrowForwardIosIcon />}
+              data-testid="checkout-button-test">
               <span className="link-text">Checkout</span>
             </Button>
           </Link>
@@ -111,16 +113,16 @@ const Cart = () => {
       </div>
       <p className="cart-header">Cart</p>
       <div className="cart-window">
-        {cartInfo?.length !== 0 ? <Cartitems items={cartInfo} additem={addItem} removeitem={removeItem} /> :
-          <div className="cart-dummydata">
-            <h1>YOUR CART IS EMPTY!</h1>
-            <br></br>
-            <br></br>
-            <h1>PLEASE RETURN WHEN YOUVE CHECKED OUT THE STORE AND PURCHASED SOME ITEMS</h1>
-            <br></br>
-            <br></br>
-            <h1>🍔</h1>
-          </div>}
+        {cartInfo?.length === 0 ? <div className="cart-dummydata">
+          <h1>YOUR CART IS EMPTY!</h1>
+          <br></br>
+          <br></br>
+          <h1>PLEASE RETURN WHEN YOUVE CHECKED OUT THE STORE AND PURCHASED SOME ITEMS</h1>
+          <br></br>
+          <br></br>
+          <h1>🍔</h1>
+        </div> : <Cartitems items={cartInfo} additem={addItem} removeitem={removeItem} />
+        }
         <DeleteForeverModal isShowing={isShowing} hide={toggle} item={deleteItem} deleteitem={deleteItemFromCart} />
       </div>
       <div className="total-section">

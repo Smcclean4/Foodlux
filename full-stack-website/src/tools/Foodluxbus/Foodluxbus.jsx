@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Svgcomponent } from "../assets/Svgcomponent";
-import "../stylesheets/Foodluxbus.css";
+import { Svgcomponent } from "../../assets/Svgcomponent";
+import "../../stylesheets/Foodluxbus.css";
 
 export const Foodluxbus = ({ timer, settimer }) => {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ export const Foodluxbus = ({ timer, settimer }) => {
   }, [timer]);
 
   return (
-    <div className="foodluxbus-background">
+    <div className="foodluxbus-background" data-testid="Foodluxbus">
       <p className="foodluxbus-header">
         Your Order Details Will Be Emailed Shortly!
       </p>
