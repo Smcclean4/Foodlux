@@ -88,7 +88,7 @@ const Register = () => {
           <TextField
             sx={{ margin: "5px" }}
             aria-label="Last Name"
-            label="Label Name"
+            label="Last Name"
             inputProps={{ "data-testid": "lastname-input" }}
             margin="dense"
             variant="outlined"
