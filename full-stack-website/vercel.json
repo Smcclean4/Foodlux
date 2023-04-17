@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/foodlux",
+      "destination": "https://foolux.vercel.app"
+    }
+  ]
+}
