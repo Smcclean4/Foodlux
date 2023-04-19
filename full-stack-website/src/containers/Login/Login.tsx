@@ -87,7 +87,7 @@ const Login = () => {
           <br></br>
           <Button
             color="error"
-            sx={{ "&:hover": { backgroundColor: "red", color: "white", cursor: "pointer" } }}
+            sx={{ "&:hover": { backgroundColor: "red", color: "white" }, cursor: "pointer" }}
             variant="outlined"
             endIcon={<SendIcon />}
             type="submit"
