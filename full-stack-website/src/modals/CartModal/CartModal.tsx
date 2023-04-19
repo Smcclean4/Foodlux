@@ -24,8 +24,8 @@ export const CartModal = ({ isShowing, hide, state }) => isShowing ? createPorta
     <Link to="/Cart" className="gotocart-link">
       <Button sx={{
         color: 'white', backgroundColor: 'red', padding: '5px 25px', margin: '5px', "&:hover": {
-          backgroundColor: "rgb(162, 6, 6)",
-        },
+          backgroundColor: "rgb(162, 6, 6)"
+        }, cursor: "pointer"
       }}>
         Go To Cart
       </Button>

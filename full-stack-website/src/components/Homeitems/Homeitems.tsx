@@ -39,7 +39,7 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
           sx={{
             marginBottom: "5px", marginRight: "5px", backgroundColor: "red", "&:hover": {
               backgroundColor: "rgb(162, 6, 6)",
-            }
+            }, cursor: "pointer"
           }}
           variant="contained"
           className="button active"
@@ -85,7 +85,7 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
                       sx={{
                         color: "white", backgroundColor: "red", "&:hover": {
                           backgroundColor: "rgb(162, 6, 6)",
-                        }
+                        }, cursor: "pointer"
                       }}
                       size="large"
                       data-testid={`addcart-test-${idx}`}
@@ -122,7 +122,7 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
                       sx={{
                         color: "white", backgroundColor: "red", "&:hover": {
                           backgroundColor: "rgb(162, 6, 6)",
-                        }
+                        }, cursor: "pointer"
                       }}
                       size="large"
                     >

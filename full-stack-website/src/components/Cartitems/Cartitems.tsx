@@ -60,7 +60,7 @@ const Cartitems = ({ items, additem, removeitem }) => {
                       '&:hover': {
                         cursor: "pointer",
                         backgroundColor: "whitesmoke",
-                      }
+                      }, cursor: "pointer"
                     }}
                   >
                     {item.quantity === 1 ? <DeleteForeverIcon fontSize="medium" /> : <RemoveIcon />}
@@ -88,7 +88,7 @@ const Cartitems = ({ items, additem, removeitem }) => {
                       '&:hover': {
                         cursor: "pointer",
                         backgroundColor: "whitesmoke",
-                      }
+                      }, cursor: "pointer"
                     }}
                   >
                     <AddIcon fontSize="medium" />

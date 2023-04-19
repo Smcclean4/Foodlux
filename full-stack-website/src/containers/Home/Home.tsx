@@ -265,7 +265,7 @@ const Home = () => {
           backgroundColor: "red",
           "&:hover": {
             backgroundColor: "rgb(162, 6, 6)",
-          }
+          }, cursor: "pointer"
         }}
         onClick={handleLogout}
         endIcon={<LogoutIcon />}>

@@ -151,7 +151,7 @@ const Checkout = () => {
                   "&:hover": {
                     backgroundColor: "rgb(162, 6, 6)",
                   },
-                  margin: "30px",
+                  margin: "30px", cursor: "pointer"
                 }}
                 startIcon={<ArrowBackIosIcon />}
                 data-testid='cart-button-test'>
@@ -367,7 +367,7 @@ const Checkout = () => {
                 <h2 className="checkout-total">Your Total: &#36;{checkoutTotal()}</h2>
               </div>
               <Button color="error"
-                sx={{ fontSize: "1.0em", marginTop: "50px", "&:hover": { backgroundColor: "red", color: "white" }, marginBottom: "25px" }}
+                sx={{ fontSize: "1.0em", marginTop: "50px", "&:hover": { backgroundColor: "red", color: "white" }, marginBottom: "25px", cursor: "pointer" }}
                 variant="outlined" endIcon={<SendIcon />} type="submit" name="submit" role="button">
                 Pay Now
               </Button>

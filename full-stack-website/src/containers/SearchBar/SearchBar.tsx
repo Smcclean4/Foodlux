@@ -42,7 +42,7 @@ const SearchBar = ({ data, searchforitem }) => {
           color: 'white', backgroundColor: 'red', padding: '2px 35px', "&:hover": {
             backgroundColor: "rgb(162, 6, 6)",
           },
-          borderRadius: '0 10px 10px 0'
+          borderRadius: '0 10px 10px 0', cursor: "pointer"
         }}
           onClick={searchClick}
           endIcon={<SearchIcon />}>
@@ -61,7 +61,7 @@ const SearchBar = ({ data, searchforitem }) => {
                       setUserInputInfo({ searchTermCompany: dropDownItems.company, searchTermCategory: dropDownItems.category })
                     }}
                     sx={{
-                      color: "black"
+                      color: "black", cursor: "pointer"
                     }}>
                     <div>
                       <h2>{dropDownItems.item}</h2>

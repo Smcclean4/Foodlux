@@ -83,7 +83,7 @@ const Cart = () => {
                 "&:hover": {
                   backgroundColor: "rgb(162, 6, 6)",
                 },
-                margin: "30px"
+                margin: "30px", cursor: "pointer"
               }}
               startIcon={<ArrowBackIosIcon />}
               data-testid="home-button-test"
@@ -102,7 +102,7 @@ const Cart = () => {
                 "&:hover": {
                   backgroundColor: "rgb(162, 6, 6)",
                 },
-                margin: "30px",
+                margin: "30px", cursor: "pointer"
               }}
               endIcon={<ArrowForwardIosIcon />}
               data-testid="checkout-button-test">
