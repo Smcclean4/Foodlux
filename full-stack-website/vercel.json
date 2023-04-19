@@ -1,9 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/foodlux/:path*",
-      "destination": "https://foodlux.vercel.app/:path*",
-      "statusCode": 301
-    }
-  ]
-}
