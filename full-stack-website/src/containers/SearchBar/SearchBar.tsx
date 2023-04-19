@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Button from "@mui/material/Button";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from '@mui/icons-material/Search'
 import "../../stylesheets/SearchBar.css"
 
 export interface UserInputInterface {
