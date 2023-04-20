@@ -10,22 +10,15 @@ const source = process.env.ATLAS_DB;
 const port = process.env.PORT;
 const app = express();
 
-mongoose.set("strictQuery", false);
+mongoose.connect(source, (err) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("Connected to DB! :)");
+  }
+});
 
-mongoose.connect(
-  source,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
-  (err) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("Connected to DB! :)");
-    }
-  },
-);
+mongoose.set("strictQuery", false);
 
 app.use(express.json());
 app.use(cors());
