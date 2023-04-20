@@ -56,7 +56,7 @@ describe('checking if register page correctly fetches data', () => {
     fireEvent.submit(form);
 
     await waitFor(() => {
-      expect(axios.post).toHaveBeenCalledWith(`http://localhost:${process.env.REACT_APP_PORT}/registerUser`, exampleRegisterUserData)
+      expect(axios.post).toHaveBeenCalledWith(`https://${process.env.REACT_APP_PORT}/registerUser`, exampleRegisterUserData)
     })
   })
 

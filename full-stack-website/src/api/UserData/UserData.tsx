@@ -9,7 +9,7 @@ export const UserData = () => {
 
     const fetchUserData = async () => {
       try {
-        await axios.get(`http://localhost:${process.env.REACT_APP_PORT}/userAuth/fetchUserName`)
+        await axios.get(`https://${process.env.REACT_APP_PORT}/userAuth/fetchUserName`)
           .then(res => {
             if (isMounted) {
               setUsername(res.data)
