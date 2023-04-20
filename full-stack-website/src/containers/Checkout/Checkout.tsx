@@ -50,7 +50,7 @@ const Checkout = () => {
     try {
       if (cartData?.length > 0) {
         setSubmitting(true)
-        await axios.post(`http://${process.env.REACT_APP_PORT}/sendEmail`, userEmailInfo).then(res => console.log(res.data)).catch(err => console.log(err))
+        await axios.post(`https://${process.env.REACT_APP_PORT}/sendEmail`, userEmailInfo).then(res => console.log(res.data)).catch(err => console.log(err))
       } else {
         setCheckoutErr("Checkout once you've added something to your Cart!")
       }

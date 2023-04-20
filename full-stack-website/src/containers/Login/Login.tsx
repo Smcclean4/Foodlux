@@ -29,7 +29,7 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const { data: res } = await axios.post(`http://${process.env.REACT_APP_PORT}/userAuth`, userLoginInfo)
+      const { data: res } = await axios.post(`https://${process.env.REACT_APP_PORT}/userAuth`, userLoginInfo)
       console.log(userLoginInfo)
       localStorage.setItem('token', res.data)
       window.location.replace('/Home')
