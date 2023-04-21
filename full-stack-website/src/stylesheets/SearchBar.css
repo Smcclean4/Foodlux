@@ -43,3 +43,9 @@
   background-color: rgb(213, 213, 213);
   cursor: pointer;
 }
+
+@media only screen and (max-width: 600px) {
+  .searchbar-container {
+    padding: 20px;
+  }
+}

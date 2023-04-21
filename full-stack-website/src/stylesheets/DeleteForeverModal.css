@@ -10,6 +10,8 @@
   background-color: white;
   height: 50%;
   width: 50%;
+  padding: 50px;
+  text-align: center;
   box-shadow: 0px 0px 25px grey;
 }
 
@@ -19,4 +21,26 @@
 
 .deleteforevermodal-subtext {
   font-size: 1.5em;
+}
+
+@media only screen and (max-width:1200px) {
+  .deleteforevermodal-container {
+    justify-content: space-around;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .button-options {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .deleteforevermodal-subtext {
+    font-size: 1.2em;
+  }
+
+  .deleteforevermodal-container {
+    padding: 30px;
+  }
 }

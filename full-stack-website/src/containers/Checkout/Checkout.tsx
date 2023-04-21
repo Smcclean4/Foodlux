@@ -155,7 +155,7 @@ const Checkout = () => {
                 }}
                 startIcon={<ArrowBackIosIcon />}
                 data-testid='cart-button-test'>
-                Cart
+                <p className="link-text">Cart</p>
               </Button>
             </Link>
           </div>

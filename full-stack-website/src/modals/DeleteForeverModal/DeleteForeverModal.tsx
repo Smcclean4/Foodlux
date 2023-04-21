@@ -20,7 +20,7 @@ export const DeleteForeverModal = ({ isShowing, hide, item, deleteitem }) => isS
       <Button sx={{
         backgroundColor: "red", color: "white", "&:hover": {
           backgroundColor: "rgb(162, 6, 6)"
-        }, margin: "20px", fontSize: "1.1em", cursor: "pointer"
+        }, margin: "20px", fontSize: "1.0em", cursor: "pointer"
       }}
         onClick={deleteitem}
         data-testid="deleteforevermodal-proceed">

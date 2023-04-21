@@ -114,3 +114,9 @@
     transform: translateY(40px) translateX(150px);
   }
 }
+
+@media only screen and (max-width: 550px) {
+  .foodluxbus {
+    height: 150px;
+  }
+}
