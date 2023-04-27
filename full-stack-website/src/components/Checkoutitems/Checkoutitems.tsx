@@ -1,6 +1,8 @@
 import React from 'react'
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import { styled } from "@mui/material/styles";
 import "../../stylesheets/Checkoutitems.css"
 
@@ -26,7 +28,7 @@ const Checkoutitems = ({ details }) => {
               <Grid item xs={5} className="checkout-items">
                 <Item>
                   <div>
-                    <img alt="" src={detail.image} className="detail-image" data-testid={`image-test-${idx}`} />
+                    <LazyLoadImage alt="" src={detail.image} PlaceholderSrc={detail.image} effect="blur" className="detail-image" data-testid={`image-test-${idx}`} />
                   </div>
                 </Item>
               </Grid>
