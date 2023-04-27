@@ -4,6 +4,8 @@ import Paper from "@mui/material/Paper";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import { styled } from "@mui/material/styles";
 import "../../stylesheets/Cartitems.css";
 
@@ -36,7 +38,7 @@ const Cartitems = ({ items, additem, removeitem }) => {
                 <Grid item xs={12}>
                   <Item>
                     <div className="cart-items">
-                      <img alt="" src={item.image} className="item-images" data-testid="cart-image-test" />
+                      <LazyLoadImage alt="" src={item.image} PlaceholderSrc={item.image} effect="blur" className="item-images" data-testid="cart-image-test" />
                     </div>
                   </Item>
                 </Grid>

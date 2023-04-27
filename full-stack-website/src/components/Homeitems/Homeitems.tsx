@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import "../../stylesheets/Homeitems.css";
 
 const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) => {
@@ -70,7 +72,7 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
               items.type === 'food' ?
                 <div className="home-item-group" key={idx}>
                   <Grid item xs={4} className="home-items">
-                    <img alt="" src={items.image} className="item-image" />
+                    <LazyLoadImage alt="" src={items.image} PlaceholderSrc={items.image} effect="blur" height="200" />
                   </Grid>
                   <Grid item xs={6} className="home-items-desc">
                     <li style={{ backgroundColor: searchItemIdentified(items.item) }}><b><i>{items.item}</i></b></li>
@@ -107,7 +109,7 @@ const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) =>
               items.type === 'drink' ?
                 <div className="home-item-group" key={idx}>
                   <Grid item xs={4} className="home-items">
-                    <img alt="" src={items.image} className="item-image" />
+                    <LazyLoadImage alt="" src={items.image} PlaceholderSrc={items.image} effect="blur" height="200" />
                   </Grid>
                   <Grid item xs={6} className="home-items-desc">
                     <li style={{ backgroundColor: searchItemIdentified(items.item) }}><b><i>{items.item}</i></b></li>
