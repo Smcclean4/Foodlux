@@ -22,7 +22,7 @@ An example food servicing website where you can order food from the companies li
 
 * ***Login and Register page:*** you can create an account on the website to save your information and preferences.
 
-# Technologies Used
+# Technology Used
 <img src="https://img.icons8.com/color/48/000000/material-ui.png"/> <img src="https://img.icons8.com/color/48/000000/typescript.png"/> <img src="https://img.icons8.com/color/48/000000/react-native.png"/> <img src="https://img.icons8.com/color/48/000000/express.png"/> <img src="https://img.icons8.com/color/48/000000/mongodb.png"/> <img src="https://img.icons8.com/color/48/000000/nodejs.png"/>
 
 <img src="https://axios-http.com/assets/logo.svg"/> 
