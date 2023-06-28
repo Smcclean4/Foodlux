@@ -71,7 +71,7 @@ npm run dev
 4. Open your browser and navigate to http://localhost:3000 to view the website.
 
 # Contributing
-If you want to contribute to this project, you're welcome to submit a pull request or open an issue to discuss any changes you'd like
+If you want to contribute to this project, you're welcome to submit a pull request or open an issue to discuss any changes you'd like.
 # Project Status
  Immediate updates for the project include: 
   > - Dashboard functionality for users to customize profiles and save favorite companies.
