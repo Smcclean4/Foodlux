@@ -18,6 +18,8 @@ const Cartitems = ({ items, additem, removeitem }) => {
     color: theme.palette.text.secondary,
   }));
 
+// just checking in.. 
+
   return (
     <div data-testid="Cartitems">
       {items?.map((item: { image: string | undefined, price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; quantity: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; desc: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key) => {
