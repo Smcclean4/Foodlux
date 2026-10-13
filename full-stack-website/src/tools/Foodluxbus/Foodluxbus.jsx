@@ -8,15 +8,13 @@ export const Foodluxbus = ({ timer, settimer }) => {
 
   useEffect(() => {
     if (timer > 0) {
-      setTimeout(() => settimer((seconds) => seconds - 1), 1000);
-    } else {
-      const submitData = () => {
-        localStorage.removeItem("cart");
-        navigate("/Home", { replace: true });
-      };
-      submitData();
+      const id = setTimeout(() => settimer((seconds) => seconds - 1), 1000);
+      return () => clearTimeout(id);
     }
-  }, [timer]);
+
+    localStorage.removeItem("cart");
+    navigate("/Home", { replace: true });
+  }, [timer, settimer, navigate]);
 
   return (
     <div className="foodluxbus-background" data-testid="Foodluxbus">
