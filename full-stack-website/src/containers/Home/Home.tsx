@@ -5,10 +5,14 @@ import SwipeableViews from "react-swipeable-views";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import LogoutIcon from '@mui/icons-material/Logout';
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import Badge from "@mui/material/Badge";
+import Paper from "@mui/material/Paper";
 import Homeitems from "../../components/Homeitems/Homeitems";
 import { CartModal } from "../../modals/CartModal/CartModal";
 import { useModal } from "../../hooks/useModal";
@@ -18,6 +22,7 @@ import { Categories } from "../../api/Categories/Categories"
 import { UserData } from "../../api/UserData/UserData"
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
+import { glassPanelSx } from "../../theme";
 import "../../stylesheets/Home.css";
 
 function TabPanel(props: { [x: string]: any; children: any; value: any; index: any; }) {
@@ -31,7 +36,7 @@ function TabPanel(props: { [x: string]: any; children: any; value: any; index: a
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: { xs: 1.5, md: 3 } }}>
           <Typography component={"span"}>{children}</Typography>
         </Box>
       )}
@@ -113,10 +118,6 @@ const Home = () => {
     // store item and company what was searched
     setItemsFromSearch({ itemFromSearch: searchTermItem, companyFromSearch: searchTermCompany })
   }
-  // checks whether a company tab is open or not.. if it is opened keep height of window at desired amount else convert to being small
-  const checkClosed = () => {
-    return render ? "65vh" : ""
-  }
   // gets the total number of items in the cart 
   const getCartTotal = () => {
     return cart.reduce((sum: number) => sum + 1, 0);
@@ -133,28 +134,71 @@ const Home = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
+  const renderMenus = (menuList: any[]) =>
+    menuList?.map((val: { title: any; menu: any; }, idx: React.Key | null | undefined) => (
+      <Homeitems
+        key={idx}
+        title={val.title}
+        menu={val.menu}
+        addtocart={addCart}
+        searchinfo={infoFromSearch}
+        render={render}
+        setrender={setRender}
+      />
+    ));
+
   return (
-    <div className="home-background" data-testid="Home">
-      <p className="home-logo">Foodlux</p>
-      <div className="dynamic-cart-username">
-        <h1 className="username">Hi, {`${username}`}!</h1>
-        {/* pond for bait and fishing rod that brings in search terms */}
-        <SearchBar data={categories} searchforitem={searchForItem} />
-        <div className="modal-container">
-          <button className="modal-button" onClick={toggle}>
-            <ShoppingCartIcon className="cart" />
+    <div className="page-background home-background" data-testid="Home">
+      <AppBar position="sticky" color="secondary" sx={{ bgcolor: "rgba(0,0,0,0.78)", backdropFilter: "blur(10px)" }}>
+        <Toolbar sx={{ gap: 2, flexWrap: "wrap", py: 1, justifyContent: "space-between" }}>
+          <Typography variant="h4" className="home-logo" sx={{ color: "common.white", textShadow: "black 2px 2px 2px", m: 0, p: 0, fontSize: { xs: "2rem", md: "2.5rem" } }}>
+            Foodlux
+          </Typography>
+          <Typography variant="h6" className="username" sx={{ color: "common.white", flexGrow: { xs: 1, md: 0 } }}>
+            Hi, {`${username}`}!
+          </Typography>
+          <Box sx={{ flexGrow: 1, minWidth: { xs: "100%", sm: 260 }, maxWidth: 480 }}>
+            <SearchBar data={categories} searchforitem={searchForItem} />
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <IconButton onClick={toggle} aria-label="Open cart" sx={{ color: "common.white" }} className="modal-button">
+              <Badge badgeContent={getCartTotal()} color="primary" className="cart-count">
+                <ShoppingCartIcon className="cart" />
+              </Badge>
+            </IconButton>
             <CartModal isShowing={isShowing} hide={toggle} state={cart} />
-            <p className="cart-count">{getCartTotal()}</p>
-          </button>
-        </div>
-      </div>
-      <Box className="home-window" sx={{ backdropFilter: "blur(5px)", width: "95%", margin: "0 auto", height: checkClosed, overflow: "scroll" }}>
-        <AppBar position="sticky">
+            <Button
+              variant="contained"
+              color="primary"
+              size="medium"
+              onClick={handleLogout}
+              endIcon={<LogoutIcon />}
+            >
+              Logout
+            </Button>
+          </Box>
+        </Toolbar>
+      </AppBar>
+      <Paper
+        className="home-window glass-scroll"
+        elevation={0}
+        sx={{
+          ...glassPanelSx,
+          width: "95%",
+          maxWidth: 1400,
+          mx: "auto",
+          my: 3,
+          minHeight: 360,
+          maxHeight: "70vh",
+        }}
+      >
+        <AppBar position="sticky" elevation={0}>
           <Tabs
             sx={{
-              backgroundColor: "black",
+              backgroundColor: "secondary.main",
               "& .MuiTabs-indicator": {
-                borderBottom: "2px solid red",
+                backgroundColor: "primary.main",
+                height: 3,
               },
             }}
             value={value}
@@ -164,30 +208,10 @@ const Home = () => {
             textColor="inherit"
             variant="fullWidth"
           >
-            <Tab
-              icon={<h1>🍔</h1>}
-              aria-label="fflogo"
-              label="FAST FOOD"
-              {...allyProps(0)}
-            />
-            <Tab
-              icon={<h1>🍜</h1>}
-              aria-label="fdlogo"
-              label="FINE DINING"
-              {...allyProps(1)}
-            />
-            <Tab
-              icon={<h1>🍿</h1>}
-              aria-label="snlogo"
-              label="SNACKS"
-              {...allyProps(2)}
-            />
-            <Tab
-              icon={<h1>🍷</h1>}
-              aria-label="alclogo"
-              label="ALCOHOL"
-              {...allyProps(3)}
-            />
+            <Tab icon={<span aria-hidden>🍔</span>} aria-label="fflogo" label="FAST FOOD" {...allyProps(0)} />
+            <Tab icon={<span aria-hidden>🍜</span>} aria-label="fdlogo" label="FINE DINING" {...allyProps(1)} />
+            <Tab icon={<span aria-hidden>🍿</span>} aria-label="snlogo" label="SNACKS" {...allyProps(2)} />
+            <Tab icon={<span aria-hidden>🍷</span>} aria-label="alclogo" label="ALCOHOL" {...allyProps(3)} />
           </Tabs>
         </AppBar>
         <SwipeableViews
@@ -196,85 +220,22 @@ const Home = () => {
           onChangeIndex={handleChangeIndex}
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
-            {fastfood?.map((val: { title: any; menu: any; }, idx: React.Key | null | undefined) => {
-              return (
-                <Homeitems
-                  key={idx}
-                  title={val.title}
-                  menu={val.menu}
-                  addtocart={addCart}
-                  searchinfo={infoFromSearch}
-                  render={render}
-                  setrender={setRender}
-                />
-              );
-            })}
+            {renderMenus(fastfood)}
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
-            {finedine?.map((val: { title: any; menu: any; }, idx: React.Key | null | undefined) => {
-              return (
-                <Homeitems
-                  key={idx}
-                  title={val.title}
-                  menu={val.menu}
-                  addtocart={addCart}
-                  searchinfo={infoFromSearch}
-                  render={render}
-                  setrender={setRender}
-                />
-              );
-            })}
+            {renderMenus(finedine)}
           </TabPanel>
           <TabPanel value={value} index={2} dir={theme.direction}>
-            {snacks?.map((val: { title: any; menu: any; }, idx: React.Key | null | undefined) => {
-              return (
-                <Homeitems
-                  key={idx}
-                  title={val.title}
-                  menu={val.menu}
-                  addtocart={addCart}
-                  searchinfo={infoFromSearch}
-                  render={render}
-                  setrender={setRender}
-                />
-              );
-            })}
+            {renderMenus(snacks)}
           </TabPanel>
           <TabPanel value={value} index={3} dir={theme.direction}>
-            {alcohol?.map((val: { title: any; menu: any; }, idx: React.Key | null | undefined) => {
-              return (
-                <Homeitems
-                  key={idx}
-                  title={val.title}
-                  menu={val.menu}
-                  addtocart={addCart}
-                  searchinfo={infoFromSearch}
-                  render={render}
-                  setrender={setRender}
-                />
-              );
-            })}
+            {renderMenus(alcohol)}
           </TabPanel>
         </SwipeableViews>
-      </Box>
-      <Button
-        variant="contained"
-        size="medium"
-        sx={{
-          margin: "10px 0",
-          backgroundColor: "red",
-          "&:hover": {
-            backgroundColor: "rgb(162, 6, 6)",
-          }, cursor: "pointer"
-        }}
-        onClick={handleLogout}
-        endIcon={<LogoutIcon />}>
-        Logout
-      </Button>
+      </Paper>
       <Outlet />
     </div>
   );
 };
 
 export default Home;
-

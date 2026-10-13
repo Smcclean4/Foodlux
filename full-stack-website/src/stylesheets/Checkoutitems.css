@@ -1,26 +1,6 @@
-.checkout-container {
-  background-color: whitesmoke;
-  border-radius: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  width: 70%;
-  padding: 10px;
-  margin: 10px auto;
-}
-
-.checkout-items {
-  padding: 5px;
-  width: 100%;
-  text-align: center;
-  align-items: center;
-}
-
 .detail-image {
   height: 75px;
-}
-
-@media only screen and (max-width: 600px) {
-  .checkout-container {
-    width: 60%;
-  }
+  width: 90px;
+  object-fit: cover;
+  border-radius: 8px;
 }

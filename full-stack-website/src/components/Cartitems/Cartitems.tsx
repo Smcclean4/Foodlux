@@ -1,113 +1,47 @@
 import React from "react";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { styled } from "@mui/material/styles";
 import "../../stylesheets/Cartitems.css";
 
 const Cartitems = ({ items, additem, removeitem }) => {
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
-
-// just checking in.. 
-
   return (
     <div data-testid="Cartitems">
-      {items?.map((item: { image: string | undefined, price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; quantity: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; desc: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key) => {
+      {items?.map((item: { image: string; price: number; quantity: number; item: string; desc: string; }, idx: number) => {
         return (
-          <div className="cart-container" key={idx}>
-            <Grid
-              container
-              spacing={3}
-            >
-              <Grid item xs={4} container spacing={2} columns={{ xs: 1, sm: 1, md: 1, lg: 12 }} >
-                <Grid item xs={12}>
-                  <Item>
-                    <div className="cart-items">
-                      <li data-testid="cart-items-test">{item.item}</li>
-                    </div>
-                  </Item>
-                </Grid>
-                <Grid item xs={12}>
-                  <Item>
-                    <div className="cart-items">
-                      <LazyLoadImage alt="" src={item.image} PlaceholderSrc={item.image} effect="blur" className="item-images" data-testid="cart-image-test" />
-                    </div>
-                  </Item>
-                </Grid>
-              </Grid>
-              <Grid item xs={8} container spacing={2} columns={{ xs: 6, sm: 6, md: 6, lg: 12 }} >
-                <Grid item xs={6}>
-                  <Item>
-                    <div className="cart-items">
-                      <li data-testid="cart-price-test">&#36;{item.price}</li>
-                    </div>
-                  </Item>
-                </Grid>
-                <Grid item xs={2}>
-                  <Item
-                    onClick={() => removeitem(idx)}
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      color: "red",
-                      padding: "8px",
-                      '&:hover': {
-                        cursor: "pointer",
-                        backgroundColor: "whitesmoke",
-                      }, cursor: "pointer"
-                    }}
-                  >
-                    {item.quantity === 1 ? <DeleteForeverIcon fontSize="medium" /> : <RemoveIcon />}
-                  </Item>
-                </Grid>
-                <Grid item xs={2}>
-                  <Item
-                    sx={{
-                      color: "black",
-                      fontSize: "1.3em",
-                      padding: "5px 5px",
-                    }}
-                  >
-                    <span data-testid="cart-quantity-test">{item.quantity}</span>
-                  </Item>
-                </Grid>
-                <Grid item xs={2}>
-                  <Item
-                    onClick={() => additem(idx)}
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      color: "dodgerblue",
-                      padding: "8px",
-                      '&:hover': {
-                        cursor: "pointer",
-                        backgroundColor: "whitesmoke",
-                      }, cursor: "pointer"
-                    }}
-                  >
-                    <AddIcon fontSize="medium" />
-                  </Item>
-                </Grid>
-                <Grid item xs={12} >
-                  <Item>
-                    <div className="cart-items-desc">
-                      <li data-testid="cart-desc-test">{item.desc}</li>
-                    </div>
-                  </Item>
-                </Grid>
-              </Grid>
-            </Grid>
-          </div>
+          <Card className="cart-container" key={idx} sx={{ width: "100%", maxWidth: 960, mx: "auto", mb: 2, p: 1 }}>
+            <Stack direction={{ xs: "column", sm: "row" }} spacing={2} alignItems={{ sm: "center" }}>
+              <Box className="cart-items" sx={{ minWidth: 160 }}>
+                <LazyLoadImage alt={item.item} src={item.image} PlaceholderSrc={item.image} effect="blur" className="item-images" data-testid="cart-image-test" />
+              </Box>
+              <CardContent sx={{ flexGrow: 1, textAlign: "left" }}>
+                <Typography variant="h6" data-testid="cart-items-test">{item.item}</Typography>
+                <Typography className="cart-items-desc" data-testid="cart-desc-test" sx={{ mt: 1 }} color="text.secondary">
+                  {item.desc}
+                </Typography>
+                <Typography variant="subtitle1" data-testid="cart-price-test" sx={{ mt: 1, fontWeight: 700 }}>
+                  ${item.price}
+                </Typography>
+              </CardContent>
+              <Stack direction="row" alignItems="center" justifyContent="center" spacing={1} sx={{ px: 2, pb: { xs: 2, sm: 0 } }}>
+                <IconButton color="primary" onClick={() => removeitem(idx)} aria-label="Remove item">
+                  {item.quantity === 1 ? <DeleteForeverIcon /> : <RemoveIcon />}
+                </IconButton>
+                <Typography variant="h6" data-testid="cart-quantity-test">{item.quantity}</Typography>
+                <IconButton color="primary" onClick={() => additem(idx)} aria-label="Add item">
+                  <AddIcon />
+                </IconButton>
+              </Stack>
+            </Stack>
+          </Card>
         );
       })}
     </div>

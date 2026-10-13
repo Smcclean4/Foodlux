@@ -2,6 +2,9 @@ import ReactDOM from "react-dom";
 import { LoadingCircle } from "./tools/LoadingCircle";
 import React, { Suspense, useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import theme from "./theme";
 import "./stylesheets/index.css";
 
 const Register = React.lazy(() => import("./containers/Register/Register"));
@@ -94,4 +97,10 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <App />
+  </ThemeProvider>,
+  document.getElementById("root")
+);

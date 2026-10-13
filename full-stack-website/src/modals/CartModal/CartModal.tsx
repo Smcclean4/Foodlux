@@ -1,34 +1,46 @@
 import React from 'react'
-import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
 import Button from "@mui/material/Button";
+import Drawer from "@mui/material/Drawer";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import Divider from "@mui/material/Divider";
+import CloseIcon from "@mui/icons-material/Close";
 import '../../stylesheets/CartModal.css'
 
-export const CartModal = ({ isShowing, hide, state }) => isShowing ? createPortal(
-  <div className="cartmodal-container" data-testid="cartmodal-test">
-    <button className="cartmodal-close" onClick={hide} data-testid="cartmodal-close">
-      &times;
-    </button>
-    <div className="modal-data">
-      {state?.map((item: { item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; quantity: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key | null | undefined) => {
-        return state?.length !== 0 ? (
-          <div className="modal-data-container" key={idx}>
-            <p className="modal-data-items">{item.item}</p>
-            <p className="modal-data-items">&#36;{item.price}</p>
-            <p className="modal-data-items">{item.quantity}</p>
-          </div>
-        ) : null
-      })}
-      {state?.length === 0 ? <h2>Nothing to see here...</h2> : null}
-    </div>
-    <Link to="/Cart" className="gotocart-link">
-      <Button sx={{
-        color: 'white', backgroundColor: 'red', padding: '5px 25px', margin: '5px', "&:hover": {
-          backgroundColor: "rgb(162, 6, 6)"
-        }, cursor: "pointer"
-      }}>
+export const CartModal = ({ isShowing, hide, state }) => (
+  <Drawer anchor="right" open={Boolean(isShowing)} onClose={hide}>
+    <Box className="cartmodal-container" data-testid="cartmodal-test" sx={{ width: { xs: 300, sm: 360 }, p: 2, display: "flex", flexDirection: "column", height: "100%" }}>
+      <Stack direction="row" justifyContent="space-between" alignItems="center">
+        <Typography variant="h5">Cart</Typography>
+        <IconButton className="cartmodal-close" onClick={hide} data-testid="cartmodal-close" aria-label="Close cart">
+          <CloseIcon />
+        </IconButton>
+      </Stack>
+      <Divider sx={{ my: 1 }} />
+      <Box className="modal-data glass-scroll" sx={{ flexGrow: 1, overflow: "auto" }}>
+        {state?.map((item: { item: string; price: number; quantity: number; }, idx: React.Key) => (
+          <Stack key={idx} className="modal-data-container" direction="row" justifyContent="space-between" sx={{ py: 1.5, px: 1 }}>
+            <Typography className="modal-data-items">{item.item}</Typography>
+            <Typography className="modal-data-items">${item.price}</Typography>
+            <Typography className="modal-data-items">x{item.quantity}</Typography>
+          </Stack>
+        ))}
+        {state?.length === 0 ? <Typography variant="h6" sx={{ mt: 4 }}>Nothing to see here...</Typography> : null}
+      </Box>
+      <Button
+        component={Link}
+        to="/Cart"
+        className="gotocart-link"
+        variant="contained"
+        color="primary"
+        fullWidth
+        sx={{ mt: 2 }}
+      >
         Go To Cart
       </Button>
-    </Link>
-  </div>, document.body
-) : null
+    </Box>
+  </Drawer>
+)

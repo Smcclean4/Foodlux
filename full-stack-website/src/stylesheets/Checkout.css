@@ -1,46 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
-
-.checkout-background {
-  background: url("/src/assets/pexels-furknsaglam-3109671.jpg");
-  background-position: center;
-  background-size: cover;
-  height: auto;
-  min-height: 100vh;
-  text-align: center;
-  flex-direction: column;
+.checkout-header,
+.checkout-values-header,
+.checkout-total {
+  font-family: "Bubblegum Sans", cursive;
 }
 
-.checkout-window {
-  width: 80%;
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
-  margin: 0 auto;
-  padding: 30px 0;
-  list-style-type: none;
-  height: 65vh;
-  overflow: scroll;
-}
-
-.checkout-window::-webkit-scrollbar,
-.checkout-window::-webkit-scrollbar-corner {
-  backdrop-filter: blur(5px);
-}
-
-.checkout-window::-webkit-scrollbar-thumb {
-  background-color: black;
-  border-radius: 12px;
-}
-
-.checkout-dummydata {
-  color: white;
-}
-
-.cart-section {
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  width: 60%;
-  margin: 0 auto;
+.checkout-header,
+.checkout-values-header {
+  text-decoration: underline;
+  text-decoration-color: #e53935;
 }
 
 .cart-link {
@@ -48,118 +15,16 @@
   color: white;
 }
 
-.checkout-menu {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.checkout-fields {
-  width: 80%;
-}
-
-.checkout-list {
-  margin: 10px;
-  width: 50%;
-}
-
-.checkout-header {
-  background-color: black;
-  width: 80%;
-  font-size: 2.5em;
-  font-family: 'Bubblegum sans', sans-serif;
-  margin: 0 auto;
-  padding: 15px 0px;
-  text-decoration: underline;
-  text-decoration-color: red;
+.checkout-dummydata {
   color: white;
-  z-index: 1000;
-}
-
-.checkout-values-header-container {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-}
-
-.checkout-values-header {
-  color: white;
-  text-decoration: underline;
-  text-decoration-color: red;
-  font-family: 'Bubblegum Sans', sans-serif;
-  margin: 0 0 25px 0;
-}
-
-.checkout-values {
-  height: 100%;
-  min-height: 50vh;
-  padding: 25px 0;
-  overflow: scroll;
-  border: 1px solid black;
-  border-radius: 12px;
-}
-
-.checkout-values::-webkit-scrollbar,
-.checkout-values::-webkit-scrollbar-corner {
-  backdrop-filter: blur(5px);
-}
-
-.checkout-values::-webkit-scrollbar-thumb {
-  background-color: black;
-  border-radius: 12px;
-}
-
-.checkout-total-section {
-  margin: 15px;
-}
-
-.checkout-total {
-  font-size: 1.7em;
-  font-family: 'Bubblegum Sans', sans-serif;
-  margin-top: 50px;
-  color: white;
-}
-
-.expiration-date {
-  display: flex;
-  flex-direction: row;
-  width: 80%;
-  justify-content: space-between;
-  margin: 0 auto;
 }
 
 .expiration-slash {
-  font-size: 3.0em;
-  margin: 0 10px;
+  font-size: 2rem;
   color: white;
 }
 
-.error {
-  color: red;
-}
-
-@media only screen and (max-width:1200px) {
-  .checkout-menu {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .checkout-window,
-  .checkout-header {
-    width: 90%;
-  }
-
-  .checkout-list,
-  .checkout-values-header-container {
-    width: 90%;
-  }
-}
-
 @media only screen and (max-width: 550px) {
-  .checkout-header {
-    font-size: 1.7em;
-  }
-
   .link-text {
     font-size: 0.9em;
   }

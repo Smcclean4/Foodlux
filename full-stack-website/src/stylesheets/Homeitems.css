@@ -1,63 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
+.menu-titles {
+  font-family: "Bubblegum Sans", cursive;
+  text-decoration: underline;
+  text-decoration-color: #e53935;
+}
 
-.ff-wrapper {
-    display: grid;
-    grid-template-columns: 20% 80%;
-    grid-template-areas:
-        "company info";
+.home-items img {
+  display: block;
 }
 
 .item-image {
-    height: 90%;
-}
-
-.menu-titles {
-    font-size: 3.0em;
-    font-family: "Bubblegum Sans", cursive;
-    text-decoration: underline;
-    text-decoration-color: red;
-}
-
-.a {
-    grid-area: company;
-    border-right: 1px solid white;
-}
-
-.b {
-    grid-area: info;
-    list-style-type: none;
-}
-
-li {
-    font-size: 1.3em;
-}
-
-.home-items {
-    height: 175px;
-    text-align: center;
-}
-
-.home-item-group {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 2% 0;
-    width: 100%;
-}
-
-.home-items-desc {
-    height: 175px;
-    text-align: left;
-}
-
-
-@media only screen and (max-width:550px) {
-    .home-items-desc {
-        font-size: 0.7em;
-    }
-}
-
-@media only screen and (max-width:1280px) {
-    .ff-wrapper {
-        display: block;
-    }
+  height: 90%;
 }

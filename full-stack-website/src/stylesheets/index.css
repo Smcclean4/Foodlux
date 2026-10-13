@@ -1,4 +1,30 @@
 * {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
+}
+
+.page-background {
+  background: url("/src/assets/pexels-furknsaglam-3109671.jpg");
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.brand-logo {
+  color: white;
+  font-size: clamp(3.2rem, 10vw, 6rem);
+  text-shadow: black 2px 5px 2px;
+  font-family: "Bubblegum Sans", cursive;
+  padding: 24px 16px 8px;
+}
+
+.glass-scroll::-webkit-scrollbar,
+.glass-scroll::-webkit-scrollbar-corner {
+  width: 10px;
+}
+
+.glass-scroll::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 12px;
 }

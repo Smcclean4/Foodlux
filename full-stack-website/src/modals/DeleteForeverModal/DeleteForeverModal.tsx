@@ -1,31 +1,42 @@
 import React from 'react'
-import { createPortal } from 'react-dom'
 import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import Typography from "@mui/material/Typography";
 import '../../stylesheets/DeleteForeverModal.css'
 
-export const DeleteForeverModal = ({ isShowing, hide, item, deleteitem }) => isShowing ? createPortal(
-  <div className="deleteforevermodal-container" data-testid="deleteforvermodal-test">
-    <h1 className="deleteforevermodal-header">Preparing to delete item.</h1>
-    <p className="deleteforevermodal-subtext">Are you sure you want to delete your {item.deleteCompany} {item.deleteItemName} from your cart?</p>
-    <div className="button-options">
-      <Button sx={{
-        backgroundColor: "grey", color: "white", "&:hover": {
-          backgroundColor: "lightgrey"
-        }, margin: "20px", fontSize: "1.1em", cursor: "pointer"
-      }}
+export const DeleteForeverModal = ({ isShowing, hide, item, deleteitem }) => (
+  <Dialog
+    open={Boolean(isShowing)}
+    onClose={hide}
+    className="deleteforevermodal-container"
+    PaperProps={{ "data-testid": "deleteforvermodal-test" } as any}
+  >
+    <DialogTitle className="deleteforevermodal-header">Preparing to delete item.</DialogTitle>
+    <DialogContent>
+      <Typography className="deleteforevermodal-subtext">
+        Are you sure you want to delete your {item.deleteCompany} {item.deleteItemName} from your cart?
+      </Typography>
+    </DialogContent>
+    <DialogActions className="button-options" sx={{ px: 3, pb: 2 }}>
+      <Button
+        variant="contained"
+        color="secondary"
         onClick={hide}
-        data-testid="deleteforevermodal-close">
+        data-testid="deleteforevermodal-close"
+      >
         Cancel
       </Button>
-      <Button sx={{
-        backgroundColor: "red", color: "white", "&:hover": {
-          backgroundColor: "rgb(162, 6, 6)"
-        }, margin: "20px", fontSize: "1.0em", cursor: "pointer"
-      }}
+      <Button
+        variant="contained"
+        color="primary"
         onClick={deleteitem}
-        data-testid="deleteforevermodal-proceed">
+        data-testid="deleteforevermodal-proceed"
+      >
         Proceed
       </Button>
-    </div>
-  </div>, document.body
-) : null
+    </DialogActions>
+  </Dialog>
+)

@@ -5,7 +5,11 @@ import Checkoutitems from './Checkoutitems'
 
 describe('writing tests for checkout items component', () => {
   const props = {
-    details: ['item1', 'item2', 'item3']
+    details: [
+      { image: 'item1.png', item: 'Item 1', price: 10, quantity: 1 },
+      { image: 'item2.png', item: 'Item 2', price: 20, quantity: 2 },
+      { image: 'item3.png', item: 'Item 3', price: 30, quantity: 3 },
+    ],
   }
 
   test('checkout to see if Checkoutitems component is defined and in document', () => {
@@ -16,7 +20,7 @@ describe('writing tests for checkout items component', () => {
   })
 
   test('testing to see if image, item, price, and quantity are all defined', () => {
-    const { getByTestId } = render(<Checkoutitems {...props} />)
+    const { getByTestId } = render(<Checkoutitems  {...props} />)
     const itemTest = getByTestId('item-test-0')
     const imageTest = getByTestId('image-test-0')
     const priceTest = getByTestId('price-test-0')

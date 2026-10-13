@@ -1,94 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
-
-.cart-background {
-    background: url("/src/assets/pexels-furknsaglam-3109671.jpg");
-    background-position: center;
-    background-size: cover;
-    height: auto;
-    min-height: 100vh;
-    text-align: center;
-}
-
-.cart-window {
-    width: 90%;
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    margin: 0 auto;
-    padding: 30px 0;
-    list-style-type: none;
-    height: 65vh;
-    overflow: scroll;
-}
-
-.cart-window::-webkit-scrollbar,
-.cart-window::-webkit-scrollbar-corner {
-    backdrop-filter: blur(5px);
-}
-
-.cart-window::-webkit-scrollbar-thumb {
-    background-color: black;
-    border-radius: 12px;
-}
-
-.cart-header {
-    background-color: black;
-    width: 90%;
-    font-size: 2.5em;
-    font-family: 'Bubblegum sans', sans-serif;
-    margin: 0 auto;
-    padding: 5px 5px;
-    text-decoration: underline;
-    text-decoration-color: red;
-    color: white;
-    z-index: 1000;
-}
-
-.checkout-link {
-    text-decoration: none;
-    color: white;
-}
-
-.return-link {
-    text-decoration: none;
-    color: white;
-}
-
-.return-link:active {
-    color: white;
-}
-
-.checkout-return-section {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.total-section {
-    width: 80%;
-    margin: 0 auto;
-    display: flex;
-    padding-bottom: 10px;
-    justify-content: right;
-}
-
+.cart-header,
 .total {
-    background-color: black;
-    color: white;
-    width: 30%;
-    border-radius: 0 0 10px 10px;
-    padding: 10px 0;
-    font-family: 'Bubblegum sans', sans-serif;
-    font-size: 1.7em;
-    text-decoration: underline;
-    text-decoration-color: red;
+  font-family: "Bubblegum Sans", cursive;
+  text-decoration: underline;
+  text-decoration-color: #e53935;
+}
+
+.checkout-link,
+.return-link {
+  text-decoration: none;
+  color: white;
 }
 
 .cart-dummydata {
-    color: white;
+  color: white;
 }
 
 @media only screen and (max-width: 520px) {
-    .link-text {
-        font-size: 0.9em;
-    }
+  .link-text {
+    font-size: 0.9em;
+  }
 }

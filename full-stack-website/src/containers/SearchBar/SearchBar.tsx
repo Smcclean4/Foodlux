@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
 import Button from "@mui/material/Button";
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import SearchIcon from '@mui/icons-material/Search'
 import "../../stylesheets/SearchBar.css"
 
@@ -8,27 +12,21 @@ export interface UserInputInterface {
   searchTermCategory: string;
 }
 
+const flattenMenu = (data: any) => {
+  if (!Array.isArray(data)) return [];
+  const dataItems: any[] = [];
+  data.forEach((menu: { menu: any; }[]) => {
+    if (!Array.isArray(menu)) return;
+    menu.forEach((food: { menu: any[] }) => food.menu?.forEach((items: any) => dataItems.push(items)));
+  });
+  return dataItems;
+}
+
 const SearchBar = ({ data, searchforitem }) => {
   const [userInput, setUserInput] = useState("")
   const [userInputInfo, setUserInputInfo] = useState<UserInputInterface>({ searchTermCompany: '', searchTermCategory: '' })
-  const [dropDown, setDropDown] = useState([])
-  const [open, setOpen] = useState(false)
+  const options = flattenMenu(data)
 
-  // get data from all categories in home. then map through data and filter from what the user is searching to display items that correspond
-  const handleChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
-    setUserInput(e.target.value)
-    const dataItems: any = [];
-    data.forEach((menu: { menu: any; }[]) => menu.map((food: { menu: any[] }) => food.menu.map((items: any) => dataItems.push(items))))
-    const filteredData = dataItems.filter((val: { item: string; }) => val.item.toLowerCase().includes(userInput.toLowerCase()))
-    setDropDown(filteredData)
-  }
-
-  // toggle for open and close of dropdown modal
-  const dropDownFocusToggle = () => {
-    setOpen(!open)
-  }
-
-  //whenever any of the search items are clicked store them in state.
   const searchClick = () => {
     searchforitem(userInput, userInputInfo)
     setUserInput("")
@@ -36,44 +34,56 @@ const SearchBar = ({ data, searchforitem }) => {
 
   return (
     <div className="searchbar-navigation" data-testid="search-bar">
-      <div className="searchbar-container">
-        <input className="searchbar-input" type="search" value={userInput} onChange={handleChange} onFocus={dropDownFocusToggle} onBlur={dropDownFocusToggle} onKeyDown={e => e.key === 'Enter' && searchClick()}></input>
-        <Button sx={{
-          color: 'white', backgroundColor: 'red', padding: '2px 35px', "&:hover": {
-            backgroundColor: "rgb(162, 6, 6)",
-          },
-          borderRadius: '0 10px 10px 0', cursor: "pointer"
-        }}
+      <Stack className="searchbar-container" direction="row" spacing={0} alignItems="stretch">
+        <Autocomplete
+          freeSolo
+          fullWidth
+          options={options}
+          inputValue={userInput}
+          getOptionLabel={(option) => typeof option === "string" ? option : option.item}
+          filterOptions={(opts, state) =>
+            opts.filter((opt) => opt.item?.toLowerCase().includes(state.inputValue.toLowerCase()))
+          }
+          onInputChange={(_, value) => setUserInput(value)}
+          onChange={(_, value) => {
+            if (value && typeof value !== "string") {
+              setUserInput(value.item)
+              setUserInputInfo({ searchTermCompany: value.company, searchTermCategory: value.category })
+            }
+          }}
+          renderOption={(props, option) => (
+            <li {...props} key={`${option.item}-${option.company}`}>
+              <div>
+                <Typography variant="subtitle1">{option.item}</Typography>
+                <Typography variant="caption" color="text.secondary"><i>from {option.company}</i></Typography>
+              </div>
+            </li>
+          )}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              className="searchbar-input"
+              placeholder="Search the menu"
+              size="small"
+              sx={{
+                bgcolor: "common.white",
+                borderRadius: "12px 0 0 12px",
+                "& .MuiOutlinedInput-root": { borderRadius: "12px 0 0 12px" },
+              }}
+              onKeyDown={e => e.key === 'Enter' && searchClick()}
+            />
+          )}
+        />
+        <Button
+          variant="contained"
+          color="primary"
           onClick={searchClick}
-          endIcon={<SearchIcon />}>
+          endIcon={<SearchIcon />}
+          sx={{ borderRadius: "0 10px 10px 0", px: 3, whiteSpace: "nowrap" }}
+        >
           Search
         </Button>
-      </div>
-      {open ? (
-        <div className="dropdown">
-          {dropDown?.length !== 0 ? (
-            dropDown?.map((dropDownItems: any, idx: React.Key) => {
-              return (
-                <div key={idx} className="dropdown-items">
-                  <Button
-                    onMouseDown={() => {
-                      setUserInput(dropDownItems.item)
-                      setUserInputInfo({ searchTermCompany: dropDownItems.company, searchTermCategory: dropDownItems.category })
-                    }}
-                    sx={{
-                      color: "black", cursor: "pointer"
-                    }}>
-                    <div>
-                      <h2>{dropDownItems.item}</h2>
-                      <h5><i>from {dropDownItems.company}</i></h5>
-                    </div>
-                  </Button>
-                </div>
-              )
-            })
-          ) : <h4>Item Cannot Be Found.</h4>}
-        </div>
-      ) : <></>}
+      </Stack>
     </div>
   )
 }

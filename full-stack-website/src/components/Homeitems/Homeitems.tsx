@@ -2,140 +2,118 @@ import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Typography from "@mui/material/Typography";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import "../../stylesheets/Homeitems.css";
 
 const Homeitems = ({ menu, title, addtocart, searchinfo, render, setrender }) => {
-  // changes the background color of item to red depending on if the item is found or not
-  const [found, setFound] = useState("rgba(255, 0, 0, 0.547)");
+  const [highlight, setHighlight] = useState(true);
 
   const renderChange = () => {
     setrender(!render);
   };
 
-  // checks if the search info (item) input into search matches any of the current items listed.. if it does make it red and if not return and empty string
-  const searchItemIdentified = (item: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined) => {
-    if (searchinfo.itemFromSearch === item) {
-      setTimeout(() => {
-        setFound('')
-      }, 5000)
-      return found
-    } else {
-      return ""
-    }
-  }
+  const isHighlighted = (item: string) => highlight && searchinfo.itemFromSearch === item;
 
   useEffect(() => {
-    // if company that was apart of search matches the current titles listed open it.. once new search information is input run function again
     const compareSearchInfo = () => {
       return searchinfo.companyFromSearch === title ? setrender(true) : null
     }
     compareSearchInfo()
   }, [searchinfo, setrender, title])
 
+  useEffect(() => {
+    setHighlight(true);
+    const timeout = setTimeout(() => setHighlight(false), 5000);
+    return () => clearTimeout(timeout);
+  }, [searchinfo]);
+
+  const renderSection = (sectionTitle: string, type: string) => {
+    const items = menu?.filter((item: { type: string; }) => item.type === type) ?? [];
+    if (!items.length) return null;
+
+    return (
+      <Box sx={{ mt: 2 }}>
+        <Typography variant="h4" className="menu-titles" sx={{ color: "common.white", mb: 2, textAlign: "left" }}>
+          {sectionTitle}
+        </Typography>
+        <Grid container spacing={2}>
+          {items.map((items: { image: string; item: string; desc: string; price: number; }, idx: number) => {
+            const menuIndex = menu.indexOf(items);
+            return (
+              <Grid item xs={12} sm={6} md={4} key={`${type}-${idx}`}>
+                <Card
+                  className="home-item-group"
+                  sx={{
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    bgcolor: isHighlighted(items.item) ? "error.light" : "background.paper",
+                    transition: "background-color 0.3s ease",
+                  }}
+                >
+                  <Box className="home-items" sx={{ height: 180, overflow: "hidden" }}>
+                    <LazyLoadImage alt={items.item} src={items.image} PlaceholderSrc={items.image} effect="blur" height="180" width="100%" style={{ objectFit: "cover", width: "100%" }} />
+                  </Box>
+                  <CardContent sx={{ flexGrow: 1, textAlign: "left" }} className="home-items-desc">
+                    <Typography variant="h6" component="div">{items.item}</Typography>
+                    <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>{items.desc}</Typography>
+                    <Typography variant="subtitle1" sx={{ mt: 1.5, fontWeight: 700 }}>${items.price}</Typography>
+                  </CardContent>
+                  <CardActions sx={{ px: 2, pb: 2 }}>
+                    <Button
+                      onClick={() => addtocart(menu[menuIndex], menuIndex)}
+                      variant="contained"
+                      color="primary"
+                      fullWidth
+                      data-testid={`addcart-test-${menuIndex}`}
+                    >
+                      Add
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Box>
+    );
+  };
+
   return (
     <div className="ff-wrapper" data-testid='Homeitems'>
-      <div className="ff-grid a">
-        <Button
-          sx={{
-            marginBottom: "5px", marginRight: "5px", backgroundColor: "red", "&:hover": {
-              backgroundColor: "rgb(162, 6, 6)",
-            }, cursor: "pointer"
-          }}
-          variant="contained"
-          className="button active"
-          onClick={renderChange}
+      <Accordion
+        expanded={Boolean(render)}
+        onChange={renderChange}
+        sx={{ bgcolor: "transparent", color: "common.white", boxShadow: "none", "&:before": { display: "none" } }}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon sx={{ color: "common.white" }} />}
           data-testid="title-button-test"
-        >
-          {title}
-        </Button>
-      </div>
-      {!render ? (
-        <div className="ff-grid b"></div>
-      ) : (
-        <Box
+          className="button active"
           sx={{
-            backdropFilter: "blur(5px)",
-            flexGrow: 1,
-            padding: "5px",
-            color: "white",
+            bgcolor: "primary.main",
+            color: "common.white",
+            borderRadius: 2,
+            mb: 1,
+            "&:hover": { bgcolor: "primary.dark" },
           }}
         >
-          <p className="menu-titles">Food</p>
-          <Grid
-            className="b"
-            container
-            spacing={{ xs: 2, md: 3 }}
-            columns={{ xs: 2, sm: 2, md: 12 }}>
-            {menu?.map((items: { type: string; image: string | undefined; item: {} | null | undefined; desc: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key) =>
-              items.type === 'food' ?
-                <div className="home-item-group" key={idx}>
-                  <Grid item xs={4} className="home-items">
-                    <LazyLoadImage alt="" src={items.image} PlaceholderSrc={items.image} effect="blur" height="200" />
-                  </Grid>
-                  <Grid item xs={6} className="home-items-desc">
-                    <li style={{ backgroundColor: searchItemIdentified(items.item) }}><b><i>{items.item}</i></b></li>
-                    <li>{items.desc}</li>
-                  </Grid>
-                  <Grid item xs={1} className="home-items">
-                    <li>&#36;{items.price}</li>
-                  </Grid>
-                  <Grid item xs={1} className="home-items">
-                    <Button
-                      onClick={() => addtocart(menu[idx], idx)}
-                      sx={{
-                        color: "white", backgroundColor: "red", "&:hover": {
-                          backgroundColor: "rgb(162, 6, 6)",
-                        }, cursor: "pointer"
-                      }}
-                      size="large"
-                      data-testid={`addcart-test-${idx}`}
-                    >
-                      Add
-                    </Button>
-                  </Grid>
-                </div> : ''
-            )}
-          </Grid>
-          <br></br>
-          <p className="menu-titles">Drinks</p>
-          <Grid
-            className="b"
-            container
-            spacing={{ xs: 0, md: 3 }}
-            columns={{ xs: 2, sm: 2, md: 12 }}>
-            {menu?.map((items: { type: string; image: string | undefined; item: {} | null | undefined; desc: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; price: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, idx: React.Key) =>
-              items.type === 'drink' ?
-                <div className="home-item-group" key={idx}>
-                  <Grid item xs={4} className="home-items">
-                    <LazyLoadImage alt="" src={items.image} PlaceholderSrc={items.image} effect="blur" height="200" />
-                  </Grid>
-                  <Grid item xs={6} className="home-items-desc">
-                    <li style={{ backgroundColor: searchItemIdentified(items.item) }}><b><i>{items.item}</i></b></li>
-                    <li>{items.desc}</li>
-                  </Grid>
-                  <Grid item xs={1} className="home-items">
-                    <li>&#36;{items.price}</li>
-                  </Grid>
-                  <Grid item xs={1} className="home-items">
-                    <Button
-                      onClick={() => addtocart(menu[idx], idx)}
-                      sx={{
-                        color: "white", backgroundColor: "red", "&:hover": {
-                          backgroundColor: "rgb(162, 6, 6)",
-                        }, cursor: "pointer"
-                      }}
-                      size="large"
-                    >
-                      Add
-                    </Button>
-                  </Grid>
-                </div> : ''
-            )}
-          </Grid>
-        </Box>
-      )}
+          <Typography variant="h6">{title}</Typography>
+        </AccordionSummary>
+        <AccordionDetails className="b" sx={{ px: 0 }}>
+          {renderSection("Food", "food")}
+          {renderSection("Drinks", "drink")}
+        </AccordionDetails>
+      </Accordion>
     </div>
   );
 };

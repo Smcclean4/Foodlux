@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import Alert from "@mui/material/Alert";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
 import SendIcon from "@mui/icons-material/Send";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import axios from 'axios';
+import { AxiosError } from "axios";
 import { Link } from "react-router-dom";
-import "../../stylesheets/Login.css";
 
 export interface LoginInterface {
   username: string;
@@ -13,18 +21,17 @@ export interface LoginInterface {
 }
 
 const Login = () => {
-  // stores user login info into state
   const [userLoginInfo, setUserLoginInfo] = useState<LoginInterface>({
     username: '',
     password: ''
   })
-  // logs error for try catch
   const [loginErr, setLoginErr] = useState('');
-  // handles changes for form that stays into state
-  const handleChange = ({ currentTarget: input }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleChange = ({ currentTarget: input }: { currentTarget: { name: string; value: string; }; }) => {
     setUserLoginInfo({ ...userLoginInfo, [input.name]: input.value })
   }
-  // submits user info
+
   const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
 
@@ -34,82 +41,78 @@ const Login = () => {
       localStorage.setItem('token', res.data)
       window.location.replace('/Home')
     } catch (error) {
-      if (error.response && error.response.status >= 400 && error.response.status <= 500) {
+      if (error instanceof AxiosError && error.response && error.response.status >= 400 && error.response.status <= 500) {
         setLoginErr(error.response.data.message)
       }
     }
   }
 
   return (
-    <div className="login-background" data-testid="Login">
-      <p className="login-logo">Foodlux</p>
-      <Box
+    <div className="page-background login-background" data-testid="Login">
+      <p className="brand-logo login-logo">Foodlux</p>
+      <Paper
+        elevation={6}
         sx={{
-          border: "1px solid black",
-          borderRadius: "25px 25px",
-          backgroundColor: "white",
-          boxShadow: "black 0px 0px 20px",
-          maxWidth: "250px",
-          width: "75%",
-          margin: "0 auto",
-          padding: "10px 30px 30px 30px",
+          maxWidth: 400,
+          width: "90%",
+          mx: "auto",
+          p: { xs: 3, sm: 4 },
         }}
       >
-        <form
+        <Box
+          component="form"
           onSubmit={handleSubmit}
           action="/"
           method="post"
           target="_blank"
-          autoComplete="on">
-          <p className="login-header">Login</p>
-          <TextField
-            className="login-fields"
-            label="Username"
-            margin="dense"
-            variant="outlined"
-            name="username"
-            value={userLoginInfo.username}
-            onChange={handleChange}
-            required
-          />
-          <TextField
-            className="login-fields"
-            label="Password"
-            type="password"
-            margin="dense"
-            variant="filled"
-            name="password"
-            value={userLoginInfo.password}
-            onChange={handleChange}
-            required
-          />
-          <br></br>
-          <br></br>
-          <Button
-            color="error"
-            sx={{ cursor: "pointer", "&:hover": { backgroundColor: "red", color: "white" } }}
-            variant="outlined"
-            endIcon={<SendIcon />}
-            type="submit"
-          >
-            Log In
-          </Button>
-          <br></br>
-          <br></br>
-          {loginErr && <h3 className="error">{loginErr}</h3>}
-          <p className="registration-login">
-            don't have an account?{" "}
-            <Link
-              style={{
-                color: "red",
+          autoComplete="on"
+        >
+          <Typography variant="h3" className="login-header" sx={{ mb: 2 }}>Login</Typography>
+          <Stack spacing={2}>
+            <TextField
+              className="login-fields"
+              label="Username"
+              name="username"
+              value={userLoginInfo.username}
+              onChange={handleChange}
+              required
+            />
+            <TextField
+              className="login-fields"
+              label="Password"
+              type={showPassword ? "text" : "password"}
+              name="password"
+              value={userLoginInfo.password}
+              onChange={handleChange}
+              required
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton aria-label="toggle password visibility" onClick={() => setShowPassword((show) => !show)} edge="end">
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
               }}
-              to="/Register"
+            />
+            <Button
+              color="primary"
+              variant="contained"
+              endIcon={<SendIcon />}
+              type="submit"
             >
-              Register
-            </Link>
-          </p>
-        </form>
-      </Box>
+              Log In
+            </Button>
+            {loginErr && <Alert severity="error" className="error">{loginErr}</Alert>}
+            <Typography className="registration-login">
+              don't have an account?{" "}
+              <Link style={{ color: "#E53935" }} to="/Register">
+                Register
+              </Link>
+            </Typography>
+          </Stack>
+        </Box>
+      </Paper>
     </div>
   );
 };

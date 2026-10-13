@@ -1,87 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
-
-.home-background {
-    background: url("/src/assets/pexels-furknsaglam-3109671.jpg");
-    background-position: center;
-    background-size: cover;
-    height: auto;
-    min-height: 100vh;
-    text-align: center;
-}
-
 .home-window::-webkit-scrollbar,
 .home-window::-webkit-scrollbar-corner {
-    backdrop-filter: blur(5px);
+  width: 10px;
 }
 
 .home-window::-webkit-scrollbar-thumb {
-    background-color: black;
-    border-radius: 12px;
-}
-
-.home-logo {
-    color: white;
-    font-size: 100px;
-    text-shadow: black 2px 5px 2px;
-    font-family: 'Bubblegum sans', cursive;
-    padding: 30px;
+  background-color: black;
+  border-radius: 12px;
 }
 
 .username {
-    color: white;
-    font-family: 'Bubblegum sans', cursive;
-    text-shadow: black 2px 2px 2px;
+  color: white;
+  font-family: "Bubblegum Sans", cursive;
+  text-shadow: black 2px 2px 2px;
 }
 
 .cart {
-    color: white;
-    font-size: xx-large;
-}
-
-.dynamic-cart-username {
-    display: flex;
-    justify-content: space-evenly;
-    margin-bottom: 2%;
-    flex-wrap: wrap;
-}
-
-.cart-count {
-    background-color: red;
-    color: white;
-    border-radius: 25px 25px;
-}
-
-.modal-button {
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-}
-
-.modal-container {
-    width: 200px;
-}
-
-@media only screen and (max-width:350px),
-(max-width:450px) {
-    .home-logo {
-        font-size: 70px;
-    }
-
-    .home-background {
-        padding-bottom: 2%;
-    }
-}
-
-@media only screen and (max-width:1028px) and (min-width:1020px) {
-    .home-logo {
-        font-size: 70px;
-    }
-
-    .home-background {
-        padding-bottom: 2%;
-    }
+  color: white;
 }
